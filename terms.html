@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Description for Legal & Compliance Standards -->
+    <meta name="description" content="Webcognita LLC (EIN: 81-0809739) White-Label Portal Master Services & Licensing Agreement. Governing Arizona law, subscription terms, white-label licensing, and AI input protocols.">
+    
+    <title>Terms of Service | Webcognita LLC</title>
+    <style>
+        /* CSS Reset & Variable Definitions */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Blue-on-Creme WCAG 2.1 AA Compliant Palette */
+            --bg-primary: #FAF7F2;      /* Soft Creme Background */
+            --bg-card: #FFFFFF;         /* Crisp White Container */
+            --bg-box: #E8EEF5;          /* Light Blue-Tinted Accent Box */
+            
+            --text-main: #0B1D3A;       /* Deep Navy Blue (Text Ratio > 13:1) */
+            --text-sub: #1A365D;        /* Navy Secondary Text (Text Ratio > 9.5:1) */
+            
+            --accent-navy: #0B1D3A;     /* Primary Navy */
+            --accent-blue: #1A365D;     /* Secondary Deep Blue */
+            --border-color: #CBD5E1;    /* High-Contrast Border */
+            --max-width: 780px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Language Visibility Logic */
+        html[lang="en"] [lang="es"] {
+            display: none !important;
+        }
+
+        html[lang="es"] [lang="en"] {
+            display: none !important;
+        }
+
+        /* Language Toggle Bar */
+        .lang-switch {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .back-link {
+            color: var(--accent-navy);
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background-color: var(--bg-card);
+            color: var(--accent-navy);
+            border: 2px solid var(--accent-navy);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background-color: var(--accent-navy);
+            color: #FFFFFF;
+        }
+
+        /* Legal Document Wrapper Card */
+        .legal-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--accent-navy);
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.08);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--accent-navy);
+            border-bottom: 3px solid var(--accent-navy);
+            padding-bottom: 8px;
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+
+        .doc-meta {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--accent-navy);
+            margin: 20px 0 10px 0;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            color: var(--accent-blue);
+            margin: 14px 0 6px 0;
+            font-weight: 700;
+        }
+
+        p, li {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* Matrix Table */
+        .legal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.88rem;
+        }
+
+        .legal-table th, .legal-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .legal-table th {
+            background-color: var(--accent-navy);
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        .legal-table tr:nth-child(even) {
+            background-color: var(--bg-box);
+        }
+
+        /* Delimiter Code Block Styling */
+        pre, code {
+            background-color: var(--bg-box);
+            border: 1px solid var(--accent-blue);
+            border-radius: 6px;
+            padding: 12px;
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.85rem;
+            color: var(--accent-navy);
+            display: block;
+            white-space: pre-wrap;
+            margin: 12px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 24px 0 12px 0;
+            margin-top: 24px;
+            border-top: 2px solid var(--border-color);
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: var(--accent-navy);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation & Language Switcher -->
+        <div class="lang-switch">
+            <a href="index.html" class="back-link">← Back to Webcognita LLC</a>
+            <div class="lang-btn-group" aria-label="Language selection">
+                <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+                <button class="lang-btn" id="btn-es" onclick="setLanguage('es')">Español</button>
+            </div>
+        </div>
+
+        <!-- ENGLISH AGREEMENT -->
+        <main class="legal-card" lang="en">
+            <h1>White-Label Portal Master Services &amp; Licensing Agreement</h1>
+            <div class="doc-meta">
+                <strong>Last Updated:</strong> July 24, 2026<br>
+                <strong>Corporate Entity:</strong> Webcognita LLC (EIN: 81-0809739), an Arizona Limited Liability Company (“Company”, “Webcognita”, “We”, or “Us”).
+            </div>
+
+            <h2>1. Acceptance of Terms &amp; Scope of Service</h2>
+            <p>By subscribing to, accessing, or utilizing any curriculum architecture, prompt repositories, AI strategy vaults, or digital assets hosted within the Webcognita Client Portal (the “Portal”), You (“Subscriber”, “Client”, or “You”) agree to be legally bound by this Master Services &amp; Licensing Agreement (“Agreement”).</p>
+            <p>Webcognita provides B2B software-as-a-service (SaaS) content, white-label educational frameworks, and Generative AI prompt engineering architectures designed under the leadership of <strong>Alan Pruitt (Google Gemini Certified Faculty)</strong>.</p>
+
+            <h2>2. Subscription Tiers &amp; Billing Architecture</h2>
+            <p>Access to the Portal is billed on a recurring basis via our digital payment infrastructure (Stripe Billing / Wise Business).</p>
+
+            <table class="legal-table">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Recurring Rate</th>
+                        <th>Core License &amp; Access Rights</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Practitioner (Bilingual)</strong></td>
+                        <td>$39 USD / month<br>($390 USD / year)</td>
+                        <td>Individual Practitioner License, Full EXW Framework Access, Mission Loop Clinical Vaults. <em>Internal Practice Use Only.</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Clinic / Enterprise</strong></td>
+                        <td>$149 USD / month<br>($1,490 USD / year)</td>
+                        <td>Multi-Seat Enterprise License, Full White-Label Sublicensing, Re-branding Rights for Clients, Custom NotebookLM SOP Builders.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul>
+                <li><strong>Billing Currency &amp; Conversion:</strong> All primary subscriptions are denominated in United States Dollars ($ USD). Cross-border billing processed in Mexican Pesos ($ MXN) via Stripe Adaptive Pricing will be converted at standard mid-market exchange rates.</li>
+                <li><strong>Auto-Renewal &amp; Cancellation:</strong> Subscriptions automatically renew at the end of each billing cycle unless cancelled through the Stripe Customer Portal prior to the renewal date.</li>
+                <li><strong>Refund Policy:</strong> Due to the immediate digital delivery of proprietary prompt vaults and source repositories, subscription payments are non-refundable once portal authentication tokens are issued.</li>
+            </ul>
+
+            <h2>3. White-Label Intellectual Property &amp; Sublicensing Rights</h2>
+            <h3>3.1 Single Source of Truth (SSoT) Alignment</h3>
+            <p>All clinical, kinesiology, and exercise science frameworks provided within the Portal strictly adhere to the U.S. Physical Activity Guidelines for Americans (PAGA 2018, 2nd Ed.) and ACSM 12th Edition guidelines as the exclusive Single Source of Truth (SSoT).</p>
+
+            <h3>3.2 Enterprise White-Label License (Tier 2 Subscribers Only)</h3>
+            <p>Subscribers enrolled in the <strong>Clinic / Enterprise Tier ($149/mo)</strong> are granted a non-exclusive, worldwide, royalty-free sublicensing right under Creative Commons Attribution 4.0 International (CC BY 4.0) principles to:</p>
+            <ul>
+                <li>Re-brand, modify, edit, and translate Webcognita curriculum frameworks, clinical SOP templates, and AI prompt kits.</li>
+                <li>Incorporate customized assets into internal clinical operations or distribute them directly to end-patient clients under the Subscriber's proprietary business identity.</li>
+            </ul>
+
+            <h3>3.3 Practitioner Restrictions (Tier 1 Subscribers)</h3>
+            <p>Subscribers enrolled in the <strong>Practitioner Tier ($39/mo)</strong> are granted a personal, single-seat operational license for internal clinical and educational workflows. Sublicensing, re-selling, or external distribution of un-modified Webcognita repositories is strictly prohibited under Tier 1.</p>
+
+            <h2>4. Technical Mandates &amp; Safety Protocols</h2>
+            <h3>4.1 Wrapped Input Delimiter Protocol</h3>
+            <p>To prevent prompt injection, context contamination, and AI model hallucinations, Subscribers agree that all AI-driven tools or clinical simulation workflows built using Webcognita prompt templates MUST explicitly enforce the <strong>Triple-Hash Delimiter Protocol</strong>.</p>
+            <p>All client profiles, case data, or medical inputs provided to AI model engines MUST be wrapped as follows:</p>
+
+<code>### CLINICAL CASE DATA INPUT ###
+[Insert Client Profile / Medical History / Test Results Here]
+### END DATA INPUT ###</code>
+
+            <h3>4.2 WCAG 2.1 AA &amp; Accessibility Compliance</h3>
+            <p>Webcognita architectures are engineered to pass Web Content Accessibility Guidelines (WCAG) 2.1 AA contrast standards (minimum 4.5:1 ratio). Subscribers modifying semantic HTML/CSS layouts agree to preserve strict heading hierarchies (&lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;) and high-contrast palettes for mobile and screen-reader compatibility.</p>
+
+            <h2>5. Jurisdiction &amp; Corporate Integrity</h2>
+            <ul>
+                <li><strong>U.S. Corporate Structure:</strong> Webcognita LLC is a registered United States corporate entity (EIN: 81-0809739) organized under the laws of the State of Arizona. All commercial transactions, subscription agreements, and merchant processing activities are executed strictly within United States commercial jurisdiction.</li>
+                <li><strong>Cross-Border Regulatory Compliance:</strong> This Agreement is governed by the laws of the State of Arizona. Transactions executed digitally across international borders do not constitute localized physical business activity outside of the United States.</li>
+            </ul>
+
+            <h2>6. Disclaimer of Medical &amp; Clinical Liability</h2>
+            <p>Webcognita LLC provides instructional architecture, software engineering templates, and Generative AI strategies for educational and operational optimization only. <strong>Webcognita LLC is not a medical facility, nor does it provide direct medical diagnosis or clinical treatment.</strong></p>
+            <p>Subscribers, health practice leaders, and clinicians maintain 100% sole liability for verifying clinical accuracy, auditing AI-generated outputs, and executing exercise prescriptions with their respective patients.</p>
+
+            <h2>7. Contact &amp; Legal Notices</h2>
+            <p>For legal inquiries, corporate procurement, or licensing audits, contact Webcognita LLC directly:</p>
+            <ul>
+                <li><strong>Official Entity:</strong> Webcognita LLC (EIN: 81-0809739)</li>
+                <li><strong>Designated Lead:</strong> Alan Pruitt (Google Gemini Certified Faculty)</li>
+                <li><strong>Direct Email:</strong> <a href="mailto:alan.pruitt@gmail.com">alan.pruitt@gmail.com</a></li>
+                <li><strong>Official Site:</strong> <a href="index.html">webcognita.com</a></li>
+            </ul>
+        </main>
+
+        <!-- SPANISH AGREEMENT -->
+        <main class="legal-card" lang="es">
+            <h1>Acuerdo Maestro de Servicios y Licencia de Marca Blanca</h1>
+            <div class="doc-meta">
+                <strong>Última Actualización:</strong> 24 de julio de 2026<br>
+                <strong>Entidad Corporativa:</strong> Webcognita LLC (EIN: 81-0809739), una Compañía de Responsabilidad Limitada de Arizona (“Compañía”, “Webcognita”, “Nosotros”).
+            </div>
+
+            <h2>1. Aceptación de Términos y Alcance del Servicio</h2>
+            <p>Al suscribirse, acceder o utilizar cualquier arquitectura de capacitación, repositorio de prompts o activos digitales en el Portal de Clientes de Webcognita, Usted (“Suscriptor” o “Cliente”) acepta quedar legalmente vinculado por este Acuerdo Maestro de Servicios y Licencia.</p>
+            <p>Webcognita ofrece contenido B2B SaaS, marcos educativos de marca blanca y arquitectura de IA Generativa bajo el liderazgo de <strong>Alan Pruitt (Google Gemini Certified Faculty)</strong>.</p>
+
+            <h2>2. Niveles de Suscripción y Facturación</h2>
+            <p>El acceso al Portal se factura de forma recurrente mediante nuestra infraestructura de pago digital (Stripe Billing / Wise Business).</p>
+
+            <table class="legal-table">
+                <thead>
+                    <tr>
+                        <th>Nivel</th>
+                        <th>Tarifa Recurrente</th>
+                        <th>Licencia y Derechos de Acceso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Practicante (Bilingüe)</strong></td>
+                        <td>$39 USD / mes<br>($390 USD / año)</td>
+                        <td>Licencia individual de practicante, acceso completo a marcos EXW y bóvedas clínicas. <em>Uso interno exclusivamente.</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Clínica / Empresarial</strong></td>
+                        <td>$149 USD / mes<br>($1,490 USD / año)</td>
+                        <td>Licencia empresarial multi-usuario, sublicenciamiento completo de marca blanca y re-diseño de marca para clientes.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. Propiedad Intelectual y Marca Blanca</h2>
+            <p>Los suscriptores del nivel <strong>Clínica / Empresarial ($149 USD/mes)</strong> obtienen derechos de marca blanca bajo Creative Commons Attribution 4.0 International (CC BY 4.0) para modificar, re-marcar y distribuir los activos a sus propios clientes.</p>
+
+            <h2>4. Protocolo Técnico de Delimitadores</h2>
+            <p>Para evitar alucinaciones e inyecciones de prompts, todas las herramientas desarrolladas con las plantillas de Webcognita DEBEN envolver los datos de entrada en delimitadores:</p>
+
+<code>### CLINICAL CASE DATA INPUT ###
+[Insertar Expediente del Cliente / Datos de Salud Aquí]
+### END DATA INPUT ###</code>
+
+            <h2>5. Jurisdicción Corporativa</h2>
+            <p>Este Acuerdo se rige exclusivamente por las leyes del <strong>Estado de Arizona, EE. UU.</strong> Webcognita LLC (EIN: 81-0809739) opera formalmente bajo la jurisdicción comercial de los Estados Unidos.</p>
+
+            <h2>6. Deslinde de Responsabilidad Médica</h2>
+            <p><strong>Webcognita LLC no es una instalación médica ni proporciona diagnóstico médico directo.</strong> Los profesionales de la salud asumen la responsabilidad total de auditar las respuestas generadas por IA.</p>
+
+            <h2>7. Contacto Legal</h2>
+            <p>Para consultas legales o de licencias: <strong>Alan Pruitt (Google Gemini Certified Faculty)</strong> — <a href="mailto:alan.pruitt@gmail.com">alan.pruitt@gmail.com</a>.</p>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div lang="en">
+                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Hosted via GitHub Pages. Mobile-First &amp; WCAG 2.1 AA Compliant. | <a href="index.html">Main Portal</a></p>
+            </div>
+            <div lang="es">
+                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Alojado en GitHub Pages. Diseño Móvil Accesible (WCAG 2.1 AA). | <a href="index.html">Portal Principal</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client-side Language Toggle Script -->
+    <script>
+        function setLanguage(lang) {
+            const btnEn = document.getElementById('btn-en');
+            const btnEs = document.getElementById('btn-es');
+
+            if (lang === 'es') {
+                document.documentElement.lang = 'es';
+                btnEs.classList.add('active');
+                btnEn.classList.remove('active');
+                localStorage.setItem('webcognita_lang', 'es');
+            } else {
+                document.documentElement.lang = 'en';
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+                localStorage.setItem('webcognita_lang', 'en');
+            }
+        }
+
+        // Auto-detect or restore preferred language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('webcognita_lang') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
