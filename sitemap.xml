@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Root Commercial Landing Page -->
+  <url>
+    <loc>https://www.webcognita.com/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Technical Consulting & Advisory -->
+  <url>
+    <loc>https://www.webcognita.com/services/consulting.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Edge-Native AI Infrastructure -->
+  <url>
+    <loc>https://www.webcognita.com/services/ai-infrastructure.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Compliance-Driven Instructional Engineering -->
+  <url>
+    <loc>https://www.webcognita.com/services/instructional-engineering.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Privacy Policy / Compliance -->
+  <url>
+    <loc>https://www.webcognita.com/privacy.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://www.webcognita.com/terms.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
