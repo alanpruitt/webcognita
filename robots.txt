@@ -1,0 +1,6 @@
+# Allow all search engines and web crawlers to index Webcognita LLC
+User-agent: *
+Allow: /
+
+# Canonical XML Sitemap for Google Search Console & Webmaster Tools
+Sitemap: https://www.webcognita.com/sitemap.xml
