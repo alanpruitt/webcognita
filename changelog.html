@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Webcognita LLC Changelog & Release Notes. Transparent tracking of platform upgrades, curriculum-as-code updates, and technical deployments.">
+    <title>Changelog & Release Notes | Webcognita LLC</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-primary: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --bg-box: #E8EEF5;
+            --text-main: #0B1D3A;
+            --text-sub: #1A365D;
+            --accent-navy: #0B1D3A;
+            --accent-blue: #1A365D;
+            --border-color: #CBD5E1;
+            --max-width: 680px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+        .container { width: 100%; max-width: var(--max-width); margin: 0 auto; }
+        html[lang="en"] [lang="es"] { display: none !important; }
+        html[lang="es"] [lang="en"] { display: none !important; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        .lang-switch { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 12px; }
+        .lang-btn {
+            background-color: var(--bg-card); color: var(--accent-navy); border: 2px solid var(--accent-navy);
+            padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+        }
+        .lang-btn.active { background-color: var(--accent-navy); color: #FFFFFF; }
+        .card {
+            background-color: var(--bg-card); border: 2px solid var(--accent-navy); border-radius: 12px;
+            padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(11, 29, 58, 0.06);
+        }
+        h2 { color: var(--accent-navy); font-size: 1.25rem; border-bottom: 2px solid var(--accent-navy); padding-bottom: 6px; margin-bottom: 16px; text-transform: uppercase; }
+        .release-entry { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
+        .release-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .release-date { font-size: 0.85rem; font-weight: 700; color: var(--accent-blue); background: var(--bg-box); display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+        h3 { color: var(--accent-navy); font-size: 1.05rem; margin-bottom: 6px; }
+        p, ul { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 8px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 4px; }
+        .back-link { display: inline-block; margin-top: 16px; color: var(--accent-navy); font-weight: 700; text-decoration: underline; }
+        footer { text-align: center; padding: 20px 0; color: var(--text-sub); font-size: 0.85rem; font-weight: 600; border-top: 2px solid var(--border-color); margin-top: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch" aria-label="Language selection">
+            <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" id="btn-es" onclick="setLanguage('es')">Español</button>
+        </div>
+
+        <main class="card">
+            <div lang="en">
+                <h1 class="sr-only">Changelog - Webcognita LLC</h1>
+                <h2>Release Notes & Changelog</h2>
+                
+                <div class="release-entry">
+                    <span class="release-date">August 18, 2026 — v1.2.0</span>
+                    <h3>Core Infrastructure & Logo Scaling Optimization</h3>
+                    <ul>
+                        <li>Constrained SVG vector logo container width to prevent over-scaling on mobile viewports.</li>
+                        <li>Deployed bilingual Terms of Service and Privacy Policy compliance endpoints for Stripe checkout integration.</li>
+                        <li>Achieved verified 100/100/100/100 Lighthouse performance metrics across mobile and desktop.</li>
+                    </ul>
+                </div>
+
+                <div class="release-entry">
+                    <span class="release-date">August 15, 2026 — v1.0.0</span>
+                    <h3>Initial Capabilities Deployment</h3>
+                    <ul>
+                        <li>Launched initial Webcognita LLC capabilities statement featuring federal VOSB data and NAICS codes.</li>
+                        <li>Integrated client-side English/Spanish language switcher with localStorage persistence.</li>
+                    </ul>
+                </div>
+
+                <a href="index.html" class="back-link">← Return to Webcognita Home</a>
+            </div>
+
+            <div lang="es">
+                <h1 class="sr-only">Historial de Cambios - Webcognita LLC</h1>
+                <h2>Notas de Versión e Historial</h2>
+                
+                <div class="release-entry">
+                    <span class="release-date">18 de agosto de 2026 — v1.2.0</span>
+                    <h3>Optimización de Infraestructura y Logotipo</h3>
+                    <ul>
+                        <li>Se ajustó el contenedor del logotipo SVG para evitar sobre-escalado en dispositivos móviles.</li>
+                        <li>Se desplegaron los Términos de Servicio y la Política de Privacidad bILINGÜES para las pasarelas de pago Stripe.</li>
+                        <li>Se alcanzaron métricas perfectas de 100/100/100/100 en Lighthouse.</li>
+                    </ul>
+                </div>
+
+                <div class="release-entry">
+                    <span class="release-date">15 de agosto de 2026 — v1.0.0</span>
+                    <h3>Despliegue Inicial de Capacidades</h3>
+                    <ul>
+                        <li>Lanzamiento del portal de capacidades de Webcognita LLC con datos federales VOSB y códigos NAICS.</li>
+                        <li>Integración de selector de idioma inglés/español con persistencia local.</li>
+                    </ul>
+                </div>
+
+                <a href="index.html" class="back-link">← Volver al Inicio de Webcognita</a>
+            </div>
+        </main>
+
+        <footer>
+            <div lang="en"><p>© 2026 Webcognita LLC (EIN: 81-0809739). All rights reserved.</p></div>
+            <div lang="es"><p>© 2026 Webcognita LLC (EIN: 81-0809739). Todos los derechos reservados.</p></div>
+        </footer>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            const btnEn = document.getElementById('btn-en');
+            const btnEs = document.getElementById('btn-es');
+            if (lang === 'es') {
+                document.documentElement.lang = 'es';
+                btnEs.classList.add('active'); btnEn.classList.remove('active');
+                localStorage.setItem('webcognita_lang', 'es');
+            } else {
+                document.documentElement.lang = 'en';
+                btnEn.classList.add('active'); btnEs.classList.remove('active');
+                localStorage.setItem('webcognita_lang', 'en');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(localStorage.getItem('webcognita_lang') || 'en');
+        });
+    </script>
+</body>
+</html>
