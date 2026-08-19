@@ -1,15 +1,12 @@
+###
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Meta Description for Stripe Compliance, Privacy Audits & SEO -->
-    <meta name="description" content="Webcognita LLC (EIN: 81-0809739) Privacy Policy. Detailing customer data collection, Stripe merchant security, user rights, and data protection practices.">
-    
+    <meta name="description" content="Webcognita LLC Privacy Policy. Data protection, secure Stripe processing, and client confidentiality.">
     <title>Privacy Policy | Webcognita LLC</title>
     <style>
-        /* CSS Reset & Variable Definitions */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -17,22 +14,19 @@
         }
 
         :root {
-            /* Blue-on-Creme WCAG 2.1 AA Compliant Palette */
-            --bg-primary: #FAF7F2;      /* Soft Creme Background */
-            --bg-card: #FFFFFF;         /* Crisp White Container */
-            --bg-box: #E8EEF5;          /* Light Blue-Tinted Accent Box */
-            
-            --text-main: #0B1D3A;       /* Deep Navy Blue (Text Ratio > 13:1) */
-            --text-sub: #1A365D;        /* Navy Secondary Text (Text Ratio > 9.5:1) */
-            
-            --accent-navy: #0B1D3A;     /* Primary Navy */
-            --accent-blue: #1A365D;     /* Secondary Deep Blue */
-            --border-color: #CBD5E1;    /* High-Contrast Border */
-            --max-width: 780px;
+            --bg-primary: #FAF7F2;
+            --bg-card: #FFFFFF;
+            --bg-box: #E8EEF5;
+            --text-main: #0B1D3A;
+            --text-sub: #1A365D;
+            --accent-navy: #0B1D3A;
+            --accent-blue: #1A365D;
+            --border-color: #CBD5E1;
+            --max-width: 680px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             line-height: 1.6;
@@ -47,33 +41,18 @@
             margin: 0 auto;
         }
 
-        /* Language Visibility Logic */
-        html[lang="en"] [lang="es"] {
-            display: none !important;
+        html[lang="en"] [lang="es"] { display: none !important; }
+        html[lang="es"] [lang="en"] { display: none !important; }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
         }
 
-        html[lang="es"] [lang="en"] {
-            display: none !important;
-        }
-
-        /* Language Toggle Bar */
         .lang-switch {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .back-link {
-            color: var(--accent-navy);
-            font-weight: 700;
-            text-decoration: underline;
-            font-size: 0.9rem;
-        }
-
-        .lang-btn-group {
-            display: flex;
+            justify-content: flex-end;
             gap: 8px;
+            margin-bottom: 12px;
         }
 
         .lang-btn {
@@ -85,7 +64,6 @@
             font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
         .lang-btn.active {
@@ -93,249 +71,132 @@
             color: #FFFFFF;
         }
 
-        /* Legal Document Wrapper Card */
-        .legal-card {
+        .card {
             background-color: var(--bg-card);
             border: 2px solid var(--accent-navy);
             border-radius: 12px;
-            padding: 24px 20px;
-            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.08);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            color: var(--accent-navy);
-            border-bottom: 3px solid var(--accent-navy);
-            padding-bottom: 8px;
-            margin-bottom: 6px;
-            font-weight: 800;
-        }
-
-        .doc-meta {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            font-weight: 600;
+            padding: 24px;
             margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.06);
         }
 
         h2 {
-            font-size: 1.2rem;
             color: var(--accent-navy);
-            margin: 20px 0 10px 0;
-            font-weight: 700;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 4px;
+            font-size: 1.25rem;
+            border-bottom: 2px solid var(--accent-navy);
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
         }
 
-        p, li {
+        h3 {
+            color: var(--accent-navy);
+            font-size: 1.05rem;
+            margin: 16px 0 8px 0;
+        }
+
+        p, ul {
             font-size: 0.95rem;
-            color: var(--text-main);
+            color: var(--text-sub);
             margin-bottom: 12px;
         }
 
         ul {
             padding-left: 20px;
-            margin-bottom: 12px;
         }
 
-        pre, code {
-            background-color: var(--bg-box);
-            border: 1px solid var(--accent-blue);
-            border-radius: 6px;
-            padding: 10px;
-            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 0.85rem;
+        li {
+            margin-bottom: 6px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
             color: var(--accent-navy);
-            display: block;
-            white-space: pre-wrap;
-            margin: 12px 0;
+            font-weight: 700;
+            text-decoration: underline;
         }
 
-        /* Footer */
         footer {
             text-align: center;
-            padding: 24px 0 12px 0;
-            margin-top: 24px;
-            border-top: 2px solid var(--border-color);
+            padding: 20px 0;
             color: var(--text-sub);
             font-size: 0.85rem;
             font-weight: 600;
-        }
-
-        footer a {
-            color: var(--accent-navy);
-            text-decoration: underline;
+            border-top: 2px solid var(--border-color);
+            margin-top: 24px;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <!-- Navigation & Language Switcher -->
-        <div class="lang-switch">
-            <a href="index.html" class="back-link">← Back to Webcognita LLC</a>
-            <div class="lang-btn-group" aria-label="Language selection">
-                <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
-                <button class="lang-btn" id="btn-es" onclick="setLanguage('es')">Español</button>
-            </div>
+        <div class="lang-switch" aria-label="Language selection">
+            <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" id="btn-es" onclick="setLanguage('es')">Español</button>
         </div>
 
-        <!-- ENGLISH PRIVACY POLICY -->
-        <main class="legal-card" lang="en">
-            <h1>Privacy Policy</h1>
-            <div class="doc-meta">
-                <strong>Last Updated:</strong> July 28, 2026<br>
-                <strong>Corporate Entity:</strong> Webcognita LLC (EIN: 81-0809739), an Arizona Limited Liability Company (“Company”, “Webcognita”, “We”, or “Us”).
-            </div>
-
-            <h2>1. Overview &amp; Scope</h2>
-            <p>Webcognita LLC respects your privacy and is committed to protecting the personal and operational data collected through our web portals, checkout interfaces, and client services. This Privacy Policy details how we collect, use, disclose, and safeguard your information when you subscribe to our B2B prompt repositories, curriculum architectures, or consulting services.</p>
-
-            <h2>2. Information We Collect</h2>
-            <p>We collect information necessary to deliver B2B portal access, process client subscriptions, issue tax receipts, and communicate service updates:</p>
-            <ul>
-                <li><strong>Account &amp; Professional Contact Data:</strong> Full name, professional email address, company or health practice name, and billing address.</li>
-                <li><strong>Payment Transaction Data:</strong> Payment details (credit card numbers, bank routing information) are collected and processed directly by our merchant infrastructure providers, Stripe Inc. and Wise Business. <em>Webcognita LLC does not store, transmit, or process raw payment card numbers on our local servers.</em></li>
-                <li><strong>Technical &amp; Preference Data:</strong> Basic browser parameters, language preference tokens stored in local browser storage (<code>webcognita_lang</code>), and standard server access logs.</li>
-            </ul>
-
-            <h2>3. How We Use Your Information</h2>
-            <p>We use your information solely for legitimate operational and commercial purposes:</p>
-            <ul>
-                <li>To provision, authenticate, and maintain B2B portal access tokens and prompt repository downloads.</li>
-                <li>To process subscription payments, manage auto-renewals, and issue tax receipts via Stripe Billing.</li>
-                <li>To deliver direct administrative communications, technical support, and 1-on-1 AI audit scheduling.</li>
-                <li>To maintain compliance with United States federal tax, accounting, and corporate regulatory standards.</li>
-            </ul>
-
-            <h2>4. Third-Party Data Disclosures &amp; Service Providers</h2>
-            <p>We do not sell, rent, lease, or trade your personal or business data to third parties, advertising networks, or data brokers. Data is shared exclusively with trusted infrastructure partners required to deliver our core services:</p>
-            <ul>
-                <li><strong>Stripe, Inc. &amp; Wise:</strong> Recurring payment processing, merchant checkout, and cross-border currency settlement under strict PCI-DSS Level 1 compliance.</li>
-                <li><strong>GitHub Pages:</strong> Web hosting, content delivery, and infrastructure distribution.</li>
-                <li><strong>Legal Requirements:</strong> When compelled by United States federal or state law, court order, or official regulatory authority.</li>
-            </ul>
-
-            <h2>5. Data Security Practices &amp; AI Safety Protocols</h2>
-            <p>Webcognita LLC implements robust technical and administrative security controls to protect your data:</p>
-            <ul>
-                <li><strong>Encrypted Transport:</strong> All website traffic, API connections, and checkout sessions are encrypted end-to-end using TLS 1.3 / HTTPS.</li>
-                <li><strong>Vaulted Payment Processing:</strong> Payment details are handled entirely within Stripe's PCI-DSS Level 1 certified environment.</li>
-                <li><strong>Triple-Hash Input Isolation:</strong> All client prompt workflows and AI integration templates explicitly enforce the Triple-Hash Delimiter Protocol (<code>### DATA INPUT ###</code>) to protect against context contamination, prompt injection, and data leaks.</li>
-            </ul>
-
-            <h2>6. User Rights &amp; Account Management</h2>
-            <p>You maintain full control over your billing profile and account data. You may update billing details, change payment methods, or cancel recurring subscriptions at any time via the self-service Stripe Customer Portal. To request data inspection, correction, or permanent account deletion, contact us directly at <a href="mailto:alan.pruitt@gmail.com">alan.pruitt@gmail.com</a>.</p>
-
-            <h2>7. Contact &amp; Privacy Enquiries</h2>
-            <p>For questions or formal inquiries regarding this Privacy Policy, contact Webcognita LLC directly:</p>
-            <ul>
-                <li><strong>Official Entity:</strong> Webcognita LLC (EIN: 81-0809739)</li>
-                <li><strong>Designated Lead:</strong> Alan Pruitt (Google Gemini Certified Faculty)</li>
-                <li><strong>Direct Contact Email:</strong> <a href="mailto:alan.pruitt@gmail.com">alan.pruitt@gmail.com</a></li>
-                <li><strong>Official Web Portal:</strong> <a href="index.html">webcognita.com</a></li>
-            </ul>
-        </main>
-
-        <!-- SPANISH PRIVACY POLICY (NORTEÑO LOCALIZED) -->
-        <main class="legal-card" lang="es">
-            <h1>Política de Privacidad</h1>
-            <div class="doc-meta">
-                <strong>Última Actualización:</strong> 28 de julio de 2026<br>
-                <strong>Entidad Corporativa:</strong> Webcognita LLC (EIN: 81-0809739), una Compañía de Responsabilidad Limitada de Arizona (“Compañía”, “Webcognita”, “Nosotros”).
-            </div>
-
-            <h2>1. Alcance y Compromiso de Privacidad</h2>
-            <p>En Webcognita LLC respetamos tu privacidad y nos comprometemos a resguardar la información personal y operativa recopilada a través de nuestros portales web, pasarelas de pago y servicios de consultoría. Esta Política de Privacidad detalla cómo manejamos, utilizamos y protegemos tus datos al contratar nuestras suscripciones B2B o servicios de estrategia en Inteligencia Artificial.</p>
-
-            <h2>2. Información que Recopilamos</h2>
-            <p>Recopilamos únicamente la información necesaria para proporcionar el acceso al portal, procesar suscripciones B2B, emitir comprobantes fiscales y coordinar servicios:</p>
-            <ul>
-                <li><strong>Datos de Contacto Profesional:</strong> Nombre completo, correo electrónico institucional o profesional, nombre de la empresa o clínica, y dirección de facturación.</li>
-                <li><strong>Datos de Transacción y Pago:</strong> La información de pago (tarjetas de crédito, débito o datos bancarios) se procesa de manera directa y segura a través de nuestros proveedores Stripe Inc. y Wise Business. <em>Webcognita LLC no almacena ni procesa números de tarjeta en nuestros servidores.</em></li>
-                <li><strong>Datos Técnicos:</strong> Preferencias básicas de idioma (almacenadas localmente como <code>webcognita_lang</code>) y registros estándar del servidor web.</li>
-            </ul>
-
-            <h2>3. Uso de la Información</h2>
-            <p>Utilizamos tu información exclusivamente para fines operativos y comerciales legítimos:</p>
-            <ul>
-                <li>Para habilitar y administrar tus credenciales de acceso al portal y repositorios de prompts.</li>
-                <li>Para procesar pagos recurrentes, renovaciones automáticas y emitir recibos fiscales a través de Stripe Billing.</li>
-                <li>Para brindar soporte técnico directo y coordinar las sesiones de auditoría 1 a 1.</li>
-                <li>Para cumplir con las obligaciones fiscales y reglamentarias vigentes en los Estados Unidos.</li>
-            </ul>
-
-            <h2>4. Divulgación de Datos a Terceros</h2>
-            <p>No vendemos, rentamos ni comercializamos tus datos personales o empresariales con terceros ni con agencias de publicidad. Compartimos datos únicamente con proveedores de infraestructura crítica esenciales para la operación:</p>
-            <ul>
-                <li><strong>Stripe, Inc. y Wise:</strong> Procesamiento seguro de pagos y cobro de suscripciones bajo certificación de seguridad PCI-DSS Nivel 1.</li>
-                <li><strong>GitHub Pages:</strong> Alojamiento del sitio web y entrega de contenido digital.</li>
-                <li><strong>Cumplimiento Legal:</strong> Cuando sea requerido por ley federal o estatal de los Estados Unidos, o por una orden judicial.</li>
-            </ul>
-
-            <h2>5. Prácticas de Seguridad y Aislamiento de Datos</h2>
-            <p>Webcognita LLC implementa controles de seguridad técnicos y administrativos estrictos:</p>
-
-<code>### CLINICAL CASE DATA INPUT ###
-[Delimitador de Seguridad para Protección de Datos]
-### END DATA INPUT ###</code>
-
-            <ul>
-                <li><strong>Cifrado SSL/TLS:</strong> Todo el tráfico del sitio y los procesos de pago están cifrados de extremo a extremo mediante TLS 1.3 / HTTPS.</li>
-                <li><strong>Seguridad de Pasarela:</strong> Los datos financieros permanecen resguardados exclusivamente en el entorno certificado PCI-DSS Nivel 1 de Stripe.</li>
-                <li><strong>Protocolo de Delimitadores:</strong> Todas nuestras plantillas de IA exigen el protocolo de delimitadores con triple numeral para prevenir inyecciones de prompts y fuga de información sensible.</li>
-            </ul>
-
-            <h2>6. Derechos del Usuario y Cancelación</h2>
-            <p>Mantienes el control total de tu suscripción y datos de facturación. Puedes actualizar tus métodos de pago o cancelar tu suscripción en cualquier momento a través del portal de Stripe. Para solicitar la corrección o eliminación permanente de tus datos personales, escríbenos directamente a <a href="mailto:alan.pruitt@gmail.com">alan.pruitt@gmail.com</a>.</p>
-
-            <h2>7. Contacto Legal</h2>
-            <p>Para dudas, aclaraciones o solicitudes relacionadas con esta Política de Privacidad, contacta directamente a Webcognita LLC:</p>
-            <ul>
-                <li><strong>Entidad Oficial:</strong> Webcognita LLC (EIN: 81-0809739)</li>
-                <li><strong>Representante:</strong> Alan Pruitt (Google Gemini Certified Faculty)</li>
-                <li><strong>Correo Directo:</strong> <a href="mailto:alan.pruitt@gmail.com">alan.pruitt@gmail.com</a></li>
-                <li><strong>Sitio Oficial:</strong> <a href="index.html">webcognita.com</a></li>
-            </ul>
-        </main>
-
-        <!-- Footer -->
-        <footer>
+        <main class="card">
             <div lang="en">
-                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Hosted via GitHub Pages. Mobile-First &amp; WCAG 2.1 AA Compliant. | <a href="index.html">Main Portal</a> | <a href="terms.html">Terms of Service</a></p>
+                <h1 class="sr-only">Privacy Policy - Webcognita LLC</h1>
+                <h2>Privacy Policy</h2>
+                <p><strong>Effective Date:</strong> August 18, 2026</p>
+                <p>Webcognita LLC (EIN: 81-0809739) respects your privacy and is committed to protecting any personal or operational data shared with us during consulting engagements or digital transactions.</p>
+                
+                <h3>1. Information We Collect</h3>
+                <p>We collect contact information (such as name and email address) submitted via inquiry links or direct communication. Financial transactions are securely handled directly through Stripe; Webcognita LLC never stores full credit card details on local servers.</p>
+
+                <h3>2. Use of Information</h3>
+                <p>Information provided is utilized solely for scheduling consultations, delivering educational workshops, and executing agreed-upon technical consulting frameworks.</p>
+
+                <h3>3. Data Security</h3>
+                <p>We adhere to strict data security practices, including air-gapped local processing where applicable and zero-data-leakage prompt vaults.</p>
+
+                <a href="index.html" class="back-link">← Return to Webcognita Home</a>
             </div>
+
             <div lang="es">
-                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Alojado en GitHub Pages. Diseño Móvil Accesible (WCAG 2.1 AA). | <a href="index.html">Portal Principal</a> | <a href="terms.html">Términos del Servicio</a></p>
+                <h1 class="sr-only">Política de Privacidad - Webcognita LLC</h1>
+                <h2>Política de Privacidad</h2>
+                <p><strong>Fecha de vigencia:</strong> 18 de agosto de 2026</p>
+                <p>Webcognita LLC (EIN: 81-0809739) respeta su privacidad y se compromete a proteger cualquier dato personal u operativo compartido durante nuestros servicios de consultoría.</p>
+                
+                <h3>1. Información que Recopilamos</h3>
+                <p>Recopilamos información de contacto (nombre y correo electrónico) enviada a través de formularios o correos directos. Las transacciones financieras se procesan de forma segura a través de Stripe; Webcognita LLC nunca almacena datos completos de tarjetas de crédito.</p>
+
+                <h3>2. Uso de la Información</h3>
+                <p>Los datos proporcionados se utilizan exclusivamente para coordinar asesorías, impartir talleres y ejecutar las consultorías técnicas acordadas.</p>
+
+                <h3>3. Seguridad de Datos</h3>
+                <p>Aplicamos estrictos estándares de seguridad y confidencialidad en todos nuestros procesos operativos y flujos de trabajo.</p>
+
+                <a href="index.html" class="back-link">← Volver al Inicio de Webcognita</a>
             </div>
+        </main>
+
+        <footer>
+            <div lang="en"><p>© 2026 Webcognita LLC (EIN: 81-0809739). All rights reserved.</p></div>
+            <div lang="es"><p>© 2026 Webcognita LLC (EIN: 81-0809739). Todos los derechos reservados.</p></div>
         </footer>
     </div>
 
-    <!-- Client-side Language Toggle Script -->
     <script>
         function setLanguage(lang) {
             const btnEn = document.getElementById('btn-en');
             const btnEs = document.getElementById('btn-es');
-
             if (lang === 'es') {
                 document.documentElement.lang = 'es';
-                btnEs.classList.add('active');
-                btnEn.classList.remove('active');
+                btnEs.classList.add('active'); btnEn.classList.remove('active');
                 localStorage.setItem('webcognita_lang', 'es');
             } else {
                 document.documentElement.lang = 'en';
-                btnEn.classList.add('active');
-                btnEs.classList.remove('active');
+                btnEn.classList.add('active'); btnEs.classList.remove('active');
                 localStorage.setItem('webcognita_lang', 'en');
             }
         }
-
-        // Auto-detect or restore preferred language on page load
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('webcognita_lang') || 'en';
-            setLanguage(savedLang);
+            setLanguage(localStorage.getItem('webcognita_lang') || 'en');
         });
     </script>
 </body>
 </html>
+###
