@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Description for SEO, Federal Procurement, and Lighthouse Compliance -->
     <meta name="description" content="Webcognita LLC (EIN: 81-0809739) Capabilities Statement. Primary NAICS 541511 (Custom Computer Programming / Curriculum-as-Code). Veteran-Owned Small Business led by Google Gemini Certified Faculty.">
+    
     <title>Webcognita LLC | Technical Consulting & AI Strategy</title>
     <style>
+        /* CSS Reset & Variable Definitions */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -13,19 +17,21 @@
         }
 
         :root {
-            --bg-primary: #FAF7F2;
-            --bg-card: #FFFFFF;
-            --bg-box: #E8EEF5;
-            --text-main: #0B1D3A;
-            --text-sub: #1A365D;
-            --accent-navy: #0B1D3A;
-            --accent-blue: #1A365D;
-            --border-color: #CBD5E1;
+            --bg-primary: #FAF7F2;     /* Soft Creme Background */
+            --bg-card: #FFFFFF;         /* Crisp White Card Container */
+            --bg-box: #E8EEF5;          /* Light Blue-Tinted Accent Box */
+            
+            --text-main: #0B1D3A;       /* Deep Navy Blue (Text Ratio > 13:1) */
+            --text-sub: #1A365D;        /* Navy Secondary Text (Text Ratio > 9.5:1) */
+            
+            --accent-navy: #0B1D3A;     /* Primary Navy */
+            --accent-blue: #1A365D;     /* Secondary Deep Blue */
+            --border-color: #CBD5E1;    /* High-Contrast Border */
             --max-width: 680px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             line-height: 1.6;
@@ -40,13 +46,29 @@
             margin: 0 auto;
         }
 
-        html[lang="en"] [lang="es"] { display: none !important; }
-        html[lang="es"] [lang="en"] { display: none !important; }
-
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        /* Language Visibility Logic */
+        html[lang="en"] [lang="es"] {
+            display: none !important;
         }
 
+        html[lang="es"] [lang="en"] {
+            display: none !important;
+        }
+
+        /* Screen Reader Only Utility Class for Accessibility & SEO */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Language Toggle Bar */
         .lang-switch {
             display: flex;
             justify-content: flex-end;
@@ -63,6 +85,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .lang-btn.active {
@@ -70,6 +93,11 @@
             color: #FFFFFF;
         }
 
+        .lang-btn:hover, .lang-btn:focus {
+            outline: 2px solid var(--accent-blue);
+        }
+
+        /* Mobile-First Header & Branding */
         header {
             background-color: var(--bg-card);
             border: 2px solid var(--accent-navy);
@@ -114,6 +142,7 @@
             font-weight: 600;
         }
 
+        /* Header Buttons Grid */
         .cta-grid {
             display: flex;
             flex-direction: column;
@@ -123,7 +152,9 @@
         }
 
         @media (min-width: 480px) {
-            .cta-grid { flex-direction: row; }
+            .cta-grid {
+                flex-direction: row;
+            }
         }
 
         .btn-action {
@@ -140,11 +171,12 @@
             border: 2px solid var(--accent-navy);
             width: 100%;
             max-width: 240px;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
         .btn-action:hover, .btn-action:focus {
             background-color: var(--accent-blue);
+            color: #FFFFFF;
             text-decoration: underline;
         }
 
@@ -161,32 +193,35 @@
             text-align: center;
             width: 100%;
             margin-top: 10px;
+            transition: background-color 0.2s ease;
         }
 
         .btn-stripe:hover, .btn-stripe:focus {
             background-color: var(--accent-blue);
+            color: #FFFFFF;
             text-decoration: underline;
         }
 
-        .cert-card, .capability-statement-card, .product-card, .summary-card, .differentiator-box {
+        /* Certification Card Styling */
+        .cert-card {
             background-color: var(--bg-card);
             border: 2px solid var(--accent-navy);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.05);
-        }
-
-        .cert-card {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 16px;
+            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.05);
         }
 
         @media (min-width: 520px) {
-            .cert-card { flex-direction: row; text-align: left; }
+            .cert-card {
+                flex-direction: row;
+                text-align: left;
+            }
         }
 
         .cert-badge-img {
@@ -194,14 +229,43 @@
             height: auto;
             flex-shrink: 0;
             border-radius: 8px;
+            padding: 4px;
             background-color: #FFFFFF;
         }
 
-        .cert-content h2, .capability-statement-card h2, h2.section-title {
+        .cert-content h2 {
             color: var(--accent-navy);
             font-size: 1.15rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+        }
+
+        .cert-content p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Capabilities Statement Styling */
+        .capability-statement-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--accent-navy);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.06);
+        }
+
+        .capability-statement-card h2 {
+            color: var(--accent-navy);
+            font-size: 1.25rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--accent-navy);
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .gov-data-grid {
@@ -218,7 +282,9 @@
         }
 
         @media (min-width: 480px) {
-            .gov-data-grid { grid-template-columns: 1fr 1fr; }
+            .gov-data-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .naics-table {
@@ -238,10 +304,27 @@
         .naics-table th {
             background-color: var(--accent-navy);
             color: #FFFFFF;
+            font-weight: 700;
         }
 
         .naics-table tr:nth-child(even) {
             background-color: var(--bg-box);
+        }
+
+        /* Products & Checkout Card Grid */
+        .products-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--accent-navy);
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 4px 10px rgba(11, 29, 58, 0.04);
         }
 
         .product-header {
@@ -271,16 +354,59 @@
             white-space: nowrap;
         }
 
-        .product-desc, .about-text, .capability-card p, .differentiator-box p {
+        .product-desc {
             color: var(--text-sub);
             font-size: 0.9rem;
             line-height: 1.5;
+            margin-bottom: 12px;
         }
 
+        /* TL;DR Summary Callout */
         .summary-card {
+            background-color: var(--bg-card);
             border-left: 6px solid var(--accent-navy);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 24px;
         }
 
+        .summary-card h2 {
+            color: var(--accent-navy);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+
+        .summary-card p {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Typography & Headings */
+        h2.section-title {
+            font-size: 1.3rem;
+            color: var(--accent-navy);
+            border-bottom: 2px solid var(--accent-navy);
+            padding-bottom: 6px;
+            margin: 24px 0 12px 0;
+            font-weight: 700;
+        }
+
+        .about-text {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        /* Core Capabilities Grid */
         .capabilities-list {
             display: flex;
             flex-direction: column;
@@ -299,8 +425,40 @@
             color: var(--accent-navy);
             font-size: 1.05rem;
             margin-bottom: 8px;
+            font-weight: 700;
         }
 
+        .capability-card p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Differentiator Callout Box */
+        .differentiator-box {
+            background-color: var(--bg-box);
+            border: 2px solid var(--accent-navy);
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 24px;
+        }
+
+        .differentiator-box h2 {
+            color: var(--accent-navy);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .differentiator-box p {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 24px 0 12px 0;
@@ -353,7 +511,7 @@
                         <circle cx="48" cy="56" r="5" class="navy-primary"/>
                         <circle cx="60" cy="28" r="5" class="blue-secondary"/>
                         <circle cx="40" cy="22" r="4" fill="#1A365D"/>
-                        <line x1="40" y1="26" x2="40" y2="33" stroke="#1A365D" stroke-dasharray="2 2" stroke-width="2.5"/>
+                        <line x1="40" y1="26" x2="40" y2="33" stroke="#1A365D" stroke-width="2.5" stroke-dasharray="2 2"/>
                     </g>
 
                     <text x="118" y="58" font-size="28" class="text-main">Webcognita</text>
@@ -368,8 +526,12 @@
                 <span class="badge">Veteran-Owned Small Business • Google Gemini Certified Faculty</span>
                 <p class="tagline">Technical Consulting • Curriculum Architecture • Generative AI Strategy</p>
                 <div class="cta-grid">
-                    <a href="mailto:alan.pruitt@gmail.com?subject=Webcognita%20Inquiry" class="btn-action">✉️ Email Alan Pruitt</a>
-                    <a href="https://www.linkedin.com/in/alanpruitt/" target="_blank" rel="noopener noreferrer" class="btn-action">Connect on LinkedIn</a>
+                    <a href="mailto:alan.pruitt@gmail.com?subject=Webcognita%20Inquiry" class="btn-action">
+                        ✉️ Email Alan Pruitt
+                    </a>
+                    <a href="https://www.linkedin.com/in/alanpruitt/" target="_blank" rel="noopener noreferrer" class="btn-action">
+                        Connect on LinkedIn
+                    </a>
                 </div>
             </div>
             <!-- Spanish Header -->
@@ -378,12 +540,17 @@
                 <span class="badge">Empresa de Veteranos • Google Gemini Certified Faculty</span>
                 <p class="tagline">Consultoría Técnica • Arquitectura de Capacitación • Estrategia de IA Generativa</p>
                 <div class="cta-grid">
-                    <a href="mailto:alan.pruitt@gmail.com?subject=Consulta%20Webcognita" class="btn-action">✉️ Enviar Correo Directo</a>
-                    <a href="https://www.linkedin.com/in/alanpruitt/" target="_blank" rel="noopener noreferrer" class="btn-action">Contacto en LinkedIn</a>
+                    <a href="mailto:alan.pruitt@gmail.com?subject=Consulta%20Webcognita" class="btn-action">
+                        ✉️ Enviar Correo Directo
+                    </a>
+                    <a href="https://www.linkedin.com/in/alanpruitt/" target="_blank" rel="noopener noreferrer" class="btn-action">
+                        Contacto en LinkedIn
+                    </a>
                 </div>
             </div>
         </header>
 
+        <!-- MAIN LANDMARK -->
         <main>
             <!-- GEMINI CERTIFIED FACULTY CALLOUT CARD -->
             <section class="cert-card">
@@ -629,13 +796,19 @@
             </section>
         </main>
 
-        <!-- Footer with Terms & Privacy Links -->
+        <!-- Footer with Terms, Changelog & Privacy Links -->
         <footer>
             <div lang="en">
-                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Hosted via GitHub Pages. | <a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a></p>
+                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Hosted via GitHub Pages. Mobile-First &amp; WCAG 2.1 AA Compliant. <br>
+                <a href="terms.html" title="Webcognita Terms of Service">Terms of Service</a> | 
+                <a href="changelog.html" title="Webcognita Changelog">Changelog</a> | 
+                <a href="privacy.html" title="Webcognita Privacy Policy">Privacy Policy</a></p>
             </div>
             <div lang="es">
-                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Alojado en GitHub Pages. | <a href="terms.html">Términos del Servicio</a> | <a href="privacy.html">Política de Privacidad</a></p>
+                <p>© 2026 Webcognita LLC (EIN: 81-0809739). Alojado en GitHub Pages. Diseño Móvil Accesible (WCAG 2.1 AA). <br>
+                <a href="terms.html" title="Términos del Servicio de Webcognita">Términos del Servicio</a> | 
+                <a href="changelog.html" title="Historial de Cambios de Webcognita">Historial de Cambios</a> | 
+                <a href="privacy.html" title="Política de Privacidad de Webcognita">Política de Privacidad</a></p>
             </div>
         </footer>
     </div>
