@@ -469,7 +469,7 @@
             font-weight: 600;
         }
 
-        footer a {
+                footer a {
             color: var(--accent-navy);
             text-decoration: underline;
             display: inline-flex;
@@ -478,6 +478,233 @@
             align-items: center;
             justify-content: center;
             padding: 0 4px;
+        }
+
+        /* POUR and ROI Calculator Widgets */
+        .widget-section {
+            background-color: var(--bg-card);
+            border: 2px solid var(--accent-navy);
+            border-radius: 12px;
+            padding: 24px 18px;
+            margin-top: 24px;
+            box-shadow: 0 4px 12px rgba(11, 29, 58, 0.08);
+        }
+        .widget-title {
+            font-size: 1.3rem;
+            color: var(--accent-navy);
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+        .widget-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        @media (min-width: 480px) {
+            .form-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+        }
+        .field-input {
+            min-height: 44px;
+            border: 2px solid var(--accent-navy);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background-color: #FFFFFF;
+            width: 100%;
+        }
+        .field-input:focus {
+            outline: 2px solid var(--accent-blue);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        @media (min-width: 480px) {
+            .results-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .result-card {
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            background-color: var(--bg-primary);
+        }
+        .result-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-sub);
+        }
+        .result-val {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-top: 4px;
+        }
+        .result-sub {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+        .consultation-banner {
+            background-color: var(--bg-box);
+            border: 1.5px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        @media (min-width: 480px) {
+            .consultation-banner {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        .banner-text-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .banner-text-sub {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+        .btn-widget {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent-navy);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-height: 44px;
+            border: 2px solid var(--accent-navy);
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-widget:hover, .btn-widget:focus {
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+        }
+        
+        /* POUR checklist styles */
+        .checklist-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .category-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 4px;
+        }
+        .category-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-perceivable { background-color: #10B981; }
+        .dot-operable { background-color: #3B82F6; }
+        .dot-understandable { background-color: #F59E0B; }
+        .dot-robust { background-color: #8B5CF6; }
+        
+        .category-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+        }
+        .checklist-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        @media (min-width: 480px) {
+            .checklist-items {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .checklist-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: var(--bg-card);
+            transition: background-color 0.2s ease;
+        }
+        .checklist-card:hover {
+            background-color: var(--bg-primary);
+        }
+        .checklist-checkbox {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-navy);
+        }
+        .checklist-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            line-height: 1.3;
+        }
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--bg-box);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border: 1.5px solid var(--accent-blue);
         }
     </style>
 </head>
@@ -800,6 +1027,437 @@
                     </p>
                 </div>
             </section>
+
+            <!-- Interactive ROI Calculator Widget -->
+            <section class="widget-section" aria-labelledby="calculator-heading">
+                <!-- Section Header -->
+                <div class="badge">
+                    <span lang="en">Institutional Impact Modeling</span>
+                    <span lang="es">Modelo de Impacto Institucional</span>
+                </div>
+                <h2 id="calculator-heading" class="widget-title">
+                    <span lang="en">ADA Title II Compliance & ROI Calculator</span>
+                    <span lang="es">Calculadora de ROI y Mitigación ADA Título II</span>
+                </h2>
+                <p class="widget-subtitle">
+                    <span lang="en">Estimate traditional manual remediation liabilities versus budget and hours recaptured through Curriculum-as-Code automated pipelines.</span>
+                    <span lang="es">Estime el costo laboral de la remediación manual frente a la recuperación de presupuesto mediante pipelines automatizados de Curriculum-as-Code.</span>
+                </p>
+
+                <!-- Calculator Card -->
+                <form id="roi-form" onsubmit="return false;">
+                    <div class="form-grid">
+                        
+                        <!-- Input 1 -->
+                        <div class="field-group">
+                            <label for="course-count" class="field-label">
+                                <span lang="en">Fleet Course Shells</span>
+                                <span lang="es">Cursos en la Flota</span>
+                            </label>
+                            <input type="number" id="course-count" name="course-count" value="120" min="1" max="5000" step="1" class="field-input">
+                        </div>
+
+                        <!-- Input 2 -->
+                        <div class="field-group">
+                            <label for="hours-per-shell" class="field-label">
+                                <span lang="en">Manual Hours / Shell</span>
+                                <span lang="es">Horas Manuales / Curso</span>
+                            </label>
+                            <input type="number" id="hours-per-shell" name="hours-per-shell" value="12" min="1" max="100" step="1" class="field-input">
+                        </div>
+
+                        <!-- Input 3 -->
+                        <div class="field-group">
+                            <label for="hourly-rate" class="field-label">
+                                <span lang="en">Blended Labor ($/Hr)</span>
+                                <span lang="es">Costo Laboral ($/Hora)</span>
+                            </label>
+                            <input type="number" id="hourly-rate" name="hourly-rate" value="45" min="10" max="250" step="5" class="field-input">
+                        </div>
+
+                    </div>
+                </form>
+
+                <div style="margin-top: 20px; border-top: 2px solid var(--border-color); padding-top: 16px;">
+                    <div id="roi-live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+                    <div class="results-grid">
+                        <!-- Metric 1 -->
+                        <div class="result-card">
+                            <p class="result-label">
+                                <span lang="en">Manual Remediation Cost</span>
+                                <span lang="es">Responsabilidad Manual Total</span>
+                            </p>
+                            <p id="stat-manual-cost" class="result-val">$64,800</p>
+                            <p class="result-sub">
+                                <span id="stat-manual-hours" lang="en">1,440 total staff hours</span>
+                                <span id="stat-manual-hours-es" lang="es">1,440 horas de personal</span>
+                            </p>
+                        </div>
+
+                        <!-- Metric 2 -->
+                        <div class="result-card">
+                            <p class="result-label">
+                                <span lang="en">Staff Hours Reclaimed</span>
+                                <span lang="es">Horas Docentes Reclamadas</span>
+                            </p>
+                            <p id="stat-hours-reclaimed" class="result-val" style="color: #065f46;">1,224 hrs</p>
+                            <p class="result-sub">
+                                <span lang="en">85% automated pipeline reduction</span>
+                                <span lang="es">85% de reducción por automatización</span>
+                            </p>
+                        </div>
+
+                        <!-- Metric 3 -->
+                        <div class="result-card">
+                            <p class="result-label">
+                                <span lang="en">Net Budget Recaptured</span>
+                                <span lang="es">Presupuesto Recuperado</span>
+                            </p>
+                            <p id="stat-budget-recaptured" class="result-val" style="color: #065f46;">$55,080</p>
+                            <p class="result-sub">
+                                <span lang="en">Capital redeployable to core mission</span>
+                                <span lang="es">Capital reasignable a la misión principal</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Consultation Banner -->
+                    <div class="consultation-banner">
+                        <div>
+                            <p class="banner-text-title">
+                                <span lang="en">Ready to audit your fleet using these baseline parameters?</span>
+                                <span lang="es">¿Listo para auditar su flota con estos parámetros?</span>
+                            </p>
+                            <p class="banner-text-sub">
+                                <span lang="en">Initiate an executive advisory consultation with Webcognita LLC.</span>
+                                <span lang="es">Inicie una consulta ejecutiva con Webcognita LLC.</span>
+                            </p>
+                        </div>
+                        <a id="roi-consult-btn" href="#" class="btn-widget">
+                            <span lang="en">Request Fleet Audit</span>
+                            <span lang="es">Solicitar Auditoría de Flota</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12-Point POUR-Audit Self-Diagnostic Checklist -->
+            <section class="widget-section" aria-labelledby="pour-heading">
+                <!-- Section Header -->
+                <div class="badge">
+                    <span lang="en">Institutional Self-Assessment</span>
+                    <span lang="es">Diagnóstico Institucional</span>
+                </div>
+                <h2 id="pour-heading" class="widget-title">
+                    <span lang="en">12-Point POUR-Audit Diagnostic Matrix</span>
+                    <span lang="es">Matriz de Diagnóstico POUR: ADA Título II</span>
+                </h2>
+                <p class="widget-subtitle">
+                    <span lang="en">Evaluate the technical accessibility maturity and ADA Title II readiness of your institutional Canvas course fleet.</span>
+                    <span lang="es">Evalúe el nivel de madurez técnica y accesibilidad de su flota de cursos Canvas antes del límite federal de cumplimiento.</span>
+                </p>
+
+                <div>
+                    <div id="pour-live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+                    <form id="pour-form" onsubmit="return false;" class="checklist-grid">
+                        
+                        <!-- Category 1 -->
+                        <div class="category-group">
+                            <div class="category-header">
+                                <span class="category-dot dot-perceivable" aria-hidden="true"></span>
+                                <h3 class="category-title">
+                                    <span lang="en">1. Perceivable</span>
+                                    <span lang="es">1. Perceptible (Perceivable)</span>
+                                </h3>
+                            </div>
+                            <div class="checklist-items">
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Semantic Headings" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Strict H2-H4 hierarchy (no skipped heading levels)</span>
+                                        <span lang="es">Jerarquía estricta H2-H4 sin saltos de nivel</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="High Contrast" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Minimum 4.5:1 text & UI contrast ratio</span>
+                                        <span lang="es">Contraste mínimo 4.5:1 en texto normal</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="DOM Transcripts" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Semantic DOM transcripts for complex visual assets</span>
+                                        <span lang="es">Transcripciones DOM para diagramas complejos</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Category 2 -->
+                        <div class="category-group">
+                            <div class="category-header">
+                                <span class="category-dot dot-operable" aria-hidden="true"></span>
+                                <h3 class="category-title">
+                                    <span lang="en">2. Operable</span>
+                                    <span lang="es">2. Operable (Operable)</span>
+                                </h3>
+                            </div>
+                            <div class="checklist-items">
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Keyboard Nav" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">100% keyboard navigable (zero focus traps)</span>
+                                        <span lang="es">Navegación completa por teclado (sin trampas)</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="44px Targets" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Minimum 44 × 44px touch & target size perimeters</span>
+                                        <span lang="es">Áreas de contacto táctil mínimas de 44x44px</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Focus Visible" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">High-contrast 2px :focus-visible outlines</span>
+                                        <span lang="es">Anillos visibles :focus-visible de 2px</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Category 3 -->
+                        <div class="category-group">
+                            <div class="category-header">
+                                <span class="category-dot dot-understandable" aria-hidden="true"></span>
+                                <h3 class="category-title">
+                                    <span lang="en">3. Understandable</span>
+                                    <span lang="es">3. Comprensible (Understandable)</span>
+                                </h3>
+                            </div>
+                            <div class="checklist-items">
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Predictable Layouts" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Consistent navigation & layout across course modules</span>
+                                        <span lang="es">Estructura uniforme entre módulos de cursos</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Error Scaffolding" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Mission Loop scaffolding (Pattern/Rule/Solve)</span>
+                                        <span lang="es">Instrucciones de evaluación con Mission Loop</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Language Tags" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Explicit document & sub-element lang attributes</span>
+                                        <span lang="es">Atributos lang declarados en el HTML raíz</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Category 4 -->
+                        <div class="category-group">
+                            <div class="category-header">
+                                <span class="category-dot dot-robust" aria-hidden="true"></span>
+                                <h3 class="category-title">
+                                    <span lang="en">4. Robust</span>
+                                    <span lang="es">4. Robusto (Robust)</span>
+                                </h3>
+                            </div>
+                            <div class="checklist-items">
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Headless CI/CD" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Automated Axe-core / Playwright CI/CD test gates</span>
+                                        <span lang="es">Pruebas automatizadas Axe-core en Git CI/CD</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Aria Live" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">aria-live="polite" regions on interactive tools</span>
+                                        <span lang="es">Regiones aria-live en herramientas dinámicas</span>
+                                    </span>
+                                </label>
+                                <label class="checklist-card">
+                                    <input type="checkbox" name="pour-check" value="Canvas REST SSoT" class="checklist-checkbox">
+                                    <span class="checklist-text">
+                                        <span lang="en">Git SSoT deploying direct to Canvas REST API</span>
+                                        <span lang="es">Despliegue directo a Canvas REST API (Cero Drift)</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <!-- Score and Intake -->
+                    <div style="margin-top: 20px; border-top: 2px solid var(--border-color); padding-top: 16px;">
+                        <div class="consultation-banner">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span id="pour-score-badge" class="score-badge">0 / 12</span>
+                                <div>
+                                    <p id="pour-status-label" class="banner-text-title" style="font-size: 0.95rem;">
+                                        <span lang="en">Assessment Pending</span>
+                                        <span lang="es">Auditoría No Iniciada</span>
+                                    </p>
+                                    <p id="pour-risk-label" class="banner-text-sub">
+                                        <span lang="en">Select current active criteria in your course fleet.</span>
+                                        <span lang="es">Marque los criterios activos en su campus.</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <a id="pour-intake-btn" href="#" class="btn-widget">
+                                <span lang="en">Submit Audit for Review</span>
+                                <span lang="es">Enviar Resultados para Consulta</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Zero-Dependency Reactive Logic for Widgets -->
+            <script>
+                (function() {
+                    // ROI Calculator Elements
+                    const courseInput = document.getElementById('course-count');
+                    const hoursInput = document.getElementById('hours-per-shell');
+                    const rateInput = document.getElementById('hourly-rate');
+
+                    const statManualCost = document.getElementById('stat-manual-cost');
+                    const statManualHours = document.getElementById('stat-manual-hours');
+                    const statManualHoursEs = document.getElementById('stat-manual-hours-es');
+                    const statHoursReclaimed = document.getElementById('stat-hours-reclaimed');
+                    const statBudgetRecaptured = document.getElementById('stat-budget-recaptured');
+                    const consultBtn = document.getElementById('roi-consult-btn');
+                    const roiAnnouncer = document.getElementById('roi-live-announcer');
+
+                    let roiTimer;
+
+                    function recalculate() {
+                        if (!courseInput || !hoursInput || !rateInput) return;
+                        const courses = Math.max(1, parseInt(courseInput.value) || 0);
+                        const hoursPerShell = Math.max(1, parseInt(hoursInput.value) || 0);
+                        const rate = Math.max(1, parseInt(rateInput.value) || 0);
+
+                        const totalManualHours = courses * hoursPerShell;
+                        const totalManualCost = totalManualHours * rate;
+
+                        const hoursReclaimed = Math.round(totalManualHours * 0.85);
+                        const budgetRecaptured = Math.round(totalManualCost * 0.85);
+
+                        statManualCost.textContent = '$' + totalManualCost.toLocaleString();
+                        
+                        const hoursStrEn = totalManualHours.toLocaleString() + ' total staff hours';
+                        const hoursStrEs = totalManualHours.toLocaleString() + ' horas de personal';
+                        if (statManualHours) statManualHours.textContent = hoursStrEn;
+                        if (statManualHoursEs) statManualHoursEs.textContent = hoursStrEs;
+                        
+                        statHoursReclaimed.textContent = hoursReclaimed.toLocaleString() + ' hrs';
+                        statBudgetRecaptured.textContent = '$' + budgetRecaptured.toLocaleString();
+
+                        const mailBody = encodeURIComponent(
+                            'Institutional Fleet Parameters:\n' +
+                            '- Estimated Course Shells: ' + courses + '\n' +
+                            '- Est. Manual Hours/Shell: ' + hoursPerShell + '\n' +
+                            '- Total Manual Exposure: $' + totalManualCost.toLocaleString() + ' (' + totalManualHours.toLocaleString() + ' hrs)\n' +
+                            '- Potential Budget Recaptured: $' + budgetRecaptured.toLocaleString()
+                        );
+                        consultBtn.href = 'mailto:alan.pruitt@gmail.com?subject=Institutional%20Inquiry:%20ADA%20Title%20II%20Fleet%20Audit&body=' + mailBody;
+
+                        clearTimeout(roiTimer);
+                        roiTimer = setTimeout(() => {
+                            if (roiAnnouncer) {
+                                const isSpanish = document.documentElement.lang === 'es';
+                                roiAnnouncer.textContent = isSpanish 
+                                    ? 'Cálculos actualizados. Costo manual: $' + totalManualCost.toLocaleString() + '. Presupuesto recuperado: $' + budgetRecaptured.toLocaleString() + '.'
+                                    : 'Calculations updated. Total manual cost: $' + totalManualCost.toLocaleString() + '. Budget recaptured: $' + budgetRecaptured.toLocaleString() + '.';
+                            }
+                        }, 500);
+                    }
+
+                    [courseInput, hoursInput, rateInput].forEach(input => {
+                        if (input) input.addEventListener('input', recalculate);
+                    });
+
+                    recalculate();
+
+                    // POUR Checklist Elements
+                    const checkboxes = document.querySelectorAll('input[name="pour-check"]');
+                    const scoreBadge = document.getElementById('pour-score-badge');
+                    const statusLabel = document.getElementById('pour-status-label');
+                    const riskLabel = document.getElementById('pour-risk-label');
+                    const intakeBtn = document.getElementById('pour-intake-btn');
+                    const pourAnnouncer = document.getElementById('pour-live-announcer');
+
+                    let pourTimer;
+
+                    function evaluateScore() {
+                        if (!scoreBadge || !statusLabel) return;
+                        const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
+                        const score = checkedBoxes.length;
+                        const isSpanish = document.documentElement.lang === 'es';
+
+                        scoreBadge.textContent = score + ' / 12';
+
+                        let status = '';
+                        let risk = '';
+
+                        if (score === 12) {
+                            status = isSpanish ? 'Madurez Total: Soberanía CaC' : 'Full Maturity: Curriculum-as-Code Sovereign';
+                            risk = isSpanish ? 'Cumplimiento ADA Título II blindado en CI/CD.' : 'ADA Title II compliance deterministically locked in CI/CD.';
+                        } else if (score >= 8) {
+                            status = isSpanish ? 'Conformidad Parcial: Riesgo Medio' : 'Partial Conformance: Moderate Exposure';
+                            risk = isSpanish ? 'Requiere automatización REST API y pruebas headless.' : 'Requires REST API automation and headless CI/CD gates.';
+                        } else if (score >= 4) {
+                            status = isSpanish ? 'Cumplimiento Vulnerable: Alto Riesgo' : 'Vulnerable Posture: High Regulatory Risk';
+                            risk = isSpanish ? 'Propenso a fallas en lectores de pantalla y contraste.' : 'Vulnerable to screen reader barriers and contrast violations.';
+                        } else {
+                            status = isSpanish ? 'Exposición Crítica: No Conforme' : 'Critical Exposure: Non-Conforming Fleet';
+                            risk = isSpanish ? 'Requiere refactorización completa de la Fuente Única.' : 'Requires full Single Source of Truth architecture refactor.';
+                        }
+
+                        statusLabel.innerHTML = '<span lang="en">' + (isSpanish ? '' : status) + '</span><span lang="es">' + (isSpanish ? status : '') + '</span>';
+                        riskLabel.innerHTML = '<span lang="en">' + (isSpanish ? '' : risk) + '</span><span lang="es">' + (isSpanish ? risk : '') + '</span>';
+
+                        const checkedList = checkedBoxes.map(cb => cb.value).join(', ') || 'None';
+                        const mailBody = encodeURIComponent(
+                            'POUR-Audit Self-Diagnostic Results:\n' +
+                            '- Score: ' + score + '/12 Criteria Verified\n' +
+                            '- Posture Assessment: ' + status + '\n' +
+                            '- Active Criteria: ' + checkedList + '\n' +
+                            '- Unmet Criteria Count: ' + (12 - score)
+                        );
+
+                        intakeBtn.href = 'mailto:alan.pruitt@gmail.com?subject=Institutional%20Inquiry:%20POUR-Audit%20Maturity%20Assessment&body=' + mailBody;
+
+                        clearTimeout(pourTimer);
+                        pourTimer = setTimeout(() => {
+                            if (pourAnnouncer) {
+                                pourAnnouncer.textContent = isSpanish 
+                                    ? 'Puntaje POUR actualizado a ' + score + ' de 12. Estado: ' + status
+                                    : 'POUR score updated to ' + score + ' out of 12. Assessment status: ' + status;
+                            }
+                        }, 500);
+                    }
+
+                    checkboxes.forEach(cb => {
+                        cb.addEventListener('change', evaluateScore);
+                    });
+
+                    evaluateScore();
+                })();
+            </script>
         </main>
 
         <!-- Footer with Governance Links -->
