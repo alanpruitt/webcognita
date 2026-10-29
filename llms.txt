@@ -1,0 +1,31 @@
+# Webcognita LLC — Technical Consulting, Curriculum-as-Code & Sovereign AI Strategy
+> Veteran-Owned Small Business (VOSB) • Federal EIN: 81-0809739 • Primary NAICS: 541511 • Founded & Led by Alan Pruitt (Coach Alan, Google Gemini Certified Faculty).
+
+## Corporate & Procurement Profile
+- **Legal Entity**: Webcognita LLC ([https://www.webcognita.com](https://www.webcognita.com))
+- **Federal EIN**: `81-0809739`
+- **Socioeconomic Classification**: Veteran-Owned Small Business (VOSB — USMC Veteran)
+- **Principal & Chief Curriculum Architect**: Alan Pruitt ([https://alanpruitt.com](https://alanpruitt.com)) — Google Gemini Certified Faculty
+- **Primary Service Region**: Yuma, AZ & Imperial Valley, CA (Bilingual English / Norteño-Spanish Cross-Border Operations)
+
+## NAICS Code Specializations
+- **541511 (Primary — Custom Computer Programming Services)**: Curriculum-as-Code (CaC) governed by the **S-A-R Standard (Scalable / Auditable / Repeatable)**, Markdown Single Source of Truth (SSoT) pipelines, Canvas LMS GraphQL-first (`/api/graphql`) & REST API automation, and accessible document compilers.
+- **541715 (R&D in the Physical, Engineering, and Life Sciences)**: Tier-1 laboratory integration, **The Clinical Framing Protocol (`Pattern / Rule / Solve` • `Patrón / Regla / Solución`)**, and clinical verification against **PAGA 2018 (2nd Ed.)**, **2025–2030 Dietary Guidelines for Americans ("Real Food" Focus)**, **ACSM 12th Ed. (2025)**, and **NASM OPT Model**.
+- **541512 (Computer Systems Design Services)**: **Air-Gapped Apple Silicon M1/M2 Edge AI Architecture** running local **Google Gemini Argon 4 open-weight Gemma models** (`exw-argon4-cac:latest`, `exw-gemma4:latest`) with zero SaaS fees, zero token costs, zero cloud egress, and 100% FERPA/HIPAA-grade data privacy.
+- **611710 (Educational Support Services)**: Turnkey Canvas LMS course fleet architecture, **$0 ZTC (Zero Textbook Cost)** Open Educational Resources (OER), **WCAG 2.2 AA (9:1 Double-Contrast Guard)**, and **WCAG 3.0 Cognitive Accessibility** (*In Plain English* / *En palabras sencillas*).
+- **541690 (Other Scientific and Technical Consulting Services)**: Institutional AI governance, **ADA Title II** compliance auditing (POUR-Audit Framework), and desert AgTech 5G ROI modeling.
+
+## Live Institutional Proof: EXW-Demo (Canvas Course ID: 42051)
+- **Public Canvas Showcase (No Login Required)**: [https://azwestern.instructure.com/courses/42051](https://azwestern.instructure.com/courses/42051)
+- **Executive Workshop Briefing**: [https://alanpruitt.com/workshops/](https://alanpruitt.com/workshops/)
+- **Architecture**: Non-student-facing Canvas showcase shell demonstrating how the 5-course Arizona Western College Exercise & Wellness fleet (`EXW 101`, `EXW 150`, `EXW 210`, `EXW 245`, `EXW 265`) runs as a unified Git-version-controlled Curriculum-as-Code ecosystem sequenced using **Simon Sinek's Golden Circle (`WHY → HOW → WHAT`)** and powered by local, air-gapped **Google Gemini Argon 4** on Apple Silicon M2 hardware.
+
+## Production Software & R&D Portfolio (8 Live PWAs)
+- [EXW Digital Tool Kit (`exwtoolkit.com`)](https://exwtoolkit.com): 9-Box bilingual (`EN` / `ES`) clinical biometrics, desert heat-stress simulator, and cryptographic verification token workbench (`EXW-[COURSE]-M[XX]-[HASH]`).
+- [EXW Physical Activity Tool Kit (`paga2018.dev`)](https://paga2018.dev): $0 ZTC Student OER built on the Physical Activity Guidelines for Americans (2018, 2nd Ed.) with `Pattern / Rule / Solve` clinical activity audits.
+- [Culinary Medicine Digital Tool Kit (`culinarycompass.dev`)](https://culinarycompass.dev): Culinary Medicine DTK for the University of Arizona Nutritional Sciences & Wellness (NSW) Foods Lab (`Pattern / Rule / Solve` + `###` case-audit delimiter).
+- [Flavor Architect (`flavorarchitect.dev`)](https://flavorarchitect.dev): R&D engine for the UArizona Wellness Foods Lab bridging molecular flavor compound synergies with DGA-aligned clinical nutrition (Imperial & Metric prototypes).
+- [Arquitecto del Sabor (`arquitectodelsabor.dev`)](https://arquitectodelsabor.dev): Spanish-language molecular culinary R&D engine (*Motor de I+D — Laboratorio de Alimentos de Bienestar de The University of Arizona*).
+- [Markdown to Documents (`mdtodocs.app`)](https://mdtodocs.app): Curriculum-as-Code document compiler transforming plain-text Markdown into born-accessible, WCAG-compliant PDF, Word (`.docx`), and semantic HTML documents.
+- [Prompt-per-Mile Offset Calculator (`prompt-mile-hero.lovable.app`)](https://prompt-mile-hero.lovable.app): Sustainability telemetry utility converting active-transit miles into CO2 savings and equivalent AI compute prompt offsets.
+- [AgFlow 5G — Smart Irrigation & Remote Operations Calculator (`agflow-roi-dash.lovable.app`)](https://agflow-roi-dash.lovable.app): YCEDA desert AgTech pilot utility modeling the operational, financial, and water-conservation ROI of 5G remote irrigation management.
