@@ -2,5 +2,6 @@
 User-agent: *
 Allow: /
 
-# Canonical XML Sitemap for Google Search Console & Webmaster Tools
+# Canonical XML Sitemap & LLMs.txt for Search Engines and AI Agents
 Sitemap: https://www.webcognita.com/sitemap.xml
+LLMs-Txt: https://www.webcognita.com/llms.txt
