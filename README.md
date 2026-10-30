@@ -19,7 +19,8 @@ Webcognita LLC operates at the intersection of technical precision and human-cen
 * **Generative AI Strategy & Implementation:** Consulting on AI workflow integration, faculty/workforce development, and the implementation of federal AI literacy frameworks across institutional and commercial operations.
 * **Curriculum Architecture & Educational Design:** Engineering high-impact, accessible educational content grounded in rigorous Single Source of Truth (SSoT) standards, structured frameworks, and data-driven learning models.
 * **Infrastructure-as-Code & Open Educational Resources (OER):** Building mobile-responsive, version-controlled repository workflows (utilizing Markdown, GitHub, and modern IDE pipelines) to deploy zero-cost-barrier, highly accessible content.
-* **Accessibility & UX Optimization:** Designing and auditing digital media to strictly adhere to WCAG 2.1 AA standards, ensuring full screen-reader compatibility and high-contrast usability across diverse devices and environments.
+* **Accessibility & UX Optimization:** Designing and auditing digital media to strictly adhere to WCAG 2.2 AA (9:1 Double-Contrast Guard) and WCAG 3.0 cognitive accessibility standards, ensuring full screen-reader compatibility and high-contrast usability across diverse devices and environments.
+* **Food Informatics Consulting ("Measure Twice, Cut Once"):** Applying AI and on-device machine vision to transcribe restaurant menus into structured Markdown data and generate research-grade, gram-level dish reformulation proposals ([https://flavorarchitect.dev/food-informatics](https://flavorarchitect.dev/food-informatics)), grounded in Krupitzer & Stein (2021, *Foods*, 10(11), 2889) with transparent professional-scope safeguards.
 
 ---
 
