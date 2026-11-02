@@ -4,7 +4,7 @@
 [![WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-0B1D3A?style=flat-square)](https://www.w3.org/TR/WCAG21/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1D3A?style=flat-square)](LICENSE)
 
-> Official mobile-first web repository for **Webcognita LLC**—a specialized technical consulting and curriculum architecture firm dedicated to advancing technical literacy, institutional agility, and modern digital infrastructure.
+> Official mobile-first web repository for **Webcognita LLC**—a veteran-owned specialized technical consulting and curriculum architecture firm dedicated to advancing technical literacy, institutional agility, and modern digital infrastructure.
 
 ---
 
