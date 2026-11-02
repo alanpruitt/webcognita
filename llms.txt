@@ -7,7 +7,7 @@
 - **Socioeconomic Classification**: Veteran-Owned Small Business (VOSB — USMC Veteran)
 - **Principal & Chief Curriculum Architect**: Alan Pruitt ([https://alanpruitt.com](https://alanpruitt.com)) — Google Gemini Certified Faculty
 - **Primary Service Region**: Yuma, AZ & Imperial Valley, CA (Bilingual English / Norteño-Spanish Cross-Border Operations)
-- **Live Master Research Log Observatory (90 Entries, May–Nov 2026)**: [https://alanpruitt.com/research-log/](https://alanpruitt.com/research-log/)
+- **Live Master Research Log Observatory (91 Entries, May–Nov 2026)**: [https://alanpruitt.com/research-log/](https://alanpruitt.com/research-log/)
 - **7-Publication Architecture Briefs & Project Horizon White Papers**: [https://alanpruitt.com/#architecture-briefs](https://alanpruitt.com/#architecture-briefs)
 
 ## NAICS Code Specializations
@@ -19,12 +19,12 @@
 
 ## Sovereign S-A-R v2.2 Architecture, White Papers & Research Log Observatory
 - **Canonical Essays (01–38)**: [https://alanpruitt.com/essays/](https://alanpruitt.com/essays/) — Latest Release: [Essay 38: What If I Didn't Build the Graph? – DOM GraphRAG & W3C PROV-O in Curriculum-as-Code](https://alanpruitt.com/essays/essay-38-dom-graphrag-and-prov-o-curriculum-as-code/)
-- **Live Master Research Log Observatory (90 Dated Entries)**: [https://alanpruitt.com/research-log/](https://alanpruitt.com/research-log/)
+- **Live Master Research Log Observatory (91 Dated Entries)**: [https://alanpruitt.com/research-log/](https://alanpruitt.com/research-log/)
 - **Compendium 07 White Paper (PDF)**: [https://alanpruitt.com/docs/CaC_and_CaaS_Master_Research_Log_2026_Compendium.pdf](https://alanpruitt.com/docs/CaC_and_CaaS_Master_Research_Log_2026_Compendium.pdf)
 
 ## Food Informatics Consulting ("Measure Twice, Cut Once")
 - **Positioning & Intake Hub**: [https://flavorarchitect.dev/food-informatics](https://flavorarchitect.dev/food-informatics)
-- **Research Grounding**: Krupitzer, C., & Stein, A. (2021). Food informatics—Review of the current state-of-the-art, revised definition, and classification into the research landscape. *Foods*, 10(11), Article 2889 ([https://doi.org/10.3390/foods10112889](https://doi.org/10.3390/foods10112889)).
+- **Research Grounding**: Krupitzer, C., & Stein, A. (2021). Food informatics—Review of the current state-of-the-art, revised definition, and classification into the research landscape. *Foods*, 10(11), Article 2889 ([https://www.mdpi.com/2304-8158/10/11/2889](https://www.mdpi.com/2304-8158/10/11/2889) • `DOI: 10.3390/foods10112889`).
 - **Workflow & Deliverables**: On-device machine vision restaurant menu capture -> structured Markdown handoff -> per-dish gram-level reformulation proposals across research contexts (`T2DM`, `GLP-1 Supportive`, `DASH`, `Prenatal Nutrition`, `Celiac / Gluten-Free`) -> transparent estimated nutrition comparisons and kitchen-team before/after reports (strictly scoped to informatics and formulation analysis, not medical nutrition therapy).
 
 ## Live Institutional Proof: EXW-Demo (Canvas Course ID: 42051)
