@@ -24,7 +24,7 @@
 
 ## Food Informatics Consulting ("Measure Twice, Cut Once")
 - **Positioning & Intake Hub**: [https://flavorarchitect.dev/food-informatics](https://flavorarchitect.dev/food-informatics)
-- **Research Grounding**: Krupitzer, C., & Stein, A. (2021). Food informatics—Review of the current state-of-the-art, revised definition, and classification into the research landscape. *Foods*, 10(11), Article 2889 ([https://www.mdpi.com/2304-8158/10/11/2889](https://www.mdpi.com/2304-8158/10/11/2889) • `DOI: 10.3390/foods10112889`).
+- **Research Grounding**: Krupitzer, C., & Stein, A. (2021). Food informatics—Review of the current state-of-the-art, revised definition, and classification into the research landscape. *Foods*, 10(11), Article 2889 ([https://pmc.ncbi.nlm.nih.gov/articles/PMC8623781/](https://pmc.ncbi.nlm.nih.gov/articles/PMC8623781/) • `DOI: 10.3390/foods10112889`).
 - **Workflow & Deliverables**: On-device machine vision restaurant menu capture -> structured Markdown handoff -> per-dish gram-level reformulation proposals across research contexts (`T2DM`, `GLP-1 Supportive`, `DASH`, `Prenatal Nutrition`, `Celiac / Gluten-Free`) -> transparent estimated nutrition comparisons and kitchen-team before/after reports (strictly scoped to informatics and formulation analysis, not medical nutrition therapy).
 
 ## Live Institutional Proof: EXW-Demo (Canvas Course ID: 42051)
