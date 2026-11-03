@@ -1,6 +1,8 @@
 # Answer Engine Optimization (AEO) & Agentic Discovery Policy — webcognita.com
+# Canonical LLMs.txt Index: https://www.webcognita.com/llms.txt
 User-agent: *
 Allow: /
+Allow: /llms.txt
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -35,6 +37,5 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-# Canonical XML Sitemap & LLMs.txt for Search Engines and Coding Agents
+# Canonical XML Sitemap for Search Engines and Coding Agents
 Sitemap: https://www.webcognita.com/sitemap.xml
-LLMs-Txt: https://www.webcognita.com/llms.txt
