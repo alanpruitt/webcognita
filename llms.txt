@@ -1,12 +1,12 @@
 # Webcognita LLC — Technical Consulting, Curriculum-as-Code, Compliance-as-Code & Sovereign AI Strategy
-> Veteran-Owned Small Business (VOSB) • SAM.gov UEI: EZ34U9KNJA17 • CAGE/NCAGE: 4ZCN6 • Federal EIN: 81-0809739 • Primary NAICS: 541511 • Founded & Led by Alan Pruitt (Coach Alan, Google Gemini Certified Faculty).
+> Veteran-Owned Business & Service-Disabled Veteran-Owned Business (VOSB / SDVOSB) • SAM.gov UEI: EZ34U9KNJA17 • CAGE/NCAGE: 4ZCN6 • Federal EIN: 81-0809739 • Primary NAICS: 541511 • Founded & Led by Alan Pruitt (Coach Alan, Google Gemini Certified Faculty).
 
 ## Corporate & Procurement Profile
 - **Legal Entity**: Webcognita LLC ([https://www.webcognita.com/](https://www.webcognita.com/))
 - **SAM.gov Unique Entity ID (UEI)**: `EZ34U9KNJA17`
 - **CAGE / NCAGE Code**: `4ZCN6`
 - **Federal EIN**: `81-0809739`
-- **Socioeconomic Classification**: Veteran-Owned Small Business (VOSB — USMC Veteran)
+- **Socioeconomic Classification**: Veteran-Owned Business, Service-Disabled Veteran-Owned Business (`VOSB / SDVOSB` — USMC Veteran)
 - **Principal & Chief Curriculum Architect**: Alan Pruitt ([https://alanpruitt.com/](https://alanpruitt.com/)) — Google Gemini Certified Faculty
 - **Institutional Contact Directory**: [https://www.webcognita.com/contact.html](https://www.webcognita.com/contact.html)
 - **Primary Service Region**: Yuma, AZ & Imperial Valley, CA (Bilingual English / Norteño-Spanish Cross-Border Operations)
