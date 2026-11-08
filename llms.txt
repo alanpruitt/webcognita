@@ -7,6 +7,7 @@
 - **CAGE / NCAGE Code**: `4ZCN6`
 - **Federal EIN**: `81-0809739`
 - **Socioeconomic Classification**: Veteran-Owned Business, Service-Disabled Veteran-Owned Business (`VOSB / SDVOSB` — USMC Veteran)
+- **Federal Product Service Codes (PSC)**: `U008` (Education/Training — Curriculum Development), `U012` (Education/Training — IT/AI Training), `DA01` (IT & Telecom — Application Development Support), `DJ01` (IT & Telecom — Security & Compliance Support), `R425` (Support — Professional Engineering/Technical), `AN12` (Health R&D Services — Applied Research)
 - **Principal & Chief Curriculum Architect**: Alan Pruitt ([https://alanpruitt.com/](https://alanpruitt.com/)) — Google Gemini Certified Faculty
 - **Institutional Contact Directory**: [https://www.webcognita.com/contact.html](https://www.webcognita.com/contact.html)
 - **Primary Service Region**: Yuma, AZ & Imperial Valley, CA (Bilingual English / Norteño-Spanish Cross-Border Operations)
