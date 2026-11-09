@@ -179,39 +179,72 @@
                   "worksFor": {
                         "@id": "https://www.webcognita.com/#organization"
                   },
-                  "subjectOf": {
-                        "@type": "Dataset",
-                        "@id": "https://alanpruitt.com/research-log/#dataset",
-                        "name": "Master Research Log: Curriculum as Code (CaC), Curriculum as a Service (CaaS) & Compliance as Code (2026 Longitudinal Telemetry Dataset)",
-                        "description": "Continuous longitudinal engineering dataset (92 dated technical analyses, 35+ ASCII architecture pipelines, and 32 Instructional Design Role Evolution archetypes) compiled by Alan Pruitt (Coach Alan) documenting Curriculum as Code (CaC), Curriculum as a Service (CaaS), Compliance as Code (ADA Title II, WCAG 2.2 AA 9:1 Double-Contrast Guard, WCAG 3.0 APCA, W3C PROV-O, W3C SKOS), Google Workspace, and Instructure Canvas LMS GraphQL API.",
-                        "url": "https://alanpruitt.com/research-log/",
-                        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-                        "isAccessibleForFree": true,
-                        "creator": {
-                              "@type": "Person",
-                              "@id": "https://alanpruitt.com/#person",
-                              "name": "Alan Pruitt",
-                              "url": "https://alanpruitt.com/"
-                        },
-                        "publisher": {
-                              "@type": "Organization",
-                              "@id": "https://www.webcognita.com/#organization",
-                              "name": "Webcognita LLC",
-                              "url": "https://www.webcognita.com/"
-                        },
-                        "distribution": [
-                              {
-                                    "@type": "DataDownload",
-                                    "encodingFormat": "text/html",
-                                    "contentUrl": "https://alanpruitt.com/research-log/"
+                  "subjectOf": [
+                        {
+                              "@type": "Dataset",
+                              "@id": "https://alanpruitt.com/research-log/#dataset",
+                              "name": "Master Research Log: Curriculum as Code (CaC), Curriculum as a Service (CaaS) & Compliance as Code (2026 Longitudinal Telemetry Dataset)",
+                              "description": "Continuous longitudinal engineering dataset (92 dated technical analyses, 35+ ASCII architecture pipelines, and 32 Instructional Design Role Evolution archetypes) compiled by Alan Pruitt (Coach Alan) documenting Curriculum as Code (CaC), Curriculum as a Service (CaaS), Compliance as Code (ADA Title II, WCAG 2.2 AA 9:1 Double-Contrast Guard, WCAG 3.0 APCA, W3C PROV-O, W3C SKOS), Google Workspace, and Instructure Canvas LMS GraphQL API.",
+                              "url": "https://alanpruitt.com/research-log/",
+                              "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                              "isAccessibleForFree": true,
+                              "creator": {
+                                    "@type": "Person",
+                                    "@id": "https://alanpruitt.com/#person",
+                                    "name": "Alan Pruitt",
+                                    "url": "https://alanpruitt.com/"
                               },
-                              {
-                                    "@type": "DataDownload",
-                                    "encodingFormat": "application/pdf",
-                                    "contentUrl": "https://alanpruitt.com/docs/CaC_and_CaaS_Master_Research_Log_2026_Compendium.pdf"
+                              "publisher": {
+                                    "@type": "Organization",
+                                    "@id": "https://www.webcognita.com/#organization",
+                                    "name": "Webcognita LLC",
+                                    "url": "https://www.webcognita.com/"
+                              },
+                              "distribution": [
+                                    {
+                                          "@type": "DataDownload",
+                                          "encodingFormat": "text/html",
+                                          "contentUrl": "https://alanpruitt.com/research-log/"
+                                    },
+                                    {
+                                          "@type": "DataDownload",
+                                          "encodingFormat": "application/pdf",
+                                          "contentUrl": "https://alanpruitt.com/docs/CaC_and_CaaS_Master_Research_Log_2026_Compendium.pdf"
+                                    }
+                              ]
+                        },
+                        {
+                              "@type": "NewsArticle",
+                              "@id": "https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf#article",
+                              "headline": "2025 U.S. SBA Arizona Veteran Small Business Champion of the Year — Official AWC SBDC Success Story",
+                              "url": "https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf",
+                              "datePublished": "2025-05-01",
+                              "publisher": {
+                                    "@type": "CollegeOrUniversity",
+                                    "name": "Arizona Western College Small Business Development Center (SBDC)",
+                                    "url": "https://www.azwestern.edu/"
+                              },
+                              "about": {
+                                    "@id": "https://alanpruitt.com/#person"
                               }
-                        ]
-                  },
+                        },
+                        {
+                              "@type": "NewsArticle",
+                              "@id": "https://www.azwestern.edu/news/adaptive-training-available-awc#article",
+                              "headline": "Adaptive Training Available at AWC",
+                              "url": "https://www.azwestern.edu/news/adaptive-training-available-awc",
+                              "datePublished": "2018-02-07",
+                              "publisher": {
+                                    "@type": "CollegeOrUniversity",
+                                    "name": "Arizona Western College",
+                                    "url": "https://www.azwestern.edu/"
+                              },
+                              "about": {
+                                    "@id": "https://alanpruitt.com/#person"
+                              },
+                              "description": "Arizona Western College institutional news feature profiling AWC Fitness Instructor, Women's Basketball Strength & Conditioning Coach, and VA Grant-Funded Adaptive Athlete Specialist Alan Pruitt engineering audio-feedback ergometer telemetry and adaptive strength training for blind Paralympic Goalball athlete Oscar Quintero."
+                        }
+                  ],
                   "hasCredential": [
                         {
                               "@type": "EducationalOccupationalCredential",
@@ -220,6 +253,10 @@
                         {
                               "@type": "EducationalOccupationalCredential",
                               "name": "United States Marine Corps (USMC) Veteran"
+                        },
+                        {
+                              "@type": "EducationalOccupationalCredential",
+                              "name": "VA Grant-Funded Adaptive Athlete Specialist & Certified Personal Trainer (Adaptive Sports, Indoor Rowing, Swimming & Sports Performance)"
                         }
                   ],
                   "sameAs": [
@@ -2341,7 +2378,7 @@
                         <div><strong>Socioeconomic Status:</strong> Veteran-Owned Business, Service-Disabled Veteran-Owned Business (VOSB / SDVOSB)</div>
                         <div><strong>Municipal License:</strong> <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">City of Yuma #SERV-045998-01-2025 (PDF)</a> (Permanent SDVOSB Issue, Yuma City Code Title 7)</div>
                         <div><strong>POC:</strong> <a href="https://www.webcognita.com/contact.html" style="color: var(--accent-navy); text-decoration: underline;">Alan Pruitt (Direct Institutional Contact)</a></div>
-                        <div><strong>Public Verification Folder:</strong> <a href="/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS 147C</a> &bull; <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Yuma License</a> &bull; <a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">SBA 2025 Champion</a></div>
+                        <div><strong>Public Verification Folder:</strong> <a href="/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS 147C</a> &bull; <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Yuma License</a> &bull; <a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">SBA 2025 Champion</a> &bull; <a href="https://www.azwestern.edu/news/adaptive-training-available-awc" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">AWC Adaptive Training Feature</a></div>
                     </div>
 
                     <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">NAICS Code Classification &amp; Core Specializations:</p>
@@ -2400,7 +2437,7 @@
                         <div><strong>Clasificación:</strong> Empresa de Veteranos y Veteranos con Discapacidad de Servicio (VOSB / SDVOSB)</div>
                         <div><strong>Licencia Municipal:</strong> <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Ciudad de Yuma #SERV-045998-01-2025 (PDF)</a> (Emisión Permanente SDVOSB, Título 7)</div>
                         <div><strong>Contacto:</strong> <a href="https://www.webcognita.com/contact.html" style="color: var(--accent-navy); text-decoration: underline;">Alan Pruitt (Directorio de Contacto Directo)</a></div>
-                        <div><strong>Expediente Público (/docs/):</strong> <a href="/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS 147C</a> &bull; <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Licencia Yuma</a> &bull; <a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Premio SBA 2025</a></div>
+                        <div><strong>Expediente Público (/docs/):</strong> <a href="/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS 147C</a> &bull; <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Licencia Yuma</a> &bull; <a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Premio SBA 2025</a> &bull; <a href="https://www.azwestern.edu/news/adaptive-training-available-awc" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Nota AWC Entrenamiento Adaptativo</a></div>
                     </div>
 
                     <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">Clasificación de Códigos NAICS y Especialización:</p>
