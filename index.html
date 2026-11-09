@@ -2103,6 +2103,90 @@
             font-weight: 900;
             border: 1.5px solid var(--accent-blue);
         }
+        .cap-pdf-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background-color: var(--bg-box);
+            border: 1.5px solid var(--accent-navy);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+        }
+        .cap-pdf-bar-text {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent-navy);
+            line-height: 1.35;
+        }
+        .cap-pdf-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .btn-cap-pdf {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            background-color: var(--accent-navy);
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            border: 2px solid var(--accent-navy);
+            cursor: pointer;
+        }
+        .btn-cap-pdf-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            background-color: #FFFFFF;
+            color: var(--accent-navy);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            border: 2px solid var(--accent-navy);
+            cursor: pointer;
+        }
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 0.3in;
+            }
+            .lang-switch,
+            .cta-grid,
+            .cert-card,
+            .cap-pdf-bar,
+            #services-section,
+            #roi-calculator,
+            #pour-audit {
+                display: none !important;
+            }
+            body {
+                background-color: #FFFFFF !important;
+                padding: 0 !important;
+                font-size: 8.5pt !important;
+            }
+            .container {
+                max-width: 100% !important;
+            }
+            .capability-statement-card,
+            .summary-card,
+            .differentiator-box {
+                padding: 10px !important;
+                margin-bottom: 8px !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2158,6 +2242,9 @@
                 <span class="badge">Veteran-Owned &amp; Service-Disabled Veteran-Owned Business (VOSB / SDVOSB) • Google Gemini Certified Faculty</span>
                 <p class="tagline">Technical Consulting • Curriculum-as-Code (S-A-R) • Air-Gapped Sovereign AI Strategy</p>
                 <div class="cta-grid">
+                    <a href="/assets/Webcognita_LLC_Capabilities_Statement.pdf" download="Webcognita_LLC_Capabilities_Statement.pdf" class="btn-action">
+                        Download 1-Page Capabilities PDF
+                    </a>
                     <a href="https://www.webcognita.com/contact.html" class="btn-action">
                         Institutional Contact
                     </a>
@@ -2174,6 +2261,9 @@
                 <span class="badge">Empresa de Veteranos y Veteranos con Discapacidad de Servicio (VOSB / SDVOSB) • Google Gemini Certified Faculty</span>
                 <p class="tagline">Consultoría Técnica • Currículo-como-Código (S-A-R) • Estrategia de IA Local Aislada</p>
                 <div class="cta-grid">
+                    <a href="/assets/Webcognita_LLC_Capabilities_Statement.pdf" download="Webcognita_LLC_Capabilities_Statement.pdf" class="btn-action">
+                        Descargar Declaración 1-Pág (PDF)
+                    </a>
                     <a href="https://www.webcognita.com/contact.html" class="btn-action">
                         Contacto Institucional
                     </a>
@@ -2226,6 +2316,19 @@
             <section class="capability-statement-card">
                 <div lang="en">
                     <h2>Capabilities Statement</h2>
+                    <div class="cap-pdf-bar">
+                        <div class="cap-pdf-bar-text">
+                            <strong>Contracting Officer &amp; Subaward Review Exhibit:</strong> Focused 1-Page US Letter Capabilities Statement with scannable top-right QR code.
+                        </div>
+                        <div class="cap-pdf-btns">
+                            <a href="/assets/Webcognita_LLC_Capabilities_Statement.pdf" download="Webcognita_LLC_Capabilities_Statement.pdf" class="btn-cap-pdf">
+                                Download 1-Page PDF
+                            </a>
+                            <a href="/capabilities-statement.html" target="_blank" rel="noopener" class="btn-cap-pdf-secondary">
+                                Print / View 1-Page Exhibit
+                            </a>
+                        </div>
+                    </div>
                     <div class="gov-data-grid">
                         <div><strong>SAM.gov UEI:</strong> EZ34U9KNJA17</div>
                         <div><strong>CAGE / NCAGE:</strong> 4ZCN6</div>
@@ -2270,6 +2373,19 @@
 
                 <div lang="es">
                     <h2>Declaración de Capacidades</h2>
+                    <div class="cap-pdf-bar">
+                        <div class="cap-pdf-bar-text">
+                            <strong>Anexo Oficial de Adquisiciones (1 Página):</strong> Declaración de capacidades ejecutiva en formato carta con código QR escaneable.
+                        </div>
+                        <div class="cap-pdf-btns">
+                            <a href="/assets/Webcognita_LLC_Capabilities_Statement.pdf" download="Webcognita_LLC_Capabilities_Statement.pdf" class="btn-cap-pdf">
+                                Descargar PDF (1 Página)
+                            </a>
+                            <a href="/capabilities-statement.html" target="_blank" rel="noopener" class="btn-cap-pdf-secondary">
+                                Imprimir / Ver Anexo
+                            </a>
+                        </div>
+                    </div>
                     <div class="gov-data-grid">
                         <div><strong>SAM.gov UEI:</strong> EZ34U9KNJA17</div>
                         <div><strong>CAGE / NCAGE:</strong> 4ZCN6</div>
