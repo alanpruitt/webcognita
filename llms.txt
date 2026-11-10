@@ -12,6 +12,7 @@
 - **Institutional Contact Directory**: [https://www.webcognita.com/contact.html](https://www.webcognita.com/contact.html)
 - **Official 1-Page Federal Capabilities Statement Exhibit (PDF with Scannable QR Code)**: [https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf](https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf) • [Printable 1-Page Web View](https://www.webcognita.com/capabilities-statement.html)
 - **Public Corporate Standing & Due Diligence Folder (`/docs/`)**:
+  - **Pre-Populated IRS Form W-9 (`Rev. March 2024` • `EIN: 81-0809739` • `SAM.gov UEI: EZ34U9KNJA17` • `CAGE: 4ZCN6`)**: [https://www.webcognita.com/docs/Webcognita_LLC_IRS_Form_W9_Verification.pdf](https://www.webcognita.com/docs/Webcognita_LLC_IRS_Form_W9_Verification.pdf)
   - **IRS EIN Verification Letter (`LTR 147C` • `EIN: 81-0809739`)**: [https://www.webcognita.com/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf](https://www.webcognita.com/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf)
   - **City of Yuma Business License (`#SERV-045998-01-2025` • Permanent Issue for 100% Service-Disabled Veterans under Yuma City Code Title 7)**: [https://www.webcognita.com/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf](https://www.webcognita.com/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf)
 - **Primary Service Region**: Yuma, AZ & Imperial Valley, CA (Bilingual English / Norteño-Spanish Cross-Border Operations)
