@@ -3,6 +3,12 @@
 User-agent: *
 Allow: /
 Allow: /llms.txt
+Allow: /docs/
+
+# Disallow administrative or raw build artifacts if applicable
+Disallow: /admin/
+Disallow: /drafts/
+Disallow: /layouts/
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -37,5 +43,6 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-# Canonical XML Sitemap for Search Engines and Coding Agents
+# Sitemap reference for search engine indexing
 Sitemap: https://www.webcognita.com/sitemap.xml
+Sitemap: https://webcognita.com/sitemap.xml
