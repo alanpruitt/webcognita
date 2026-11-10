@@ -3327,47 +3327,155 @@
             </script>
         </main>
 
-        <!-- Footer with Governance Links -->
-        <footer class="site-footer" aria-label="Site Footer">
-            <div class="footer-content" lang="en">
-                <p>&copy; 2026 Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 &bull; CAGE: 4ZCN6 &bull; EIN: 81-0809739). All rights reserved.</p>
-                <p>NAICS 541511, 541512, 541715, 611710, 541690 &bull;
-                    <a href="https://www.webcognita.com/contact.html" title="Webcognita Institutional Contact Directory">Contact</a> &bull;
-                    <a href="https://www.webcognita.com/privacy.html" title="Webcognita Privacy Policy">Privacy Policy</a> &bull;
-                    <a href="https://www.webcognita.com/terms.html" title="Webcognita Terms of Service">Terms of Service</a> &bull;
-                    <a href="https://alanpruitt.com/dpa/" target="_blank" rel="noopener noreferrer" title="Webcognita Data Processing Addendum (DPA)">DPA</a> &bull;
-                    <a href="https://alanpruitt.com/ip-oer/" target="_blank" rel="noopener noreferrer" title="Webcognita IP &amp; OER Licensing Rider">IP &amp; OER</a> &bull;
-                    <a href="https://www.webcognita.com/accessibility.html" title="Webcognita Accessibility Conformance">Accessibility</a> &bull;
-                    <a href="https://www.webcognita.com/changelog.html" title="Webcognita Changelog">Changelog</a> &bull;
-                    <a href="https://www.webcognita.com/sitemap.xml" title="Webcognita XML Sitemap">Sitemap</a> &bull;
-                    <a href="https://www.webcognita.com/llms.txt" title="Webcognita LLMs.txt Capabilities Index">LLMs.txt</a> &bull;
-                    <a href="https://alanpruitt.com/research-log/" target="_blank" rel="noopener noreferrer" title="Master Research Log Observatory">Research Log</a> &bull;
-                    <a href="https://alanpruitt.com/" target="_blank" rel="noopener noreferrer" title="Alan Pruitt Personal Site">Alan Pruitt</a> &bull;
-                    <a href="https://substack.com/@alanpruitt/" target="_blank" rel="noopener noreferrer" title="Alan Pruitt Substack Publication">Substack</a> &bull;
-                    <a href="https://www.linkedin.com/in/alanpruitt/" target="_blank" rel="noopener noreferrer" title="Alan Pruitt LinkedIn Profile">LinkedIn</a>
-                </p>
-                <p class="tagline" style="font-weight: 600; margin-top: 6px;">Powered by Curriculum-as-Code &bull; Professional AI Consulting &amp; Institutional EdTech Architecture.</p>
-                <p class="disclaimer" style="font-size: 0.8rem; margin-top: 6px; opacity: 0.9;"><strong>Disclaimer:</strong> Webcognita LLC (SDVOSB / VOSB) operates independently. Published software architectures, consulting engagements, and OER frameworks do not represent official policy or endorsement by Arizona Western College or The University of Arizona.</p>
+                <!-- Corporate Footer (3-Column Responsive Layout, WCAG 2.2 AA 9:1 Contrast) -->
+        <style>
+            .site-footer {
+                margin-top: 3rem;
+                border-top: 1px solid #D1D5DB;
+                background-color: #FFFFFF;
+                color: #0C2340;
+            }
+            .site-footer .footer-container {
+                max-width: 80rem;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 2rem 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1.5rem;
+                font-size: 0.875rem;
+                line-height: 1.5;
+                color: #0C2340;
+            }
+            .site-footer .footer-copyright {
+                text-align: center;
+            }
+            .site-footer .footer-copyright p,
+            .site-footer .footer-tagline p {
+                margin: 0;
+            }
+            .site-footer .footer-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                column-gap: 1.5rem;
+                row-gap: 0.5rem;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                font-weight: 600;
+            }
+            .site-footer a {
+                color: #0C2340;
+                text-decoration: underline;
+                text-underline-offset: 4px;
+                font-weight: 600;
+            }
+            .site-footer a:hover {
+                color: #940925;
+            }
+            .site-footer a:focus-visible {
+                outline: 2px solid #940925;
+                outline-offset: 2px;
+                border-radius: 2px;
+            }
+            .site-footer .footer-tagline {
+                font-size: 0.75rem;
+                line-height: 1.45;
+                color: #0C2340;
+                text-align: center;
+                max-width: 24rem;
+            }
+            @media (min-width: 768px) {
+                .site-footer .footer-container {
+                    flex-direction: row;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+                .site-footer .footer-copyright {
+                    text-align: left;
+                }
+                .site-footer .footer-tagline {
+                    text-align: right;
+                }
+            }
+        </style>
+        <footer id="site-footer" class="site-footer" aria-label="Company Footer">
+            <div class="footer-container" lang="en">
+                <div class="footer-copyright">
+                    <p style="font-weight: 600;">&copy; <span class="js-year">2026</span> Webcognita LLC (UEI: EZ34U9KNJA17 &bull; CAGE: 4ZCN6 &bull; EIN: 81-0809739). All rights reserved.</p>
+                    <p style="margin-top: 0.25rem; font-size: 0.75rem; color: #0C2340;">NAICS 541511, 541512, 541715, 611710, 541690</p>
+                </div>
+
+                <nav class="footer-nav" aria-label="Corporate Footer Navigation">
+                    <ul>
+                        <li>
+                            <a href="/privacy/" style="min-height: 44px; display: inline-flex; align-items: center;">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="/terms/" style="min-height: 44px; display: inline-flex; align-items: center;">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a href="https://alanpruitt.com/dpa/" target="_blank" rel="noopener noreferrer" style="min-height: 44px; display: inline-flex; align-items: center;">DPA</a>
+                        </li>
+                        <li>
+                            <a href="https://alanpruitt.com/ip-oer/" target="_blank" rel="noopener noreferrer" style="min-height: 44px; display: inline-flex; align-items: center;">IP &amp; OER</a>
+                        </li>
+                        <li>
+                            <a href="/accessibility.html" style="min-height: 44px; display: inline-flex; align-items: center;">Accessibility</a>
+                        </li>
+                        <li>
+                            <a href="/contact.html" style="min-height: 44px; display: inline-flex; align-items: center;">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/sitemap.xml" style="min-height: 44px; display: inline-flex; align-items: center;">Sitemap</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="footer-tagline">
+                    <p>Powered by Curriculum-as-Code &bull; Professional AI Consulting &amp; Institutional EdTech Architecture.</p>
+                </div>
             </div>
-            <div class="footer-content" lang="es">
-                <p>&copy; 2026 Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 &bull; CAGE: 4ZCN6 &bull; EIN: 81-0809739). Todos los derechos reservados.</p>
-                <p>NAICS 541511, 541512, 541715, 611710, 541690 &bull;
-                    <a href="https://www.webcognita.com/contact.html" title="Directorio de Contacto Institucional de Webcognita">Contacto</a> &bull;
-                    <a href="https://www.webcognita.com/privacy.html" title="Política de Privacidad de Webcognita">Política de Privacidad</a> &bull;
-                    <a href="https://www.webcognita.com/terms.html" title="Términos de Servicio de Webcognita">Términos de Servicio</a> &bull;
-                    <a href="https://alanpruitt.com/es/dpa/" target="_blank" rel="noopener noreferrer" title="Anexo de Procesamiento de Datos (DPA)">DPA</a> &bull;
-                    <a href="https://alanpruitt.com/es/ip-oer/" target="_blank" rel="noopener noreferrer" title="Anexo de Propiedad Intelectual y OER">IP y OER</a> &bull;
-                    <a href="https://www.webcognita.com/accessibility.html" title="Declaración de Accesibilidad de Webcognita">Accesibilidad</a> &bull;
-                    <a href="https://www.webcognita.com/changelog.html" title="Historial de Cambios de Webcognita">Historial</a> &bull;
-                    <a href="https://www.webcognita.com/sitemap.xml" title="Mapa del Sitio XML de Webcognita">Sitemap</a> &bull;
-                    <a href="https://www.webcognita.com/llms.txt" title="Índice LLMs.txt de Webcognita">LLMs.txt</a> &bull;
-                    <a href="https://alanpruitt.com/research-log/" target="_blank" rel="noopener noreferrer" title="Bitácora Maestra de Investigación">Bitácora CaC</a> &bull;
-                    <a href="https://alanpruitt.com/es/" target="_blank" rel="noopener noreferrer" title="Sitio Personal de Alan Pruitt">Alan Pruitt</a> &bull;
-                    <a href="https://substack.com/@alanpruitt/" target="_blank" rel="noopener noreferrer" title="Publicación Substack de Alan Pruitt">Substack</a> &bull;
-                    <a href="https://www.linkedin.com/in/alanpruitt/" target="_blank" rel="noopener noreferrer" title="Perfil de LinkedIn de Alan Pruitt">LinkedIn</a>
-                </p>
-                <p class="tagline" style="font-weight: 600; margin-top: 6px;">Impulsado por Curriculum-as-Code &bull; Consultoría Profesional de IA y Arquitectura EdTech Institucional.</p>
-                <p class="disclaimer" style="font-size: 0.8rem; margin-top: 6px; opacity: 0.9;"><strong>Aviso Legal:</strong> Webcognita LLC (SDVOSB / VOSB) opera de manera independiente. Las arquitecturas de software, consultorías y marcos OER no representan políticas oficiales ni el aval de Arizona Western College ni de The University of Arizona.</p>
+
+            <div class="footer-container" lang="es">
+                <div class="footer-copyright">
+                    <p style="font-weight: 600;">&copy; <span class="js-year">2026</span> Webcognita LLC (UEI: EZ34U9KNJA17 &bull; CAGE: 4ZCN6 &bull; EIN: 81-0809739). Todos los derechos reservados.</p>
+                    <p style="margin-top: 0.25rem; font-size: 0.75rem; color: #0C2340;">NAICS 541511, 541512, 541715, 611710, 541690</p>
+                </div>
+
+                <nav class="footer-nav" aria-label="Navegación corporativa del pie de página">
+                    <ul>
+                        <li>
+                            <a href="/privacy/" style="min-height: 44px; display: inline-flex; align-items: center;">Política de Privacidad</a>
+                        </li>
+                        <li>
+                            <a href="/terms/" style="min-height: 44px; display: inline-flex; align-items: center;">Términos de Servicio</a>
+                        </li>
+                        <li>
+                            <a href="https://alanpruitt.com/es/dpa/" target="_blank" rel="noopener noreferrer" style="min-height: 44px; display: inline-flex; align-items: center;">DPA</a>
+                        </li>
+                        <li>
+                            <a href="https://alanpruitt.com/es/ip-oer/" target="_blank" rel="noopener noreferrer" style="min-height: 44px; display: inline-flex; align-items: center;">IP y OER</a>
+                        </li>
+                        <li>
+                            <a href="/accessibility.html" style="min-height: 44px; display: inline-flex; align-items: center;">Accesibilidad</a>
+                        </li>
+                        <li>
+                            <a href="/contact.html" style="min-height: 44px; display: inline-flex; align-items: center;">Contacto</a>
+                        </li>
+                        <li>
+                            <a href="/sitemap.xml" style="min-height: 44px; display: inline-flex; align-items: center;">Sitemap</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="footer-tagline">
+                    <p>Impulsado por Curriculum-as-Code &bull; Consultoría Profesional de IA y Arquitectura EdTech Institucional.</p>
+                </div>
             </div>
         </footer>
     </div>
