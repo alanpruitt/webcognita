@@ -1,5 +1,6 @@
 [![Live Site: webcognita.com](https://img.shields.io/badge/Site-webcognita.com-0B1D3A)](https://www.webcognita.com/)
 [![SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6](https://img.shields.io/badge/SAM.gov-UEI%20EZ34U9KNJA17%20%7C%20CAGE%204ZCN6-0B1D3A)](https://www.webcognita.com/capabilities-statement.html)
+[![ORCID: 0009-0002-5038-7111](https://img.shields.io/badge/ORCID-0009--0002--5038--7111-0B1D3A?logo=orcid&logoColor=white)](https://orcid.org/0009-0002-5038-7111)
 [![WCAG 2.2 AA Accessibility (9:1 Guard)](https://img.shields.io/badge/WCAG-2.2%20AA%20(9%3A1)-success)](https://www.webcognita.com/accessibility.html)
 [![Google Developer Profile: Alan Pruitt (Gemini Certified Faculty & Cloud Launchpad)](https://img.shields.io/badge/Google%20Developers-Verified%20Profile-0B1D3A?logo=googledevelopers&logoColor=white)](https://me.developers.google.com/u/alanpruitt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0B1D3A)](LICENSE)
@@ -29,7 +30,7 @@ Webcognita LLC serves as a **non-competing 50-state technical enabling partner**
 | **CAGE / NCAGE Code** | `4ZCN6` |
 | **Federal EIN** | `81-0809739` |
 | **Socioeconomic Status** | Service-Disabled Veteran-Owned Small Business (`SDVOSB`) & Veteran-Owned Small Business (`VOSB`) |
-| **Principal & Key Personnel** | **Alan Lee Pruitt, B.S.** (*Bachelor of Science in Management (B.S.), University of Phoenix — Phoenix, AZ*) |
+| **Principal & Key Personnel** | **Alan Lee Pruitt, B.S.** (*Bachelor of Science in Management (B.S.), University of Phoenix — Phoenix, AZ* • **ORCID:** [`0009-0002-5038-7111`](https://orcid.org/0009-0002-5038-7111)) |
 | **Primary NAICS Code** | **`541511`** — Custom Computer Programming Services (*Curriculum-as-Code & Compliance-as-Code Compilers*) |
 | **Additional NAICS Codes** | **`541512`** (*Computer Systems Design / Edge AI*) • **`541715`** (*Life Sciences & Food Informatics R&D*) • **`611710`** (*Educational Support & OER*) • **`541690`** (*Technical & ADA Title II Consulting*) |
 | **Federal Product Service Codes (PSC)** | `U008` (*Curriculum Development*) • `U012` (*IT/AI Training*) • `DA01` (*Application Dev*) • `DJ01` (*Security & Compliance*) • `R425` (*Engineering/Technical*) • `AN12` (*Applied Health R&D*) |
