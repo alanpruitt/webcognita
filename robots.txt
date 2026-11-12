@@ -9,6 +9,7 @@ Allow: /docs/
 Disallow: /admin/
 Disallow: /drafts/
 Disallow: /layouts/
+Disallow: /vault/
 
 User-agent: OAI-SearchBot
 Allow: /

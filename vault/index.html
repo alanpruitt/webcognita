@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Contracting Data Room &amp; Encrypted Vault | Webcognita LLC</title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #FAF7F2;
+      color: #0B1D3A;
+      line-height: 1.55;
+      min-height: 100vh;
+      padding: 32px 16px 64px;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #0B1D3A;
+    }
+    .brand {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0B1D3A;
+      background-color: #FAF7F2;
+      letter-spacing: 0.02em;
+    }
+    .back-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #0B1D3A;
+      background-color: #FAF7F2;
+      text-decoration: underline;
+    }
+    .card {
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      border: 1px solid #CBD5E0;
+      border-top: 4px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 28px 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 6px rgba(11, 29, 58, 0.06);
+    }
+    h1 {
+      font-size: 1.45rem;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.12rem;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 0.92rem;
+      color: #222222;
+      background-color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+    .meta-strip {
+      font-size: 0.82rem;
+      color: #0B1D3A;
+      background-color: #EEF2F7;
+      border: 1px solid #CBD5E0;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+    .pw-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    input[type="password"], input[type="text"] {
+      flex: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95rem;
+      padding: 11px 12px;
+      border: 2px solid #0B1D3A;
+      border-radius: 6px;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+    }
+    .btn-secondary {
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      border: 2px solid #0B1D3A;
+      border-radius: 6px;
+      padding: 11px 18px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-primary:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+    .btn-danger {
+      background-color: #940925;
+      color: #FFFFFF;
+      border: 2px solid #940925;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .status-msg {
+      margin-top: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #940925;
+      background-color: #FFFFFF;
+    }
+    .status-ok {
+      color: #0D5156;
+      background-color: #FFFFFF;
+    }
+    .vault-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .file-list {
+      list-style: none;
+      margin: 0 0 8px 0;
+    }
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid #CBD5E0;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+    }
+    .file-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      word-break: break-word;
+    }
+    .file-meta {
+      font-size: 0.8rem;
+      color: #333333;
+      background-color: #FFFFFF;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      margin-top: 3px;
+    }
+    .tier2-card {
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      border: 1px solid #CBD5E0;
+      border-top: 4px solid #940925;
+      border-radius: 8px;
+      padding: 22px 24px;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">WEBCOGNITA LLC &bull; SAM.gov UEI: EZ34U9KNJA17 &bull; CAGE: 4ZCN6</div>
+      <a class="back-link" href="https://www.webcognita.com/">&larr; Public Corporate Profile</a>
+    </header>
+
+    <!-- LOCKED AUTHENTICATION CARD -->
+    <main>
+      <section class="card" id="locked-panel" aria-labelledby="vault-heading">
+        <h1 id="vault-heading">Contracting Data Room &amp; Encrypted Vault</h1>
+        <p class="subtitle">
+          Authorized procurement &amp; principal access only. All documents in this vault are encrypted prior to transport using client-side <strong>W3C WebCrypto AES-256-GCM</strong> (<code>600,000</code> PBKDF2-HMAC-SHA256 iterations) and decrypted exclusively in browser memory.
+        </p>
+        <div class="meta-strip">
+          <strong>Looking for public corporate standing exhibits?</strong> Public verification copies (AZ Certificate of Good Standing, IRS Letter 147C, Reference W-9, City of Yuma License, Capabilities Statement, and Principal CV) are available without a passphrase on <a href="https://www.webcognita.com/#capabilities" style="color: #0B1D3A; background-color: #EEF2F7; font-weight: 700; text-decoration: underline;">webcognita.com</a>.
+        </div>
+
+        <form id="unlock-form">
+          <label for="vault-username" class="sr-only">Vault Identifier</label>
+          <input type="text" id="vault-username" name="username" value="webcognita-contracting-vault" autocomplete="username" spellcheck="false" readonly class="sr-only" tabindex="-1">
+
+          <label for="current-password">Vault Passphrase</label>
+          <div class="pw-row">
+            <input
+              type="password"
+              id="current-password"
+              name="password"
+              autocomplete="current-password"
+              spellcheck="false"
+              autocorrect="off"
+              autocapitalize="off"
+              enterkeyhint="done"
+              placeholder="Enter AES-256-GCM passphrase"
+              required
+            >
+            <button type="button" id="toggle-pw" class="btn-secondary" aria-controls="current-password" aria-pressed="false">Show</button>
+          </div>
+          <button type="submit" id="unlock-btn" class="btn-primary">Unlock Contracting Vault</button>
+          <p id="status-msg" class="status-msg" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- UNLOCKED VAULT CONTENTS -->
+      <section id="unlocked-panel" class="hidden" aria-labelledby="unlocked-heading">
+        <div class="card">
+          <div class="vault-header-row">
+            <div>
+              <h2 id="unlocked-heading">Tier 1 — Decrypted Contracting Packet (In-Memory Session)</h2>
+              <p style="font-size: 0.84rem; color: #333333; background-color: #FFFFFF;" id="manifest-meta"></p>
+            </div>
+            <button type="button" id="lock-btn" class="btn-danger">Lock Vault &amp; Clear Memory</button>
+          </div>
+          <ul class="file-list" id="file-list"></ul>
+        </div>
+
+        <div class="tier2-card">
+          <h2>Tier 2 — High-Sensitivity 2FA Data Room (Google Drive)</h2>
+          <p class="subtitle" style="margin-bottom: 14px;">
+            Server-isolated Google Workspace / Drive repository protected by Google 2-Step Verification (for drag-and-drop mobile/desktop uploads, banking/EFT forms, wet-signed tax documents, and VA SDVOSB records).
+          </p>
+          <a id="tier2-link" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Open Tier 2 Google Drive Vault &rarr;
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const MAGIC = "WCGVLT01";
+      const ITERATIONS = 600000;
+
+      let activePassphrase = null;
+      const activeObjectUrls = [];
+
+      const form = document.getElementById("unlock-form");
+      const pwInput = document.getElementById("current-password");
+      const toggleBtn = document.getElementById("toggle-pw");
+      const unlockBtn = document.getElementById("unlock-btn");
+      const statusMsg = document.getElementById("status-msg");
+      const lockedPanel = document.getElementById("locked-panel");
+      const unlockedPanel = document.getElementById("unlocked-panel");
+      const fileListEl = document.getElementById("file-list");
+      const manifestMetaEl = document.getElementById("manifest-meta");
+      const tier2LinkEl = document.getElementById("tier2-link");
+      const lockBtn = document.getElementById("lock-btn");
+
+      toggleBtn.addEventListener("click", () => {
+        const isPw = pwInput.type === "password";
+        pwInput.type = isPw ? "text" : "password";
+        toggleBtn.textContent = isPw ? "Hide" : "Show";
+        toggleBtn.setAttribute("aria-pressed", String(isPw));
+      });
+
+      async function deriveAesKey(passphrase, saltBytes) {
+        const enc = new TextEncoder();
+        const baseKey = await window.crypto.subtle.importKey(
+          "raw",
+          enc.encode(passphrase.trim()),
+          "PBKDF2",
+          false,
+          ["deriveKey"]
+        );
+        return window.crypto.subtle.deriveKey(
+          { name: "PBKDF2", salt: saltBytes, iterations: ITERATIONS, hash: "SHA-256" },
+          baseKey,
+          { name: "AES-GCM", length: 256 },
+          false,
+          ["decrypt"]
+        );
+      }
+
+      async function fetchAndDecrypt(url, passphrase) {
+        const resp = await fetch(url, { cache: "no-store" });
+        if (!resp.ok) {
+          throw new Error("Encrypted vault artifact not found (" + resp.status + ").");
+        }
+        const buf = new Uint8Array(await resp.arrayBuffer());
+        if (buf.byteLength < 37) {
+          throw new Error("Invalid encrypted blob format.");
+        }
+        const header = new TextDecoder("ascii").decode(buf.subarray(0, 8));
+        if (header !== MAGIC) {
+          throw new Error("Unrecognized vault header.");
+        }
+        const salt = buf.subarray(8, 24);
+        const iv = buf.subarray(24, 36);
+        const ciphertext = buf.subarray(36);
+        const key = await deriveAesKey(passphrase, salt);
+        const plainBuf = await window.crypto.subtle.decrypt(
+          { name: "AES-GCM", iv, tagLength: 128 },
+          key,
+          ciphertext
+        );
+        return new Uint8Array(plainBuf);
+      }
+
+      async function sha256Hex(bytes) {
+        const digest = await window.crypto.subtle.digest("SHA-256", bytes);
+        return Array.from(new Uint8Array(digest))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      function formatBytes(n) {
+        if (n < 1024) return n + " B";
+        if (n < 1024 * 1024) return (n / 1024).toFixed(1) + " KB";
+        return (n / (1024 * 1024)).toFixed(2) + " MB";
+      }
+
+      function lockVault() {
+        activePassphrase = null;
+        pwInput.value = "";
+        pwInput.type = "password";
+        toggleBtn.textContent = "Show";
+        while (activeObjectUrls.length) {
+          URL.revokeObjectURL(activeObjectUrls.pop());
+        }
+        fileListEl.innerHTML = "";
+        unlockedPanel.classList.add("hidden");
+        lockedPanel.classList.remove("hidden");
+        statusMsg.textContent = "Vault locked and decrypted session memory cleared.";
+        statusMsg.className = "status-msg status-ok";
+      }
+
+      lockBtn.addEventListener("click", lockVault);
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const pw = pwInput.value.trim();
+        if (!pw) return;
+
+        unlockBtn.disabled = true;
+        statusMsg.textContent = "Deriving PBKDF2-SHA256 key (600,000 rounds) and verifying AES-256-GCM tag...";
+        statusMsg.className = "status-msg status-ok";
+
+        try {
+          const manifestBytes = await fetchAndDecrypt("./blobs/vault-manifest.enc", pw);
+          const manifest = JSON.parse(new TextDecoder("utf-8").decode(manifestBytes));
+          activePassphrase = pw;
+
+          manifestMetaEl.textContent =
+            "Verified " + manifest.cipher + " • Last Synced: " + manifest.encrypted_at + " • Files: " + manifest.files.length;
+
+          if (manifest.tier2_drive_url) {
+            tier2LinkEl.href = manifest.tier2_drive_url;
+          }
+
+          fileListEl.innerHTML = "";
+          for (const item of manifest.files) {
+            const li = document.createElement("li");
+            li.className = "file-item";
+
+            const infoDiv = document.createElement("div");
+            const nameDiv = document.createElement("div");
+            nameDiv.className = "file-name";
+            nameDiv.textContent = item.filename;
+
+            const metaDiv = document.createElement("div");
+            metaDiv.className = "file-meta";
+            metaDiv.textContent =
+              formatBytes(item.bytes) + " • Updated " + item.modified + " • SHA-256: " + item.sha256.slice(0, 12) + "...";
+
+            infoDiv.appendChild(nameDiv);
+            infoDiv.appendChild(metaDiv);
+
+            const dlBtn = document.createElement("button");
+            dlBtn.type = "button";
+            dlBtn.className = "btn-primary";
+            dlBtn.textContent = "Decrypt & Download";
+            dlBtn.addEventListener("click", async () => {
+              if (!activePassphrase) return;
+              const origLabel = dlBtn.textContent;
+              dlBtn.disabled = true;
+              dlBtn.textContent = "Decrypting...";
+              try {
+                const pt = await fetchAndDecrypt("./blobs/" + item.blob, activePassphrase);
+                const actualHash = await sha256Hex(pt);
+                if (actualHash !== item.sha256) {
+                  throw new Error("SHA-256 integrity mismatch.");
+                }
+                const blobObj = new Blob([pt], { type: item.mime || "application/octet-stream" });
+                const objUrl = URL.createObjectURL(blobObj);
+                activeObjectUrls.push(objUrl);
+                const a = document.createElement("a");
+                a.href = objUrl;
+                a.download = item.filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                dlBtn.textContent = "Downloaded (Verified)";
+                setTimeout(() => {
+                  dlBtn.disabled = false;
+                  dlBtn.textContent = origLabel;
+                }, 2200);
+              } catch (err) {
+                dlBtn.disabled = false;
+                dlBtn.textContent = "Error — Retry";
+                alert("Decryption error: " + err.message);
+              }
+            });
+
+            li.appendChild(infoDiv);
+            li.appendChild(dlBtn);
+            fileListEl.appendChild(li);
+          }
+
+          statusMsg.textContent = "";
+          lockedPanel.classList.add("hidden");
+          unlockedPanel.classList.remove("hidden");
+        } catch (err) {
+          statusMsg.textContent = "Invalid passphrase or unable to authenticate AES-256-GCM tag.";
+          statusMsg.className = "status-msg";
+        } finally {
+          unlockBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
