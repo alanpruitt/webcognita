@@ -2,7 +2,8 @@
 > Veteran-Owned Small Business (VOSB) • SAM.gov UEI: EZ34U9KNJA17 • CAGE/NCAGE: 4ZCN6 • Federal EIN: 81-0809739 • Primary NAICS: 541511 • Founded & Led by Alan Pruitt (Coach Alan, Google Gemini Certified Faculty).
 
 ## Corporate & Procurement Profile
-- **Legal Entity**: Webcognita LLC ([https://www.webcognita.com/](https://www.webcognita.com/))
+- **Legal Entity**: Webcognita LLC (`SAM.gov Legal Business Name: WEBCOGNITA` • `AZ ACC #L17046120`, Authorized August 23, 2011 • 100% Sole-Member, Member-Managed LLC • [https://www.webcognita.com/](https://www.webcognita.com/))
+- **Headquarters & Standard Operating Hours**: `1906 S 6th Ave, Yuma, AZ 85364` • `Monday–Friday, 8:00 AM – 5:00 PM MST (Arizona)` (100% private commercial facility & hardware; zero institutional co-location or shared control)
 - **SAM.gov Unique Entity ID (UEI)**: `EZ34U9KNJA17`
 - **CAGE / NCAGE Code**: `4ZCN6`
 - **Federal EIN**: `81-0809739`

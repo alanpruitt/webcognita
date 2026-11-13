@@ -28,7 +28,8 @@ Webcognita LLC serves as a **non-competing 50-state technical enabling partner**
 
 | Procurement Attribute | Verified Identifier / Classification |
 | :--- | :--- |
-| **Legal Entity Name** | **Webcognita LLC** (Arizona Domestic LLC • `ACC Business ID: L17046120` • Authorized August 23, 2011) |
+| **Legal Entity Name** | **Webcognita LLC** (`SAM.gov Legal Name: WEBCOGNITA` • 100% Sole-Member Arizona Domestic LLC • `ACC Business ID: L17046120` • Authorized August 23, 2011) |
+| **Headquarters & Operating Hours** | `1906 S 6th Ave, Yuma, AZ 85364` • **Monday–Friday, 8:00 AM – 5:00 PM MST (Arizona)** |
 | **SAM.gov Unique Entity ID (UEI)** | `EZ34U9KNJA17` |
 | **CAGE / NCAGE Code** | `4ZCN6` |
 | **Federal EIN** | `81-0809739` |
