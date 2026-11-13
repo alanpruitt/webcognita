@@ -9,7 +9,7 @@
 
 # Webcognita LLC — Sovereign AI Strategy, Curriculum-as-Code & Compliance-as-Code (`100% Veteran-Owned`)
 
-> Official institutional and federal procurement web repository for **Webcognita LLC** (`100% Veteran-Owned • SBA VetCert Applicant` • `SAM.gov UEI: EZ34U9KNJA17` • `CAGE: 4ZCN6` • `Federal EIN: 81-0809739` • `Primary NAICS: 541511`), founded and led by **Alan Pruitt (Alan Lee Pruitt, B.S., 1999 — "Coach Alan")** — USMC & U.S. Army Counterintelligence Veteran, Exercise Science Adjunct Faculty (contract-only / stipend-only) at **Arizona Western College (AWC)**, Volunteer Generative AI Strategist & Designated Campus Colleague (`DCC`) at **The University of Arizona (School of Nutritional Sciences and Wellness — Yuma Campus)**, and **Google Gemini Certified Faculty**.
+> Official institutional and federal procurement web repository for **Webcognita LLC** (`Veteran-Owned Small Business • VOSB` • `SAM.gov UEI: EZ34U9KNJA17` • `CAGE: 4ZCN6` • `Federal EIN: 81-0809739` • `Primary NAICS: 541511`), founded and led by **Alan Pruitt (Alan Lee Pruitt, B.S., 1999 — "Coach Alan")** — USMC & U.S. Army Counterintelligence Veteran, Exercise Science Adjunct Faculty (contract-only / stipend-only) at **Arizona Western College (AWC)**, Volunteer Generative AI Strategist & Designated Campus Colleague (`DCC`) at **The University of Arizona (School of Nutritional Sciences and Wellness — Yuma Campus)**, and **Google Gemini Certified Faculty**.
 
 - **Corporate Flagship (`EN` / `ES`):** [https://www.webcognita.com/](https://www.webcognita.com/)
 - **1-Page Federal Capabilities Statement (ATS-Optimized):** [Web View (`capabilities-statement.html`)](https://www.webcognita.com/capabilities-statement.html) • [Official 1-Page Tagged PDF](https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf)
@@ -32,7 +32,7 @@ Webcognita LLC serves as a **non-competing 50-state technical enabling partner**
 | **SAM.gov Unique Entity ID (UEI)** | `EZ34U9KNJA17` |
 | **CAGE / NCAGE Code** | `4ZCN6` |
 | **Federal EIN** | `81-0809739` |
-| **Socioeconomic Status** | 100% Veteran-Owned Small Business (`SBA VetCert Applicant`) |
+| **Socioeconomic Status** | Veteran-Owned Small Business (`VOSB`) |
 | **Principal & Key Personnel** | **Alan Lee Pruitt, B.S.** (*Bachelor of Science in Management (B.S.), University of Phoenix — Phoenix, AZ, 1999* • **ORCID:** [`0009-0002-5038-7111`](https://orcid.org/0009-0002-5038-7111)) |
 | **Primary NAICS Code** | **`541511`** — Custom Computer Programming Services (*Curriculum-as-Code & Compliance-as-Code Compilers*) |
 | **Additional NAICS Codes** | **`541512`** (*Computer Systems Design / Edge AI*) • **`541715`** (*Life Sciences & Food Informatics R&D*) • **`611710`** (*Educational Support & OER*) • **`541690`** (*Technical & ADA Title II Consulting*) |
