@@ -46,4 +46,3 @@ Allow: /
 
 # Sitemap reference for search engine indexing
 Sitemap: https://www.webcognita.com/sitemap.xml
-Sitemap: https://webcognita.com/sitemap.xml
