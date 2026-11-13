@@ -47,6 +47,9 @@
       "isPartOf": {
         "@id": "https://www.webcognita.com/#website"
       },
+      "mainEntity": {
+        "@id": "https://www.webcognita.com/#organization"
+      },
       "about": {
         "@id": "https://www.webcognita.com/#organization"
       },
@@ -55,7 +58,14 @@
         "@id": "https://alanpruitt.com/#person",
         "name": "Alan Lee Pruitt",
         "url": "https://alanpruitt.com/"
-      }
+      },
+      "mentions": [
+        { "@type": "GovernmentOrganization", "name": "U.S. Small Business Administration (SBA)", "url": "https://www.sba.gov/" },
+        { "@type": "NGO", "name": "Warrior Rising", "url": "https://warriorrising.org/business-showers/" },
+        { "@type": "CollegeOrUniversity", "name": "Arizona Western College Small Business Development Center (SBDC)", "url": "https://www.azwestern.edu/" },
+        { "@type": "GovernmentOrganization", "name": "Southern Arizona VA Health Care System (SAVAHCS)", "url": "https://www.va.gov/southern-arizona-health-care/" },
+        { "@type": "Organization", "name": "Arizona APEX Accelerator", "url": "https://arizonaapex.org/" }
+      ]
     },
     {
       "@type": ["Organization", "ProfessionalService"],
@@ -66,6 +76,9 @@
       "foundingDate": "2011-08-23",
       "taxID": "81-0809739",
       "naics": "541511",
+      "subjectOf": {
+        "@id": "https://www.webcognita.com/origin-story.html#webpage"
+      },
       "identifier": [
         { "@type": "PropertyValue", "propertyID": "SAM.gov UEI", "value": "EZ34U9KNJA17" },
         { "@type": "PropertyValue", "propertyID": "CAGE/NCAGE", "value": "4ZCN6" },
