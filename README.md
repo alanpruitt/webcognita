@@ -60,7 +60,7 @@ Webcognita LLC operationalizes instructional, clinical, and regulatory mandates 
 
 ---
 
-## 3. Production Software Ecosystem (8 Live Sovereign Progressive Web Applications)
+## 3. Production Software Ecosystem (9 Live Sovereign Progressive Web Applications)
 
 1. **[EXW Digital Tool Kit (`exwtoolkit.com`)](https://exwtoolkit.com):** 9-Box bilingual (`EN` / `ES`) clinical kinesiology, nutrition, desert heat-stress telemetry, and cryptographic student verification workbench (`PAGA 2018`, `DGA 2025–2030`, `ACSM 12th Ed.`, `NASM OPT`).
 2. **[EXW Physical Activity Tool Kit (`paga2018.dev`)](https://paga2018.dev):** `$0 ZTC` Open Educational Resource (`OER`) built on the Physical Activity Guidelines for Americans (2nd Ed., 2018) featuring `Pattern / Rule / Solve` clinical activity audits.
@@ -70,6 +70,7 @@ Webcognita LLC operationalizes instructional, clinical, and regulatory mandates 
 6. **[Markdown to Documents (`mdtodocs.app`)](https://mdtodocs.app):** Curriculum-as-Code document compiler transforming plain-text Markdown into born-accessible, WCAG-compliant PDF, Word (`.docx`), and semantic HTML deliverables.
 7. **[Prompt-per-Mile Offset Calculator (`prompt-mile-hero.lovable.app`)](https://prompt-mile-hero.lovable.app):** Active-transit sustainability utility converting human movement miles into CO2 savings and equivalent AI compute prompt offsets.
 8. **[AgFlow 5G — Smart Irrigation & Remote Operations Calculator (`agflow-roi-dash.lovable.app`)](https://agflow-roi-dash.lovable.app):** Desert AgTech pilot utility modeling operational, financial, and water-conservation ROI of 5G remote irrigation across the Yuma / Imperial Valley agricultural corridor (complemented by [Edge-iNat (`alanpruitt.com/edge-inat/`)](https://alanpruitt.com/edge-inat/) offline BioCLIP desert species computer vision).
+9. **[GAIL 2026 Frontier AI Leader & Workforce Readiness Workbench (`gail2026.dev`)](https://gail2026.dev):** Independent `$0 ZTC` bilingual (`EN` / `ES`) OER PWA (`NAICS 541511`, `PSC DA01, U008`) hydrated from canonical SSoT [`alanpruitt.com/gail2026/`](https://alanpruitt.com/gail2026/) with 7 accessible learning modes, 4-Tier `LRMI` alignment (`US-DOL-TEN-07-25`, `NSF-TECHACCESS-AI-READY-2026`, `HLC ILOs`, and 50-state K–16 bridge re-compilation), `W3C SKOS` ontology, and `W3C PROV-O` `SHA-256` readiness receipts.
 
 ---
 
