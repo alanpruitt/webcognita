@@ -34,7 +34,7 @@ Webcognita LLC serves as a **non-competing 50-state technical enabling partner**
 | **CAGE / NCAGE Code** | `4ZCN6` |
 | **Federal EIN** | `81-0809739` |
 | **Socioeconomic Status** | Veteran-Owned Small Business (`VOSB`) |
-| **Principal & Key Personnel** | **Alan Lee Pruitt, B.S.** (*Bachelor of Science in Management (B.S.), University of Phoenix — Phoenix, AZ, 1999* • **ORCID:** [`0009-0002-5038-7111`](https://orcid.org/0009-0002-5038-7111)) |
+| **Principal & Key Personnel** | **Alan Lee Pruitt, B.S.** (*Executive Certificate in Non-Profit/Public/Organizational Management, Thunderbird School of Global Management — Phoenix, AZ, 2017–2018 • Team RWB Eagle Leader Fellow*; *B.S. in Management, University of Phoenix — Phoenix, AZ, 1999* • **ORCID:** [`0009-0002-5038-7111`](https://orcid.org/0009-0002-5038-7111)) |
 | **Primary NAICS Code** | **`541511`** — Custom Computer Programming Services (*Curriculum-as-Code & Compliance-as-Code Compilers*) |
 | **Additional NAICS Codes** | **`541512`** (*Computer Systems Design / Edge AI*) • **`541715`** (*Life Sciences & Food Informatics R&D*) • **`611710`** (*Educational Support & OER*) • **`541690`** (*Technical & ADA Title II Consulting*) |
 | **Federal Product Service Codes (PSC)** | `U008` (*Curriculum Development*) • `U012` (*IT/AI Training*) • `DA01` (*Application Dev*) • `DJ01` (*Security & Compliance*) • `R425` (*Engineering/Technical*) • `AN12` (*Applied Health R&D*) |
@@ -78,8 +78,9 @@ Webcognita LLC operationalizes instructional, clinical, and regulatory mandates 
 
 **Alan Lee Pruitt, B.S. ("Coach Alan")** brings **20+ years of verifiable executive, academic, and technical leadership**, having personally reviewed, scored, and administered hundreds of federal, state, tribal, and municipal RFP proposals and grant subawards (`U.S. EDA`, `U.S. DOL WIOA`, `U.S. SBA SBDC`, `FAR Part 15`, `2 CFR Part 200`).
 
-- **Education:**
-  - **Bachelor of Science in Management (B.S.)** — *University of Phoenix — Phoenix, AZ*
+- **Education & Executive Fellowship:**
+  - **Executive Certificate in Non-Profit/Public/Organizational Management (`2017–2018`)** — *Thunderbird School of Global Management (Arizona State University), Phoenix, AZ* (*Awarded competitive 1-year national veteran organization leader scholarship: **Team Red, White & Blue [Team RWB] Eagle Leader Fellowship [ELF]***)
+  - **Bachelor of Science in Management (B.S., `1999`)** — *University of Phoenix — Phoenix, AZ*
 - **Cleared Security Pedigree & Counterintelligence Leadership:**
   - **United States Marine Corps (`USMC`, Honorable, Jan 1980–Nov 1992) & United States Army, National Guard, Army Reserve Counterintelligence Agent (Honorable, Nov 1992–Sep 2001)**, and former **California Licensed Private Investigator (`Lic. No. 17984`, 2001–2004, Qualified Manager & Owner of Alan Pruitt PI)**, with a documented background holding a **Top Secret / SCI (`SI/TK`) security clearance** and serving as Team Chief for an elite 15-person **Technical Surveillance Countermeasures (`TSCM`)** unit—ensuring strict `OPSEC`, zero-trust data governance, and rapid corporate clearability for sensitive task orders.
 - **Verified 4-Credential Google Stack ([`g.dev/alanpruitt`](https://me.developers.google.com/u/alanpruitt)):**
@@ -88,12 +89,13 @@ Webcognita LLC operationalizes instructional, clinical, and regulatory mandates 
   - **[Google AI Professional Certificate](https://www.coursera.org/account/accomplishments/professional-cert/TIASZGL7JPG0)** (*Coursera `TIASZGL7JPG0`* — Web/PWA Application Design & Responsible AI)
   - **[Applying Project Management in the Real World](https://www.coursera.org/account/accomplishments/verify/U4TEVAXZBRNC)** (*Coursera `U4TEVAXZBRNC`* — Project Scoping, Chartering & Quality Management)
   - Accepted Cohort Member, **Google Cloud Launchpad for Veterans**
-- **5 Major Federal, National & Military Honors:**
+- **6 Major Federal, National & Military Honors:**
   1. **2025 Arizona Veteran Small Business Champion of the Year** — *U.S. Small Business Administration (`SBA` Arizona District)* ([Official AWC SBDC Success Story PDF](https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf)).
   2. **2023 Champion of Minority Business Development — Advocate of the Year** — *U.S. Department of Commerce, Minority Business Development Agency (`MBDA` Arizona Center)* (for work as Economic Development Specialist for the Quechan Indian Tribe).
   3. **2021 Aliceann Wohlbruck Impact Award (National Innovation Honor)** — *National Association of Development Organizations (`NADO`, August 2021)*, for engineering an open-source GitHub AI Co-Pilot, Python federal API, and screen-reader-accessible HTML regional `CEDS` during his 15-year tenure as **Executive Director** of the Western Arizona Economic Development District (`2007–2022`; profiled in the [September 2021 U.S. EDA StatsAmerica User Spotlight](https://www.statsamerica.org/newsletter/2021Q3.aspx)).
-  4. **Arizona SBDC Center of Excellence Award** — *Arizona Western College Small Business Development Center* (`2x` SBDC Business Counselor & Federal `WIOA` Contextualized Curriculum Specialist).
-  5. **1992 Navy Commendation Medal** — *U.S. Department of the Navy / U.S. Marine Corps* (Superior Information & Physical Security Management at a Major Combatant Command, Pacific Theater).
+  4. **2017–2018 Eagle Leader Fellowship (`ELF`) National Veteran Leadership Scholarship** — *Team Red, White & Blue (`Team RWB`)* (1-year competitive national veteran organization leader fellowship & scholarship at *Thunderbird School of Global Management*, Phoenix, AZ).
+  5. **Arizona SBDC Center of Excellence Award** — *Arizona Western College Small Business Development Center* (`2x` SBDC Business Counselor & Federal `WIOA` Contextualized Curriculum Specialist).
+  6. **1992 Navy Commendation Medal** — *U.S. Department of the Navy / U.S. Marine Corps* (Superior Information & Physical Security Management at a Major Combatant Command, Pacific Theater).
 
 ---
 
