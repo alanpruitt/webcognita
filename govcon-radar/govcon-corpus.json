@@ -129,6 +129,31 @@
       "summary": "Authoritative directory of every federal department, sub-agency, and independent commission for mapping buying offices and OSDBU entry points."
     },
     {
+      "id": "FED-07",
+      "category": "FEDERAL_OSINT",
+      "title": "Executive Order 14434 (91 FR 63129) — Federal Super Intelligence (SI) Mandate",
+      "jurisdiction": "Federal Executive Branch (All Departments & Agencies)",
+      "platform": "Federal Register (Signed Sept. 29, 2026) & 15 U.S.C. 9401(3)",
+      "thresholds": "Mandatory Executive Branch Correspondence, Portals, RFIs & Reports",
+      "url": "https://www.federalregister.gov/",
+      "tags": [
+        "eo 14434",
+        "executive order 14434",
+        "91 fr 63129",
+        "super intelligence",
+        "superintelligence",
+        "si",
+        "15 u.s.c. 9401(3)",
+        "artificial intelligence",
+        "fda",
+        "nih",
+        "doj",
+        "state department",
+        "terminology"
+      ],
+      "summary": "Directs federal agencies to use 'Super Intelligence' ('SI') in place of 'Artificial Intelligence' ('AI') across non-statutory communications while anchoring technical scope to 15 U.S.C. 9401(3) and preserving codified statutory citations."
+    },
+    {
       "id": "OSDBU-01",
       "category": "CABINET_OSDBU",
       "title": "U.S. Dept. of Veterans Affairs (VA) OSDBU & Direct Access Program",
@@ -1746,7 +1771,7 @@
       "azNigp": "920 • 918-28 / 918-29 (Computer & Systems Consulting)",
       "psc": "DJ01 (IT Security & Compliance) • DA01",
       "gsaSin": "SIN 54151S (Startup Springboard & FASt Lane Eligible)",
-      "deliverables": "Zero-egress Sovereign Hybrid RAG (SQLite FTS5 BM25 + RRF), CMMC Level 1 / Zero-CUI architectures"
+      "deliverables": "Zero-egress Sovereign Hybrid RAG (SQLite FTS5 BM25 + RRF), Air-Gapped Edge SI / AI (EO 14434), CMMC Level 1 / Zero-CUI"
     },
     {
       "naics": "541715",
@@ -1762,9 +1787,9 @@
       "naicsTitle": "Educational Support Services",
       "sizeStandard": "$24.0M Annual Receipts",
       "azNigp": "924-16 (Course Dev) • 924-35 / 924-41 (Workforce & Instructor Training)",
-      "psc": "U008 (Curriculum Dev) • U012 (IT/AI Training)",
+      "psc": "U008 (Curriculum Dev) • U012 (IT/SI/AI Training)",
       "gsaSin": "SIN 611430 (Professional & Management Dev. Training)",
-      "deliverables": "U.S. DOL TEN No. 07-25 AI Workforce Literacy, $0 ZTC Dual-Namespace OER, Executive AI Briefings"
+      "deliverables": "EO 14434 Super Intelligence (SI) & U.S. DOL TEN No. 07-25 Workforce Literacy, $0 ZTC Dual-Namespace OER, Executive Briefings"
     },
     {
       "naics": "541690",
@@ -1773,7 +1798,7 @@
       "azNigp": "918-75 (Management / IV&V Consulting) • 958-77 (Compliance QA)",
       "psc": "R425 (Engineering & Technical Support) • B599",
       "gsaSin": "SIN 541611 (Management & Advisory Consulting)",
-      "deliverables": "Independent Accessibility IV&V (ADA Title II 28 CFR Part 35), AI Governance & Risk Readiness"
+      "deliverables": "Independent Accessibility IV&V (ADA Title II 28 CFR Part 35), EO 14434 SI / 15 U.S.C. 9401(3) Governance & Risk Readiness"
     }
   ],
   "readinessGates": [
@@ -1785,12 +1810,12 @@
     {
       "id": "G02",
       "pillar": "Identity & Registry",
-      "label": "SBA Small Business Search (SBS / DSBS) populated with Capabilities Narrative + 20+ keywords"
+      "label": "SBA Small Business Search (SBS) Dual-Indexed with EO 14434 Super Intelligence (SI) + 15 U.S.C. 9401(3) AI Keywords"
     },
     {
       "id": "G03",
       "pillar": "Identity & Registry",
-      "label": "1-Page Section 508 Tagged PDF/UA Capabilities Statement with UEI, CAGE, NAICS, PSC & GPC readiness"
+      "label": "1-Page Section 508 Tagged PDF/UA Capabilities Statement (EO 14434 SI/AI Bridged; UEI, CAGE, NAICS, PSC & GPC)"
     },
     {
       "id": "G04",
