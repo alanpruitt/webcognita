@@ -306,6 +306,54 @@
       justify-content: space-between;
       gap: 0.65rem;
     }
+    .node-card.is-saved {
+      border: 2.5px solid #940925;
+    }
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .save-toggle-btn {
+      flex-shrink: 0;
+      min-height: 34px;
+      padding: 0.25rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .save-toggle-btn:hover {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      border-color: #0B1D3A;
+    }
+    .save-toggle-btn[aria-pressed="true"] {
+      background-color: #940925;
+      color: #FFFFFF;
+      border-color: #940925;
+    }
+    .save-toggle-btn[aria-pressed="true"]:hover {
+      background-color: #6E061B;
+      color: #FFFFFF;
+      border-color: #6E061B;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
     .node-card h3 {
       margin: 0.25rem 0;
       font-size: 1.05rem;
@@ -570,6 +618,7 @@
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
             <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (84)</button>
+            <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="CABINET_OSDBU" aria-pressed="false">15 Cabinet OSDBUs</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="DOD_CYBER_FAR" aria-pressed="false">DoD, FAR &amp; Cyber</button>
@@ -577,6 +626,7 @@
             <button type="button" class="btn-secondary cat-btn" data-cat="AZ_STATE_COUNTIES" aria-pressed="false">AZ State &amp; 9 Counties</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="AZ_CITIES_ED_AIRPORTS" aria-pressed="false">AZ Cities, Ed &amp; Airports</button>
           </div>
+          <div id="save-live-status" class="sr-only" aria-live="polite"></div>
 
           <div id="rag-telemetry" class="telemetry-bar" aria-live="polite">
             <span>Loading clean-room OSINT corpus...</span>
@@ -790,6 +840,19 @@
       let docFreq = {};
       let activeCategory = 'ALL';
 
+      const SAVED_STORAGE_KEY = 'webcognita_govcon_saved_v1';
+      let savedSet = new Set();
+      try {
+        const savedIds = JSON.parse(localStorage.getItem(SAVED_STORAGE_KEY) || 'null');
+        if (Array.isArray(savedIds)) savedSet = new Set(savedIds);
+      } catch (_) {}
+
+      function updateSavedFilterPill() {
+        const btn = document.getElementById('saved-filter-btn');
+        if (btn) btn.textContent = `Saved (${savedSet.size})`;
+      }
+      updateSavedFilterPill();
+
       function buildIndex(nodes) {
         docFreq = {};
         let totalLen = 0;
@@ -817,7 +880,9 @@
         const rawQ = document.getElementById('rag-query').value.trim();
         const pool = activeCategory === 'ALL'
           ? indexedNodes
-          : indexedNodes.filter((d) => d.raw.category === activeCategory);
+          : activeCategory === 'SAVED'
+            ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
+            : indexedNodes.filter((d) => d.raw.category === activeCategory);
 
         if (!rawQ) {
           renderCards(pool.map((d) => ({ node: d.raw, rrf: null, bm25: 0, sem: 0 })), performance.now() - t0, false);
@@ -896,22 +961,29 @@
 
       function renderCards(items, elapsedMs, isQuery) {
         const tel = document.getElementById('rag-telemetry');
-        tel.innerHTML = `<span>Showing ${items.length} of ${indexedNodes.length} verified public nodes (${elapsedMs.toFixed(2)} ms)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`;
+        tel.innerHTML = `<span>Showing ${items.length} of ${indexedNodes.length} verified public nodes (${elapsedMs.toFixed(2)} ms &bull; ${savedSet.size} Saved)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`;
         const grid = document.getElementById('rag-results');
         if (!items.length) {
-          grid.innerHTML = '<div class="plain-callout" style="grid-column: 1 / -1;"><strong>No matching nodes found.</strong> Try broadening your query or resetting the Scope Filter to <strong>All (83)</strong>.</div>';
+          const emptyMsg = activeCategory === 'SAVED' && savedSet.size === 0
+            ? '<strong>No saved portals yet.</strong> Select the <strong>Save</strong> button on any portal card to bookmark your priority targets here (stored locally in your browser).'
+            : '<strong>No matching nodes found.</strong> Try broadening your query or resetting the Scope Filter to <strong>All (84)</strong>.';
+          grid.innerHTML = `<div class="plain-callout" style="grid-column: 1 / -1;">${emptyMsg}</div>`;
           return;
         }
         grid.innerHTML = items.map(({ node, rrf, bm25, sem }) => {
+          const isSaved = savedSet.has(node.id);
           const scoreBadge = isQuery && rrf !== null
             ? `<span class="score-chip">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
             : `<span class="score-chip">${escapeHtml(node.id)}</span>`;
           return `
-            <article class="node-card">
+            <article class="node-card${isSaved ? ' is-saved' : ''}" data-nid="${escapeHtml(node.id)}">
               <div>
-                <div class="meta-row">
-                  ${scoreBadge}
-                  <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
+                <div class="card-top-row">
+                  <div class="meta-row">
+                    ${scoreBadge}
+                    <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
+                  </div>
+                  <button type="button" class="save-toggle-btn" data-save-id="${escapeHtml(node.id)}" data-save-title="${escapeHtml(node.title)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Saved portal (select to remove): ' : 'Save portal: '}${escapeHtml(node.title)}">${isSaved ? 'Saved' : 'Save'}</button>
                 </div>
                 <h3>${escapeHtml(node.title)}</h3>
                 <p class="kv-line"><strong>Jurisdiction:</strong> ${escapeHtml(node.jurisdiction)}</p>
@@ -1151,6 +1223,40 @@
 
         syncProgress();
       }
+
+      document.getElementById('rag-results').addEventListener('click', (e) => {
+        const btn = e.target.closest('.save-toggle-btn');
+        if (!btn) return;
+        const nid = btn.getAttribute('data-save-id');
+        const ntitle = btn.getAttribute('data-save-title') || nid;
+        if (!nid) return;
+        const nowSaved = !savedSet.has(nid);
+        if (nowSaved) savedSet.add(nid);
+        else savedSet.delete(nid);
+        try {
+          localStorage.setItem(SAVED_STORAGE_KEY, JSON.stringify(Array.from(savedSet)));
+        } catch (_) {}
+        updateSavedFilterPill();
+        const live = document.getElementById('save-live-status');
+        if (live) {
+          live.textContent = nowSaved
+            ? `Saved ${ntitle}. Total saved portals: ${savedSet.size}.`
+            : `Removed ${ntitle} from saved portals. Total saved portals: ${savedSet.size}.`;
+        }
+        if (activeCategory === 'SAVED') {
+          runHybridSearch();
+        } else {
+          btn.setAttribute('aria-pressed', nowSaved ? 'true' : 'false');
+          btn.setAttribute('aria-label', `${nowSaved ? 'Saved portal (select to remove): ' : 'Save portal: '}${ntitle}`);
+          btn.textContent = nowSaved ? 'Saved' : 'Save';
+          const card = btn.closest('.node-card');
+          if (card) card.classList.toggle('is-saved', nowSaved);
+          const telFirst = document.querySelector('#rag-telemetry span:first-child');
+          if (telFirst) {
+            telFirst.textContent = telFirst.textContent.replace(/\d+\s+Saved/, `${savedSet.size} Saved`);
+          }
+        }
+      });
 
       // Wire events
       document.getElementById('rag-form').addEventListener('submit', (e) => {
