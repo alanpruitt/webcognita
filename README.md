@@ -60,9 +60,10 @@ Webcognita LLC operationalizes instructional, clinical, and regulatory mandates 
 
 ---
 
-## 3. Production Software Ecosystem (10 Live Sovereign Progressive Web Applications)
+## 3. Production Software Ecosystem (11 Live Sovereign Progressive Web Applications)
 
 1. **[DOM GraphRAG, Sovereign Local Hybrid RAG & Zero-Laptop Travel Vault (`hybrid-rag.dev`)](https://hybrid-rag.dev/):** 4-plane installable desktop & mobile PWA (canonical SSoT [`alanpruitt.com/hybrid-rag/`](https://alanpruitt.com/hybrid-rag/) • `NAICS 541512, 541511`) uniting `980` open `W3C PROV-O` `SHA-256` DOM GraphRAG nodes, zero-egress `127.0.0.1:8766` / WireGuard `View in RAM` HQ pairing, and Airplane-Mode `WCGVLT01` `AES-256-GCM` (`600,000` PBKDF2 rounds) cross-border Travel Vaults with 1-tap `Border Lock`.
+2. **[Federal, Defense & Arizona SLED Hybrid RAG OSINT Radar (`webcognita.com/govcon-radar/`)](https://www.webcognita.com/govcon-radar/):** Zero-egress client-side Okapi BM25 + Semantic Concept Vector Reciprocal Rank Fusion (`RRF, k=60`) across `87` public Federal, Department of War (`PIEE`), Cooperative (`1GPA`, `Mohave`), and State of Arizona SLED (`Ring 0–9`) procurement nodes, interactive `FAR 2.101` / `A.R.S. § 41-2535` threshold routing, `NAICS / NIGP / PSC / GSA SIN` crosswalk, and a 12-gate `FAR 9.104-1` + `CMMC Level 1` readiness self-check.
 2. **[EXW Digital Tool Kit (`exwtoolkit.com`)](https://exwtoolkit.com):** 9-Box bilingual (`EN` / `ES`) clinical kinesiology, nutrition, desert heat-stress telemetry, and cryptographic student verification workbench (`PAGA 2018`, `DGA 2025–2030`, `ACSM 12th Ed.`, `NASM OPT`).
 3. **[EXW Physical Activity Tool Kit (`paga2018.dev`)](https://paga2018.dev):** `$0 ZTC` Open Educational Resource (`OER`) built on the Physical Activity Guidelines for Americans (2nd Ed., 2018) featuring `Pattern / Rule / Solve` clinical activity audits.
 4. **[EXW-Demo — WPE Fleet Architecture Hub (`exwdemo.dev`)](https://exwdemo.dev):** Zero-login PWA mirror of public AWC Canvas Showcase Shell `Course ID: 42051` (`56` born-accessible `9:1` pages and `256` `10/10` Exemplar Solves).
