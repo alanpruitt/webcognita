@@ -175,12 +175,13 @@
       border-bottom: 4px solid #940925;
     }
 
-    /* Panels: zero padding/border on [role="tabpanel"] itself so hidden="until-found" renders zero strip */
+    /* Tab Panels: standard block flow + strict display:none on [hidden] so inactive panels NEVER intercept clicks */
     .panel-grid {
-      display: grid;
+      display: block;
     }
-    .panel-grid > [role="tabpanel"] {
-      grid-area: 1 / 1;
+    [role="tabpanel"][hidden] {
+      display: none !important;
+      pointer-events: none !important;
     }
     .panel-inner {
       background-color: #FFFFFF;
@@ -188,26 +189,53 @@
       padding: 0.25rem 0 1.5rem 0;
     }
 
-    /* Search Controls */
+    /* Search & Input Controls — High-Affordance Editable Wells (>= 9:1 Contrast) */
+    .control-well {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 0.95rem 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .control-well .field-label {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+    }
     .search-box {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 0.65rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0;
     }
     @media (max-width: 640px) {
       .search-box { grid-template-columns: 1fr; }
     }
     .search-input, .form-control {
+      position: relative;
+      z-index: 2;
+      pointer-events: auto;
+      user-select: text;
+      -webkit-user-select: text;
       width: 100%;
-      min-height: 46px;
+      min-height: 48px;
       padding: 0.65rem 0.9rem;
       font-size: 1rem;
       font-family: inherit;
       color: #111827;
       background-color: #FFFFFF;
-      border: 2px solid #0B1D3A;
+      border: 2.5px solid #0B1D3A;
       border-radius: 6px;
+      box-shadow: inset 0 2px 4px rgba(11, 29, 58, 0.12);
+      cursor: text;
+    }
+    select.form-control {
+      cursor: pointer;
+    }
+    textarea.form-control {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.45;
     }
     .btn-primary {
       min-height: 46px;
@@ -515,16 +543,18 @@
       <!-- PANEL 1: HYBRID BM25 + SEMANTIC RRF SEARCH -->
       <div role="tabpanel" id="panel-search" aria-labelledby="tab-search">
         <div class="panel-inner">
-          <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
-            <div>
-              <label for="rag-query" class="field-label">Query Federal, DoD, Cooperative, or Arizona SLED Nodes (BM25 + Semantic Concept RRF):</label>
-              <input id="rag-query" class="search-input" type="search" placeholder="e.g., EO 14434 Super Intelligence, Section 508 VA, April 2027 rural ADA Title II, PIEE Solicitation Module, Yuma..." autocomplete="off">
-            </div>
-            <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
-              <button type="submit" class="btn-primary">Run Hybrid RRF</button>
-              <button type="button" id="btn-reset-search" class="btn-secondary" style="min-height: 46px; border-radius: 6px;">Reset</button>
-            </div>
-          </form>
+          <div class="control-well">
+            <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
+              <div>
+                <label for="rag-query" class="field-label">Type Keywords to Search All 84 Federal, DoD, Co-Op &amp; Arizona SLED Nodes (Live As You Type):</label>
+                <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., Yuma, Arizona Western, EO 14434, Section 508, PIEE, OpenGov..." autocomplete="off" autofocus>
+              </div>
+              <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                <button type="submit" class="btn-primary">Run Hybrid RRF</button>
+                <button type="button" id="btn-reset-search" class="btn-secondary" style="min-height: 48px; border-radius: 6px;">Clear</button>
+              </div>
+            </form>
+          </div>
 
           <div class="chip-row" aria-label="Quick Example Queries">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Instant Queries:</span>
@@ -558,7 +588,7 @@
       </div>
 
       <!-- PANEL 2: INTERACTIVE ACQUISITION THRESHOLD & VEHICLE ROUTER -->
-      <div role="tabpanel" id="panel-router" aria-labelledby="tab-router" hidden="until-found">
+      <div role="tabpanel" id="panel-router" aria-labelledby="tab-router" hidden>
         <div class="panel-inner">
           <h2 style="margin-top: 0; color: #0B1D3A;">Interactive Acquisition Threshold &amp; Procurement Vehicle Router</h2>
           <p>Compute the exact statutory citation, competition requirement, and fastest compliant purchasing rail across Federal (<code>FAR 2.101</code> FAC 2025-06) and Arizona SLED (<code>A.R.S. &sect; 41-2535</code> / <code>A.A.C. R7-2-1001</code>) rules.</p>
@@ -594,10 +624,15 @@
       </div>
 
       <!-- PANEL 3: NAICS <-> NIGP <-> PSC <-> GSA SIN CROSSWALK -->
-      <div role="tabpanel" id="panel-crosswalk" aria-labelledby="tab-crosswalk" hidden="until-found">
+      <div role="tabpanel" id="panel-crosswalk" aria-labelledby="tab-crosswalk" hidden>
         <div class="panel-inner">
           <h2 style="margin-top: 0; color: #0B1D3A;">Federal NAICS &harr; Arizona NIGP &harr; PSC &harr; GSA MAS SIN Rosetta Stone</h2>
           <p>Federal portals (<code>SAM.gov</code>, <code>USAspending</code>) index by 6-digit <code>NAICS</code> and 4-character <code>PSC</code>, whereas Arizona's <code>app.az.gov</code> routes bid alerts by 3-to-5-digit <code>NIGP</code> Commodity Codes.</p>
+
+          <div style="margin-bottom: 0.85rem;">
+            <label for="cw-filter" class="field-label">Filter Crosswalk by Code, Keyword, or Deliverable (NAICS / NIGP / PSC / SIN):</label>
+            <input id="cw-filter" class="search-input" type="search" placeholder="e.g., 541511, 920, DJ01, 54151S, Hybrid RAG, Section 508, Super Intelligence..." autocomplete="off">
+          </div>
 
           <div id="copy-announce" class="plain-callout" style="margin-bottom: 1rem;" aria-live="polite">
             Select <strong>Copy Mapping</strong> on any row to copy the complete Federal + State classification string to your clipboard.
@@ -623,7 +658,7 @@
       </div>
 
       <!-- PANEL 4: FAR 9.104-1 & CMMC LEVEL 1 READINESS SELF-CHECK -->
-      <div role="tabpanel" id="panel-readiness" aria-labelledby="tab-readiness" hidden="until-found">
+      <div role="tabpanel" id="panel-readiness" aria-labelledby="tab-readiness" hidden>
         <div class="panel-inner">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
             <h2 style="margin: 0; color: #0B1D3A;">Pre-Award Responsibility (FAR 9.104-1) &amp; CMMC Level 1 Self-Check</h2>
@@ -633,6 +668,17 @@
             </div>
           </div>
           <p>Interactive 12-gate pre-award verification aligned with <code>FAR Subpart 9.1</code>, <code>FAR 52.204-21</code> (15 FCI controls), <code>NDAA Section 889</code>, and Arizona SLED onboarding. State is stored locally in your browser only.</p>
+
+          <div class="control-well">
+            <div style="margin-bottom: 0.75rem;">
+              <label for="audit-org-note" class="field-label">Solicitation / Entity Header for Exported Markdown Audit:</label>
+              <input id="audit-org-note" class="search-input" type="text" placeholder="e.g., WEBCOGNITA LLC (UEI: EZ34U9KNJA17) — Solicitation #BPM006796 Pre-Award Check" autocomplete="off">
+            </div>
+            <div>
+              <label for="audit-notes" class="field-label">Capture &amp; Pre-Award Verification Notes (Included in Markdown Export &bull; Stored Only in Browser):</label>
+              <textarea id="audit-notes" class="form-control" rows="3" placeholder="Type solicitation-specific responsibility notes, Contracting Officer POCs, or CMMC / Section 508 boundaries here..."></textarea>
+            </div>
+          </div>
 
           <div id="readiness-summary" style="font-weight: 800; color: #0B1D3A;" aria-live="polite">Readiness Score: 0 / 12 Gates Verified (0%)</div>
           <div class="progress-track" role="progressbar" aria-labelledby="readiness-summary" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="readiness-bar-wrap">
@@ -653,7 +699,7 @@
     (() => {
       'use strict';
 
-      // --- 1. Accessible Tablist with Selection-Follows-Focus & hidden="until-found" Sync ---
+      // --- 1. Accessible Tablist with Strict Boolean `hidden` (Zero Grid Pointer Interception) ---
       const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
       const panels = tabs.map((t) => document.getElementById(t.id.replace('tab-', 'panel-')));
 
@@ -663,11 +709,7 @@
           tab.setAttribute('aria-selected', isSel ? 'true' : 'false');
           tab.setAttribute('tabindex', isSel ? '0' : '-1');
           const panel = panels[idx];
-          if (isSel) {
-            panel.removeAttribute('hidden');
-          } else {
-            panel.setAttribute('hidden', 'until-found');
-          }
+          panel.hidden = !isSel;
         });
         if (moveFocus) {
           selectedTab.focus();
@@ -690,7 +732,6 @@
             activateTab(tabs[nextIdx], true);
           }
         });
-        panels[idx].addEventListener('beforematch', () => activateTab(tab, false));
       });
 
       // --- 2. Semantic Concept Expansion Dictionary for Client-Side Vector Cosine Leg ---
@@ -1004,9 +1045,14 @@
       }
 
       // --- 4. Render Crosswalk & Self-Check Gates ---
+      let ALL_CROSSWALK = [];
       function renderCrosswalk(rows) {
         const tbody = document.getElementById('crosswalk-tbody');
-        tbody.innerHTML = rows.map((r, i) => {
+        const q = (document.getElementById('cw-filter').value || '').trim().toLowerCase();
+        const filtered = !q
+          ? rows
+          : rows.filter((r) => `${r.naics} ${r.naicsTitle} ${r.azNigp} ${r.psc} ${r.gsaSin} ${r.deliverables}`.toLowerCase().includes(q));
+        tbody.innerHTML = filtered.map((r, i) => {
           const copyStr = `NAICS ${r.naics} (${r.naicsTitle}) | AZ NIGP: ${r.azNigp} | PSC: ${r.psc} | GSA: ${r.gsaSin}`;
           return `
             <tr>
@@ -1081,14 +1127,20 @@
         });
 
         document.getElementById('btn-copy-audit').addEventListener('click', (e) => {
+          const hdrNote = (document.getElementById('audit-org-note').value || '').trim();
+          const freeNotes = (document.getElementById('audit-notes').value || '').trim();
           const lines = [
             '# Pre-Award Contractor Responsibility (FAR 9.104-1) & CMMC Level 1 Self-Check',
+            ...(hdrNote ? [`- Scope / Entity: ${hdrNote}`] : []),
             `- Score: ${checkedSet.size} / ${gates.length} (${Math.round((checkedSet.size / gates.length) * 100)}%)`,
             ''
           ];
           gates.forEach((g) => {
             lines.push(`- [${checkedSet.has(g.id) ? 'x' : ' '}] ${g.id} (${g.pillar}): ${g.label}`);
           });
+          if (freeNotes) {
+            lines.push('', '## Capture & Pre-Award Notes', freeNotes);
+          }
           navigator.clipboard.writeText(lines.join('\n')).then(() => {
             const btn = e.currentTarget;
             const orig = btn.textContent;
@@ -1131,15 +1183,18 @@
       });
       updateRouter();
 
+      document.getElementById('cw-filter').addEventListener('input', () => renderCrosswalk(ALL_CROSSWALK));
+
       // Load clean-room corpus JSON
-      fetch('/govcon-radar/govcon-corpus.json')
-        .catch(() => fetch('govcon-corpus.json'))
+      fetch('/govcon-radar/govcon-corpus.json', { cache: 'no-cache' })
+        .catch(() => fetch('govcon-corpus.json', { cache: 'no-cache' }))
         .then((r) => r.json())
         .then((data) => {
           CORPUS = data;
+          ALL_CROSSWALK = data.crosswalk || [];
           buildIndex(data.nodes || []);
           runHybridSearch();
-          renderCrosswalk(data.crosswalk || []);
+          renderCrosswalk(ALL_CROSSWALK);
           renderGates(data.readinessGates || []);
         })
         .catch((err) => {
@@ -1148,7 +1203,9 @@
 
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/govcon-radar/sw.js').catch(() => {});
+          navigator.serviceWorker.register('/govcon-radar/sw.js', { updateViaCache: 'none' })
+            .then((reg) => reg.update())
+            .catch(() => {});
         });
       }
     })();

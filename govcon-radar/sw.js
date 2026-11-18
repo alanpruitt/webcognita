@@ -1,4 +1,4 @@
-const CACHE_NAME = 'webcognita-govcon-radar-v1.1.0';
+const CACHE_NAME = 'webcognita-govcon-radar-v1.2.1';
 const ASSETS = [
   '/govcon-radar/',
   '/govcon-radar/index.html',
@@ -13,27 +13,33 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
-  );
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    const stale = keys.filter((k) => k !== CACHE_NAME);
+    await Promise.all(stale.map((k) => caches.delete(k)));
+    await self.clients.claim();
+    // Auto-refresh open tabs once when purging legacy cache-first v1.0.0 / v1.1.0 ServiceWorker
+    if (stale.length > 0) {
+      const winClients = await self.clients.matchAll({ type: 'window' });
+      winClients.forEach((client) => {
+        if (client.navigate) client.navigate(client.url);
+      });
+    }
+  })());
 });
 
+// Network-first with offline cache fallback so updates never serve stale HTML/CSS
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request)
-        .then((networkResp) => {
-          if (networkResp && networkResp.status === 200) {
-            const clone = networkResp.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return networkResp;
-        })
-        .catch(() => cached);
-      return cached || fetchPromise;
-    })
+    fetch(event.request, { cache: 'no-store' })
+      .then((networkResp) => {
+        if (networkResp && networkResp.status === 200) {
+          const clone = networkResp.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return networkResp;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
