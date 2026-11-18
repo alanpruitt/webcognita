@@ -135,7 +135,7 @@
       font-size: 0.95rem;
     }
 
-    /* Responsive Zero-Overflow Tablist (4-up Desktop / 2x2 Tablet / Full-Width or 2x2 Mobile — Zero Horizontal Scroll) */
+    /* Responsive Zero-Overflow Tablist (4-up or 5-up Desktop / 2x2 Tablet / Full-Width Mobile — Zero Horizontal Scroll) */
     .tablist-scroller {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -144,16 +144,24 @@
       width: 100%;
       max-width: 100%;
     }
-    @media (max-width: 900px) {
-      .tablist-scroller {
+    .tablist-scroller.has-triage {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    @media (max-width: 1040px) {
+      .tablist-scroller,
+      .tablist-scroller.has-triage {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
     @media (max-width: 480px) {
-      .tablist-scroller {
+      .tablist-scroller,
+      .tablist-scroller.has-triage {
         grid-template-columns: 1fr;
         gap: 0.4rem;
       }
+    }
+    [role="tab"][hidden] {
+      display: none !important;
     }
     [role="tab"] {
       width: 100%;
@@ -182,6 +190,66 @@
     [role="tab"][aria-selected="true"] {
       color: #FFFFFF;
       background-color: #940925;
+      border-color: #940925;
+    }
+    [role="tab"][aria-selected="true"]::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      border-block-end: 3px solid #FFA000;
+    }
+    .top-sync-btn {
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      border: 1.5px solid #FFFFFF;
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      min-height: 32px;
+    }
+    .top-sync-btn:hover {
+      background-color: #FFA000;
+      color: #000000;
+      border-color: #FFA000;
+    }
+    .triage-dec-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .triage-dec-btn {
+      min-height: 36px;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1.5px solid #0B1D3A;
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .triage-dec-btn[data-dec="PURSUE"][aria-pressed="true"] {
+      background-color: #064E3B;
+      color: #FFFFFF;
+      border-color: #064E3B;
+    }
+    .triage-dec-btn[data-dec="WATCH"][aria-pressed="true"] {
+      background-color: #FFA000;
+      color: #000000;
+      border-color: #0B1D3A;
+    }
+    .triage-dec-btn[data-dec="DISMISS"][aria-pressed="true"] {
+      background-color: #940925;
+      color: #FFFFFF;
+      border-color: #940925;
+    }
+    .node-card.is-dismissed {
+      border-style: dashed;
       border-color: #940925;
     }
 
@@ -657,6 +725,7 @@
         <a href="https://www.webcognita.com/capabilities-statement.html">1-Page Capabilities Statement</a>
         <a href="https://hybrid-rag.dev/">Hybrid-RAG.dev</a>
         <a href="https://www.webcognita.com/support/">GPC &amp; P-Card Support</a>
+        <button type="button" id="btn-open-local-bi" class="top-sync-btn" title="Open private BI Digest Triage or sync with local M2 loopback ledger">BI Triage Sync</button>
       </nav>
     </div>
   </header>
@@ -673,11 +742,12 @@
     </section>
 
     <!-- Accessible Single-Row Tablist -->
-    <div class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
+    <div id="main-tablist" class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
       <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (87 Nodes)</button>
       <button type="button" role="tab" id="tab-router" aria-selected="false" tabindex="-1">2. Threshold &amp; Vehicle Router</button>
       <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
       <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
+      <button type="button" role="tab" id="tab-triage" aria-selected="false" tabindex="-1" hidden>5. BI Lead Triage</button>
     </div>
 
     <div class="panel-grid">
@@ -845,6 +915,49 @@
           <div id="gates-list"></div>
         </div>
       </div>
+
+      <!-- PANEL 5: PRIVATE ZERO-EGRESS `#bi=...` & M2 LOOPBACK TRIAGE BRIDGE -->
+      <div role="tabpanel" id="panel-triage" aria-labelledby="tab-triage" hidden>
+        <div class="panel-inner">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+            <h2 style="margin: 0; color: #0B1D3A; background-color: #FFFFFF;">Private Morning BI Lead Triage (Concentric Ring 0 &rarr; Ring 9)</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              <button type="button" id="btn-sync-m2" class="btn-primary" style="min-height: 40px; padding: 0.45rem 0.9rem;">Sync M2 Loopback Ledger (127.0.0.1:8767)</button>
+              <button type="button" id="btn-export-triage" class="btn-secondary" style="min-height: 40px;">Export Decisions JSON</button>
+            </div>
+          </div>
+
+          <div class="control-well">
+            <p style="margin: 0 0 0.45rem 0; font-size: 0.9rem; color: #111827; background-color: #F4F7FB;">
+              <strong>Zero-Egress Privacy:</strong> Leads opened via your morning email <code>#bi=...</code> URL fragment stay <strong>100% inside this browser</strong> (never sent to GitHub Pages). When working on M2 (<code>127.0.0.1:8767</code>), select <strong>Sync M2 Loopback Ledger</strong> so <strong>Dismiss</strong> decisions write directly into <code>bi_seen_ledger.sqlite</code> and suppress dismissed leads from future <code>7:30 AM MST</code> digests.
+            </p>
+            <div style="font-size: 0.85rem; font-weight: 800; color: #0B1D3A; background-color: #F4F7FB;">
+              Loopback Permission State: <code data-permission-status="loopback-network">checking</code> &bull;
+              Sync Status: <span id="m2-sync-status">Local Browser Storage Active (Zero Cloud Egress)</span>
+            </div>
+            <div data-remediation="loopback-network" class="plain-callout" style="margin-top: 0.6rem;" hidden>
+              <strong>Loopback Access Blocked in Browser Settings:</strong> To sync two-way with M2 (<code>127.0.0.1:8767</code>), open your browser&#39;s <strong>Site settings</strong> for <code>webcognita.com</code>, set <strong>Loopback network</strong> (or Local network) to <strong>Allow</strong>, and select <strong>Sync M2 Loopback Ledger</strong> again. Your decisions remain safely saved in this browser and exportable via JSON.
+            </div>
+          </div>
+
+          <div class="chip-row" role="group" aria-label="Filter BI Triage Leads">
+            <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A; background-color: #FFFFFF;">Triage View:</span>
+            <button type="button" class="btn-secondary triage-filter-btn" data-tf="ACTIVE" aria-pressed="true">Active Queue</button>
+            <button type="button" class="btn-secondary triage-filter-btn" data-tf="RING01" aria-pressed="false">Ring 0&ndash;1 Home Court</button>
+            <button type="button" class="btn-secondary triage-filter-btn" data-tf="PURSUE" aria-pressed="false">Pursue</button>
+            <button type="button" class="btn-secondary triage-filter-btn" data-tf="WATCH" aria-pressed="false">Watch</button>
+            <button type="button" class="btn-secondary triage-filter-btn" data-tf="DISMISS" aria-pressed="false">Dismissed</button>
+            <button type="button" class="btn-secondary triage-filter-btn" data-tf="ALL" aria-pressed="false">All</button>
+          </div>
+
+          <div id="triage-telemetry" class="telemetry-bar" aria-live="polite">
+            <span>Ready to load morning BI leads via #bi= fragment or M2 Loopback Sync.</span>
+            <span>Sorted Concentric Ring 0 First</span>
+          </div>
+
+          <div id="triage-results" class="cards-grid" aria-live="polite"></div>
+        </div>
+      </div>
     </div>
 
     <footer class="footer-note">
@@ -876,17 +989,20 @@
         }
       }
 
-      tabs.forEach((tab, idx) => {
+      tabs.forEach((tab) => {
         tab.addEventListener('click', () => activateTab(tab, false));
         tab.addEventListener('keydown', (e) => {
+          const visibleTabs = tabs.filter((t) => !t.hidden);
+          const vIdx = visibleTabs.indexOf(tab);
+          if (vIdx === -1) return;
           let nextIdx = -1;
-          if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
-          else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+          if (e.key === 'ArrowRight') nextIdx = (vIdx + 1) % visibleTabs.length;
+          else if (e.key === 'ArrowLeft') nextIdx = (vIdx - 1 + visibleTabs.length) % visibleTabs.length;
           else if (e.key === 'Home') nextIdx = 0;
-          else if (e.key === 'End') nextIdx = tabs.length - 1;
+          else if (e.key === 'End') nextIdx = visibleTabs.length - 1;
           if (nextIdx !== -1) {
             e.preventDefault();
-            activateTab(tabs[nextIdx], true);
+            activateTab(visibleTabs[nextIdx], true);
           }
         });
       });
@@ -1490,6 +1606,353 @@
 
       document.getElementById('cw-filter').addEventListener('input', () => renderCrosswalk(ALL_CROSSWALK));
 
+      // --- 5. Step 2A + 2B: Zero-Egress `#bi=...` Fragment Decoder & M2 Loopback Ledger Sync (`127.0.0.1:8767`) ---
+      const BI_DECISIONS_STORAGE_KEY = 'webcognita_bi_decisions_v1';
+      const BI_LEADS_CACHE_KEY = 'webcognita_bi_leads_cache_v1';
+      const M2_BRIDGE_BASE = 'http://127.0.0.1:8767';
+
+      let biDecisions = {};
+      let biLeads = [];
+      let biDigestDate = '';
+      let activeTriageFilter = 'ACTIVE';
+      let m2LoopbackConnected = false;
+
+      try {
+        const rawDec = JSON.parse(localStorage.getItem(BI_DECISIONS_STORAGE_KEY) || 'null');
+        if (rawDec && typeof rawDec === 'object') biDecisions = rawDec;
+      } catch (_) {}
+      try {
+        const rawCache = JSON.parse(localStorage.getItem(BI_LEADS_CACHE_KEY) || 'null');
+        if (rawCache && Array.isArray(rawCache.items)) {
+          biLeads = rawCache.items;
+          biDigestDate = String(rawCache.d || '');
+        }
+      } catch (_) {}
+
+      function revealTriageTab(selectNow = false) {
+        const tabTriage = document.getElementById('tab-triage');
+        const tablist = document.getElementById('main-tablist');
+        if (!tabTriage || !tablist) return;
+        tabTriage.hidden = false;
+        tablist.classList.add('has-triage');
+        const activeCount = biLeads.filter((it) => (biDecisions[it.h]?.decision || '') !== 'DISMISS').length;
+        tabTriage.textContent = `5. BI Lead Triage (${activeCount})`;
+        if (selectNow) activateTab(tabTriage, false);
+      }
+
+      function persistBiDecisionsLocal() {
+        try {
+          localStorage.setItem(BI_DECISIONS_STORAGE_KEY, JSON.stringify(biDecisions));
+        } catch (_) {}
+      }
+
+      function persistBiLeadsCache() {
+        try {
+          localStorage.setItem(BI_LEADS_CACHE_KEY, JSON.stringify({ v: 1, d: biDigestDate, items: biLeads }));
+        } catch (_) {}
+      }
+
+      function base64UrlToUint8Array(b64url) {
+        const padLen = (4 - (b64url.length % 4)) % 4;
+        const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat(padLen);
+        const bin = atob(b64);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i += 1) bytes[i] = bin.charCodeAt(i);
+        return bytes;
+      }
+
+      async function decodeBiFragmentPayload(b64url) {
+        const compressedBytes = base64UrlToUint8Array(b64url);
+        if (typeof DecompressionStream === 'function') {
+          const ds = new DecompressionStream('deflate-raw');
+          const writer = ds.writable.getWriter();
+          writer.write(compressedBytes);
+          writer.close();
+          const reader = ds.readable.getReader();
+          const streamDecoder = new TextDecoder('utf-8', { fatal: true });
+          let jsonText = '';
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            if (value) jsonText += streamDecoder.decode(value, { stream: true });
+          }
+          jsonText += streamDecoder.decode();
+          return JSON.parse(jsonText);
+        }
+        return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(compressedBytes));
+      }
+
+      function updateLnaPermissionUI(state) {
+        const badge = document.querySelector('[data-permission-status="loopback-network"]');
+        const rem = document.querySelector('[data-remediation="loopback-network"]');
+        if (badge) badge.textContent = state;
+        if (rem) rem.hidden = state !== 'denied';
+      }
+
+      async function queryLnaPermissionSafe() {
+        if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') {
+          updateLnaPermissionUI('loopback-origin');
+          return 'granted';
+        }
+        if (!navigator.permissions?.query) {
+          updateLnaPermissionUI('prompt');
+          return 'prompt';
+        }
+        try {
+          // Query granular 'loopback-network' (never legacy 'local-network-access')
+          const status = await navigator.permissions.query({ name: 'loopback-network' });
+          status.addEventListener('change', () => updateLnaPermissionUI(status.state));
+          updateLnaPermissionUI(status.state);
+          return status.state;
+        } catch {
+          updateLnaPermissionUI('prompt');
+          return 'prompt';
+        }
+      }
+
+      async function fetchLoopbackBridge(path, method = 'GET', bodyObj = null) {
+        const opts = {
+          method,
+          mode: 'cors',
+          targetAddressSpace: 'loopback',
+          signal: AbortSignal.timeout(2500),
+        };
+        if (bodyObj !== null) {
+          opts.headers = { 'Content-Type': 'application/json' };
+          opts.body = JSON.stringify(bodyObj);
+        }
+        const req = new Request(`${M2_BRIDGE_BASE}${path}`, opts);
+        const resp = await fetch(req);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return resp.json();
+      }
+
+      async function syncWithM2Loopback(pushAllLocal = false) {
+        const statusEl = document.getElementById('m2-sync-status');
+        try {
+          if (statusEl) statusEl.textContent = 'Connecting to M2 Loopback (127.0.0.1:8767)...';
+          if (pushAllLocal && Object.keys(biDecisions).length > 0) {
+            await fetchLoopbackBridge('/api/bi-triage/decision', 'POST', {
+              decisions: Object.values(biDecisions),
+            });
+          }
+          const data = await fetchLoopbackBridge('/api/bi-triage/status', 'GET');
+          m2LoopbackConnected = true;
+          if (data.decisions && typeof data.decisions === 'object') {
+            biDecisions = { ...biDecisions, ...data.decisions };
+            persistBiDecisionsLocal();
+          }
+          if ((!biLeads.length || pushAllLocal) && data.latest_digest && Array.isArray(data.latest_digest.leads) && data.latest_digest.leads.length > 0) {
+            const byHash = new Map(biLeads.map((x) => [x.h, x]));
+            data.latest_digest.leads.forEach((ld) => {
+              if (!byHash.has(ld.h)) byHash.set(ld.h, ld);
+            });
+            biLeads = Array.from(byHash.values());
+            if (!biDigestDate && data.latest_digest.date) biDigestDate = data.latest_digest.date;
+            persistBiLeadsCache();
+          }
+          const c = data.counts || { PURSUE: 0, WATCH: 0, DISMISS: 0 };
+          if (statusEl) {
+            statusEl.textContent = `Connected to M2 SQLite Ledger (${c.PURSUE} Pursue, ${c.WATCH} Watch, ${c.DISMISS} Suppressed)`;
+          }
+          await queryLnaPermissionSafe();
+          revealTriageTab(false);
+          renderTriageLeads();
+        } catch (err) {
+          m2LoopbackConnected = false;
+          const isTimeout = err && (err.name === 'TimeoutError' || err.name === 'AbortError');
+          if (statusEl) {
+            statusEl.textContent = isTimeout
+              ? 'M2 Loopback Offline/Timed Out — Saved Locally in Browser (Zero Data Loss)'
+              : 'Local Browser Mode Active (Start M2 bridge at HQ for SQLite sync)';
+          }
+          await queryLnaPermissionSafe();
+        }
+      }
+
+      async function recordLeadDecision(lead, dec) {
+        const current = biDecisions[lead.h]?.decision || '';
+        const nextDec = current === dec ? 'CLEAR' : dec;
+        if (nextDec === 'CLEAR') {
+          delete biDecisions[lead.h];
+        } else {
+          biDecisions[lead.h] = {
+            url_hash: lead.h,
+            decision: nextDec,
+            ring: lead.r,
+            matched_node_id: lead.n,
+            title: lead.ti,
+            canonical_url: lead.u,
+            updated_at: new Date().toISOString(),
+          };
+        }
+        persistBiDecisionsLocal();
+        revealTriageTab(false);
+        renderTriageLeads();
+
+        const perm = await queryLnaPermissionSafe();
+        if (m2LoopbackConnected || perm === 'granted') {
+          try {
+            await fetchLoopbackBridge('/api/bi-triage/decision', 'POST', {
+              decisions: [
+                {
+                  url_hash: lead.h,
+                  decision: nextDec,
+                  ring: lead.r,
+                  matched_node_id: lead.n,
+                  title: lead.ti,
+                  canonical_url: lead.u,
+                },
+              ],
+            });
+            const statusEl = document.getElementById('m2-sync-status');
+            if (statusEl) statusEl.textContent = `Synced ${nextDec} to M2 SQLite Ledger (bi_seen_ledger.sqlite)`;
+          } catch (_) {}
+        }
+      }
+
+      function renderTriageLeads() {
+        const container = document.getElementById('triage-results');
+        const tel = document.getElementById('triage-telemetry');
+        if (!container || !tel) return;
+
+        const ordered = biLeads.toSorted((a, b) => (Number(a.r ?? 9) - Number(b.r ?? 9)) || (Number(b.s ?? 0) - Number(a.s ?? 0)));
+        const filtered = ordered.filter((it) => {
+          const dec = biDecisions[it.h]?.decision || '';
+          if (activeTriageFilter === 'ACTIVE') return dec !== 'DISMISS';
+          if (activeTriageFilter === 'RING01') return Number(it.r ?? 9) <= 1 && dec !== 'DISMISS';
+          if (activeTriageFilter === 'PURSUE') return dec === 'PURSUE';
+          if (activeTriageFilter === 'WATCH') return dec === 'WATCH';
+          if (activeTriageFilter === 'DISMISS') return dec === 'DISMISS';
+          return true;
+        });
+
+        const pursueCnt = Object.values(biDecisions).filter((x) => x.decision === 'PURSUE').length;
+        const watchCnt = Object.values(biDecisions).filter((x) => x.decision === 'WATCH').length;
+        const disCnt = Object.values(biDecisions).filter((x) => x.decision === 'DISMISS').length;
+        tel.innerHTML = `<span>Digest ${escapeHtml(biDigestDate || 'Latest')}: Showing ${filtered.length} of ${ordered.length} leads (${pursueCnt} Pursue &bull; ${watchCnt} Watch &bull; ${disCnt} Dismissed)</span><span>Concentric Order: Ring 0 &rarr; Ring 9</span>`;
+
+        if (!filtered.length) {
+          const empty = document.createElement('div');
+          empty.className = 'plain-callout';
+          empty.style.gridColumn = '1 / -1';
+          empty.textContent = ordered.length === 0
+            ? 'No BI Digest leads loaded in this browser yet. Open the #bi= link from your 7:30 AM MST email or select Sync M2 Loopback Ledger above.'
+            : 'No leads match the selected triage filter.';
+          container.replaceChildren(empty);
+          return;
+        }
+
+        const cards = filtered.map((it) => {
+          const rNum = Number(it.r ?? 9);
+          const dec = biDecisions[it.h]?.decision || '';
+          const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
+          const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
+          const art = document.createElement('article');
+          art.className = 'node-card' + (dec === 'PURSUE' ? ' is-wcg-ready' : '') + (dec === 'DISMISS' ? ' is-dismissed' : '');
+          art.innerHTML = `
+            <div>
+              <div class="card-top-row">
+                <div class="meta-row">
+                  <span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">Ring ${rNum}</span>
+                  <span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${Number(it.s || 0)} pts &bull; ${escapeHtml(it.c || 'BI')}</span>
+                  <span class="cat-chip">${escapeHtml(it.t || 'LEAD')}</span>
+                </div>
+              </div>
+              <h3>${escapeHtml(it.ti || 'Untitled Signal')}</h3>
+              <p class="kv-line"><strong>Agency / Source:</strong> ${escapeHtml(it.ag || 'Unspecified')}</p>
+              <p class="kv-line"><strong>Timing / Award:</strong> ${escapeHtml(it.dl || 'See Notice')}</p>
+              <div class="triage-dec-row" role="group" aria-label="Triage decision for ${escapeHtml(it.ti || 'lead')}">
+                <button type="button" class="triage-dec-btn" data-dec="PURSUE" aria-pressed="${dec === 'PURSUE' ? 'true' : 'false'}">Pursue</button>
+                <button type="button" class="triage-dec-btn" data-dec="WATCH" aria-pressed="${dec === 'WATCH' ? 'true' : 'false'}">Watch</button>
+                <button type="button" class="triage-dec-btn" data-dec="DISMISS" aria-pressed="${dec === 'DISMISS' ? 'true' : 'false'}">Dismiss</button>
+                <button type="button" class="btn-secondary jump-node-btn" data-node="${escapeHtml(it.n || 'FED-02')}">Radar Card (${escapeHtml(it.n || 'FED-02')})</button>
+              </div>
+            </div>
+            <a class="card-link-btn" href="${escapeHtml(it.u || 'https://sam.gov')}" target="_blank" rel="noopener noreferrer">Open Official Notice</a>
+          `;
+          art.querySelectorAll('.triage-dec-btn').forEach((btn) => {
+            btn.addEventListener('click', () => recordLeadDecision(it, btn.getAttribute('data-dec')));
+          });
+          const jumpBtn = art.querySelector('.jump-node-btn');
+          if (jumpBtn) {
+            jumpBtn.addEventListener('click', () => {
+              const nid = jumpBtn.getAttribute('data-node') || '';
+              const tabSearch = document.getElementById('tab-search');
+              activateTab(tabSearch, false);
+              activeCategory = 'ALL';
+              activeRing = 'ALL';
+              document.querySelectorAll('.cat-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.cat === 'ALL' ? 'true' : 'false'));
+              document.querySelectorAll('.ring-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.ring === 'ALL' ? 'true' : 'false'));
+              const qInput = document.getElementById('rag-query');
+              qInput.value = nid;
+              runHybridSearch();
+              qInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            });
+          }
+          return art;
+        });
+
+        container.replaceChildren(...cards);
+      }
+
+      document.querySelectorAll('.triage-filter-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeTriageFilter = btn.getAttribute('data-tf') || 'ACTIVE';
+          document.querySelectorAll('.triage-filter-btn').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          renderTriageLeads();
+        });
+      });
+
+      document.getElementById('btn-sync-m2').addEventListener('click', () => syncWithM2Loopback(true));
+      document.getElementById('btn-open-local-bi').addEventListener('click', () => {
+        revealTriageTab(true);
+        renderTriageLeads();
+        syncWithM2Loopback(true);
+      });
+      document.getElementById('btn-export-triage').addEventListener('click', () => {
+        const blob = new Blob([JSON.stringify({ exported_at: new Date().toISOString(), decisions: biDecisions }, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `webcognita-bi-triage-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      });
+
+      async function bootstrapBiTriageBridge() {
+        const rawHash = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
+        let openedViaFragment = false;
+        if (rawHash.includes('bi=')) {
+          const hashParams = new URLSearchParams(rawHash);
+          const biToken = hashParams.get('bi');
+          if (biToken) {
+            try {
+              const decoded = await decodeBiFragmentPayload(biToken);
+              if (decoded && Array.isArray(decoded.items)) {
+                biLeads = decoded.items;
+                biDigestDate = String(decoded.d || '');
+                persistBiLeadsCache();
+                openedViaFragment = true;
+                history.replaceState(null, '', location.pathname + location.search + '#triage');
+              }
+            } catch (_) {}
+          }
+        } else if (rawHash === 'triage') {
+          openedViaFragment = true;
+        }
+
+        const permState = await queryLnaPermissionSafe();
+        if (openedViaFragment || biLeads.length > 0 || Object.keys(biDecisions).length > 0) {
+          revealTriageTab(openedViaFragment);
+          renderTriageLeads();
+        }
+        // Only auto-query loopback without a click when permission is already granted (never on 'prompt')
+        if (permState === 'granted' && (openedViaFragment || biLeads.length > 0)) {
+          syncWithM2Loopback(false);
+        }
+      }
+      window.addEventListener('hashchange', bootstrapBiTriageBridge);
+
       // Load clean-room corpus JSON
       fetch('/govcon-radar/govcon-corpus.json', { cache: 'no-cache' })
         .catch(() => fetch('govcon-corpus.json', { cache: 'no-cache' }))
@@ -1501,6 +1964,7 @@
           runHybridSearch();
           renderCrosswalk(ALL_CROSSWALK);
           renderGates(data.readinessGates || []);
+          bootstrapBiTriageBridge();
         })
         .catch((err) => {
           document.getElementById('rag-telemetry').textContent = 'Corpus load error: ' + err;
