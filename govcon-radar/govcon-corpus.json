@@ -28,7 +28,9 @@
       ],
       "summary": "Primary Yuma & La Paz higher-education anchor utilizing AZPurchasing.org, 1GPA, Mohave, and AZ SPO contracts; verifies SAM.gov active standing on federal grant purchases >= $25,000.",
       "ring": 0,
-      "ringLabel": "Ring 0"
+      "ringLabel": "Ring 0",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-ED-01",
@@ -52,7 +54,9 @@
       ],
       "summary": "Founded by the Yuma Educational Purchasing Association and used by 200+ AZ K-12 districts (including Mesa Public Schools & Phoenix Union HS) and colleges for free bid alerts and $10K–$100K 3-quote sourcing.",
       "ring": 0,
-      "ringLabel": "Ring 0"
+      "ringLabel": "Ring 0",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-ED-02A",
@@ -78,7 +82,9 @@
       ],
       "summary": "Ground-zero Yuma R1 university partner (vendors.arizona.edu). University policy allows PCard <= $10K and direct Small-Business POs up to $25,000 without 3-quote competition; ideal for STTR (>=30% university R&D) and USDA/NSF subawards.",
       "ring": 0,
-      "ringLabel": "Ring 0"
+      "ringLabel": "Ring 0",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-AIR-00",
@@ -104,7 +110,9 @@
       ],
       "summary": "Home-court joint-use civil/MCAS Yuma airport authority governed by FAA/USDOT accessibility (49 CFR Part 27), ADA Title II, Title VI Spanish/English LEP rules, and ADOT AZ UTRACS SBC.",
       "ring": 1,
-      "ringLabel": "Ring 1"
+      "ringLabel": "Ring 1",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-10",
@@ -130,7 +138,9 @@
       "summary": "Official municipal procurement portal for City of Yuma, Arizona (~101K population; Bonfire (yumaaz.bonfirehub.com)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "wcgStatus": "Webcognita Licensed (City of Yuma #SERV-051803)",
       "ring": 1,
-      "ringLabel": "Ring 1"
+      "ringLabel": "Ring 1",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-YUMA",
@@ -154,7 +164,9 @@
       ],
       "summary": "Official Yuma County, AZ (~213K Pop) procurement entry point (Yuma County Portal (2725 S. Ave B)). Statutory accessibility status: ADA Title II Active (Apr 2026) • P-Card & Formal RFPs.",
       "ring": 1,
-      "ringLabel": "Ring 1"
+      "ringLabel": "Ring 1",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-12",
@@ -177,7 +189,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Tucson, Arizona (~550K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC.",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-24",
@@ -200,7 +214,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Casa Grande, Arizona (~64K population; Casa Grande Finance / Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-26",
@@ -223,7 +239,9 @@
       ],
       "summary": "Official municipal procurement portal for Bullhead City, Arizona (~43K population; Municipal Bid Board). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-28",
@@ -246,7 +264,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Kingman, Arizona (~35K population; Kingman Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-31",
@@ -269,7 +289,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Eloy, Arizona (~18K population; CivicPlus /bids.aspx). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-32",
@@ -292,7 +314,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Coolidge, Arizona (~18K population; Coolidge Municipal Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-41",
@@ -315,7 +339,9 @@
       ],
       "summary": "Official municipal procurement portal for Town of Gila Bend, Arizona (~1.9K population; CivicPlus Business Portal). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-01",
@@ -339,7 +365,9 @@
       ],
       "summary": "Covers Yuma County General Services (active Apr 2026 ADA Title II) plus rural/border neighbors La Paz County (lapaz.gov/Bids.aspx) and Santa Cruz County (santacruzcountyaz.gov) facing the Apr 26, 2027 <50K ADA Title II deadline.",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-LAPAZ",
@@ -363,7 +391,9 @@
       ],
       "summary": "Official La Paz County, AZ (~17K Pop) procurement entry point (CivicPlus /Bids.aspx ($0 Notify Me)). Statutory accessibility status: ADA Title II Due Apr 26, 2027 (<50K Rural Gate).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-PIMA",
@@ -386,7 +416,9 @@
       ],
       "summary": "Official Pima County, AZ (~1.06M Pop) procurement entry point (Pima Vendor Self Service (VSS) + BidNet $0 Tier). Statutory accessibility status: ADA Title II Active (Apr 2026).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-PINAL",
@@ -411,7 +443,9 @@
       ],
       "summary": "Official Pinal County, AZ (~480K Pop) procurement entry point (OpenGov Procurement ($0 Single Login)). Statutory accessibility status: ADA Title II Active (Apr 2026).",
       "ring": 2,
-      "ringLabel": "Ring 2"
+      "ringLabel": "Ring 2",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-01",
@@ -438,7 +472,9 @@
       ],
       "summary": "Under A.R.S. 41-2535(B), AZ state purchases $10,001–$100,000 are statutorily restricted to Small Businesses (<100 FTE or <$4M). Select NIGP classes 208, 209, 918, 920, 924, and 958 in APP.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-02",
@@ -463,7 +499,9 @@
       ],
       "summary": "Race/gender-neutral statewide Small Business registry recognized across ADOT, Phoenix Sky Harbor, Tucson, Valley Metro, MAG, PAG, and Yuma YMPO federally funded contracts (unlike Maricopa-only Phoenix SBE).",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-03",
@@ -487,7 +525,9 @@
       ],
       "summary": "Dual-hatted agency: State emergency missions buy via app.az.gov, while federal Army/Air Guard units buy via SAM.gov & PIEE under DoDAACs W912L2 (AZARNG), W50S6Z (161st ARW), and W50S6Y (162nd Wing).",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-AIR-01",
@@ -511,7 +551,9 @@
       ],
       "summary": "PHX (Destination PHX 2050) and FLG publish solicitations via OpenGov Procurement and recognize statewide ADOT AZ UTRACS Small Business Concern (SBC) registration.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-11",
@@ -534,7 +576,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Phoenix, Arizona (~1.66M population; procurePHX (SAP) + OpenGov). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-13",
@@ -557,7 +601,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Mesa, Arizona (~515K population; Mesa VSS + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-14",
@@ -580,7 +626,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Chandler, Arizona (~280K population; Hosted Inside State APP (app.az.gov)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-15",
@@ -603,7 +651,9 @@
       ],
       "summary": "Official municipal procurement portal for Town of Gilbert, Arizona (~275K population; Gilbert Purchasing + 1GPA / Mohave). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-16",
@@ -626,7 +676,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Glendale, Arizona (~255K population; Munis VSS + PaymentWorks). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-17",
@@ -649,7 +701,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Scottsdale, Arizona (~245K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-18",
@@ -672,7 +726,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Peoria, Arizona (~198K population; Bonfire / OpenGov). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-19",
@@ -695,7 +751,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Tempe, Arizona (~190K population; Bonfire Interactive). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-20",
@@ -718,7 +776,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Buckeye, Arizona (~115K population; Bonfire Interactive). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-21",
@@ -741,7 +801,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Goodyear, Arizona (~115K population; Goodyear Procurement + 1GPA / Mohave). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-22",
@@ -764,7 +826,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Avondale, Arizona (~93K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-27",
@@ -787,7 +851,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Apache Junction, Arizona (~41K population; CivicPlus Purchasing). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-29",
@@ -810,7 +876,9 @@
       ],
       "summary": "Official municipal procurement portal for Town of Fountain Hills, Arizona (~24K population; CivicPlus Business Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-40",
@@ -833,7 +901,9 @@
       ],
       "summary": "Official municipal procurement portal for Town of Carefree, Arizona (~3.7K population; Town Clerk Public Notices). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-02",
@@ -858,7 +928,9 @@
       ],
       "summary": "All 6 counties exceed 50K population (DOJ ADA Title II active now). Pinal & Yavapai share OpenGov; Cochise shares Bonfire; Maricopa & Pima use BidNet Direct (select $0 Limited Tier + Pima VSS); Coconino uses Ion Wave.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-MARICOPA",
@@ -881,7 +953,9 @@
       ],
       "summary": "Official Maricopa County, AZ (~4.6M Pop) procurement entry point (BidNet Direct ($0.00 Limited Free Tier)). Statutory accessibility status: ADA Title II Active (Apr 2026) • OMNIA Lead Agency.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-ED-02B",
@@ -906,7 +980,9 @@
       ],
       "summary": "Covers ASU (cfo.asu.edu/do-business-asu) and NAU (in.nau.edu/contracting-purchasing-services/). Departmental P-Cards <= $10K bypass PaymentWorks onboarding delays; strong Non-Competing Enabling Partner fit.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-ED-03",
@@ -930,7 +1006,9 @@
       ],
       "summary": "10-college Canvas LMS system sharing the same $0 Bonfire vendor login as City of Yuma and Cochise County; hosts Arizona APEX Accelerator.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-MUN-01",
@@ -956,7 +1034,9 @@
       ],
       "summary": "Zero extra portal accounts required: City of Yuma (yumaaz.bonfirehub.com), Tempe, Peoria, and Buckeye run on Bonfire; Tucson, Scottsdale, Avondale, Flagstaff, and Sierra Vista run on OpenGov; Chandler runs inside app.az.gov.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-MUN-02",
@@ -990,7 +1070,9 @@
       ],
       "summary": "Combines Phoenix procurePHX/OpenGov registration with high-urgency P-Card ($4.5K–$9.9K) website & Council PDF accessibility sprints across 17 smaller AZ towns (Nogales, Kingman, Bullhead City, Apache Junction, Eloy, Coolidge, Cottonwood, Camp Verde, Show Low, Page, Globe, Benson, Bisbee, Fountain Hills, Carefree, Gila Bend) ahead of April 26, 2027.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "COOP-01",
@@ -1015,7 +1097,9 @@
       ],
       "summary": "Both 1GPA (1gpa.org) and Mohave (mesc.org, 500+ AZ colleges/districts/cities) solicit competitive master contracts on OpenGov Procurement, letting public buyers issue >$100K POs without a 5-month RFP.",
       "ring": 3,
-      "ringLabel": "Ring 3"
+      "ringLabel": "Ring 3",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-23",
@@ -1038,7 +1122,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Flagstaff, Arizona (~77K population; OpenGov Procurement (Includes FLG Airport)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-25",
@@ -1061,7 +1147,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Sierra Vista, Arizona (~45K population; OpenGov Procurement (Fort Huachuca Gateway)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-30",
@@ -1084,7 +1172,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Nogales, Arizona (~20K population; Nogales Finance Bids (95% Bilingual Hispanic)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-33",
@@ -1107,7 +1197,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Cottonwood, Arizona (~12.5K population; CivicPlus Bid Opportunities). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-34",
@@ -1130,7 +1222,9 @@
       ],
       "summary": "Official municipal procurement portal for Town of Camp Verde, Arizona (~12.5K population; Notice of Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-35",
@@ -1153,7 +1247,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Show Low, Arizona (~12K population; Finance Department Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-36",
@@ -1176,7 +1272,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Page, Arizona (~7.4K population; Request for Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-37",
@@ -1199,7 +1297,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Globe, Arizona (~7.2K population; Finance Purchasing). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-38",
@@ -1222,7 +1322,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Benson, Arizona (~5.4K population; Municipal Bid Opportunities). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CITY-39",
@@ -1245,7 +1347,9 @@
       ],
       "summary": "Official municipal procurement portal for City of Bisbee, Arizona (~5.0K population; CivicPlus Doing Business). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-COCHISE",
@@ -1269,7 +1373,9 @@
       ],
       "summary": "Official Cochise County, AZ (~125K Pop) procurement entry point (Bonfire / Euna (cochise.bonfirehub.com)). Statutory accessibility status: ADA Title II Active (Apr 2026) • Fort Huachuca Corridor.",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-COCONINO",
@@ -1293,7 +1399,9 @@
       ],
       "summary": "Official Coconino County, AZ (~145K Pop) procurement entry point (Ion Wave Technologies (coconino.ionwave.net)). Statutory accessibility status: ADA Title II Active (Apr 2026).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-SANTACRUZ",
@@ -1318,7 +1426,9 @@
       ],
       "summary": "Official Santa Cruz County, AZ (~49K Pop) procurement entry point (CivicPlus /Bids.aspx ($0 Notify Me)). Statutory accessibility status: ADA Title II Due Apr 26, 2027 (<50K Borderlands Gate).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "AZ-CTY-YAVAPAI",
@@ -1341,7 +1451,9 @@
       ],
       "summary": "Official Yavapai County, AZ (~249K Pop) procurement entry point (OpenGov Procurement ($0 Single Login)). Statutory accessibility status: ADA Title II Active (Apr 2026).",
       "ring": 4,
-      "ringLabel": "Ring 4"
+      "ringLabel": "Ring 4",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "CYB-01",
@@ -1365,7 +1477,9 @@
       ],
       "summary": "Mandates 15 baseline cybersecurity controls for safeguarding FCI (identical to CMMC Level 1). Pure COTS software/product acquisitions are exempt under 52.204-21(c).",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "CYB-02",
@@ -1389,7 +1503,9 @@
       ],
       "summary": "Governs CMMC Level 1 (15 FCI controls, free annual self-assessment in PIEE/SPRS) and Level 2 (110 NIST SP 800-171 Rev. 2 CUI controls); COTS items remain exempt.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "CYB-03",
@@ -1413,7 +1529,9 @@
       ],
       "summary": "NIST finalized Rev. 3 (97 controls), while DoD maintains a Class Deviation keeping Rev. 2 (110 controls) as the active SPRS & CMMC Level 2 scoring baseline until 32 CFR 170 updates.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "CYB-04",
@@ -1435,7 +1553,9 @@
       ],
       "summary": "Free DoD-sponsored CMMC Level 1/2 readiness check (projectspectrum.io) and Warfighting Acquisition University (waru.edu, formerly DAU) Zero-Trust and Continuous ATO training.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "DOD-01",
@@ -1458,7 +1578,9 @@
       ],
       "summary": "Effective Oct 1, 2026, unclassified DoD solicitations and electronic quote uploads run through PIEE's Solicitation Module (Proposal Manager role), unified with SPRS and WAWF invoicing.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "DOD-02",
@@ -1482,7 +1604,9 @@
       ],
       "summary": "Target DLA Contracting Services Office (DCSO) & Document Services for 541511/541512 software and Section 508 (skipping physical NSN parts board DIBBS); use ASSIST for CDRL DIDs and MIL-HDBK-29612 courseware standards.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "FAR-01",
@@ -1509,7 +1633,9 @@
       ],
       "summary": "Defines the $15,000 Micro-Purchase Threshold (for COTS & SCA-exempt professional services), the $350,000 Simplified Acquisition Threshold (reserved for Small Business under FAR 19.502-2), and COTS exemptions.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FAR-02",
@@ -1534,7 +1660,9 @@
       ],
       "summary": "Establishes the 7 General Standards of contractor responsibility (financial resources, schedule, past performance, ethics, technical controls) plus Small Business Certificate of Competency (COC) appeal rights.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FAR-03",
@@ -1559,7 +1687,9 @@
       ],
       "summary": "Standardizes federal RFPs into Sections A–M. Best-practice triage order: Section M (Evaluation Factors) -> Section L (Instructions) -> Section C (PWS/SOW) -> Section B (CLIN Pricing).",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FED-01",
@@ -1587,7 +1717,9 @@
       ],
       "summary": "Official source for historical federal contract obligations, incumbent vendors, contract end dates (12-month recompete windows), GPC benchmarks, and institutional grant recipients.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FED-02",
@@ -1597,7 +1729,8 @@
       "platform": "SAM.gov (Login.gov + Opportunities API v2)",
       "thresholds": "Mandatory synopses > $25,000; Simplified Acquisitions $15,000–$350,000",
       "url": "https://sam.gov/contracting",
-      "wcgStatus": "Webcognita Registered (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6)",
+      "portalActive": true,
+      "wcgStatus": "UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 (Active through 11/08/2027)",
       "tags": [
         "sam.gov",
         "uei",
@@ -1612,11 +1745,13 @@
         "disaster response registry",
         "registered",
         "compliant",
+        "active",
         "ring 9"
       ],
       "summary": "Primary federal portal for active Sources Sought, RFIs, Simplified Acquisition RFQs (<= $350K), and formal RFPs. Also houses the FAR 26.205 Disaster Response Registry.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true
     },
     {
       "id": "FED-03",
@@ -1641,7 +1776,9 @@
       ],
       "summary": "First directory Contracting Officers query to justify Small Business, VOSB, or SDVOSB set-asides and sole-source awards. Requires populated Capabilities Narrative and keywords.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "FED-04",
@@ -1662,7 +1799,9 @@
       ],
       "summary": "Master federal index linking directly to every Cabinet and independent agency's annual Small Business Procurement Forecast prior to SAM.gov release.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FED-05",
@@ -1684,7 +1823,9 @@
       ],
       "summary": "Unified searchable database aggregating upcoming federal contracting opportunities across participating civilian agencies filterable by NAICS, state, and set-aside.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "FED-06",
@@ -1704,7 +1845,9 @@
       ],
       "summary": "Authoritative directory of every federal department, sub-agency, and independent commission for mapping buying offices and OSDBU entry points.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FED-07",
@@ -1734,7 +1877,9 @@
       ],
       "summary": "Directs federal agencies to use 'Super Intelligence' ('SI') in place of 'Artificial Intelligence' ('AI') across non-statutory communications while anchoring technical scope to 15 U.S.C. 9401(3) and preserving codified statutory citations.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "FEMA-01",
@@ -1760,7 +1905,9 @@
       ],
       "summary": "Stafford Act (42 U.S.C. 5150) grants local-area set-aside priority to businesses inside declared counties alongside elevated $25K GPC and $1M SAT limits for accessible, multilingual digital response.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "GSA-01",
@@ -1785,7 +1932,9 @@
       ],
       "summary": "Phase 2 IDIQ vehicle unlocking closed GSA eBuy RFQs. Section 9 of VSC houses mandatory free Pathways to Success and Readiness Assessment prerequisites; subcontractors under GSA primes do not need their own Schedule.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-01",
@@ -1810,7 +1959,9 @@
       ],
       "summary": "Enforces statutory SDVOSB (#1) and VOSB (#2) priority ahead of all other socioeconomic programs across VA medical centers (Phoenix, Tucson, Yuma, San Diego) and TAC/SAC.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-02",
@@ -1835,7 +1986,9 @@
       ],
       "summary": "Directory of installation-level Small Business Professionals (SBPs) who sign DD Form 2579 small-business coordination records across Army, Navy, Marine Corps, Air Force, and Defense Agencies.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-03",
@@ -1858,7 +2011,9 @@
       ],
       "summary": "Oversees small business contracting for DOL OASAM and Employment and Training Administration (author of TEN No. 07-25 AI Literacy Framework).",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-04",
@@ -1883,7 +2038,9 @@
       ],
       "summary": "Coordinates small-business IT, Section 508 / WCAG digital accessibility, educational R&D, and postsecondary technical assistance procurements.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-05",
@@ -1907,7 +2064,9 @@
       ],
       "summary": "Supports VOSB/small-business access across USDA agencies for Section 508 compliance, nutrition/food informatics, and rural agricultural technology.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-06",
@@ -1932,7 +2091,9 @@
       ],
       "summary": "Gateway via HHS SBCX (SAM UEI login) to Indian Health Service (Phoenix/Tucson/Fort Yuma), NIH, CDC, HRSA, and CMS small-business specialists.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-07",
@@ -1955,7 +2116,9 @@
       ],
       "summary": "Covers Bureau of Reclamation (Lower Colorado / Yuma Area Office), Bureau of Indian Education (BIE), BLM, and National Park Service procurements.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-08",
@@ -1977,7 +2140,9 @@
       ],
       "summary": "Provides direct Small Business Specialist contacts for Treasury bureaus and IRS IT/workforce AI training task orders.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-09",
@@ -1999,7 +2164,9 @@
       ],
       "summary": "Hosts monthly 15-minute virtual Vendor Outreach Sessions (VOS) connecting small businesses directly with CBP, CISA, FEMA, and DHS HQ buyers.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "OSDBU-10",
@@ -2026,7 +2193,9 @@
       ],
       "summary": "Unified cross-agency OSDBU lookup spanning Commerce (NIST/MBDA/NOAA), Justice (ADA Title II), Energy (WAPA/National Labs), HUD, DOT (FAA), and State (FSI).",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "SBIR-01",
@@ -2052,7 +2221,9 @@
       ],
       "summary": "0%-equity federal R&D funding (20-yr SBIR Data Rights + sole-source Phase III authority). STTR brings >=30% R&D subawards into partner universities; AZ FAST prioritizes rural & Veteran Arizona tech firms.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": true,
+      "portalActive": false
     },
     {
       "id": "SUB-01",
@@ -2075,7 +2246,9 @@
       ],
       "summary": "Official SBA dataset of 18,900+ large federal prime contracts required by law to maintain Small Business Subcontracting Plans and Small Business Liaison Officers (SBLOs).",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     },
     {
       "id": "SUB-02",
@@ -2099,7 +2272,9 @@
       ],
       "summary": "Prohibits set-aside fronts (>50% paid to non-SSEs on services) and disallowable >70% pass-through markups without documented technical/QA Added Value.",
       "ring": 9,
-      "ringLabel": "Ring 9"
+      "ringLabel": "Ring 9",
+      "isPortal": false,
+      "portalActive": false
     }
   ],
   "crosswalk": [

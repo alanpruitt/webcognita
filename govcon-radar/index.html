@@ -325,6 +325,49 @@
       align-items: flex-start;
       gap: 0.5rem;
     }
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+    .active-pill {
+      display: inline-block;
+      background-color: #FFA000;
+      color: #000000;
+      border: 1.5px solid #0B1D3A;
+      padding: 0.14rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .active-toggle-btn {
+      flex-shrink: 0;
+      min-height: 34px;
+      padding: 0.25rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .active-toggle-btn:hover {
+      background-color: #FFA000;
+      color: #000000;
+      border-color: #0B1D3A;
+    }
+    .active-toggle-btn[aria-pressed="true"] {
+      background-color: #FFA000;
+      color: #000000;
+      border: 2px solid #0B1D3A;
+      font-weight: 900;
+    }
     .save-toggle-btn {
       flex-shrink: 0;
       min-height: 34px;
@@ -680,6 +723,7 @@
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
             <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (87)</button>
+            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (1)</button>
             <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (8)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
@@ -911,6 +955,24 @@
         if (Array.isArray(savedIds)) savedSet = new Set(savedIds);
       } catch (_) {}
 
+      const ACTIVE_PORTALS_STORAGE_KEY = 'webcognita_govcon_active_portals_v1';
+      let userActiveSet = new Set();
+      let canonicalActiveSet = new Set();
+      try {
+        const actIds = JSON.parse(localStorage.getItem(ACTIVE_PORTALS_STORAGE_KEY) || 'null');
+        if (Array.isArray(actIds)) userActiveSet = new Set(actIds);
+      } catch (_) {}
+
+      function isNodeActive(id) {
+        return canonicalActiveSet.has(id) || userActiveSet.has(id);
+      }
+
+      function updateActiveFilterPill() {
+        const merged = new Set([...canonicalActiveSet, ...userActiveSet]);
+        const btn = document.getElementById('active-filter-btn');
+        if (btn) btn.textContent = `Active Portals (${merged.size})`;
+      }
+
       function updateSavedFilterPill() {
         const btn = document.getElementById('saved-filter-btn');
         if (btn) btn.textContent = `Saved (${savedSet.size})`;
@@ -921,9 +983,11 @@
         docFreq = {};
         let totalLen = 0;
         let wcgCount = 0;
+        canonicalActiveSet = new Set();
         indexedNodes = nodes.map((n) => {
           if (n.wcgStatus) wcgCount += 1;
-          const fullText = `${n.title} ${n.title} ${n.ringLabel || ''} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
+          if (n.portalActive) canonicalActiveSet.add(n.id);
+          const fullText = `${n.title} ${n.title} ${n.ringLabel || ''} ${n.portalActive ? 'ACTIVE' : ''} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
           const toks = tokenize(fullText);
           totalLen += toks.length;
           const tf = {};
@@ -940,6 +1004,7 @@
         avgDocLen = totalLen / Math.max(1, indexedNodes.length);
         const wcgBtn = document.getElementById('wcg-filter-btn');
         if (wcgBtn) wcgBtn.textContent = `Webcognita Verified (${wcgCount})`;
+        updateActiveFilterPill();
       }
 
       function runHybridSearch() {
@@ -948,11 +1013,13 @@
         const rawQ = document.getElementById('rag-query').value.trim();
         let pool = activeCategory === 'ALL'
           ? indexedNodes
-          : activeCategory === 'SAVED'
-            ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
-            : activeCategory === 'WCG_READY'
-              ? indexedNodes.filter((d) => Boolean(d.raw.wcgStatus))
-              : indexedNodes.filter((d) => d.raw.category === activeCategory);
+          : activeCategory === 'PORTAL_ACTIVE'
+            ? indexedNodes.filter((d) => isNodeActive(d.raw.id))
+            : activeCategory === 'SAVED'
+              ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
+              : activeCategory === 'WCG_READY'
+                ? indexedNodes.filter((d) => Boolean(d.raw.wcgStatus))
+                : indexedNodes.filter((d) => d.raw.category === activeCategory);
 
         if (activeRing === 'RESERVED') {
           pool = [];
@@ -1051,17 +1118,25 @@
         }
         grid.innerHTML = items.map(({ node, rrf, bm25, sem }) => {
           const isSaved = savedSet.has(node.id);
+          const isAct = isNodeActive(node.id);
+          const isLockedAct = canonicalActiveSet.has(node.id);
           const hasWcg = Boolean(node.wcgStatus);
           const rNum = typeof node.ring === 'number' ? node.ring : 9;
           const rLabel = node.ringLabel || `Ring ${rNum}`;
           const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
           const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
           const ringBadge = `<span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">${escapeHtml(rLabel)}</span>`;
+          const activeBadge = isAct
+            ? `<span class="active-pill" style="color: #000000; background-color: #FFA000;">ACTIVE</span>`
+            : '';
           const scoreBadge = isQuery && rrf !== null
             ? `<span class="score-chip-rrf" style="color: #FFFFFF; background-color: #940925;">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
             : `<span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${escapeHtml(node.id)}</span>`;
           const wcgBadge = hasWcg
             ? `<div><span class="wcg-status-pill" style="color: #FFFFFF; background-color: #064E3B;">${escapeHtml(node.wcgStatus)}</span></div>`
+            : '';
+          const activeToggleBtn = node.isPortal && !isLockedAct
+            ? `<button type="button" class="active-toggle-btn" data-act-id="${escapeHtml(node.id)}" data-act-title="${escapeHtml(node.title)}" aria-pressed="${isAct ? 'true' : 'false'}" aria-label="${isAct ? 'Portal registration active (select to unmark): ' : 'Mark portal registration active: '}${escapeHtml(node.title)}">${isAct ? 'ACTIVE' : 'Mark Active'}</button>`
             : '';
           return `
             <article class="node-card${isSaved ? ' is-saved' : (hasWcg ? ' is-wcg-ready' : '')}" data-nid="${escapeHtml(node.id)}" data-ring="${rNum}">
@@ -1069,10 +1144,14 @@
                 <div class="card-top-row">
                   <div class="meta-row">
                     ${ringBadge}
+                    ${activeBadge}
                     ${scoreBadge}
                     <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
                   </div>
-                  <button type="button" class="save-toggle-btn" data-save-id="${escapeHtml(node.id)}" data-save-title="${escapeHtml(node.title)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Saved portal (select to remove): ' : 'Save portal: '}${escapeHtml(node.title)}">${isSaved ? 'Saved' : 'Save'}</button>
+                  <div class="card-actions">
+                    ${activeToggleBtn}
+                    <button type="button" class="save-toggle-btn" data-save-id="${escapeHtml(node.id)}" data-save-title="${escapeHtml(node.title)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Saved portal (select to remove): ' : 'Save portal: '}${escapeHtml(node.title)}">${isSaved ? 'Saved' : 'Save'}</button>
+                  </div>
                 </div>
                 ${wcgBadge}
                 <h3>${escapeHtml(node.title)}</h3>
@@ -1315,6 +1394,27 @@
       }
 
       document.getElementById('rag-results').addEventListener('click', (e) => {
+        const actBtn = e.target.closest('.active-toggle-btn');
+        if (actBtn) {
+          const aid = actBtn.getAttribute('data-act-id');
+          const atitle = actBtn.getAttribute('data-act-title') || aid;
+          if (!aid) return;
+          const nowAct = !userActiveSet.has(aid);
+          if (nowAct) userActiveSet.add(aid);
+          else userActiveSet.delete(aid);
+          try {
+            localStorage.setItem(ACTIVE_PORTALS_STORAGE_KEY, JSON.stringify(Array.from(userActiveSet)));
+          } catch (_) {}
+          updateActiveFilterPill();
+          const live = document.getElementById('save-live-status');
+          if (live) {
+            live.textContent = nowAct
+              ? `Marked ${atitle} portal registration as ACTIVE.`
+              : `Unmarked ${atitle} portal registration.`;
+          }
+          runHybridSearch();
+          return;
+        }
         const btn = e.target.closest('.save-toggle-btn');
         if (!btn) return;
         const nid = btn.getAttribute('data-save-id');
