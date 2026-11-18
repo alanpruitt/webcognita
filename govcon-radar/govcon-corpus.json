@@ -37,6 +37,7 @@
       "platform": "SAM.gov (Login.gov + Opportunities API v2)",
       "thresholds": "Mandatory synopses > $25,000; Simplified Acquisitions $15,000–$350,000",
       "url": "https://sam.gov/contracting",
+      "wcgStatus": "Webcognita Registered (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6)",
       "tags": [
         "sam.gov",
         "uei",
@@ -48,7 +49,9 @@
         "vosb",
         "sdvosb",
         "set-aside",
-        "disaster response registry"
+        "disaster response registry",
+        "registered",
+        "compliant"
       ],
       "summary": "Primary federal portal for active Sources Sought, RFIs, Simplified Acquisition RFQs (<= $350K), and formal RFPs. Also houses the FAR 26.205 Disaster Response Registry."
     },
@@ -136,6 +139,7 @@
       "platform": "Federal Register (Signed Sept. 29, 2026) & 15 U.S.C. 9401(3)",
       "thresholds": "Mandatory Executive Branch Correspondence, Portals, RFIs & Reports",
       "url": "https://www.federalregister.gov/",
+      "wcgStatus": "Webcognita Compliant (EO 14434 SI / 15 U.S.C. 9401(3))",
       "tags": [
         "eo 14434",
         "executive order 14434",
@@ -149,7 +153,8 @@
         "nih",
         "doj",
         "state department",
-        "terminology"
+        "terminology",
+        "compliant"
       ],
       "summary": "Directs federal agencies to use 'Super Intelligence' ('SI') in place of 'Artificial Intelligence' ('AI') across non-statutory communications while anchoring technical scope to 15 U.S.C. 9401(3) and preserving codified statutory citations."
     },
@@ -372,6 +377,7 @@
       "platform": "Acquisition.gov (FAC 2025-06 Inflation Update)",
       "thresholds": "MPT = $15,000 ($2,500 SCA; $25,000 Contingency) • SAT = $350,000 ($1M Contingency)",
       "url": "https://www.acquisition.gov/far/part-2#FAR_Subpart_2_1",
+      "wcgStatus": "Webcognita Compliant (GPC SmartPay 3 & ACH Active)",
       "tags": [
         "far 2.101",
         "micro-purchase",
@@ -381,7 +387,9 @@
         "cots",
         "commercial service",
         "far part 12",
-        "far part 13"
+        "far part 13",
+        "gpc",
+        "compliant"
       ],
       "summary": "Defines the $15,000 Micro-Purchase Threshold (for COTS & SCA-exempt professional services), the $350,000 Simplified Acquisition Threshold (reserved for Small Business under FAR 19.502-2), and COTS exemptions."
     },
@@ -393,6 +401,7 @@
       "platform": "Acquisition.gov",
       "thresholds": "Mandatory pre-award responsibility gate on all federal contracts",
       "url": "https://www.acquisition.gov/far/subpart-9.1",
+      "wcgStatus": "Webcognita Compliant (FAR 9.104-1 & SF 1408 Ready)",
       "tags": [
         "far 9.104-1",
         "responsibility",
@@ -401,7 +410,8 @@
         "ethics",
         "sba coc",
         "certificate of competency",
-        "far 19.6"
+        "far 19.6",
+        "compliant"
       ],
       "summary": "Establishes the 7 General Standards of contractor responsibility (financial resources, schedule, past performance, ethics, technical controls) plus Small Business Certificate of Competency (COC) appeal rights."
     },
@@ -435,6 +445,7 @@
       "platform": "Acquisition.gov",
       "thresholds": "All non-COTS contracts handling Federal Contract Information (FCI)",
       "url": "https://www.acquisition.gov/far/52.204-21",
+      "wcgStatus": "Webcognita Compliant (15/15 Cyber SSP & Sec. 889 Signed)",
       "tags": [
         "far 52.204-21",
         "fci",
@@ -442,7 +453,8 @@
         "15 controls",
         "safeguarding",
         "cots exemption",
-        "ssp"
+        "ssp",
+        "compliant"
       ],
       "summary": "Mandates 15 baseline cybersecurity controls for safeguarding FCI (identical to CMMC Level 1). Pure COTS software/product acquisitions are exempt under 52.204-21(c)."
     },
@@ -475,6 +487,7 @@
       "platform": "NIST CSRC",
       "thresholds": "Applies when storing, processing, or transmitting CUI",
       "url": "https://csrc.nist.gov/pubs/sp/800/171/r3/final",
+      "wcgStatus": "Webcognita Compliant (Zero-CUI Enclave Boundary)",
       "tags": [
         "nist 800-171",
         "cui",
@@ -482,7 +495,8 @@
         "rev 3",
         "class deviation",
         "sprs",
-        "zero trust"
+        "zero trust",
+        "compliant"
       ],
       "summary": "NIST finalized Rev. 3 (97 controls), while DoD maintains a Class Deviation keeping Rev. 2 (110 controls) as the active SPRS & CMMC Level 2 scoring baseline until 32 CFR 170 updates."
     },
@@ -574,6 +588,7 @@
       "platform": "Acquisition.gov & DOJ False Claims Act (31 U.S.C. 3729)",
       "thresholds": "<= 50% to non-similarly situated firms on services set-asides; > 70% triggers Added-Value rule",
       "url": "https://www.acquisition.gov/far/52.219-14",
+      "wcgStatus": "Webcognita Compliant (100% Self-Perform & FCA Gate)",
       "tags": [
         "far 52.219-14",
         "limitations on subcontracting",
@@ -581,7 +596,8 @@
         "far 52.215-23",
         "pass-through",
         "false claims act",
-        "13 cfr 125.6"
+        "13 cfr 125.6",
+        "compliant"
       ],
       "summary": "Prohibits set-aside fronts (>50% paid to non-SSEs on services) and disallowable >70% pass-through markups without documented technical/QA Added Value."
     },
@@ -784,6 +800,29 @@
         "ionwave"
       ],
       "summary": "All 6 counties exceed 50K population (DOJ ADA Title II active now). Pinal & Yavapai share OpenGov; Cochise shares Bonfire; Maricopa & Pima use BidNet Direct (select $0 Limited Tier + Pima VSS); Coconino uses Ion Wave."
+    },
+    {
+      "id": "AZ-ED-00",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Arizona Western College (AWC) — Purchasing & Vendor Services (Yuma & La Paz)",
+      "jurisdiction": "Yuma & La Paz Counties, AZ (Hispanic-Serving Institution)",
+      "platform": "AWC Purchasing (purchasing@azwestern.edu) & AZPurchasing.org",
+      "thresholds": "Direct / P-Card < $10K • 3 Quotes $10K–$99.9K • >= $25K SAM.gov Verified • Co-Ops: AZPurchasing, 1GPA, Mohave",
+      "url": "https://www.azwestern.edu/faculty-and-staff/business-services/purchasing",
+      "tags": [
+        "arizona western college",
+        "awc",
+        "yuma",
+        "la paz",
+        "hsi",
+        "azpurchasing",
+        "community college",
+        "canvas lms",
+        "ai-ready",
+        "ada title ii",
+        "a.r.s. 38-503"
+      ],
+      "summary": "Primary Yuma & La Paz higher-education anchor utilizing AZPurchasing.org, 1GPA, Mohave, and AZ SPO contracts; verifies SAM.gov active standing on federal grant purchases >= $25,000."
     },
     {
       "id": "AZ-ED-01",
@@ -1129,9 +1168,12 @@
         "arizona",
         "sled",
         "ada title ii",
-        "bonfire"
+        "bonfire",
+        "licensed",
+        "compliant"
       ],
-      "summary": "Official municipal procurement portal for City of Yuma, Arizona (~101K population; Bonfire (yumaaz.bonfirehub.com)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+      "summary": "Official municipal procurement portal for City of Yuma, Arizona (~101K population; Bonfire (yumaaz.bonfirehub.com)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "wcgStatus": "Webcognita Licensed (City of Yuma #SERV-051803)"
     },
     {
       "id": "AZ-CITY-11",
