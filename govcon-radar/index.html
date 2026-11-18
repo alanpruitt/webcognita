@@ -378,7 +378,32 @@
       font-size: 0.76rem;
       font-weight: 800;
     }
+    .ring-chip {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+    .ring-chip-0 {
+      background-color: #940925;
+      color: #FFFFFF;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+    .ring-chip-9 {
+      background-color: #1E293B;
+      color: #FFFFFF;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
     .score-chip {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border: 1px solid #0B1D3A;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+    .score-chip-rrf {
       background-color: #940925;
       color: #FFFFFF;
       padding: 0.15rem 0.45rem;
@@ -597,7 +622,7 @@
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title">Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar</h1>
       <p style="margin: 0;">
-        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>85 public Federal, Department of War, Cooperative, and State of Arizona SLED procurement nodes</strong>, <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> dual-lexicon governance, live <code>FAR 2.101</code> acquisition thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks inside a single offline-capable Progressive Web App.
+        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>87 public Federal, Department of War, Cooperative, and State of Arizona SLED procurement nodes</strong> across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
       </p>
       <div class="plain-callout">
         <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Zero queries leave your device, zero cloud API keys are required, and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
@@ -606,7 +631,7 @@
 
     <!-- Accessible Single-Row Tablist -->
     <div class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
-      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (85 Nodes)</button>
+      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (87 Nodes)</button>
       <button type="button" role="tab" id="tab-router" aria-selected="false" tabindex="-1">2. Threshold &amp; Vehicle Router</button>
       <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
       <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
@@ -619,8 +644,8 @@
           <div class="control-well">
             <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
             <div>
-              <label for="rag-query" class="field-label">Type Keywords to Search All 85 Federal, DoD, Co-Op &amp; Arizona SLED Nodes (Live As You Type):</label>
-              <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., Arizona Western, Yuma, EO 14434, Section 508, PIEE, OpenGov..." autocomplete="off" autofocus>
+              <label for="rag-query" class="field-label">Type Keywords to Search All 87 Federal, DoD, Co-Op &amp; Arizona SLED Nodes (Live As You Type):</label>
+              <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., Arizona Western, Ring 0, Yuma, EO 14434, Section 508, PIEE..." autocomplete="off" autofocus>
             </div>
               <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
                 <button type="submit" class="btn-primary">Run Hybrid RRF</button>
@@ -640,9 +665,21 @@
             <button type="button" class="btn-secondary preset-q" data-q="SBIR STTR AZ FAST 541715">SBIR / STTR &amp; AZ FAST</button>
           </div>
 
+          <div class="chip-row" role="group" aria-label="Filter by Concentric Ring Lane">
+            <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Concentric Lane:</span>
+            <button type="button" class="btn-secondary ring-btn" data-ring="ALL" aria-pressed="true">All Rings</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="0" aria-pressed="false">Ring 0 (3)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="1" aria-pressed="false">Ring 1 (3)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="2" aria-pressed="false">Ring 2 (11)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="3" aria-pressed="false">Ring 3 (25)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="4" aria-pressed="false">Ring 4 (14)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="RESERVED" aria-pressed="false">Rings 5&ndash;8 (Reserved)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="9" aria-pressed="false">Ring 9 (31)</button>
+          </div>
+
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
-            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (85)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (87)</button>
             <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (8)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
@@ -767,7 +804,7 @@
     </div>
 
     <footer class="footer-note">
-      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 85 portal records, statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
+      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 87 portal records, concentric ring lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
     </footer>
   </main>
 
@@ -865,6 +902,7 @@
       let avgDocLen = 1;
       let docFreq = {};
       let activeCategory = 'ALL';
+      let activeRing = 'ALL';
 
       const SAVED_STORAGE_KEY = 'webcognita_govcon_saved_v1';
       let savedSet = new Set();
@@ -885,7 +923,7 @@
         let wcgCount = 0;
         indexedNodes = nodes.map((n) => {
           if (n.wcgStatus) wcgCount += 1;
-          const fullText = `${n.title} ${n.title} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
+          const fullText = `${n.title} ${n.title} ${n.ringLabel || ''} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
           const toks = tokenize(fullText);
           totalLen += toks.length;
           const tf = {};
@@ -908,13 +946,20 @@
         if (!indexedNodes.length) return;
         const t0 = performance.now();
         const rawQ = document.getElementById('rag-query').value.trim();
-        const pool = activeCategory === 'ALL'
+        let pool = activeCategory === 'ALL'
           ? indexedNodes
           : activeCategory === 'SAVED'
             ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
             : activeCategory === 'WCG_READY'
               ? indexedNodes.filter((d) => Boolean(d.raw.wcgStatus))
               : indexedNodes.filter((d) => d.raw.category === activeCategory);
+
+        if (activeRing === 'RESERVED') {
+          pool = [];
+        } else if (activeRing !== 'ALL') {
+          const targetR = Number(activeRing);
+          pool = pool.filter((d) => d.raw.ring === targetR);
+        }
 
         if (!rawQ) {
           renderCards(pool.map((d) => ({ node: d.raw, rrf: null, bm25: 0, sem: 0 })), performance.now() - t0, false);
@@ -996,26 +1041,34 @@
         tel.innerHTML = `<span>Showing ${items.length} of ${indexedNodes.length} verified public nodes (${elapsedMs.toFixed(2)} ms &bull; ${savedSet.size} Saved)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`;
         const grid = document.getElementById('rag-results');
         if (!items.length) {
-          const emptyMsg = activeCategory === 'SAVED' && savedSet.size === 0
-            ? '<strong>No saved portals yet.</strong> Select the <strong>Save</strong> button on any portal card to bookmark your priority targets here (stored locally in your browser).'
-            : '<strong>No matching nodes found.</strong> Try broadening your query or resetting the Scope Filter to <strong>All (85)</strong>.';
+          const emptyMsg = activeRing === 'RESERVED'
+            ? '<strong>Rings 5, 6, 7, and 8 are reserved placeholder lanes.</strong> Held clean for future out-of-state and multi-state concentric expansion after Yuma Home Court (<strong>Ring 0</strong> &amp; <strong>Ring 1</strong>) and Arizona lanes (<strong>Ring 2&ndash;4</strong>) are locked.'
+            : activeCategory === 'SAVED' && savedSet.size === 0
+              ? '<strong>No saved portals yet.</strong> Select the <strong>Save</strong> button on any portal card to bookmark your priority targets here (stored locally in your browser).'
+              : '<strong>No matching nodes found.</strong> Try broadening your query or resetting the Concentric Lane and Scope Filters to <strong>All</strong>.';
           grid.innerHTML = `<div class="plain-callout" style="grid-column: 1 / -1;">${emptyMsg}</div>`;
           return;
         }
         grid.innerHTML = items.map(({ node, rrf, bm25, sem }) => {
           const isSaved = savedSet.has(node.id);
           const hasWcg = Boolean(node.wcgStatus);
+          const rNum = typeof node.ring === 'number' ? node.ring : 9;
+          const rLabel = node.ringLabel || `Ring ${rNum}`;
+          const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
+          const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
+          const ringBadge = `<span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">${escapeHtml(rLabel)}</span>`;
           const scoreBadge = isQuery && rrf !== null
-            ? `<span class="score-chip">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
-            : `<span class="score-chip">${escapeHtml(node.id)}</span>`;
+            ? `<span class="score-chip-rrf" style="color: #FFFFFF; background-color: #940925;">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
+            : `<span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${escapeHtml(node.id)}</span>`;
           const wcgBadge = hasWcg
             ? `<div><span class="wcg-status-pill" style="color: #FFFFFF; background-color: #064E3B;">${escapeHtml(node.wcgStatus)}</span></div>`
             : '';
           return `
-            <article class="node-card${isSaved ? ' is-saved' : (hasWcg ? ' is-wcg-ready' : '')}" data-nid="${escapeHtml(node.id)}">
+            <article class="node-card${isSaved ? ' is-saved' : (hasWcg ? ' is-wcg-ready' : '')}" data-nid="${escapeHtml(node.id)}" data-ring="${rNum}">
               <div>
                 <div class="card-top-row">
                   <div class="meta-row">
+                    ${ringBadge}
                     ${scoreBadge}
                     <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
                   </div>
@@ -1304,8 +1357,17 @@
       document.getElementById('btn-reset-search').addEventListener('click', () => {
         document.getElementById('rag-query').value = '';
         activeCategory = 'ALL';
+        activeRing = 'ALL';
         document.querySelectorAll('.cat-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.cat === 'ALL' ? 'true' : 'false'));
+        document.querySelectorAll('.ring-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.ring === 'ALL' ? 'true' : 'false'));
         runHybridSearch();
+      });
+      document.querySelectorAll('.ring-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeRing = btn.getAttribute('data-ring');
+          document.querySelectorAll('.ring-btn').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          runHybridSearch();
+        });
       });
       document.querySelectorAll('.preset-q').forEach((btn) => {
         btn.addEventListener('click', () => {
