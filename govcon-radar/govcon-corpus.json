@@ -94,7 +94,8 @@
       "platform": "MBO Partners Marketplace & Beeline Extended Workforce VMS",
       "thresholds": "5% Escrow & Compliance Safe-Harbor Rail • Rapid B2B/Corp-to-Corp Onboarding • Federal Audit Logs",
       "url": "https://www.mbopartners.com/",
-      "wcgStatus": "Webcognita Verified Precedent (Prior U.S. Dept. of Commerce Clearance — Warm Reactivation)",
+      "portalActive": true,
+      "wcgStatus": "Active in MBO Partners Marketplace (Live 2026-11-18 • Prior U.S. Dept. of Commerce Clearance)",
       "tags": [
         "mbo partners",
         "mbopartners",
@@ -115,13 +116,13 @@
         "federal prime",
         "force multiplier",
         "verified",
+        "active",
         "ring 0"
       ],
-      "summary": "Force-multiplier B2B/Corp-to-Corp onboarding rail (acquired by Beeline in 2025) making independent LLCs searchable across Federal Systems Integrator and Fortune 500 VMS networks while providing 5% escrow disbursement, statutory AZ Workers' Compensation/disability safe harbor, LLC W-2 payroll administration, and auditable federal timekeeping (previously cleared on U.S. Department of Commerce contract execution).",
+      "summary": "Active force-multiplier B2B/Corp-to-Corp onboarding rail (acquired by Beeline in 2025) making Webcognita LLC live and searchable across Federal Systems Integrator and Fortune 500 VMS networks while providing 5% escrow disbursement, statutory AZ Workers' Compensation/disability safe harbor, LLC W-2 payroll administration, and auditable federal timekeeping (previously cleared on U.S. Department of Commerce contract execution).",
       "ring": 0,
       "ringLabel": "Ring 0",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-AIR-00",
