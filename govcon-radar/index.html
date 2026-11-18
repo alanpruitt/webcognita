@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GovCon &amp; Arizona SLED Hybrid RAG Radar | Webcognita LLC</title>
+  <meta name="description" content="Zero-egress Edge Hybrid RAG (Okapi BM25 + Semantic Vector RRF) navigator across 83 public Federal, DoD, Cooperative, and Arizona SLED procurement portals, FAR 2.101 thresholds, and NAICS/NIGP crosswalks.">
+  <meta name="author" content="Alan Pruitt">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.webcognita.com/govcon-radar/">
+  <link rel="manifest" href="/govcon-radar/manifest.webmanifest">
+  <meta name="theme-color" content="#0B1D3A">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <meta property="og:title" content="GovCon &amp; Arizona SLED Hybrid RAG Radar | Webcognita LLC">
+  <meta property="og:description" content="Client-side BM25 + Semantic RRF search across 83 Federal, DoD, Co-Op, and Arizona SLED procurement portals plus interactive FAR 2.101 / AZ SPO threshold routing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.webcognita.com/govcon-radar/">
+  <meta property="og:image" content="https://www.webcognita.com/assets/og-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Webcognita GovCon & Arizona SLED Hybrid RAG Radar",
+    "url": "https://www.webcognita.com/govcon-radar/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "creator": {
+      "@type": "Organization",
+      "name": "Webcognita LLC",
+      "identifier": "UEI: EZ34U9KNJA17 | CAGE: 4ZCN6"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --navy: #0B1D3A;
+      --red: #940925;
+      --teal: #0D5156;
+      --ink: #111827;
+      --surface: #FFFFFF;
+      --muted-bg: #F4F7FB;
+      --border: #0B1D3A;
+      --border-soft: #94A3B8;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #FFFFFF;
+      color: #111827;
+      line-height: 1.5;
+    }
+    a {
+      color: #0B1D3A;
+      background-color: transparent;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex="0"]:focus-visible {
+      outline: 3px solid #940925;
+      outline-offset: 2px;
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      padding: 0.6rem 1rem;
+      z-index: 1000;
+    }
+    .skip-link:focus { left: 0.5rem; top: 0.5rem; }
+
+    /* Top Brand Bar (>= 16:1 Contrast) */
+    .top-bar {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 3px solid #940925;
+    }
+    .top-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .top-bar a {
+      color: #FFFFFF;
+      background-color: #0B1D3A;
+      font-size: 0.9rem;
+    }
+    .top-nav { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .badge-pill {
+      display: inline-block;
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+    .hero {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      margin: 0 0 0.45rem 0;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      line-height: 1.2;
+      color: #0B1D3A;
+      background-color: #F4F7FB;
+    }
+    .plain-callout {
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: #FFFFFF;
+      color: #111827;
+      border-left: 5px solid #940925;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    /* Modern Accessible Single-Row Scrolling Tablist (modern-web-guidance) */
+    .tablist-scroller {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: inline proximity;
+      border-bottom: 2px solid #CBD5E1;
+      margin-bottom: 1.25rem;
+      gap: 0.25rem;
+      background-color: #FFFFFF;
+    }
+    [role="tab"] {
+      flex: none;
+      scroll-snap-align: start;
+      position: relative;
+      appearance: none;
+      border: none;
+      background-color: #FFFFFF;
+      color: #111827;
+      font-family: inherit;
+      font-size: 0.96rem;
+      font-weight: 700;
+      padding: 0.75rem 1.1rem;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    [role="tab"]:hover {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+    }
+    [role="tab"][aria-selected="true"] {
+      color: #940925;
+      background-color: #FFFFFF;
+    }
+    [role="tab"][aria-selected="true"]::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      border-bottom: 4px solid #940925;
+    }
+
+    /* Panels: zero padding/border on [role="tabpanel"] itself so hidden="until-found" renders zero strip */
+    .panel-grid {
+      display: grid;
+    }
+    .panel-grid > [role="tabpanel"] {
+      grid-area: 1 / 1;
+    }
+    .panel-inner {
+      background-color: #FFFFFF;
+      color: #111827;
+      padding: 0.25rem 0 1.5rem 0;
+    }
+
+    /* Search Controls */
+    .search-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+    @media (max-width: 640px) {
+      .search-box { grid-template-columns: 1fr; }
+    }
+    .search-input, .form-control {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.65rem 0.9rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: #111827;
+      background-color: #FFFFFF;
+      border: 2px solid #0B1D3A;
+      border-radius: 6px;
+    }
+    .btn-primary {
+      min-height: 46px;
+      padding: 0.6rem 1.15rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background-color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background-color: #940925;
+      border-color: #940925;
+      color: #FFFFFF;
+    }
+    .btn-secondary {
+      min-height: 38px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .btn-secondary[aria-pressed="true"], .btn-secondary:hover {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+    }
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.85rem;
+      align-items: center;
+    }
+    .telemetry-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.55rem 0.85rem;
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    /* Result Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+      gap: 1rem;
+    }
+    .node-card {
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 1rem;
+      background-color: #FFFFFF;
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.65rem;
+    }
+    .node-card h3 {
+      margin: 0.25rem 0;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+    .score-chip {
+      background-color: #940925;
+      color: #FFFFFF;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+    .cat-chip {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border: 1px solid #0B1D3A;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+    .kv-line {
+      font-size: 0.85rem;
+      margin: 0.15rem 0;
+      color: #111827;
+      background-color: #FFFFFF;
+    }
+    .card-link-btn {
+      display: inline-block;
+      text-align: center;
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: 5px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      min-height: 40px;
+    }
+    .card-link-btn:hover {
+      background-color: #0D5156;
+      color: #FFFFFF;
+    }
+
+    /* Threshold Router */
+    .router-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .field-label {
+      display: block;
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      margin-bottom: 0.35rem;
+      font-size: 0.92rem;
+    }
+    .verdict-box {
+      border: 2.5px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 1.25rem;
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+    }
+    .verdict-box h3 {
+      margin-top: 0;
+      color: #940925;
+      background-color: #F4F7FB;
+      font-size: 1.2rem;
+    }
+
+    /* Responsive Sticky Table (@container per modern-web-guidance) */
+    .table-wrapper {
+      overflow: auto;
+      max-inline-size: 100%;
+      container-type: inline-size;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.9rem;
+      --label-2: "Federal Title & Size";
+      --label-3: "Arizona NIGP (app.az.gov)";
+      --label-4: "Federal PSC";
+      --label-5: "GSA MAS SIN";
+      --label-6: "Deliverables & Copy";
+    }
+    table.data-table caption {
+      text-align: left;
+      font-weight: 900;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+    }
+    table.data-table thead {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 2;
+    }
+    table.data-table th, table.data-table td {
+      padding: 0.65rem 0.8rem;
+      border-bottom: 1px solid #CBD5E1;
+      border-right: 1px solid #CBD5E1;
+      text-align: left;
+      vertical-align: top;
+      background-color: #FFFFFF;
+      color: #111827;
+    }
+    table.data-table thead th {
+      background-color: #E8EEF5;
+      color: #0B1D3A;
+      font-weight: 800;
+    }
+    table.data-table tbody th {
+      position: sticky;
+      inset-inline-start: 0;
+      z-index: 1;
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      font-weight: 800;
+    }
+    @container (width < 680px) {
+      table.data-table, table.data-table thead, table.data-table tbody, table.data-table tr, table.data-table th, table.data-table td {
+        display: block;
+      }
+      table.data-table thead { display: none; }
+      table.data-table tr {
+        border-bottom: 3px solid #0B1D3A;
+        margin-bottom: 0.75rem;
+      }
+      table.data-table tbody th {
+        position: static;
+        background-color: #0B1D3A;
+        color: #FFFFFF;
+      }
+      table.data-table td:nth-child(2)::before { content: var(--label-2) ": "; font-weight: 800; color: #0B1D3A; }
+      table.data-table td:nth-child(3)::before { content: var(--label-3) ": "; font-weight: 800; color: #0B1D3A; }
+      table.data-table td:nth-child(4)::before { content: var(--label-4) ": "; font-weight: 800; color: #0B1D3A; }
+      table.data-table td:nth-child(5)::before { content: var(--label-5) ": "; font-weight: 800; color: #0B1D3A; }
+      table.data-table td:nth-child(6)::before { content: var(--label-6) ": "; font-weight: 800; color: #0B1D3A; }
+    }
+
+    /* Self-Check Gate List */
+    .gate-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.75rem 0.9rem;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      margin-bottom: 0.6rem;
+      background-color: #FFFFFF;
+      color: #111827;
+    }
+    .gate-item input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      accent-color: #0B1D3A;
+      flex-shrink: 0;
+    }
+    .progress-track {
+      width: 100%;
+      height: 20px;
+      background-color: #E2E8F0;
+      border: 2px solid #0B1D3A;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0.5rem 0 1rem 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: #0D5156;
+      transition: width 0.2s ease;
+    }
+    .footer-note {
+      margin-top: 2rem;
+      padding: 1.25rem;
+      border-top: 2px solid #0B1D3A;
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      font-size: 0.86rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div>
+        <strong>WEBCOGNITA LLC</strong> &bull; <span class="badge-pill">Zero-Egress Edge Hybrid RAG PWA</span>
+      </div>
+      <nav class="top-nav" aria-label="Webcognita Primary Links">
+        <a href="https://www.webcognita.com/">Home</a>
+        <a href="https://www.webcognita.com/capabilities-statement.html">1-Page Capabilities Statement</a>
+        <a href="https://hybrid-rag.dev/">Hybrid-RAG.dev</a>
+        <a href="https://www.webcognita.com/support/">GPC &amp; P-Card Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="container">
+    <section class="hero" aria-labelledby="page-title">
+      <h1 id="page-title">Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar</h1>
+      <p style="margin: 0;">
+        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>83 public Federal, Department of War, Cooperative, and State of Arizona SLED procurement nodes</strong>, live <code>FAR 2.101</code> acquisition thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks inside a single offline-capable Progressive Web App.
+      </p>
+      <div class="plain-callout">
+        <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Zero queries leave your device, zero cloud API keys are required, and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
+      </div>
+    </section>
+
+    <!-- Accessible Single-Row Tablist -->
+    <div class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
+      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (83 Nodes)</button>
+      <button type="button" role="tab" id="tab-router" aria-selected="false" tabindex="-1">2. Threshold &amp; Vehicle Router</button>
+      <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
+      <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
+    </div>
+
+    <div class="panel-grid">
+      <!-- PANEL 1: HYBRID BM25 + SEMANTIC RRF SEARCH -->
+      <div role="tabpanel" id="panel-search" aria-labelledby="tab-search">
+        <div class="panel-inner">
+          <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
+            <div>
+              <label for="rag-query" class="field-label">Query Federal, DoD, Cooperative, or Arizona SLED Nodes (BM25 + Semantic Concept RRF):</label>
+              <input id="rag-query" class="search-input" type="search" placeholder="e.g., Section 508 VA, April 2027 rural ADA Title II, PIEE Solicitation Module, OpenGov single login, Yuma..." autocomplete="off">
+            </div>
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+              <button type="submit" class="btn-primary">Run Hybrid RRF</button>
+              <button type="button" id="btn-reset-search" class="btn-secondary" style="min-height: 46px; border-radius: 6px;">Reset</button>
+            </div>
+          </form>
+
+          <div class="chip-row" aria-label="Quick Example Queries">
+            <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Instant Queries:</span>
+            <button type="button" class="btn-secondary preset-q" data-q="VA Veterans First Section 508">VA Section 508 &amp; Veterans First</button>
+            <button type="button" class="btn-secondary preset-q" data-q="PIEE Solicitation Module SPRS CMMC">DoD PIEE &amp; CMMC Level 1</button>
+            <button type="button" class="btn-secondary preset-q" data-q="OpenGov single login 1GPA Mohave">OpenGov Single-Login Co-Ops</button>
+            <button type="button" class="btn-secondary preset-q" data-q="Apr 26 2027 ADA Title II rural">Apr 2027 Rural ADA Title II</button>
+            <button type="button" class="btn-secondary preset-q" data-q="Yuma borderlands bilingual">Yuma &amp; Borderlands Corridor</button>
+            <button type="button" class="btn-secondary preset-q" data-q="SBIR STTR AZ FAST 541715">SBIR / STTR &amp; AZ FAST</button>
+          </div>
+
+          <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
+            <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
+            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (83)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="CABINET_OSDBU" aria-pressed="false">15 Cabinet OSDBUs</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="DOD_CYBER_FAR" aria-pressed="false">DoD, FAR &amp; Cyber</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="SUBK_COOP_GSA_SBIR" aria-pressed="false">SubK, Co-Ops, GSA &amp; SBIR</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="AZ_STATE_COUNTIES" aria-pressed="false">AZ State &amp; 9 Counties</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="AZ_CITIES_ED_AIRPORTS" aria-pressed="false">AZ Cities, Ed &amp; Airports</button>
+          </div>
+
+          <div id="rag-telemetry" class="telemetry-bar" aria-live="polite">
+            <span>Loading clean-room OSINT corpus...</span>
+            <span>Engine: Client-Side BM25 + Semantic Concept RRF (k=60) &bull; 0 Bytes Egress</span>
+          </div>
+
+          <div id="rag-results" class="cards-grid" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: INTERACTIVE ACQUISITION THRESHOLD & VEHICLE ROUTER -->
+      <div role="tabpanel" id="panel-router" aria-labelledby="tab-router" hidden="until-found">
+        <div class="panel-inner">
+          <h2 style="margin-top: 0; color: #0B1D3A;">Interactive Acquisition Threshold &amp; Procurement Vehicle Router</h2>
+          <p>Compute the exact statutory citation, competition requirement, and fastest compliant purchasing rail across Federal (<code>FAR 2.101</code> FAC 2025-06) and Arizona SLED (<code>A.R.S. &sect; 41-2535</code> / <code>A.A.C. R7-2-1001</code>) rules.</p>
+
+          <div class="router-grid">
+            <div>
+              <label for="rt-amount" class="field-label">Estimated Contract / Order Value (USD):</label>
+              <input id="rt-amount" class="form-control" type="number" min="500" max="10000000" step="500" value="14500">
+            </div>
+            <div>
+              <label for="rt-buyer" class="field-label">Buyer Jurisdiction:</label>
+              <select id="rt-buyer" class="form-control">
+                <option value="FED_CIV">Federal Civilian Agency (ED, DOL, USDA, HHS, IRS, DOI)</option>
+                <option value="FED_VA">U.S. Dept. of Veterans Affairs (38 U.S.C. 8127 Veterans First)</option>
+                <option value="FED_DOD">U.S. Dept. of War / Defense (DoD / National Guard USPFO)</option>
+                <option value="FED_EMERG">Federal Emergency / Stafford Act Contingency (FEMA / DoD)</option>
+                <option value="AZ_STATE">State of Arizona Agency (ADOA-SPO / app.az.gov)</option>
+                <option value="AZ_ED">Arizona University (ABOR), Community College, or K-12 District</option>
+                <option value="AZ_LOCAL">Arizona County or Municipality (City / Town)</option>
+              </select>
+            </div>
+            <div>
+              <label for="rt-type" class="field-label">Deliverable Classification:</label>
+              <select id="rt-type" class="form-control">
+                <option value="COTS_PROF">COTS Software / Edge PWA or Exempt Professional Service (29 CFR 541)</option>
+                <option value="SCA">Service Contract Labor Standards (SCA) Covered Non-Exempt Service</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="router-output" class="verdict-box" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: NAICS <-> NIGP <-> PSC <-> GSA SIN CROSSWALK -->
+      <div role="tabpanel" id="panel-crosswalk" aria-labelledby="tab-crosswalk" hidden="until-found">
+        <div class="panel-inner">
+          <h2 style="margin-top: 0; color: #0B1D3A;">Federal NAICS &harr; Arizona NIGP &harr; PSC &harr; GSA MAS SIN Rosetta Stone</h2>
+          <p>Federal portals (<code>SAM.gov</code>, <code>USAspending</code>) index by 6-digit <code>NAICS</code> and 4-character <code>PSC</code>, whereas Arizona's <code>app.az.gov</code> routes bid alerts by 3-to-5-digit <code>NIGP</code> Commodity Codes.</p>
+
+          <div id="copy-announce" class="plain-callout" style="margin-bottom: 1rem;" aria-live="polite">
+            Select <strong>Copy Mapping</strong> on any row to copy the complete Federal + State classification string to your clipboard.
+          </div>
+
+          <div tabindex="0" role="region" aria-labelledby="crosswalk-caption" class="table-wrapper">
+            <table class="data-table">
+              <caption id="crosswalk-caption">Cross-Jurisdictional Procurement Classification Matrix (5 Core Technology, R&amp;D &amp; Training Pillars)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">NAICS Code</th>
+                  <th scope="col">Federal Title &amp; SBA Size</th>
+                  <th scope="col">Arizona NIGP (app.az.gov)</th>
+                  <th scope="col">Federal PSC</th>
+                  <th scope="col">GSA MAS SIN</th>
+                  <th scope="col">Representative Deliverables &amp; Action</th>
+                </tr>
+              </thead>
+              <tbody id="crosswalk-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 4: FAR 9.104-1 & CMMC LEVEL 1 READINESS SELF-CHECK -->
+      <div role="tabpanel" id="panel-readiness" aria-labelledby="tab-readiness" hidden="until-found">
+        <div class="panel-inner">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
+            <h2 style="margin: 0; color: #0B1D3A;">Pre-Award Responsibility (FAR 9.104-1) &amp; CMMC Level 1 Self-Check</h2>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" id="btn-check-all" class="btn-secondary">Check All (Webcognita Baseline)</button>
+              <button type="button" id="btn-copy-audit" class="btn-primary">Copy Markdown Audit Summary</button>
+            </div>
+          </div>
+          <p>Interactive 12-gate pre-award verification aligned with <code>FAR Subpart 9.1</code>, <code>FAR 52.204-21</code> (15 FCI controls), <code>NDAA Section 889</code>, and Arizona SLED onboarding. State is stored locally in your browser only.</p>
+
+          <div id="readiness-summary" style="font-weight: 800; color: #0B1D3A;" aria-live="polite">Readiness Score: 0 / 12 Gates Verified (0%)</div>
+          <div class="progress-track" role="progressbar" aria-labelledby="readiness-summary" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="readiness-bar-wrap">
+            <div id="readiness-bar" class="progress-fill" style="width: 0%;"></div>
+          </div>
+
+          <div id="gates-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-note">
+      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 83 portal records, statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      'use strict';
+
+      // --- 1. Accessible Tablist with Selection-Follows-Focus & hidden="until-found" Sync ---
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const panels = tabs.map((t) => document.getElementById(t.id.replace('tab-', 'panel-')));
+
+      function activateTab(selectedTab, moveFocus = false) {
+        tabs.forEach((tab, idx) => {
+          const isSel = tab === selectedTab;
+          tab.setAttribute('aria-selected', isSel ? 'true' : 'false');
+          tab.setAttribute('tabindex', isSel ? '0' : '-1');
+          const panel = panels[idx];
+          if (isSel) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', 'until-found');
+          }
+        });
+        if (moveFocus) {
+          selectedTab.focus();
+          if (selectedTab.scrollIntoView) {
+            selectedTab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+          }
+        }
+      }
+
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', () => activateTab(tab, false));
+        tab.addEventListener('keydown', (e) => {
+          let nextIdx = -1;
+          if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+          else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+          else if (e.key === 'Home') nextIdx = 0;
+          else if (e.key === 'End') nextIdx = tabs.length - 1;
+          if (nextIdx !== -1) {
+            e.preventDefault();
+            activateTab(tabs[nextIdx], true);
+          }
+        });
+        panels[idx].addEventListener('beforematch', () => activateTab(tab, false));
+      });
+
+      // --- 2. Semantic Concept Expansion Dictionary for Client-Side Vector Cosine Leg ---
+      const CONCEPT_CLUSTERS = {
+        accessibility: ['wcag', 'section', '508', 'ada', 'title', 'ii', '28', 'cfr', '35', 'remediation', 'pdf', 'ocr', 'bilingual'],
+        veteran: ['vosb', 'sdvosb', 'vetcert', 'veterans', 'first', '8127', 'va', 'visn', 'dav', 'sba'],
+        defense: ['dod', 'war', 'piee', 'sprs', 'wawf', 'cmmc', 'dfars', 'ypg', 'mcas', 'navwar', 'huachuca', 'dla', 'dcso', 'uspfo', 'w912l2'],
+        cyber: ['cmmc', '52.204-21', '800-171', 'fci', 'cui', 'sprs', 'spectrum', 'zero', 'trust', 'ssp', '889'],
+        cooperative: ['1gpa', 'mohave', 'mesc', 'omnia', 'piggyback', 'opengov', 'bonfire', 'azpurchasing'],
+        borderlands: ['yuma', 'nogales', 'santa', 'cruz', 'cochise', 'la', 'paz', 'bilingual', 'spanish', 'hsi', 'rural'],
+        ai_curriculum: ['ai', 'literacy', 'ten', '07-25', 'curriculum', 'canvas', 'oer', 'ztc', 'training', 'workforce', '611710', '541511'],
+        rd_grants: ['sbir', 'sttr', 'fast', '541715', 'nifa', 'nsf', 'ies', 'afwerx', 'subaward', 'university']
+      };
+
+      const STOPWORDS = new Set(['a','an','and','are','as','at','be','by','for','from','how','in','is','it','of','on','or','that','the','to','what','when','where','which','with']);
+
+      function tokenize(str) {
+        return (str || '')
+          .toLowerCase()
+          .replace(/[^a-z0-9.\-]/g, ' ')
+          .split(/\s+/)
+          .filter((w) => w.length >= 2 && !STOPWORDS.has(w));
+      }
+
+      function computeConceptVector(tokens) {
+        const vec = {};
+        const set = new Set(tokens);
+        Object.entries(CONCEPT_CLUSTERS).forEach(([cluster, words]) => {
+          let hits = 0;
+          words.forEach((cw) => {
+            tokens.forEach((t) => {
+              if (t === cw || (t.length >= 4 && cw.startsWith(t)) || (cw.length >= 4 && t.startsWith(cw))) hits += 1;
+            });
+          });
+          if (set.has(cluster)) hits += 2;
+          vec[cluster] = hits;
+        });
+        return vec;
+      }
+
+      function cosineSim(vA, vB) {
+        let dot = 0, nA = 0, nB = 0;
+        Object.keys(CONCEPT_CLUSTERS).forEach((k) => {
+          const a = vA[k] || 0;
+          const b = vB[k] || 0;
+          dot += a * b;
+          nA += a * a;
+          nB += b * b;
+        });
+        return (nA > 0 && nB > 0) ? dot / (Math.sqrt(nA) * Math.sqrt(nB)) : 0;
+      }
+
+      let CORPUS = null;
+      let indexedNodes = [];
+      let avgDocLen = 1;
+      let docFreq = {};
+      let activeCategory = 'ALL';
+
+      function buildIndex(nodes) {
+        docFreq = {};
+        let totalLen = 0;
+        indexedNodes = nodes.map((n) => {
+          const fullText = `${n.title} ${n.title} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${(n.tags || []).join(' ')} ${n.summary}`;
+          const toks = tokenize(fullText);
+          totalLen += toks.length;
+          const tf = {};
+          toks.forEach((t) => { tf[t] = (tf[t] || 0) + 1; });
+          Object.keys(tf).forEach((t) => { docFreq[t] = (docFreq[t] || 0) + 1; });
+          return {
+            raw: n,
+            tokens: toks,
+            tf,
+            len: toks.length,
+            conceptVec: computeConceptVector(toks)
+          };
+        });
+        avgDocLen = totalLen / Math.max(1, indexedNodes.length);
+      }
+
+      function runHybridSearch() {
+        if (!indexedNodes.length) return;
+        const t0 = performance.now();
+        const rawQ = document.getElementById('rag-query').value.trim();
+        const pool = activeCategory === 'ALL'
+          ? indexedNodes
+          : indexedNodes.filter((d) => d.raw.category === activeCategory);
+
+        if (!rawQ) {
+          renderCards(pool.map((d) => ({ node: d.raw, rrf: null, bm25: 0, sem: 0 })), performance.now() - t0, false);
+          return;
+        }
+
+        const qTokens = tokenize(rawQ);
+        const qVec = computeConceptVector(qTokens);
+        const N = indexedNodes.length;
+        const k1 = 1.5, b = 0.75;
+
+        const scored = pool.map((doc) => {
+          let bm25 = 0;
+          qTokens.forEach((qt) => {
+            // Exact + prefix token match
+            let tfVal = doc.tf[qt] || 0;
+            if (!tfVal && qt.length >= 4) {
+              Object.keys(doc.tf).forEach((dt) => {
+                if (dt.startsWith(qt)) tfVal += doc.tf[dt] * 0.7;
+              });
+            }
+            if (tfVal > 0) {
+              const df = docFreq[qt] || 1;
+              const idf = Math.log(1 + (N - df + 0.5) / (df + 0.5));
+              bm25 += idf * ((tfVal * (k1 + 1)) / (tfVal + k1 * (1 - b + b * (doc.len / avgDocLen))));
+            }
+          });
+          const sem = cosineSim(qVec, doc.conceptVec);
+          return { doc, bm25, sem };
+        }).filter((x) => x.bm25 > 0 || x.sem > 0.15);
+
+        const byBm25 = [...scored].sort((a, b) => b.bm25 - a.bm25);
+        const bySem = [...scored].sort((a, b) => b.sem - a.sem);
+        const rrfK = 60;
+        const rrfMap = new Map();
+
+        byBm25.forEach((item, idx) => {
+          if (item.bm25 > 0) {
+            rrfMap.set(item.doc.raw.id, (rrfMap.get(item.doc.raw.id) || 0) + 1.0 / (rrfK + idx + 1));
+          }
+        });
+        bySem.forEach((item, idx) => {
+          if (item.sem > 0) {
+            rrfMap.set(item.doc.raw.id, (rrfMap.get(item.doc.raw.id) || 0) + 0.85 / (rrfK + idx + 1));
+          }
+        });
+
+        const fused = scored
+          .map((x) => ({
+            node: x.doc.raw,
+            rrf: rrfMap.get(x.doc.raw.id) || 0,
+            bm25: x.bm25,
+            sem: x.sem
+          }))
+          .sort((a, b) => (b.rrf - a.rrf) || (b.bm25 - a.bm25));
+
+        renderCards(fused, performance.now() - t0, true);
+      }
+
+      const CAT_LABELS = {
+        FEDERAL_OSINT: 'Federal OSINT',
+        CABINET_OSDBU: 'Cabinet OSDBU',
+        DOD_CYBER_FAR: 'DoD / FAR / Cyber',
+        SUBK_COOP_GSA_SBIR: 'SubK / Co-Op / GSA / SBIR',
+        AZ_STATE_COUNTIES: 'AZ State & Counties',
+        AZ_CITIES_ED_AIRPORTS: 'AZ Cities, Ed & Airports'
+      };
+
+      function escapeHtml(s) {
+        return String(s || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function renderCards(items, elapsedMs, isQuery) {
+        const tel = document.getElementById('rag-telemetry');
+        tel.innerHTML = `<span>Showing ${items.length} of ${indexedNodes.length} verified public nodes (${elapsedMs.toFixed(2)} ms)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`;
+        const grid = document.getElementById('rag-results');
+        if (!items.length) {
+          grid.innerHTML = '<div class="plain-callout" style="grid-column: 1 / -1;"><strong>No matching nodes found.</strong> Try broadening your query or resetting the Scope Filter to <strong>All (83)</strong>.</div>';
+          return;
+        }
+        grid.innerHTML = items.map(({ node, rrf, bm25, sem }) => {
+          const scoreBadge = isQuery && rrf !== null
+            ? `<span class="score-chip">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
+            : `<span class="score-chip">${escapeHtml(node.id)}</span>`;
+          return `
+            <article class="node-card">
+              <div>
+                <div class="meta-row">
+                  ${scoreBadge}
+                  <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
+                </div>
+                <h3>${escapeHtml(node.title)}</h3>
+                <p class="kv-line"><strong>Jurisdiction:</strong> ${escapeHtml(node.jurisdiction)}</p>
+                <p class="kv-line"><strong>Portal / System:</strong> ${escapeHtml(node.platform)}</p>
+                <p class="kv-line"><strong>Thresholds / Gate:</strong> ${escapeHtml(node.thresholds)}</p>
+                <p style="font-size: 0.88rem; margin: 0.5rem 0 0 0;">${escapeHtml(node.summary)}</p>
+              </div>
+              <a class="card-link-btn" href="${escapeHtml(node.url)}" target="_blank" rel="noopener noreferrer">Open Official Portal (${escapeHtml(new URL(node.url).hostname)})</a>
+            </article>
+          `;
+        }).join('');
+      }
+
+      // --- 3. Interactive Threshold & Procurement Vehicle Router ---
+      function updateRouter() {
+        const amt = Math.max(0, Number(document.getElementById('rt-amount').value) || 0);
+        const buyer = document.getElementById('rt-buyer').value;
+        const dtype = document.getElementById('rt-type').value;
+        const box = document.getElementById('router-output');
+        const fmt = '$' + amt.toLocaleString('en-US');
+
+        let heading = '', authority = '', rail = '', notes = '';
+
+        if (buyer === 'FED_CIV' || buyer === 'FED_DOD' || buyer === 'FED_VA') {
+          const mpt = dtype === 'SCA' ? 2500 : 15000;
+          if (amt <= mpt) {
+            heading = `${fmt} -> Direct Federal Government Purchase Card (GPC) Micro-Purchase`;
+            authority = `FAR 2.101 & FAR 13.203 (MPT = $${mpt.toLocaleString('en-US')} for ${dtype === 'SCA' ? 'SCA-covered services' : 'COTS software & exempt 29 CFR 541 professional services'})`;
+            rail = 'Zero competitive quotes required. Cardholder swipes GSA SmartPay 3 GPC directly via PCI-DSS Level 1 invoice link.';
+            notes = buyer === 'FED_DOD'
+              ? 'Governed by DoD GPC Guidebook (DFARS 213.301). Pure COTS items are exempt from FAR 52.204-21 & CMMC.'
+              : 'Ensure merchant descriptor, EIN, and Section 889 representation on SAM.gov are active.';
+          } else if (buyer === 'FED_VA' && amt <= 5000000) {
+            heading = `${fmt} -> VA "Veterans First" SDVOSB / VOSB Statutory Priority`;
+            authority = '38 U.S.C. 8127(b)-(d) & VAAR Subpart 819.70 (Veterans First Rule of Two)';
+            rail = amt <= 350000
+              ? 'Streamlined FAR Part 13 / Part 12 Commercial RFQ on SAM.gov (mandatory SDVOSB #1 / VOSB #2 priority; sole-source permitted).'
+              : 'VA SDVOSB / VOSB Set-Aside or Sole-Source Award (authorized up to $5,000,000 when Contracting Officer anticipates fair & reasonable price).';
+            notes = 'Requires active SBA VetCert certification + FAR 52.219-14 (<=50% paid to non-similarly situated firms).';
+          } else if (amt <= 350000) {
+            heading = `${fmt} -> Mandatory Small Business Reserve (Simplified Acquisition Procedures)`;
+            authority = 'FAR 2.101 ($350,000 SAT) & FAR 19.502-2(a) Automatic Small Business Set-Aside';
+            rail = buyer === 'FED_DOD'
+              ? 'Posted on SAM.gov with full package & electronic quote upload inside PIEE Solicitation Module (Proposal Manager role, mandatory since Oct 1, 2026).'
+              : 'Streamlined FAR Part 13 / FAR Part 12 (SF 1449 Commercial) RFQ reserved exclusively for Small Businesses (or VOSB/SDVOSB set-aside).';
+            notes = 'Does NOT populate CPARS automatically — capture a signed CPARS-aligned Past Performance Questionnaire (PPQ) at closeout.';
+          } else {
+            heading = `${fmt} -> Above $350,000 SAT: Formal RFP (FAR Part 15), GSA eBuy, or SBIR Phase III`;
+            authority = 'FAR 15.204-1 (UCF Sections A–M), FAR 19.14 (SDVOSB Sole-Source <= $4.5M), or 15 U.S.C. 638(r)(4) SBIR Phase III';
+            rail = buyer === 'FED_DOD'
+              ? 'Submit via PIEE Solicitation Module + WAWF invoicing; ensure SPRS CMMC Level 1 (FCI) affirmation is current.'
+              : 'Triage RFP in M -> L -> C -> B order, check GSA MAS (SIN 54151S), or team with an active SBA Subcontracting-Plan Prime (> $750K).';
+            notes = 'Have Pre-Award Responsibility Binder (FAR 9.104-1, 52.204-21 SSP, OCI Firewall, SF 1408) ready for Contracting Officer review.';
+          }
+        } else if (buyer === 'FED_EMERG') {
+          if (amt <= 25000) {
+            heading = `${fmt} -> Domestic Emergency / Contingency GPC Micro-Purchase (<= $25,000)`;
+            authority = 'FAR 2.101 (FAC 2025-06 Domestic Contingency MPT = $25,000) & Stafford Act (FAR Subpart 26.2)';
+            rail = 'Direct zero-competition GPC card swipe; Contracting Officers prioritize local firms opted into the SAM.gov Disaster Response Registry.';
+            notes = 'High demand for rapid Section 508 / WCAG 2.2 AA & bilingual Spanish/English emergency communications (42 U.S.C. 5151).';
+          } else if (amt <= 1000000) {
+            heading = `${fmt} -> Domestic Contingency Simplified Acquisition (<= $1,000,000 SAT)`;
+            authority = 'FAR 2.101 ($1,000,000 Domestic Contingency SAT) & FAR 26.202 Stafford Act Local-Area Preference';
+            rail = 'Rapid FAR Part 13 RFQ with statutory local-area set-aside preference for businesses headquartered in the declared county/state.';
+            notes = 'Pre-file FEMA Vendor Profile Form (FEMA-Industry@fema.dhs.gov) and confirm SAM.gov Disaster Response Registry opt-in.';
+          } else {
+            heading = `${fmt} -> Major Emergency Commercial Acquisition (FAR 13.5 up to $15M)`;
+            authority = 'FAR 13.500(c) Contingency Commercial Procedures & Stafford Act';
+            rail = 'Streamlined commercial solicitation or prime subcontracting under regional response primes.';
+            notes = 'Maintain < 15 min RTO dual-workstation continuity documentation (FAR 9.104-1(b)).';
+          }
+        } else if (buyer === 'AZ_STATE') {
+          if (amt <= 10000) {
+            heading = `${fmt} -> State of Arizona Micro-Purchase / State P-Card (<= $10,000)`;
+            authority = 'Arizona Procurement Code (A.R.S. 41-2535 & ADOA-SPO P-Card Policy)';
+            rail = 'Zero competitive quotes required. State buyer pays directly via State of Arizona P-Card.';
+            notes = 'Ensure active registration + NIGP codes (208, 209, 918, 920, 924, 958) in app.az.gov.';
+          } else if (amt <= 100000) {
+            heading = `${fmt} -> Mandatory Arizona Small-Business Restricted eQuote ($10,001–$100,000)`;
+            authority = 'A.R.S. 41-2535(B) & A.A.C. R2-7-D302 (Statutory Small Business Restriction)';
+            rail = 'Restricted by statute to Small Businesses (<100 FTE or <$4M gross receipts) via 3 written eQuotes inside app.az.gov.';
+            notes = 'Verify the Small Business self-certification checkbox is active in your APP Supplier Profile!';
+          } else {
+            heading = `${fmt} -> Formal APP Solicitation (> $100,000) or Statewide Co-Op Piggyback`;
+            authority = 'A.R.S. 41-2534 (Formal Best-Value RFP on app.az.gov) or A.R.S. 41-2632 Cooperative';
+            rail = 'Bid formal BPM solicitations on app.az.gov OR execute a direct PO through an awarded 1GPA, Mohave (MESC), or ADOA Statewide contract.';
+            notes = 'All public digital deliverables must satisfy DOJ 28 CFR Part 35 ADA Title II (WCAG 2.1/2.2 AA).';
+          }
+        } else if (buyer === 'AZ_ED') {
+          if (amt <= 10000) {
+            heading = `${fmt} -> Direct University / College / School District P-Card (<= $10,000)`;
+            authority = 'ABOR Purchasing Policy & AZ School District Procurement Rules (A.A.C. R7-2-1002)';
+            rail = 'Direct Departmental P-Card swipe (bypasses multi-week PaymentWorks vendor onboarding at ABOR universities!).';
+            notes = 'On grants, position strictly as a Non-Competing Technical Enabling Partner or STTR Prime (bringing >=30% R&D inflow into the university).';
+          } else if (amt <= 100000) {
+            heading = `${fmt} -> 3-Quote Informal Educational Purchase ($10,001–$100,000)`;
+            authority = 'ABOR Small-Dollar Policy (NAU prioritizes SB/Veterans $5K–$100K) & A.A.C. R7-2-1001';
+            rail = '3 written quotes sourced via AZPurchasing.org (200+ AZ districts/colleges), BuyWays (Jaggaer), or MCCCD Bonfire.';
+            notes = 'Register free at AZPurchasing.org ($0) to appear on statewide K-12 and college 3-quote lists.';
+          } else {
+            heading = `${fmt} -> Piggyback 1GPA / Mohave Co-Op (Fastest) or Formal RFP (> $100,000)`;
+            authority = 'A.R.S. 41-2632 & A.A.C. R7-2-1191 Cooperative Purchasing';
+            rail = 'Direct Purchase Order via 1GPA (1gpa.org) or Mohave (mesc.org) with zero new RFP, or formal solicitation on OpenGov / Bonfire.';
+            notes = 'Active April 2026 ADA Title II mandate applies across ABOR, MCCCD, and urban school districts.';
+          }
+        } else {
+          if (amt <= 10000) {
+            heading = `${fmt} -> Direct County / Municipal P-Card Sprint (<= $10,000)`;
+            authority = 'Local County / Municipal Charter Small-Dollar P-Card Authority';
+            rail = 'Direct Town Manager, City Clerk, or IT Director P-Card checkout — ideal for $4,500–$9,900 turnkey ADA Title II website & Council PDF audits.';
+            notes = '17 rural AZ towns + La Paz & Santa Cruz Counties (<50K pop) face the mandatory April 26, 2027 DOJ ADA Title II deadline!';
+          } else if (amt <= 100000) {
+            heading = `${fmt} -> Informal 3-Quote County / Municipal Purchase ($10,001–$100,000)`;
+            authority = 'County / Municipal Informal Written Quote Tier';
+            rail = 'Sourced via single-login OpenGov (Tucson, Scottsdale, Flagstaff, Sierra Vista, Pinal, Yavapai), Bonfire (City of Yuma, Tempe, Peoria, Buckeye, Cochise), or BidNet $0 Tier (Maricopa, Pima).';
+            notes = 'Register statewide ADOT AZ UTRACS SBC ($0) for federally assisted city/airport/MPO projects.';
+          } else {
+            heading = `${fmt} -> Cooperative Piggyback (1GPA / Mohave / SAVE / ADOA) or Formal Municipal RFP`;
+            authority = 'A.R.S. 41-2632 Intergovernmental Cooperative Purchasing';
+            rail = 'Direct PO piggybacking on 1GPA, Mohave, SAVE, or ADOA Statewide contracts — or formal e-bid on OpenGov / Bonfire.';
+            notes = 'Counties & cities >= 50,000 population are already under active DOJ 28 CFR Part 35 ADA Title II enforcement.';
+          }
+        }
+
+        box.innerHTML = `
+          <h3>${escapeHtml(heading)}</h3>
+          <p><strong>Statutory Authority:</strong> ${escapeHtml(authority)}</p>
+          <p><strong>Fastest Compliant Buying Rail:</strong> ${escapeHtml(rail)}</p>
+          <p style="margin-bottom: 0;"><strong>Compliance &amp; Capture Note:</strong> ${escapeHtml(notes)}</p>
+        `;
+      }
+
+      // --- 4. Render Crosswalk & Self-Check Gates ---
+      function renderCrosswalk(rows) {
+        const tbody = document.getElementById('crosswalk-tbody');
+        tbody.innerHTML = rows.map((r, i) => {
+          const copyStr = `NAICS ${r.naics} (${r.naicsTitle}) | AZ NIGP: ${r.azNigp} | PSC: ${r.psc} | GSA: ${r.gsaSin}`;
+          return `
+            <tr>
+              <th scope="row">${escapeHtml(r.naics)}</th>
+              <td><strong>${escapeHtml(r.naicsTitle)}</strong><br><span style="font-size:0.82rem;">Size: ${escapeHtml(r.sizeStandard)}</span></td>
+              <td>${escapeHtml(r.azNigp)}</td>
+              <td>${escapeHtml(r.psc)}</td>
+              <td>${escapeHtml(r.gsaSin)}</td>
+              <td>
+                <div style="margin-bottom: 0.4rem;">${escapeHtml(r.deliverables)}</div>
+                <button type="button" class="btn-secondary copy-row-btn" data-copy="${escapeHtml(copyStr)}" data-idx="${i}">Copy Mapping</button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        tbody.querySelectorAll('.copy-row-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const txt = btn.getAttribute('data-copy');
+            navigator.clipboard.writeText(txt).then(() => {
+              const orig = btn.textContent;
+              btn.textContent = 'Copied!';
+              document.getElementById('copy-announce').textContent = 'Copied classification string: ' + txt;
+              setTimeout(() => { btn.textContent = orig; }, 1800);
+            });
+          });
+        });
+      }
+
+      const STORAGE_KEY = 'webcognita_govcon_gates_v1';
+      let checkedSet = new Set();
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        if (Array.isArray(saved)) checkedSet = new Set(saved);
+      } catch (_) {}
+
+      function renderGates(gates) {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+          gates.forEach((g) => checkedSet.add(g.id));
+        }
+        const wrap = document.getElementById('gates-list');
+        wrap.innerHTML = gates.map((g) => `
+          <label class="gate-item" for="chk-${escapeHtml(g.id)}">
+            <input type="checkbox" id="chk-${escapeHtml(g.id)}" data-gid="${escapeHtml(g.id)}" ${checkedSet.has(g.id) ? 'checked' : ''}>
+            <span><strong>[${escapeHtml(g.id)} &bull; ${escapeHtml(g.pillar)}]</strong> ${escapeHtml(g.label)}</span>
+          </label>
+        `).join('');
+
+        function syncProgress() {
+          const total = gates.length;
+          const done = checkedSet.size;
+          const pct = Math.round((done / Math.max(1, total)) * 100);
+          document.getElementById('readiness-summary').textContent = `Readiness Score: ${done} / ${total} Gates Verified (${pct}%)`;
+          document.getElementById('readiness-bar').style.width = pct + '%';
+          document.getElementById('readiness-bar-wrap').setAttribute('aria-valuenow', String(pct));
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(checkedSet))); } catch (_) {}
+        }
+
+        wrap.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
+          cb.addEventListener('change', () => {
+            const gid = cb.getAttribute('data-gid');
+            if (cb.checked) checkedSet.add(gid);
+            else checkedSet.delete(gid);
+            syncProgress();
+          });
+        });
+
+        document.getElementById('btn-check-all').addEventListener('click', () => {
+          gates.forEach((g) => checkedSet.add(g.id));
+          wrap.querySelectorAll('input[type="checkbox"]').forEach((cb) => { cb.checked = true; });
+          syncProgress();
+        });
+
+        document.getElementById('btn-copy-audit').addEventListener('click', (e) => {
+          const lines = [
+            '# Pre-Award Contractor Responsibility (FAR 9.104-1) & CMMC Level 1 Self-Check',
+            `- Score: ${checkedSet.size} / ${gates.length} (${Math.round((checkedSet.size / gates.length) * 100)}%)`,
+            ''
+          ];
+          gates.forEach((g) => {
+            lines.push(`- [${checkedSet.has(g.id) ? 'x' : ' '}] ${g.id} (${g.pillar}): ${g.label}`);
+          });
+          navigator.clipboard.writeText(lines.join('\n')).then(() => {
+            const btn = e.currentTarget;
+            const orig = btn.textContent;
+            btn.textContent = 'Copied Markdown!';
+            setTimeout(() => { btn.textContent = orig; }, 1800);
+          });
+        });
+
+        syncProgress();
+      }
+
+      // Wire events
+      document.getElementById('rag-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        runHybridSearch();
+      });
+      document.getElementById('rag-query').addEventListener('input', runHybridSearch);
+      document.getElementById('btn-reset-search').addEventListener('click', () => {
+        document.getElementById('rag-query').value = '';
+        activeCategory = 'ALL';
+        document.querySelectorAll('.cat-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.cat === 'ALL' ? 'true' : 'false'));
+        runHybridSearch();
+      });
+      document.querySelectorAll('.preset-q').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.getElementById('rag-query').value = btn.getAttribute('data-q');
+          runHybridSearch();
+        });
+      });
+      document.querySelectorAll('.cat-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.getAttribute('data-cat');
+          document.querySelectorAll('.cat-btn').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          runHybridSearch();
+        });
+      });
+      ['rt-amount', 'rt-buyer', 'rt-type'].forEach((id) => {
+        document.getElementById(id).addEventListener('input', updateRouter);
+        document.getElementById(id).addEventListener('change', updateRouter);
+      });
+      updateRouter();
+
+      // Load clean-room corpus JSON
+      fetch('/govcon-radar/govcon-corpus.json')
+        .catch(() => fetch('govcon-corpus.json'))
+        .then((r) => r.json())
+        .then((data) => {
+          CORPUS = data;
+          buildIndex(data.nodes || []);
+          runHybridSearch();
+          renderCrosswalk(data.crosswalk || []);
+          renderGates(data.readinessGates || []);
+        })
+        .catch((err) => {
+          document.getElementById('rag-telemetry').textContent = 'Corpus load error: ' + err;
+        });
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/govcon-radar/sw.js').catch(() => {});
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

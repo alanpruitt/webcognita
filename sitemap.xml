@@ -12,9 +12,15 @@
   </url>
   <url>
     <loc>https://www.webcognita.com/capabilities-statement.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.webcognita.com/govcon-radar/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
   </url>
   <url>
     <loc>https://www.webcognita.com/principal-qualifications.html</loc>

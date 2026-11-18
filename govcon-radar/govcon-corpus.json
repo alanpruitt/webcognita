@@ -1,0 +1,1841 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedOn": "2026-11-17",
+  "title": "Webcognita Federal & Arizona SLED Hybrid RAG OSINT Radar",
+  "cleanRoomNotice": "100% public-domain federal (.gov/.mil) and Arizona SLED procurement metadata synthesized independently by Webcognita LLC. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. SBA, or Arizona APEX Accelerator.",
+  "nodes": [
+    {
+      "id": "FED-01",
+      "category": "FEDERAL_OSINT",
+      "title": "USAspending.gov — Federal Award & Subcontracting Intelligence",
+      "jurisdiction": "Federal (All Agencies)",
+      "platform": "Official Treasury Open Data & REST API v2",
+      "thresholds": "All obligated contracts, IDIQs, micro-purchases, and grants",
+      "url": "https://www.usaspending.gov/",
+      "tags": [
+        "usaspending",
+        "recompete",
+        "incumbent",
+        "prime",
+        "subaward",
+        "grants",
+        "fpds",
+        "market research",
+        "541511",
+        "541512",
+        "541715",
+        "611710",
+        "541690"
+      ],
+      "summary": "Official source for historical federal contract obligations, incumbent vendors, contract end dates (12-month recompete windows), GPC benchmarks, and institutional grant recipients."
+    },
+    {
+      "id": "FED-02",
+      "category": "FEDERAL_OSINT",
+      "title": "SAM.gov Contracting — Official Federal Solicitations & Entity Registry",
+      "jurisdiction": "Federal (All Agencies)",
+      "platform": "SAM.gov (Login.gov + Opportunities API v2)",
+      "thresholds": "Mandatory synopses > $25,000; Simplified Acquisitions $15,000–$350,000",
+      "url": "https://sam.gov/contracting",
+      "tags": [
+        "sam.gov",
+        "uei",
+        "cage",
+        "rfp",
+        "rfq",
+        "sources sought",
+        "rfi",
+        "vosb",
+        "sdvosb",
+        "set-aside",
+        "disaster response registry"
+      ],
+      "summary": "Primary federal portal for active Sources Sought, RFIs, Simplified Acquisition RFQs (<= $350K), and formal RFPs. Also houses the FAR 26.205 Disaster Response Registry."
+    },
+    {
+      "id": "FED-03",
+      "category": "FEDERAL_OSINT",
+      "title": "SBA Small Business Search (SBS / Formerly DSBS)",
+      "jurisdiction": "Federal (U.S. SBA)",
+      "platform": "SBA Certification & Dynamic Search Directory",
+      "thresholds": "FAR 19.5 Rule-of-Two & VOSB/SDVOSB Market Research",
+      "url": "https://search.certifications.sba.gov/",
+      "tags": [
+        "sba",
+        "dsbs",
+        "sbs",
+        "vetcert",
+        "vosb",
+        "sdvosb",
+        "capabilities narrative",
+        "rule of two",
+        "keywords",
+        "contracting officer"
+      ],
+      "summary": "First directory Contracting Officers query to justify Small Business, VOSB, or SDVOSB set-asides and sole-source awards. Requires populated Capabilities Narrative and keywords."
+    },
+    {
+      "id": "FED-04",
+      "category": "FEDERAL_OSINT",
+      "title": "Acquisition.gov — Agency Procurement Forecasts Directory",
+      "jurisdiction": "Federal (All Agencies)",
+      "platform": "Acquisition.gov Master Index",
+      "thresholds": "Planned acquisitions > $350,000 SAT (6–18 months pre-RFP)",
+      "url": "https://www.acquisition.gov/procurement-forecasts",
+      "tags": [
+        "forecast",
+        "pre-rfp",
+        "acquisition.gov",
+        "pipeline",
+        "market research",
+        "osdbu"
+      ],
+      "summary": "Master federal index linking directly to every Cabinet and independent agency's annual Small Business Procurement Forecast prior to SAM.gov release."
+    },
+    {
+      "id": "FED-05",
+      "category": "FEDERAL_OSINT",
+      "title": "GSA Acquisition Gateway — Cross-Agency Forecast Tool",
+      "jurisdiction": "Federal (GSA Governmentwide)",
+      "platform": "GSA Acquisition Gateway",
+      "thresholds": "Upcoming Simplified & Major Acquisitions Nationwide",
+      "url": "https://acquisitiongateway.gov/forecast",
+      "tags": [
+        "gsa",
+        "acquisition gateway",
+        "forecast",
+        "naics",
+        "arizona",
+        "california",
+        "pre-solicitation"
+      ],
+      "summary": "Unified searchable database aggregating upcoming federal contracting opportunities across participating civilian agencies filterable by NAICS, state, and set-aside."
+    },
+    {
+      "id": "FED-06",
+      "category": "FEDERAL_OSINT",
+      "title": "USA.gov A–Z Index of U.S. Government Departments and Agencies",
+      "jurisdiction": "Federal (All Branches & Agencies)",
+      "platform": "USA.gov Official Directory",
+      "thresholds": "Agency mission & organizational routing",
+      "url": "https://www.usa.gov/agency-index",
+      "tags": [
+        "usa.gov",
+        "agency directory",
+        "sub-agencies",
+        "bureaus",
+        "osdbu"
+      ],
+      "summary": "Authoritative directory of every federal department, sub-agency, and independent commission for mapping buying offices and OSDBU entry points."
+    },
+    {
+      "id": "OSDBU-01",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Veterans Affairs (VA) OSDBU & Direct Access Program",
+      "jurisdiction": "Federal Cabinet (VA / VISN 22)",
+      "platform": "VA OSDBU & Vendor Portal (vetbiz@va.gov)",
+      "thresholds": "38 U.S.C. 8127 Veterans First Rule of Two (Sole Source up to $5M)",
+      "url": "https://www.va.gov/osdbu/",
+      "tags": [
+        "va",
+        "veterans affairs",
+        "visn 22",
+        "nco 22",
+        "veterans first",
+        "sdvosb",
+        "vosb",
+        "direct access program",
+        "section 508",
+        "clinical"
+      ],
+      "summary": "Enforces statutory SDVOSB (#1) and VOSB (#2) priority ahead of all other socioeconomic programs across VA medical centers (Phoenix, Tucson, Yuma, San Diego) and TAC/SAC."
+    },
+    {
+      "id": "OSDBU-02",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of War / Defense (DoD) Office of Small Business Programs",
+      "jurisdiction": "Federal Cabinet (DoD & Military Services)",
+      "platform": "DoD OSBP & Installation Small Business Offices",
+      "thresholds": "GPC <= $15K ($25K Contingency) • PIEE Simplified <= $350K",
+      "url": "https://business.defense.gov/sboffices/",
+      "tags": [
+        "dod",
+        "department of war",
+        "osbp",
+        "ypg",
+        "mcas yuma",
+        "navwar",
+        "fort huachuca",
+        "mciwest",
+        "dd form 2579",
+        "small business professional"
+      ],
+      "summary": "Directory of installation-level Small Business Professionals (SBPs) who sign DD Form 2579 small-business coordination records across Army, Navy, Marine Corps, Air Force, and Defense Agencies."
+    },
+    {
+      "id": "OSDBU-03",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Labor (DOL) OSDBU",
+      "jurisdiction": "Federal Cabinet (DOL / ETA / OASAM)",
+      "platform": "DOL OSDBU (osdbu@dol.gov)",
+      "thresholds": "GPC <= $15K • SAT <= $350K",
+      "url": "https://www.dol.gov/agencies/oasam/centers-offices/office-of-the-senior-procurement-executive/office-of-small-and-disadvantaged-business-utilization",
+      "tags": [
+        "dol",
+        "department of labor",
+        "ten 07-25",
+        "ai literacy",
+        "wioa",
+        "workforce",
+        "section 508",
+        "611710"
+      ],
+      "summary": "Oversees small business contracting for DOL OASAM and Employment and Training Administration (author of TEN No. 07-25 AI Literacy Framework)."
+    },
+    {
+      "id": "OSDBU-04",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Education (ED) OSDBU",
+      "jurisdiction": "Federal Cabinet (ED / OFO / IES)",
+      "platform": "ED OSDBU (small.business@ed.gov)",
+      "thresholds": "GPC <= $15K • SAT <= $350K",
+      "url": "https://www.ed.gov/about/ed-offices/ofo/osdbu",
+      "tags": [
+        "education",
+        "ed.gov",
+        "oer",
+        "wcag",
+        "section 508",
+        "ocr",
+        "hsi",
+        "title v",
+        "curriculum",
+        "611710"
+      ],
+      "summary": "Coordinates small-business IT, Section 508 / WCAG digital accessibility, educational R&D, and postsecondary technical assistance procurements."
+    },
+    {
+      "id": "OSDBU-05",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Agriculture (USDA) OSDBU",
+      "jurisdiction": "Federal Cabinet (USDA / APHIS / NIFA / Rural Dev)",
+      "platform": "USDA OSDBU (sm.osdbu.small@usda.gov)",
+      "thresholds": "GPC <= $15K • SAT <= $350K",
+      "url": "https://www.usda.gov/about-usda/general-information/staff-offices/departmental-administration/office-small-and-disadvantaged-business-utilization-osdbu",
+      "tags": [
+        "usda",
+        "agriculture",
+        "nutrition",
+        "food informatics",
+        "aphis",
+        "nifa",
+        "agtech",
+        "section 508",
+        "rural"
+      ],
+      "summary": "Supports VOSB/small-business access across USDA agencies for Section 508 compliance, nutrition/food informatics, and rural agricultural technology."
+    },
+    {
+      "id": "OSDBU-06",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Health & Human Services (HHS) OSDBU",
+      "jurisdiction": "Federal Cabinet (HHS / IHS / NIH / CDC / CMS)",
+      "platform": "HHS Small Business Customer Experience (SBCX)",
+      "thresholds": "GPC <= $15K • SAT <= $350K",
+      "url": "https://www.hhs.gov/about/agencies/asfr/acquisition/osdbu/index.html",
+      "tags": [
+        "hhs",
+        "ihs",
+        "indian health service",
+        "nih",
+        "cdc",
+        "cms",
+        "sbcx",
+        "hipaa",
+        "bilingual",
+        "accessibility"
+      ],
+      "summary": "Gateway via HHS SBCX (SAM UEI login) to Indian Health Service (Phoenix/Tucson/Fort Yuma), NIH, CDC, HRSA, and CMS small-business specialists."
+    },
+    {
+      "id": "OSDBU-07",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of the Interior (DOI) OSDBU",
+      "jurisdiction": "Federal Cabinet (Reclamation / BIA / BIE / BLM / NPS)",
+      "platform": "DOI OSDBU (doi_osdbu@ios.doi.gov)",
+      "thresholds": "GPC <= $15K • SAT <= $350K • Buy Indian Act",
+      "url": "https://www.doi.gov/pmb/osdbu",
+      "tags": [
+        "interior",
+        "doi",
+        "bureau of reclamation",
+        "yuma",
+        "bureau of indian education",
+        "bie",
+        "bia",
+        "curriculum"
+      ],
+      "summary": "Covers Bureau of Reclamation (Lower Colorado / Yuma Area Office), Bureau of Indian Education (BIE), BLM, and National Park Service procurements."
+    },
+    {
+      "id": "OSDBU-08",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of the Treasury & IRS OSDBU",
+      "jurisdiction": "Federal Cabinet (Treasury / IRS)",
+      "platform": "Treasury OSDBU (OSDBU_Team@Treasury.gov • IRS: PROCUREMENT.SBRO@irs.gov)",
+      "thresholds": "GPC <= $15K • SAT <= $350K",
+      "url": "https://home.treasury.gov/policy-issues/small-business-programs/small-and-disadvantaged-business-utilization/how-to-contact-us",
+      "tags": [
+        "treasury",
+        "irs",
+        "ai training",
+        "data science",
+        "it modernization",
+        "541511",
+        "611710"
+      ],
+      "summary": "Provides direct Small Business Specialist contacts for Treasury bureaus and IRS IT/workforce AI training task orders."
+    },
+    {
+      "id": "OSDBU-09",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Homeland Security (DHS) OSDBU",
+      "jurisdiction": "Federal Cabinet (CBP / CISA / FEMA / ICE)",
+      "platform": "DHS Vendor Outreach Sessions (VOS)",
+      "thresholds": "GPC <= $15K ($25K Emergency) • SAT <= $350K ($1M Emergency)",
+      "url": "https://www.dhs.gov/osdbu",
+      "tags": [
+        "dhs",
+        "cbp",
+        "cisa",
+        "fema",
+        "vendor outreach sessions",
+        "cybersecurity",
+        "borderlands"
+      ],
+      "summary": "Hosts monthly 15-minute virtual Vendor Outreach Sessions (VOS) connecting small businesses directly with CBP, CISA, FEMA, and DHS HQ buyers."
+    },
+    {
+      "id": "OSDBU-10",
+      "category": "CABINET_OSDBU",
+      "title": "U.S. Dept. of Commerce, Justice, Energy, HUD, DOT & State OSDBUs",
+      "jurisdiction": "Federal Cabinet Cross-Directory",
+      "platform": "Federal Small Business Offices Master Directory",
+      "thresholds": "GPC <= $15K • SAT <= $350K",
+      "url": "https://business.defense.gov/Work-with-us/Federal-Small-Business-Offices/",
+      "tags": [
+        "commerce",
+        "mbda",
+        "nist",
+        "justice",
+        "doj",
+        "ada title ii",
+        "energy",
+        "wapa",
+        "hud",
+        "dot",
+        "faa",
+        "state department"
+      ],
+      "summary": "Unified cross-agency OSDBU lookup spanning Commerce (NIST/MBDA/NOAA), Justice (ADA Title II), Energy (WAPA/National Labs), HUD, DOT (FAA), and State (FSI)."
+    },
+    {
+      "id": "FAR-01",
+      "category": "DOD_CYBER_FAR",
+      "title": "FAR Subpart 2.1 (FAR 2.101) — Official Acquisition Thresholds & COTS Definitions",
+      "jurisdiction": "Federal Governmentwide (48 CFR Part 2)",
+      "platform": "Acquisition.gov (FAC 2025-06 Inflation Update)",
+      "thresholds": "MPT = $15,000 ($2,500 SCA; $25,000 Contingency) • SAT = $350,000 ($1M Contingency)",
+      "url": "https://www.acquisition.gov/far/part-2#FAR_Subpart_2_1",
+      "tags": [
+        "far 2.101",
+        "micro-purchase",
+        "15000",
+        "simplified acquisition",
+        "350000",
+        "cots",
+        "commercial service",
+        "far part 12",
+        "far part 13"
+      ],
+      "summary": "Defines the $15,000 Micro-Purchase Threshold (for COTS & SCA-exempt professional services), the $350,000 Simplified Acquisition Threshold (reserved for Small Business under FAR 19.502-2), and COTS exemptions."
+    },
+    {
+      "id": "FAR-02",
+      "category": "DOD_CYBER_FAR",
+      "title": "FAR Subpart 9.1 (9.104-1) — Responsible Prospective Contractors & SBA COC",
+      "jurisdiction": "Federal Governmentwide (48 CFR Part 9)",
+      "platform": "Acquisition.gov",
+      "thresholds": "Mandatory pre-award responsibility gate on all federal contracts",
+      "url": "https://www.acquisition.gov/far/subpart-9.1",
+      "tags": [
+        "far 9.104-1",
+        "responsibility",
+        "sf 1408",
+        "past performance",
+        "ethics",
+        "sba coc",
+        "certificate of competency",
+        "far 19.6"
+      ],
+      "summary": "Establishes the 7 General Standards of contractor responsibility (financial resources, schedule, past performance, ethics, technical controls) plus Small Business Certificate of Competency (COC) appeal rights."
+    },
+    {
+      "id": "FAR-03",
+      "category": "DOD_CYBER_FAR",
+      "title": "FAR 15.204-1 — Uniform Contract Format (UCF Sections A–M)",
+      "jurisdiction": "Federal Negotiated RFPs (48 CFR Part 15)",
+      "platform": "Acquisition.gov",
+      "thresholds": "Formal negotiated solicitations > $350,000 SAT",
+      "url": "https://www.acquisition.gov/far/15.204-1",
+      "tags": [
+        "far 15.204-1",
+        "ucf",
+        "section l",
+        "section m",
+        "section c",
+        "pws",
+        "sow",
+        "clin",
+        "rfp anatomy",
+        "bid no-bid"
+      ],
+      "summary": "Standardizes federal RFPs into Sections A–M. Best-practice triage order: Section M (Evaluation Factors) -> Section L (Instructions) -> Section C (PWS/SOW) -> Section B (CLIN Pricing)."
+    },
+    {
+      "id": "CYB-01",
+      "category": "DOD_CYBER_FAR",
+      "title": "FAR 52.204-21 — Basic Safeguarding of Covered Contractor Systems (15 FCI Controls)",
+      "jurisdiction": "Federal Civilian & DoD",
+      "platform": "Acquisition.gov",
+      "thresholds": "All non-COTS contracts handling Federal Contract Information (FCI)",
+      "url": "https://www.acquisition.gov/far/52.204-21",
+      "tags": [
+        "far 52.204-21",
+        "fci",
+        "cmmc level 1",
+        "15 controls",
+        "safeguarding",
+        "cots exemption",
+        "ssp"
+      ],
+      "summary": "Mandates 15 baseline cybersecurity controls for safeguarding FCI (identical to CMMC Level 1). Pure COTS software/product acquisitions are exempt under 52.204-21(c)."
+    },
+    {
+      "id": "CYB-02",
+      "category": "DOD_CYBER_FAR",
+      "title": "DoD CIO CMMC 2.0 Hub (32 CFR Part 170 & DFARS 252.204-7021)",
+      "jurisdiction": "U.S. Dept. of War / Defense",
+      "platform": "DoD CIO & PIEE / SPRS",
+      "thresholds": "Phase 1 active since Nov 10, 2025 (Level 1 Self-Assessment in SPRS)",
+      "url": "https://dodcio.defense.gov/CMMC/About/",
+      "tags": [
+        "cmmc",
+        "32 cfr 170",
+        "dfars 252.204-7021",
+        "sprs",
+        "piee",
+        "fci",
+        "cui",
+        "cmmc uid",
+        "affirming official"
+      ],
+      "summary": "Governs CMMC Level 1 (15 FCI controls, free annual self-assessment in PIEE/SPRS) and Level 2 (110 NIST SP 800-171 Rev. 2 CUI controls); COTS items remain exempt."
+    },
+    {
+      "id": "CYB-03",
+      "category": "DOD_CYBER_FAR",
+      "title": "NIST SP 800-171 Rev. 3 vs. Rev. 2 — CUI Security Controls",
+      "jurisdiction": "Federal & Defense Industrial Base",
+      "platform": "NIST CSRC",
+      "thresholds": "Applies when storing, processing, or transmitting CUI",
+      "url": "https://csrc.nist.gov/pubs/sp/800/171/r3/final",
+      "tags": [
+        "nist 800-171",
+        "cui",
+        "rev 2",
+        "rev 3",
+        "class deviation",
+        "sprs",
+        "zero trust"
+      ],
+      "summary": "NIST finalized Rev. 3 (97 controls), while DoD maintains a Class Deviation keeping Rev. 2 (110 controls) as the active SPRS & CMMC Level 2 scoring baseline until 32 CFR 170 updates."
+    },
+    {
+      "id": "CYB-04",
+      "category": "DOD_CYBER_FAR",
+      "title": "Project Spectrum & Warfighting Acquisition University (WarU Cyber)",
+      "jurisdiction": "U.S. Dept. of War / Defense OSBP",
+      "platform": "ProjectSpectrum.io & WarU.edu (U.S. IP Required)",
+      "thresholds": "$0 DoD-funded Cyber Readiness Check & cATO Training",
+      "url": "https://www.waru.edu/events?events-search=cyber",
+      "tags": [
+        "project spectrum",
+        "waru",
+        "dau",
+        "cato",
+        "cyber readiness check",
+        "ssp",
+        "poam"
+      ],
+      "summary": "Free DoD-sponsored CMMC Level 1/2 readiness check (projectspectrum.io) and Warfighting Acquisition University (waru.edu, formerly DAU) Zero-Trust and Continuous ATO training."
+    },
+    {
+      "id": "DOD-01",
+      "category": "DOD_CYBER_FAR",
+      "title": "DPCAP & PIEE Solicitation Module (Oct 1, 2026 DoD Mandate)",
+      "jurisdiction": "U.S. Dept. of War / Defense",
+      "platform": "DPCAP (acq.osd.mil) & PIEE (piee.eb.mil)",
+      "thresholds": "DoD GPC Guidebook <= $15K • PIEE Electronic Proposals (PGI 205.1)",
+      "url": "https://www.acq.osd.mil/asda/dpc/index.html",
+      "tags": [
+        "dpcap",
+        "piee",
+        "solicitation module",
+        "wawf",
+        "sprs",
+        "proposal manager",
+        "gpc guidebook",
+        "pgi 205.1"
+      ],
+      "summary": "Effective Oct 1, 2026, unclassified DoD solicitations and electronic quote uploads run through PIEE's Solicitation Module (Proposal Manager role), unified with SPRS and WAWF invoicing."
+    },
+    {
+      "id": "DOD-02",
+      "category": "DOD_CYBER_FAR",
+      "title": "Defense Logistics Agency (DLA DCSO) & ASSIST Standards (MIL-HDBK-29612)",
+      "jurisdiction": "U.S. Dept. of War / DLA",
+      "platform": "DLA.mil (DCSO SP4701/SP4709) & ASSIST QuickSearch",
+      "thresholds": "IT/Software via SAM.gov & PIEE (skip DIBBS NSN hardware board)",
+      "url": "https://assist.dla.mil/online/start/index.cfm",
+      "tags": [
+        "dla",
+        "dcso",
+        "jets",
+        "assist",
+        "mil-hdbk-29612",
+        "did",
+        "cdrl",
+        "interactive courseware",
+        "541511"
+      ],
+      "summary": "Target DLA Contracting Services Office (DCSO) & Document Services for 541511/541512 software and Section 508 (skipping physical NSN parts board DIBBS); use ASSIST for CDRL DIDs and MIL-HDBK-29612 courseware standards."
+    },
+    {
+      "id": "SUB-01",
+      "category": "SUBK_COOP_GSA_SBIR",
+      "title": "SBA Directory of Federal Prime Contractors with Subcontracting Plans",
+      "jurisdiction": "Federal Governmentwide (FAR 19.702 / 52.219-9)",
+      "platform": "SBA.gov Downloadable XLSX & SUBNet",
+      "thresholds": "Mandatory on OTSB prime contracts > $750,000",
+      "url": "https://legacy.sba.gov/document/support-directory-federal-government-prime-contractors-subcontracting-plans",
+      "tags": [
+        "subcontracting",
+        "sblo",
+        "prime contractors",
+        "vosb",
+        "sdvosb",
+        "far 52.219-9",
+        "subnet",
+        "teaming"
+      ],
+      "summary": "Official SBA dataset of 18,900+ large federal prime contracts required by law to maintain Small Business Subcontracting Plans and Small Business Liaison Officers (SBLOs)."
+    },
+    {
+      "id": "SUB-02",
+      "category": "SUBK_COOP_GSA_SBIR",
+      "title": "FAR 52.219-14 (50% Cap) & FAR 52.215-23 (70% Pass-Through) + FCA Guardrails",
+      "jurisdiction": "Federal Set-Asides & Subcontracts",
+      "platform": "Acquisition.gov & DOJ False Claims Act (31 U.S.C. 3729)",
+      "thresholds": "<= 50% to non-similarly situated firms on services set-asides; > 70% triggers Added-Value rule",
+      "url": "https://www.acquisition.gov/far/52.219-14",
+      "tags": [
+        "far 52.219-14",
+        "limitations on subcontracting",
+        "similarly situated entity",
+        "far 52.215-23",
+        "pass-through",
+        "false claims act",
+        "13 cfr 125.6"
+      ],
+      "summary": "Prohibits set-aside fronts (>50% paid to non-SSEs on services) and disallowable >70% pass-through markups without documented technical/QA Added Value."
+    },
+    {
+      "id": "GSA-01",
+      "category": "SUBK_COOP_GSA_SBIR",
+      "title": "GSA Multiple Award Schedule (MAS) Roadmap & Vendor Support Center (VSC)",
+      "jurisdiction": "Federal Governmentwide (GSA FAS)",
+      "platform": "VSC (vsc.gsa.gov) & eOffer / GSA eBuy",
+      "thresholds": "$0 eOffer fee • Clause I-FSS-639 ($100K sales / 5-yr base) • Startup Springboard (IT SINs 54151S & 511210)",
+      "url": "https://www.gsa.gov/sell-to-government/step-1-learn-about-government-contracting/how-to-access-contract-opportunities/help-with-mas-contracts-to-sell-to-government/roadmap-to-get-a-mas-contract",
+      "tags": [
+        "gsa mas",
+        "vsc",
+        "eoffer",
+        "ebuy",
+        "54151s",
+        "511210",
+        "611430",
+        "startup springboard",
+        "fast lane",
+        "i-fss-639"
+      ],
+      "summary": "Phase 2 IDIQ vehicle unlocking closed GSA eBuy RFQs. Section 9 of VSC houses mandatory free Pathways to Success and Readiness Assessment prerequisites; subcontractors under GSA primes do not need their own Schedule."
+    },
+    {
+      "id": "SBIR-01",
+      "category": "SUBK_COOP_GSA_SBIR",
+      "title": "SBIR / STTR (America's Seed Fund) & Arizona Commerce Authority FAST Grant",
+      "jurisdiction": "11 Federal R&D Agencies + Arizona Commerce Authority",
+      "platform": "SBIR.gov & AZCommerce.com",
+      "thresholds": "Reauthorized via S. 3971 through Sept 30, 2031 • AZ FAST Phase 0 up to $3,000 • Unlimited Sole-Source Phase III",
+      "url": "https://www.azcommerce.com/programs/sbir-sttr-resource-center/",
+      "tags": [
+        "sbir",
+        "sttr",
+        "541715",
+        "az fast",
+        "phase iii",
+        "data rights",
+        "usda nifa",
+        "nsf",
+        "ies",
+        "afwerx",
+        "non-dilutive"
+      ],
+      "summary": "0%-equity federal R&D funding (20-yr SBIR Data Rights + sole-source Phase III authority). STTR brings >=30% R&D subawards into partner universities; AZ FAST prioritizes rural & Veteran Arizona tech firms."
+    },
+    {
+      "id": "FEMA-01",
+      "category": "SUBK_COOP_GSA_SBIR",
+      "title": "FEMA Industry Liaison Program (ILP), NBEOC & Stafford Act (FAR 26.2)",
+      "jurisdiction": "DHS / FEMA Region 9 (AZ, CA, NV, HI)",
+      "platform": "FEMA.gov (FEMA-Industry@fema.dhs.gov) & SAM Disaster Registry",
+      "thresholds": "Emergency GPC = $25,000 • Contingency SAT = $1,000,000 • Local-Area Set-Aside Preference",
+      "url": "https://www.fema.gov/business-industry/doing-business",
+      "tags": [
+        "fema",
+        "stafford act",
+        "far 26.2",
+        "ilp",
+        "nbeoc",
+        "emergency",
+        "25000",
+        "1000000",
+        "bilingual",
+        "section 508",
+        "offline pwa"
+      ],
+      "summary": "Stafford Act (42 U.S.C. 5150) grants local-area set-aside priority to businesses inside declared counties alongside elevated $25K GPC and $1M SAT limits for accessible, multilingual digital response."
+    },
+    {
+      "id": "COOP-01",
+      "category": "SUBK_COOP_GSA_SBIR",
+      "title": "1GPA & Mohave Educational Services Cooperative (MESC) — Piggyback Vehicles",
+      "jurisdiction": "Arizona Statewide & 50-State Public Entities (A.R.S. 41-2632)",
+      "platform": "OpenGov Procurement (Single $0 Vendor Login)",
+      "thresholds": "Enables direct POs > $100,000 with zero new RFP (~1% fee on closed sales only)",
+      "url": "https://1gpa.org/",
+      "tags": [
+        "1gpa",
+        "mohave",
+        "mesc",
+        "cooperative",
+        "piggyback",
+        "opengov",
+        "omnia",
+        "higher ed",
+        "k-12",
+        "municipal"
+      ],
+      "summary": "Both 1GPA (1gpa.org) and Mohave (mesc.org, 500+ AZ colleges/districts/cities) solicit competitive master contracts on OpenGov Procurement, letting public buyers issue >$100K POs without a 5-month RFP."
+    },
+    {
+      "id": "AZ-01",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Arizona State Procurement Office (ADOA-SPO) & APP Portal (app.az.gov)",
+      "jurisdiction": "State of Arizona & AZ Cooperative Members",
+      "platform": "APP / Ivalua (app.az.gov) — Uses 5-Digit NIGP Codes",
+      "thresholds": "P-Card <= $10,000 • Mandatory Small Business eQuotes $10,001–$100,000 (A.R.S. 41-2535) • Formal RFP > $100K",
+      "url": "https://spo.az.gov/suppliers/how-do-business-state-arizona",
+      "tags": [
+        "spo.az.gov",
+        "app.az.gov",
+        "adoa",
+        "nigp",
+        "208",
+        "918",
+        "920",
+        "924",
+        "small business",
+        "100000",
+        "p-card",
+        "equote"
+      ],
+      "summary": "Under A.R.S. 41-2535(B), AZ state purchases $10,001–$100,000 are statutorily restricted to Small Businesses (<100 FTE or <$4M). Select NIGP classes 208, 209, 918, 920, 924, and 958 in APP."
+    },
+    {
+      "id": "AZ-02",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "ADOT AZ UTRACS — Small Business Concern (SBC) Registry",
+      "jurisdiction": "Arizona Statewide (All 15 Counties — 49 CFR 26.39)",
+      "platform": "AZ UTRACS (utracs.azdot.gov)",
+      "thresholds": "$0 • 15-Minute Online Registration • Valid 3 Years • Zero PNW Audit",
+      "url": "https://azdot.gov/small-business-concern-sbc-guide",
+      "tags": [
+        "adot",
+        "utracs",
+        "sbc",
+        "small business concern",
+        "sky harbor",
+        "valley metro",
+        "ympo",
+        "pag",
+        "mag",
+        "49 cfr 26.39"
+      ],
+      "summary": "Race/gender-neutral statewide Small Business registry recognized across ADOT, Phoenix Sky Harbor, Tucson, Valley Metro, MAG, PAG, and Yuma YMPO federally funded contracts (unlike Maricopa-only Phoenix SBE)."
+    },
+    {
+      "id": "AZ-03",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "AZ Dept. of Emergency & Military Affairs (AZ DEMA & USPFO-AZ National Guard)",
+      "jurisdiction": "Dual State (app.az.gov) & Federal DoD (W912L2 / W50S6Z / W50S6Y)",
+      "platform": "State APP + Federal SAM.gov / PIEE",
+      "thresholds": "State P-Card <= $10K / SB <= $100K • Federal DoD GPC <= $15K / SAT <= $350K",
+      "url": "https://dema.az.gov/arizona-national-guard",
+      "tags": [
+        "dema",
+        "national guard",
+        "air national guard",
+        "uspfo",
+        "w912l2",
+        "w50s6z",
+        "w50s6y",
+        "adem",
+        "emergency"
+      ],
+      "summary": "Dual-hatted agency: State emergency missions buy via app.az.gov, while federal Army/Air Guard units buy via SAM.gov & PIEE under DoDAACs W912L2 (AZARNG), W50S6Z (161st ARW), and W50S6Y (162nd Wing)."
+    },
+    {
+      "id": "AZ-CTY-01",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Yuma, La Paz & Santa Cruz Counties — Western & Borderlands County Portals",
+      "jurisdiction": "Yuma (~213K), La Paz (~17K), & Santa Cruz (~49K) Counties, AZ",
+      "platform": "Yuma Procurement Portal & CivicPlus /Bids.aspx ($0 Notify Me)",
+      "thresholds": "ADA Title II: Yuma active Apr 2026; La Paz & Santa Cruz due Apr 26, 2027",
+      "url": "https://www.yumacountyaz.gov/government/general-services/procurement-portal",
+      "tags": [
+        "yuma county",
+        "la paz county",
+        "santa cruz county",
+        "nogales",
+        "borderlands",
+        "bilingual",
+        "ada title ii",
+        "wcag",
+        "county"
+      ],
+      "summary": "Covers Yuma County General Services (active Apr 2026 ADA Title II) plus rural/border neighbors La Paz County (lapaz.gov/Bids.aspx) and Santa Cruz County (santacruzcountyaz.gov) facing the Apr 26, 2027 <50K ADA Title II deadline."
+    },
+    {
+      "id": "AZ-CTY-02",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Maricopa, Pima, Pinal, Yavapai, Cochise & Coconino County Portals",
+      "jurisdiction": "6 Major Arizona Counties (>= 50,000 Pop — Apr 2026 ADA Title II Active)",
+      "platform": "OpenGov (Pinal, Yavapai) • Bonfire (Cochise) • BidNet $0 Tier (Maricopa, Pima) • IonWave (Coconino)",
+      "thresholds": "Consolidates into OpenGov, Bonfire, IonWave & BidNet Limited $0.00 Free Tier",
+      "url": "https://www.maricopa.gov/2087/Procurement-Services",
+      "tags": [
+        "maricopa county",
+        "pima county",
+        "pinal county",
+        "yavapai county",
+        "cochise county",
+        "coconino county",
+        "opengov",
+        "bonfire",
+        "bidnet",
+        "ionwave"
+      ],
+      "summary": "All 6 counties exceed 50K population (DOJ ADA Title II active now). Pinal & Yavapai share OpenGov; Cochise shares Bonfire; Maricopa & Pima use BidNet Direct (select $0 Limited Tier + Pima VSS); Coconino uses Ion Wave."
+    },
+    {
+      "id": "AZ-ED-01",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "AZPurchasing.org — 200+ Arizona School Districts & Community Colleges Hub",
+      "jurisdiction": "Arizona Statewide Education & Municipal Consortium (Founded in Yuma)",
+      "platform": "AZPurchasing.org ($0.00 Free Vendor Registration)",
+      "thresholds": "P-Card <= $10K • 3-Quote Roster $10,001–$100,000 (A.A.C. R7-2-1001) • > $100K RFP / 1GPA / Mohave",
+      "url": "https://www.azpurchasing.org/",
+      "tags": [
+        "azpurchasing",
+        "school districts",
+        "community colleges",
+        "k-12",
+        "cte",
+        "perkins v",
+        "yuma",
+        "mesa public schools",
+        "phoenix union"
+      ],
+      "summary": "Founded by the Yuma Educational Purchasing Association and used by 200+ AZ K-12 districts (including Mesa Public Schools & Phoenix Union HS) and colleges for free bid alerts and $10K–$100K 3-quote sourcing."
+    },
+    {
+      "id": "AZ-ED-02",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "ABOR Universities (The University of Arizona, ASU & NAU) Vendor Portals",
+      "jurisdiction": "Arizona Board of Regents Public Universities",
+      "platform": "Jaggaer (U of A BuyWays / NAU BOB), ASU Workday & PaymentWorks",
+      "thresholds": "Departmental P-Card <= $10,000 • Informal SB/Veteran Quotes < $100,000 • Formal RFP >= $100,000",
+      "url": "https://vendors.arizona.edu/",
+      "tags": [
+        "the university of arizona",
+        "asu",
+        "nau",
+        "abor",
+        "buyways",
+        "paymentworks",
+        "jaggaer",
+        "subaward",
+        "sttr",
+        "canvas lms",
+        "ada title ii"
+      ],
+      "summary": "Covers The University of Arizona (vendors.arizona.edu), ASU (cfo.asu.edu/do-business-asu), and NAU (in.nau.edu/contracting-purchasing-services/). P-Cards <= $10K bypass PaymentWorks onboarding delays; ideal for Non-Competing Subawards & STTR."
+    },
+    {
+      "id": "AZ-ED-03",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Maricopa County Community College District (MCCCD — 10 Colleges)",
+      "jurisdiction": "Maricopa County, AZ (100,000+ Students)",
+      "platform": "Bonfire / Euna (maricopa.bonfirehub.com — $0 Login)",
+      "thresholds": "Active Apr 2026 ADA Title II Mandate • Canvas LMS Fleet",
+      "url": "https://procurement.maricopa.edu/",
+      "tags": [
+        "maricopa community colleges",
+        "mcccd",
+        "bonfire",
+        "canvas lms",
+        "ada title ii",
+        "wcag",
+        "oer",
+        "ztc",
+        "ten 07-25"
+      ],
+      "summary": "10-college Canvas LMS system sharing the same $0 Bonfire vendor login as City of Yuma and Cochise County; hosts Arizona APEX Accelerator."
+    },
+    {
+      "id": "AZ-MUN-01",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Arizona OpenGov & Bonfire Cities (Yuma, Tucson, Scottsdale, Tempe, Peoria, Buckeye, Avondale, Flagstaff, Sierra Vista)",
+      "jurisdiction": "9 Major & Mid-Sized Arizona Municipalities",
+      "platform": "OpenGov Procurement & Bonfire / Euna ($0 Single-Sign-On)",
+      "thresholds": "Apr 2026 ADA Title II active >= 50K (Sierra Vista ~45K due Apr 26, 2027)",
+      "url": "https://www.yumaaz.gov/business/city-bids",
+      "tags": [
+        "city of yuma",
+        "tucson",
+        "scottsdale",
+        "tempe",
+        "peoria",
+        "buckeye",
+        "avondale",
+        "flagstaff",
+        "sierra vista",
+        "opengov",
+        "bonfire"
+      ],
+      "summary": "Zero extra portal accounts required: City of Yuma (yumaaz.bonfirehub.com), Tempe, Peoria, and Buckeye run on Bonfire; Tucson, Scottsdale, Avondale, Flagstaff, and Sierra Vista run on OpenGov; Chandler runs inside app.az.gov."
+    },
+    {
+      "id": "AZ-MUN-02",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Phoenix (procurePHX), Valley Metros & 17 Small/Rural AZ Towns (< 50K Pop Apr 2027 ADA Sprint)",
+      "jurisdiction": "Phoenix, Mesa, Gilbert, Glendale, Goodyear, Casa Grande + 17 Rural AZ Towns",
+      "platform": "Phoenix procurePHX / OpenGov + CivicPlus /Bids.aspx",
+      "thresholds": "17 Rural Towns (< 50K pop) hit mandatory DOJ ADA Title II deadline on April 26, 2027",
+      "url": "https://www.phoenix.gov/business.html",
+      "tags": [
+        "phoenix",
+        "procurephx",
+        "mesa",
+        "gilbert",
+        "glendale",
+        "nogales",
+        "kingman",
+        "bullhead city",
+        "apache junction",
+        "eloy",
+        "coolidge",
+        "cottonwood",
+        "bisbee",
+        "benson",
+        "show low",
+        "page",
+        "globe",
+        "gila bend",
+        "ada title ii"
+      ],
+      "summary": "Combines Phoenix procurePHX/OpenGov registration with high-urgency P-Card ($4.5K–$9.9K) website & Council PDF accessibility sprints across 17 smaller AZ towns (Nogales, Kingman, Bullhead City, Apache Junction, Eloy, Coolidge, Cottonwood, Camp Verde, Show Low, Page, Globe, Benson, Bisbee, Fountain Hills, Carefree, Gila Bend) ahead of April 26, 2027."
+    },
+    {
+      "id": "AZ-AIR-01",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Arizona Commercial Airports — Phoenix Sky Harbor (PHX), Flagstaff (FLG) & Yuma (YUM / YCAA)",
+      "jurisdiction": "FAA / USDOT Grant-Funded Public Airport Authorities",
+      "platform": "OpenGov Procurement (PHX & FLG) + FlyYuma.com (YCAA)",
+      "thresholds": "ADA Title II + USDOT 49 CFR Part 27 + Title VI Bilingual LEP + ADOT SBC",
+      "url": "https://www.skyharbor.com/airport-business/business-opportunities/",
+      "tags": [
+        "sky harbor",
+        "phx",
+        "flagstaff airport",
+        "yuma international airport",
+        "flyyuma",
+        "faa",
+        "49 cfr 27",
+        "sbc",
+        "accessibility"
+      ],
+      "summary": "PHX (Destination PHX 2050) and FLG publish solicitations via OpenGov; Yuma International Airport (flyyuma.com) is a joint-use civil/MCAS Yuma airfield. All enforce strict federal digital & bilingual accessibility mandates."
+    },
+    {
+      "id": "AZ-CTY-YUMA",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Yuma County — General Services Procurement Portal",
+      "jurisdiction": "Yuma County, AZ (~213K Pop)",
+      "platform": "Yuma County Portal (2725 S. Ave B)",
+      "thresholds": "ADA Title II Active (Apr 2026) • P-Card & Formal RFPs",
+      "url": "https://www.yumacountyaz.gov/government/general-services/procurement-portal",
+      "tags": [
+        "yuma county",
+        "yuma",
+        "borderlands",
+        "bilingual",
+        "ada title ii",
+        "health district",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Yuma County, AZ (~213K Pop) procurement entry point (Yuma County Portal (2725 S. Ave B)). Statutory accessibility status: ADA Title II Active (Apr 2026) • P-Card & Formal RFPs."
+    },
+    {
+      "id": "AZ-CTY-LAPAZ",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "La Paz County — Purchasing & Bids Portal",
+      "jurisdiction": "La Paz County, AZ (~17K Pop)",
+      "platform": "CivicPlus /Bids.aspx ($0 Notify Me)",
+      "thresholds": "ADA Title II Due Apr 26, 2027 (<50K Rural Gate)",
+      "url": "https://www.lapaz.gov/Bids.aspx",
+      "tags": [
+        "la paz county",
+        "parker",
+        "quartzsite",
+        "rural",
+        "ada title ii",
+        "april 2027",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official La Paz County, AZ (~17K Pop) procurement entry point (CivicPlus /Bids.aspx ($0 Notify Me)). Statutory accessibility status: ADA Title II Due Apr 26, 2027 (<50K Rural Gate)."
+    },
+    {
+      "id": "AZ-CTY-SANTACRUZ",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Santa Cruz County — Bids & Solicitations",
+      "jurisdiction": "Santa Cruz County, AZ (~49K Pop)",
+      "platform": "CivicPlus /Bids.aspx ($0 Notify Me)",
+      "thresholds": "ADA Title II Due Apr 26, 2027 (<50K Borderlands Gate)",
+      "url": "https://www.santacruzcountyaz.gov/286/Bids-Solicitations",
+      "tags": [
+        "santa cruz county",
+        "nogales",
+        "borderlands",
+        "bilingual",
+        "spanish",
+        "ada title ii",
+        "april 2027",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Santa Cruz County, AZ (~49K Pop) procurement entry point (CivicPlus /Bids.aspx ($0 Notify Me)). Statutory accessibility status: ADA Title II Due Apr 26, 2027 (<50K Borderlands Gate)."
+    },
+    {
+      "id": "AZ-CTY-COCHISE",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Cochise County — Procurement Department",
+      "jurisdiction": "Cochise County, AZ (~125K Pop)",
+      "platform": "Bonfire / Euna (cochise.bonfirehub.com)",
+      "thresholds": "ADA Title II Active (Apr 2026) • Fort Huachuca Corridor",
+      "url": "https://www.cochise.az.gov/429/Procurement",
+      "tags": [
+        "cochise county",
+        "sierra vista",
+        "bisbee",
+        "benson",
+        "fort huachuca",
+        "bonfire",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Cochise County, AZ (~125K Pop) procurement entry point (Bonfire / Euna (cochise.bonfirehub.com)). Statutory accessibility status: ADA Title II Active (Apr 2026) • Fort Huachuca Corridor."
+    },
+    {
+      "id": "AZ-CTY-PINAL",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Pinal County — Purchasing Office",
+      "jurisdiction": "Pinal County, AZ (~480K Pop)",
+      "platform": "OpenGov Procurement ($0 Single Login)",
+      "thresholds": "ADA Title II Active (Apr 2026)",
+      "url": "https://www.pinal.gov/175/Purchasing",
+      "tags": [
+        "pinal county",
+        "florence",
+        "casa grande",
+        "eloy",
+        "coolidge",
+        "apache junction",
+        "opengov",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Pinal County, AZ (~480K Pop) procurement entry point (OpenGov Procurement ($0 Single Login)). Statutory accessibility status: ADA Title II Active (Apr 2026)."
+    },
+    {
+      "id": "AZ-CTY-YAVAPAI",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Yavapai County — Solicitation Opportunities",
+      "jurisdiction": "Yavapai County, AZ (~249K Pop)",
+      "platform": "OpenGov Procurement ($0 Single Login)",
+      "thresholds": "ADA Title II Active (Apr 2026)",
+      "url": "https://www.yavapaiaz.gov/County-Government/Solicitation-Opportunities",
+      "tags": [
+        "yavapai county",
+        "prescott",
+        "cottonwood",
+        "camp verde",
+        "opengov",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Yavapai County, AZ (~249K Pop) procurement entry point (OpenGov Procurement ($0 Single Login)). Statutory accessibility status: ADA Title II Active (Apr 2026)."
+    },
+    {
+      "id": "AZ-CTY-MARICOPA",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Maricopa County — Office of Procurement Services",
+      "jurisdiction": "Maricopa County, AZ (~4.6M Pop)",
+      "platform": "BidNet Direct ($0.00 Limited Free Tier)",
+      "thresholds": "ADA Title II Active (Apr 2026) • OMNIA Lead Agency",
+      "url": "https://www.maricopa.gov/2087/Procurement-Services",
+      "tags": [
+        "maricopa county",
+        "phoenix",
+        "bidnet",
+        "omnia",
+        "ada title ii",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Maricopa County, AZ (~4.6M Pop) procurement entry point (BidNet Direct ($0.00 Limited Free Tier)). Statutory accessibility status: ADA Title II Active (Apr 2026) • OMNIA Lead Agency."
+    },
+    {
+      "id": "AZ-CTY-PIMA",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Pima County — Procurement Department",
+      "jurisdiction": "Pima County, AZ (~1.06M Pop)",
+      "platform": "Pima Vendor Self Service (VSS) + BidNet $0 Tier",
+      "thresholds": "ADA Title II Active (Apr 2026)",
+      "url": "https://www.pima.gov/procurement",
+      "tags": [
+        "pima county",
+        "tucson",
+        "vss",
+        "bidnet",
+        "ada title ii",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Pima County, AZ (~1.06M Pop) procurement entry point (Pima Vendor Self Service (VSS) + BidNet $0 Tier). Statutory accessibility status: ADA Title II Active (Apr 2026)."
+    },
+    {
+      "id": "AZ-CTY-COCONINO",
+      "category": "AZ_STATE_COUNTIES",
+      "title": "Coconino County — Purchasing Department",
+      "jurisdiction": "Coconino County, AZ (~145K Pop)",
+      "platform": "Ion Wave Technologies (coconino.ionwave.net)",
+      "thresholds": "ADA Title II Active (Apr 2026)",
+      "url": "https://www.coconino.az.gov/316/Purchasing",
+      "tags": [
+        "coconino county",
+        "flagstaff",
+        "page",
+        "ionwave",
+        "tribal",
+        "ada title ii",
+        "county",
+        "arizona",
+        "sled"
+      ],
+      "summary": "Official Coconino County, AZ (~145K Pop) procurement entry point (Ion Wave Technologies (coconino.ionwave.net)). Statutory accessibility status: ADA Title II Active (Apr 2026)."
+    },
+    {
+      "id": "AZ-CITY-10",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Yuma — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Yuma, AZ (~101K Pop)",
+      "platform": "Bonfire (yumaaz.bonfirehub.com)",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.yumaaz.gov/business/city-bids",
+      "tags": [
+        "city of yuma",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "bonfire"
+      ],
+      "summary": "Official municipal procurement portal for City of Yuma, Arizona (~101K population; Bonfire (yumaaz.bonfirehub.com)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-11",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Phoenix — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Phoenix, AZ (~1.66M Pop)",
+      "platform": "procurePHX (SAP) + OpenGov",
+      "thresholds": "Apr 2026 ADA Active • ADOT SBC • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.phoenix.gov/business.html",
+      "tags": [
+        "city of phoenix",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "procurephx"
+      ],
+      "summary": "Official municipal procurement portal for City of Phoenix, Arizona (~1.66M population; procurePHX (SAP) + OpenGov). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC."
+    },
+    {
+      "id": "AZ-CITY-12",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Tucson — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Tucson, AZ (~550K Pop)",
+      "platform": "OpenGov Procurement",
+      "thresholds": "Apr 2026 ADA Active • ADOT SBC • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.tucsonaz.gov/Departments/Business-Services-Department/Procurement",
+      "tags": [
+        "city of tucson",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "opengov"
+      ],
+      "summary": "Official municipal procurement portal for City of Tucson, Arizona (~550K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC."
+    },
+    {
+      "id": "AZ-CITY-13",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Mesa — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Mesa, AZ (~515K Pop)",
+      "platform": "Mesa VSS + 1GPA / Mohave Co-Op",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.mesaaz.gov/Business-Development/Procurement-Services",
+      "tags": [
+        "city of mesa",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "mesa"
+      ],
+      "summary": "Official municipal procurement portal for City of Mesa, Arizona (~515K population; Mesa VSS + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-14",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Chandler — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Chandler, AZ (~280K Pop)",
+      "platform": "Hosted Inside State APP (app.az.gov)",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.chandleraz.gov/business/vendor-services/purchasing",
+      "tags": [
+        "city of chandler",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "hosted"
+      ],
+      "summary": "Official municipal procurement portal for City of Chandler, Arizona (~280K population; Hosted Inside State APP (app.az.gov)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-15",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Town of Gilbert — Municipal Procurement & Solicitations",
+      "jurisdiction": "Town of Gilbert, AZ (~275K Pop)",
+      "platform": "Gilbert Purchasing + 1GPA / Mohave",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.gilbertaz.gov/departments/finance-mgmt-services/purchasing-division",
+      "tags": [
+        "town of gilbert",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "gilbert"
+      ],
+      "summary": "Official municipal procurement portal for Town of Gilbert, Arizona (~275K population; Gilbert Purchasing + 1GPA / Mohave). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-16",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Glendale — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Glendale, AZ (~255K Pop)",
+      "platform": "Munis VSS + PaymentWorks",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.glendaleaz.gov/your_government/city_finances/procurement",
+      "tags": [
+        "city of glendale",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "munis"
+      ],
+      "summary": "Official municipal procurement portal for City of Glendale, Arizona (~255K population; Munis VSS + PaymentWorks). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-17",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Scottsdale — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Scottsdale, AZ (~245K Pop)",
+      "platform": "OpenGov Procurement",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.scottsdaleaz.gov/purchasing",
+      "tags": [
+        "city of scottsdale",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "opengov"
+      ],
+      "summary": "Official municipal procurement portal for City of Scottsdale, Arizona (~245K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-18",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Peoria — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Peoria, AZ (~198K Pop)",
+      "platform": "Bonfire / OpenGov",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.peoriaaz.gov/government/departments/finance/materials-management",
+      "tags": [
+        "city of peoria",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "bonfire"
+      ],
+      "summary": "Official municipal procurement portal for City of Peoria, Arizona (~198K population; Bonfire / OpenGov). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-19",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Tempe — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Tempe, AZ (~190K Pop)",
+      "platform": "Bonfire Interactive",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.tempe.gov/government/financial-services/procurement",
+      "tags": [
+        "city of tempe",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "bonfire"
+      ],
+      "summary": "Official municipal procurement portal for City of Tempe, Arizona (~190K population; Bonfire Interactive). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-20",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Buckeye — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Buckeye, AZ (~115K Pop)",
+      "platform": "Bonfire Interactive",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.buckeyeaz.gov/business/construction-contracting/contracting-purchasing",
+      "tags": [
+        "city of buckeye",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "bonfire"
+      ],
+      "summary": "Official municipal procurement portal for City of Buckeye, Arizona (~115K population; Bonfire Interactive). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-21",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Goodyear — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Goodyear, AZ (~115K Pop)",
+      "platform": "Goodyear Procurement + 1GPA / Mohave",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.goodyearaz.gov/government/departments/finance/procurement-office",
+      "tags": [
+        "city of goodyear",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "goodyear"
+      ],
+      "summary": "Official municipal procurement portal for City of Goodyear, Arizona (~115K population; Goodyear Procurement + 1GPA / Mohave). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-22",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Avondale — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Avondale, AZ (~93K Pop)",
+      "platform": "OpenGov Procurement",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://avondaleaz.gov/government/departments/finance-budget/procurement/",
+      "tags": [
+        "city of avondale",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "opengov"
+      ],
+      "summary": "Official municipal procurement portal for City of Avondale, Arizona (~93K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-23",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Flagstaff — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Flagstaff, AZ (~77K Pop)",
+      "platform": "OpenGov Procurement (Includes FLG Airport)",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.flagstaff.az.gov/502/Purchasing",
+      "tags": [
+        "city of flagstaff",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "opengov"
+      ],
+      "summary": "Official municipal procurement portal for City of Flagstaff, Arizona (~77K population; OpenGov Procurement (Includes FLG Airport)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-24",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Casa Grande — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Casa Grande, AZ (~64K Pop)",
+      "platform": "Casa Grande Finance / Bids",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://casagrandeaz.gov/35/Doing-Business",
+      "tags": [
+        "city of casa grande",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "casa"
+      ],
+      "summary": "Official municipal procurement portal for City of Casa Grande, Arizona (~64K population; Casa Grande Finance / Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active."
+    },
+    {
+      "id": "AZ-CITY-25",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Sierra Vista — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Sierra Vista, AZ (~45K Pop)",
+      "platform": "OpenGov Procurement (Fort Huachuca Gateway)",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.sierravistaaz.gov/our-city/departments/procurement",
+      "tags": [
+        "city of sierra vista",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "opengov"
+      ],
+      "summary": "Official municipal procurement portal for City of Sierra Vista, Arizona (~45K population; OpenGov Procurement (Fort Huachuca Gateway)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-26",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Bullhead City — Municipal Procurement & Solicitations",
+      "jurisdiction": "Bullhead City, AZ (~43K Pop)",
+      "platform": "Municipal Bid Board",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.bullheadcity.com/government/bid-information",
+      "tags": [
+        "bullhead city",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "municipal"
+      ],
+      "summary": "Official municipal procurement portal for Bullhead City, Arizona (~43K population; Municipal Bid Board). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-27",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Apache Junction — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Apache Junction, AZ (~41K Pop)",
+      "platform": "CivicPlus Purchasing",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.apachejunctionaz.gov/825/Purchasing",
+      "tags": [
+        "city of apache junction",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "civicplus"
+      ],
+      "summary": "Official municipal procurement portal for City of Apache Junction, Arizona (~41K population; CivicPlus Purchasing). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-28",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Kingman — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Kingman, AZ (~35K Pop)",
+      "platform": "Kingman Procurement",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.cityofkingman.gov/government/departments-a-h/procurement",
+      "tags": [
+        "city of kingman",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "kingman"
+      ],
+      "summary": "Official municipal procurement portal for City of Kingman, Arizona (~35K population; Kingman Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-29",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Town of Fountain Hills — Municipal Procurement & Solicitations",
+      "jurisdiction": "Town of Fountain Hills, AZ (~24K Pop)",
+      "platform": "CivicPlus Business Bids",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.fountainhillsaz.gov/35/Business",
+      "tags": [
+        "town of fountain hills",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "civicplus"
+      ],
+      "summary": "Official municipal procurement portal for Town of Fountain Hills, Arizona (~24K population; CivicPlus Business Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-30",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Nogales — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Nogales, AZ (~20K Pop)",
+      "platform": "Nogales Finance Bids (95% Bilingual Hispanic)",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.nogalesaz.gov/finance/bids/",
+      "tags": [
+        "city of nogales",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "nogales"
+      ],
+      "summary": "Official municipal procurement portal for City of Nogales, Arizona (~20K population; Nogales Finance Bids (95% Bilingual Hispanic)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-31",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Eloy — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Eloy, AZ (~18K Pop)",
+      "platform": "CivicPlus /bids.aspx",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.eloyaz.gov/bids.aspx",
+      "tags": [
+        "city of eloy",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "civicplus"
+      ],
+      "summary": "Official municipal procurement portal for City of Eloy, Arizona (~18K population; CivicPlus /bids.aspx). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-32",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Coolidge — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Coolidge, AZ (~18K Pop)",
+      "platform": "Coolidge Municipal Bids",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.coolidgeaz.com/bids",
+      "tags": [
+        "city of coolidge",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "coolidge"
+      ],
+      "summary": "Official municipal procurement portal for City of Coolidge, Arizona (~18K population; Coolidge Municipal Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-33",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Cottonwood — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Cottonwood, AZ (~12.5K Pop)",
+      "platform": "CivicPlus Bid Opportunities",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://cottonwoodaz.gov/140/Bid-Opportunities",
+      "tags": [
+        "city of cottonwood",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "civicplus"
+      ],
+      "summary": "Official municipal procurement portal for City of Cottonwood, Arizona (~12.5K population; CivicPlus Bid Opportunities). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-34",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Town of Camp Verde — Municipal Procurement & Solicitations",
+      "jurisdiction": "Town of Camp Verde, AZ (~12.5K Pop)",
+      "platform": "Notice of Bids",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.campverde.az.gov/departments/public-works/notice-of-bids",
+      "tags": [
+        "town of camp verde",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "notice"
+      ],
+      "summary": "Official municipal procurement portal for Town of Camp Verde, Arizona (~12.5K population; Notice of Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-35",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Show Low — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Show Low, AZ (~12K Pop)",
+      "platform": "Finance Department Bids",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.showlowaz.gov/page/finance-department",
+      "tags": [
+        "city of show low",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "finance"
+      ],
+      "summary": "Official municipal procurement portal for City of Show Low, Arizona (~12K population; Finance Department Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-36",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Page — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Page, AZ (~7.4K Pop)",
+      "platform": "Request for Bids",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://cityofpage.org/government/request-for-bids-2/",
+      "tags": [
+        "city of page",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "request"
+      ],
+      "summary": "Official municipal procurement portal for City of Page, Arizona (~7.4K population; Request for Bids). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-37",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Globe — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Globe, AZ (~7.2K Pop)",
+      "platform": "Finance Purchasing",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.globeaz.gov/o/cog/page/finance",
+      "tags": [
+        "city of globe",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "finance"
+      ],
+      "summary": "Official municipal procurement portal for City of Globe, Arizona (~7.2K population; Finance Purchasing). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-38",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Benson — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Benson, AZ (~5.4K Pop)",
+      "platform": "Municipal Bid Opportunities",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.bensonaz.gov/government/bid_opportunities.php",
+      "tags": [
+        "city of benson",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "municipal"
+      ],
+      "summary": "Official municipal procurement portal for City of Benson, Arizona (~5.4K population; Municipal Bid Opportunities). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-39",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Bisbee — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Bisbee, AZ (~5.0K Pop)",
+      "platform": "CivicPlus Doing Business",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.bisbeeaz.gov/2145/Doing-Business",
+      "tags": [
+        "city of bisbee",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "civicplus"
+      ],
+      "summary": "Official municipal procurement portal for City of Bisbee, Arizona (~5.0K population; CivicPlus Doing Business). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-40",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Town of Carefree — Municipal Procurement & Solicitations",
+      "jurisdiction": "Town of Carefree, AZ (~3.7K Pop)",
+      "platform": "Town Clerk Public Notices",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.carefree.org/",
+      "tags": [
+        "town of carefree",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "town"
+      ],
+      "summary": "Official municipal procurement portal for Town of Carefree, Arizona (~3.7K population; Town Clerk Public Notices). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    },
+    {
+      "id": "AZ-CITY-41",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "Town of Gila Bend — Municipal Procurement & Solicitations",
+      "jurisdiction": "Town of Gila Bend, AZ (~1.9K Pop)",
+      "platform": "CivicPlus Business Portal",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://www.gilabendaz.org/69/BUSINESS",
+      "tags": [
+        "town of gila bend",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "civicplus"
+      ],
+      "summary": "Official municipal procurement portal for Town of Gila Bend, Arizona (~1.9K population; CivicPlus Business Portal). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K)."
+    }
+  ],
+  "crosswalk": [
+    {
+      "naics": "541511 (Primary)",
+      "naicsTitle": "Custom Computer Programming Services",
+      "sizeStandard": "$34.0M Annual Receipts",
+      "azNigp": "920 (Data Processing & Programming) • 208 / 209 (Micro/Enterprise Software)",
+      "psc": "DA01 (IT App Dev) • U008 (Training Curriculum)",
+      "gsaSin": "SIN 54151S (IT Prof. Services) • SIN 511210 (Software Licenses)",
+      "deliverables": "Curriculum-as-Code compilers, Section 508 / WCAG 2.2 AA (9:1) remediation engines, Edge PWAs"
+    },
+    {
+      "naics": "541512",
+      "naicsTitle": "Computer Systems Design Services",
+      "sizeStandard": "$34.0M Annual Receipts",
+      "azNigp": "920 • 918-28 / 918-29 (Computer & Systems Consulting)",
+      "psc": "DJ01 (IT Security & Compliance) • DA01",
+      "gsaSin": "SIN 54151S (Startup Springboard & FASt Lane Eligible)",
+      "deliverables": "Zero-egress Sovereign Hybrid RAG (SQLite FTS5 BM25 + RRF), CMMC Level 1 / Zero-CUI architectures"
+    },
+    {
+      "naics": "541715",
+      "naicsTitle": "R&D in the Physical, Engineering, and Life Sciences",
+      "sizeStandard": "1,000 Employees",
+      "azNigp": "956 / 918 (Research & Scientific Consulting)",
+      "psc": "AN12 (Applied Health R&D) • AJ12",
+      "gsaSin": "SIN 541715 (Engineering & Life Sciences R&D)",
+      "deliverables": "SBIR/STTR Phase I–III R&D, Food Informatics, Clinical Simulation Telemetry, Desert AgTech ROI"
+    },
+    {
+      "naics": "611710",
+      "naicsTitle": "Educational Support Services",
+      "sizeStandard": "$24.0M Annual Receipts",
+      "azNigp": "924-16 (Course Dev) • 924-35 / 924-41 (Workforce & Instructor Training)",
+      "psc": "U008 (Curriculum Dev) • U012 (IT/AI Training)",
+      "gsaSin": "SIN 611430 (Professional & Management Dev. Training)",
+      "deliverables": "U.S. DOL TEN No. 07-25 AI Workforce Literacy, $0 ZTC Dual-Namespace OER, Executive AI Briefings"
+    },
+    {
+      "naics": "541690",
+      "naicsTitle": "Other Scientific and Technical Consulting Services",
+      "sizeStandard": "$19.0M Annual Receipts",
+      "azNigp": "918-75 (Management / IV&V Consulting) • 958-77 (Compliance QA)",
+      "psc": "R425 (Engineering & Technical Support) • B599",
+      "gsaSin": "SIN 541611 (Management & Advisory Consulting)",
+      "deliverables": "Independent Accessibility IV&V (ADA Title II 28 CFR Part 35), AI Governance & Risk Readiness"
+    }
+  ],
+  "readinessGates": [
+    {
+      "id": "G01",
+      "pillar": "Identity & Registry",
+      "label": "Active SAM.gov Entity Registration (UEI + CAGE) with 0 Active Exclusions (FAR 9.405)"
+    },
+    {
+      "id": "G02",
+      "pillar": "Identity & Registry",
+      "label": "SBA Small Business Search (SBS / DSBS) populated with Capabilities Narrative + 20+ keywords"
+    },
+    {
+      "id": "G03",
+      "pillar": "Identity & Registry",
+      "label": "1-Page Section 508 Tagged PDF/UA Capabilities Statement with UEI, CAGE, NAICS, PSC & GPC readiness"
+    },
+    {
+      "id": "G04",
+      "pillar": "FAR 9.104-1 Responsibility",
+      "label": "SF 1408 Compliant Job-Cost Accounting & Timekeeping SOP separating direct, indirect, and FAR 31.205 unallowables"
+    },
+    {
+      "id": "G05",
+      "pillar": "FAR 9.104-1 Responsibility",
+      "label": "Dual-Host Failover / Git Escrow Continuity Plan (FAR 9.104-1(b)) + CPARS-Aligned Client PPQ Template"
+    },
+    {
+      "id": "G06",
+      "pillar": "FAR 9.104-1 Responsibility",
+      "label": "Written FAR Subpart 9.5 Organizational Conflict of Interest (OCI) Firewall & FAR 52.203-13 Code of Ethics"
+    },
+    {
+      "id": "G07",
+      "pillar": "Subcontracting & FCA",
+      "label": "FAR 52.219-14 (<=50% non-SSE cap), FAR 52.215-23 (Added Value), & 31 U.S.C. 3729 False Claims Act invoice gate"
+    },
+    {
+      "id": "G08",
+      "pillar": "Cyber & Supply Chain",
+      "label": "Signed System Security Plan (SSP) documenting all 15 FAR 52.204-21(b)(1) FCI / CMMC Level 1 controls"
+    },
+    {
+      "id": "G09",
+      "pillar": "Cyber & Supply Chain",
+      "label": "NDAA FY2019 Section 889 (FAR 52.204-24/25), Kaspersky (52.204-23), & No-TikTok (52.204-27) attestations"
+    },
+    {
+      "id": "G10",
+      "pillar": "Cyber & Supply Chain",
+      "label": "Zero-CUI-Spillage Enclave Boundary (keeping client CUI on client enclave; DoD SPRS locked to NIST 800-171 Rev. 2)"
+    },
+    {
+      "id": "G11",
+      "pillar": "Payment & Portals",
+      "label": "PCI-DSS Level 1 Government Purchase Card (GPC <= $15K / AZ P-Card <= $10K) + ACH payment rails active"
+    },
+    {
+      "id": "G12",
+      "pillar": "Payment & Portals",
+      "label": "Arizona APP (app.az.gov NIGP codes + <$100K SB flag), OpenGov (1GPA/Mohave), Bonfire, AZPurchasing & ADOT SBC"
+    }
+  ]
+}

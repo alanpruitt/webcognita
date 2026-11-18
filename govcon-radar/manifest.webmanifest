@@ -1,0 +1,17 @@
+{
+  "name": "Webcognita GovCon & SLED Hybrid RAG Radar",
+  "short_name": "GovCon Radar",
+  "description": "Zero-egress client-side BM25 + Semantic RRF Hybrid RAG navigator across Federal, DoD, Cooperative, and Arizona SLED procurement nodes, FAR 2.101 thresholds, and NAICS/NIGP crosswalks.",
+  "start_url": "/govcon-radar/",
+  "scope": "/govcon-radar/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B1D3A",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
