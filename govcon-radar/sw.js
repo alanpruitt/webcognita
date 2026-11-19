@@ -1,4 +1,4 @@
-const CACHE_NAME = 'webcognita-govcon-radar-v1.7.5';
+const CACHE_NAME = 'webcognita-govcon-radar-v1.7.6';
 const ASSETS = [
   '/govcon-radar/',
   '/govcon-radar/index.html',

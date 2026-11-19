@@ -9,9 +9,11 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "Arizona Western College (AWC) — Purchasing & Vendor Services (Yuma & La Paz)",
       "jurisdiction": "Yuma & La Paz Counties, AZ (Hispanic-Serving Institution)",
-      "platform": "AWC Purchasing (purchasing@azwestern.edu) & AZPurchasing.org",
-      "thresholds": "Direct / P-Card < $10K • 3 Quotes $10K–$99.9K • >= $25K SAM.gov Verified • Co-Ops: AZPurchasing, 1GPA, Mohave",
-      "url": "https://www.azwestern.edu/administrative-services/purchasing/vendor-guide",
+      "platform": "AWC Purchasing (Procedure 334.1 Rev. Aug 2026) & AZPurchasing.org",
+      "thresholds": "< $10K Discretion • 3 Quotes $10K–$99,999 • >= $100K Sealed Bid/RFP • > $25K SAM.gov Check • Co-Ops: AZPurchasing, 1GPA, Mohave",
+      "url": "https://www.azwestern.edu/administrative-services/purchasing",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor Packet, W-9 & A.R.S. 38-503 Disclosure Filed (2026-11-19 • AZPurchasing Active)",
       "tags": [
         "arizona western college",
         "awc",
@@ -24,13 +26,16 @@
         "ai-ready",
         "ada title ii",
         "a.r.s. 38-503",
+        "procedure 334.1",
+        "registered",
+        "compliant",
+        "active",
         "ring 0"
       ],
-      "summary": "Primary Yuma & La Paz higher-education anchor utilizing AZPurchasing.org, 1GPA, Mohave, and AZ SPO contracts; verifies SAM.gov active standing on federal grant purchases >= $25,000.",
+      "summary": "Primary Yuma & La Paz higher-education anchor (Procedure 334.1, Rev. Aug 2026): posts open bids on AZPurchasing.org (Sec. 2.6/4.5), accepts cooperative contracts (Sec. 2.7/2.8/3.9: 1GPA, Mohave, AZ SPO), requires Tech Office + Purchasing review on all software (Sec. 2.17), verifies SAM.gov > $25K on federal grants (Sec. 3.11), and governs employee-owned vendor awards via written COI disclosure + public competitive bidding (A.R.S. 38-503, Sec. 2.20).",
       "ring": 0,
       "ringLabel": "Ring 0",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-ED-01",
