@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutional C-a-C, ADA Title II &amp; DOL TEN 07-25 Readiness Estimator | Webcognita LLC</title>
+  <meta name="description" content="Zero-egress institutional scope calculator, FAR 2.101 / A.R.S. 41-2535 procurement threshold router, and ready-to-copy Statement of Work (SOW) generator for Curriculum-as-Code (S-A-R v2.2), DOJ ADA Title II (28 CFR Part 35), and U.S. DOL ETA TEN No. 07-25 deployments by Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6).">
+  <meta name="author" content="Alan Pruitt">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.webcognita.com/cac-readiness/">
+  <link rel="manifest" href="/cac-readiness/manifest.webmanifest">
+  <meta name="theme-color" content="#0B1D3A">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <meta property="og:title" content="Institutional C-a-C, ADA Title II &amp; DOL TEN 07-25 Readiness Estimator | Webcognita LLC">
+  <meta property="og:description" content="Scope division- or campus-wide Curriculum-as-Code, 9:1 ADA Title II Canvas remediation, and U.S. DOL TEN 07-25 AI Literacy deployments with instant FAR / Arizona SLED procurement routing and SOW export.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.webcognita.com/cac-readiness/">
+  <meta property="og:image" content="https://www.webcognita.com/assets/og-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Webcognita Institutional Curriculum-as-Code, ADA Title II & U.S. DOL TEN 07-25 Readiness Estimator",
+    "url": "https://www.webcognita.com/cac-readiness/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All Browsers (100% Client-Side; Zero Egress; Zero Trackers)",
+    "inLanguage": ["en-US", "es-MX"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Webcognita LLC",
+      "url": "https://www.webcognita.com/",
+      "identifier": "SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739",
+      "sameAs": [
+        "https://www.linkedin.com/company/146998407/",
+        "https://www.webcognita.com/govcon-radar/",
+        "https://alanpruitt.com/cac-studio/"
+      ]
+    }
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --brand-color: #0B1D3A;
+      --navy: #0B1D3A;
+      --cardinal: #7E061E;
+      --teal: #08454A;
+      --ink: #111827;
+      --surface: #FFFFFF;
+      --muted-bg: #F4F7FB;
+      --border-strong: #0B1D3A;
+      --border-control: #475569;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: #FFFFFF;
+      color: #111827;
+      line-height: 1.55;
+      accent-color: var(--brand-color);
+    }
+
+    .visually-hidden:where(:not(:focus-within, :active)) {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    a {
+      color: #0B1D3A;
+      background-color: transparent;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    pre:focus-visible,
+    summary:focus-visible,
+    [tabindex="0"]:focus-visible {
+      outline: 3px solid #7E061E;
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: fixed;
+      inset-block-start: 0.5rem;
+      inset-inline-start: 0.5rem;
+      z-index: 1000;
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      transform: translateY(-200%);
+      transition: transform 0.15s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .top-bar {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      padding-block: 0.85rem;
+      padding-inline: 1.25rem;
+      border-block-end: 4px solid #7E061E;
+    }
+
+    .top-bar-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .top-bar a {
+      color: #FFFFFF;
+      background-color: #0B1D3A;
+      font-size: 0.92rem;
+      min-block-size: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .lang-btn {
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 800;
+      min-block-size: 44px;
+      min-inline-size: 48px;
+      padding-inline: 0.9rem;
+      border-radius: 6px;
+      border: 2px solid #FFFFFF;
+      background-color: #7E061E;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .container {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      padding-block: 1.5rem 3rem;
+      padding-inline: 1.25rem;
+    }
+
+    .hero {
+      background-color: #F4F7FB;
+      color: #111827;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 1.4rem 1.6rem;
+      margin-block-end: 1.25rem;
+    }
+
+    .hero h1 {
+      margin-block: 0 0.5rem;
+      color: #0B1D3A;
+      background-color: #F4F7FB;
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.22;
+    }
+
+    .hero p {
+      margin-block: 0;
+      color: #111827;
+      background-color: #F4F7FB;
+      max-inline-size: 76ch;
+    }
+
+    .oer-bridge {
+      background-color: #FFFFFF;
+      color: #111827;
+      border: 2px solid #0B1D3A;
+      border-inline-start: 8px solid #08454A;
+      border-radius: 8px;
+      padding: 1rem 1.35rem;
+      margin-block-end: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .oer-bridge-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-block-size: 48px;
+      padding-inline: 1.1rem;
+      background-color: #08454A;
+      color: #FFFFFF !important;
+      border-radius: 6px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .layout-grid {
+        grid-template-columns: minmax(340px, 460px) minmax(0, 1fr);
+      }
+    }
+
+    .panel {
+      background-color: #FFFFFF;
+      color: #111827;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 1.35rem 1.5rem;
+    }
+
+    .panel h2 {
+      margin-block: 0 1rem;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      font-size: 1.22rem;
+      border-block-end: 2px solid #0B1D3A;
+      padding-block-end: 0.5rem;
+    }
+
+    /* Gestalt Proximity Rule: smaller gap inside group than margin-block-end between groups */
+    .form-group,
+    fieldset.choice-fieldset {
+      margin-block: 0 1.5rem;
+      padding: 0;
+      border: 0;
+    }
+
+    fieldset.choice-fieldset {
+      border: 1.5px solid #475569;
+      border-radius: 8px;
+      padding: 0.9rem 1rem 1rem;
+      background-color: #F4F7FB;
+      color: #111827;
+    }
+
+    fieldset.choice-fieldset legend {
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      padding-inline: 0.45rem;
+      border: 1px solid #0B1D3A;
+      border-radius: 4px;
+      font-size: 0.94rem;
+    }
+
+    .stacked-label {
+      display: block;
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      margin-block-end: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .field-hint {
+      display: block;
+      font-size: 0.84rem;
+      color: #111827;
+      background-color: transparent;
+      margin-block-end: 0.4rem;
+    }
+
+    .field-error {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #7E061E;
+      background-color: #FFFFFF;
+      margin-block-start: 0.3rem;
+      min-block-size: 1.25rem;
+    }
+
+    input[type="text"],
+    select {
+      font: inherit;
+      font-size: max(1rem, 1em);
+      inline-size: 100%;
+      min-block-size: 48px;
+      padding: 0.65rem 0.8rem;
+      border: 2px solid #475569;
+      border-radius: 6px;
+      background-color: #FFFFFF;
+      color: #111827;
+    }
+
+    input[type="text"]:user-invalid,
+    input[type="text"][aria-invalid="true"] {
+      border-color: #7E061E;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding-block: 0.45rem;
+      min-block-size: 48px;
+    }
+
+    .option-row input[type="radio"],
+    .option-row input[type="checkbox"] {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+      margin-block-start: 0.2rem;
+      flex: none;
+      cursor: pointer;
+    }
+
+    .option-row label {
+      cursor: pointer;
+      font-size: 0.93rem;
+      color: #111827;
+      background-color: #F4F7FB;
+      line-height: 1.4;
+      padding-block: 6px;
+      margin-block: -6px;
+    }
+
+    @media (pointer: coarse) {
+      input[type="text"],
+      select,
+      .option-row,
+      .btn-submit,
+      .btn-secondary {
+        min-block-size: 52px;
+      }
+    }
+
+    /* Progressive enhancement fallback when browser lacks accent-color (`brand-consistent-forms`) */
+    @supports not (accent-color: var(--brand-color)) {
+      .option-row label {
+        position: relative;
+        padding-inline-start: 1.9rem;
+        display: inline-flex;
+        align-items: center;
+      }
+      .option-row input[type="checkbox"],
+      .option-row input[type="radio"] {
+        position: absolute !important;
+        clip-path: inset(50%) !important;
+        overflow: hidden !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        white-space: nowrap !important;
+      }
+      .option-row input + label::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-start: 50%;
+        transform: translateY(-50%);
+        inline-size: 1.2rem;
+        block-size: 1.2rem;
+        border: 2px solid #475569;
+        background-color: #FFFFFF;
+        border-radius: 4px;
+      }
+      .option-row input[type="radio"] + label::before {
+        border-radius: 50%;
+      }
+      .option-row input:focus-visible + label::before {
+        outline: 3px solid #7E061E;
+        outline-offset: 2px;
+      }
+      .option-row input:checked + label::before {
+        background-color: #0B1D3A;
+        border-color: #0B1D3A;
+      }
+      .option-row input:checked + label::after {
+        content: "\2713";
+        position: absolute;
+        inset-inline-start: 0.25rem;
+        inset-block-start: 50%;
+        transform: translateY(-50%);
+        color: #FFFFFF;
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+    }
+
+    .btn-submit {
+      font: inherit;
+      font-size: max(1rem, 1em);
+      font-weight: 800;
+      inline-size: 100%;
+      min-block-size: 48px;
+      padding: 0.8rem 1.2rem;
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      border: 2px solid #0B1D3A;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      background-color: #7E061E;
+      border-color: #7E061E;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 0.85rem;
+      margin-block-end: 1.35rem;
+    }
+
+    .kpi-card {
+      background-color: #F4F7FB;
+      color: #111827;
+      border: 1.5px solid #0B1D3A;
+      border-block-start: 5px solid #0B1D3A;
+      border-radius: 6px;
+      padding: 0.8rem 0.95rem;
+    }
+
+    .kpi-card.cardinal {
+      border-block-start-color: #7E061E;
+    }
+
+    .kpi-card.teal {
+      border-block-start-color: #08454A;
+    }
+
+    .kpi-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #0B1D3A;
+      background-color: #F4F7FB;
+    }
+
+    .kpi-val {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #111827;
+      background-color: #F4F7FB;
+      margin-block-start: 0.2rem;
+    }
+
+    /* Responsive Table (`responsive-table` @container pattern) */
+    .table-wrapper {
+      container-type: inline-size;
+      overflow-x: auto;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 8px;
+      background-color: #FFFFFF;
+      margin-block-end: 1.5rem;
+    }
+
+    table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      background-color: #FFFFFF;
+      color: #111827;
+      font-size: 0.92rem;
+    }
+
+    caption {
+      text-align: start;
+      font-weight: 800;
+      padding: 0.75rem 1rem;
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border-block-end: 1.5px solid #0B1D3A;
+    }
+
+    th, td {
+      padding: 0.7rem 0.9rem;
+      text-align: start;
+      vertical-align: top;
+      border-block-end: 1px solid #94A3B8;
+    }
+
+    thead th {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      font-weight: 800;
+    }
+
+    tbody th[scope="row"] {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      font-weight: 800;
+    }
+
+    @container (width < 640px) {
+      thead {
+        position: absolute;
+        clip-path: inset(50%);
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      tbody, tr, th, td {
+        display: block;
+        inline-size: 100%;
+      }
+      tr {
+        border-block-end: 2px solid #0B1D3A;
+        padding-block: 0.45rem;
+      }
+      tbody th[scope="row"] {
+        border-block-end: 1px solid #94A3B8;
+      }
+      td::before {
+        display: block;
+        font-weight: 800;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        color: #0B1D3A;
+        margin-block-end: 0.15rem;
+      }
+      td:nth-of-type(1)::before { content: "Deliverable / Statutory Gate"; }
+      td:nth-of-type(2)::before { content: "Verification Artifact"; }
+    }
+
+    /* Invoker Command Copy Button + Sibling Live Region (`copy-button` guide) */
+    .sow-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-block-end: 0.75rem;
+    }
+
+    .copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    .copy-button,
+    .btn-secondary {
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 800;
+      min-inline-size: 48px;
+      min-block-size: 48px;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+
+    .copy-button {
+      background-color: #08454A;
+      color: #FFFFFF;
+      border: 2px solid #08454A;
+    }
+
+    .copy-button[data-copied] {
+      background-color: #0B1D3A;
+      border-color: #0B1D3A;
+    }
+
+    .copy-button[data-failed] {
+      background-color: #7E061E;
+      border-color: #7E061E;
+    }
+
+    .btn-secondary {
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+    }
+
+    .copy-icon::before {
+      content: "\2398";
+      font-size: 1.05rem;
+    }
+
+    .copy-button[data-copied] .copy-icon::before {
+      content: "\2713";
+    }
+
+    .copy-button[data-failed] .copy-icon::before {
+      content: "!";
+    }
+
+    .tip {
+      display: inline-block;
+      font-size: 0.86rem;
+      font-weight: 800;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      background-color: #F4F7FB;
+      color: #08454A;
+      border: 1.5px solid #08454A;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .copy-button[data-copied] + .tip,
+    .copy-button[data-failed] + .tip {
+      opacity: 1;
+    }
+
+    .copy-button[data-failed] + .tip {
+      color: #7E061E;
+      border-color: #7E061E;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skip-link,
+      .tip {
+        transition: opacity 0.1s linear;
+      }
+    }
+
+    pre#sow-output {
+      margin: 0;
+      padding: 1rem 1.15rem;
+      background-color: #F4F7FB;
+      color: #111827;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-block-size: 460px;
+      overflow-y: auto;
+    }
+
+    footer {
+      border-block-start: 2px solid #0B1D3A;
+      background-color: #F4F7FB;
+      color: #111827;
+      padding: 1.5rem 1.25rem;
+      font-size: 0.88rem;
+    }
+
+    .footer-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+    }
+
+    @media print {
+      .top-bar, .oer-bridge, .sow-toolbar, .btn-submit {
+        display: none !important;
+      }
+      pre#sow-output {
+        max-block-size: none;
+        overflow: visible;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-heading" class="skip-link">Skip to main content</a>
+
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div>
+        <a href="https://www.webcognita.com/" style="font-weight: 800; font-size: 1rem; text-decoration: none;">WEBCOGNITA LLC</a>
+        <span class="badge-pill" style="margin-inline-start: 0.5rem;">SAM.gov UEI: EZ34U9KNJA17 &bull; CAGE: 4ZCN6</span>
+      </div>
+      <nav class="top-nav" aria-label="Webcognita Applications">
+        <a href="https://www.webcognita.com/">Home</a>
+        <a href="https://www.webcognita.com/capabilities-statement.html">Capabilities Statement</a>
+        <a href="https://www.webcognita.com/govcon-radar/">GovCon Radar</a>
+        <a href="https://www.webcognita.com/contact.html">Procurement Contact</a>
+        <button type="button" id="lang-toggle" class="lang-btn" aria-label="Switch language between English and Spanish">Español (ES)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="form-live-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <section class="hero" aria-labelledby="main-heading">
+      <h1 id="main-heading" tabindex="-1" data-i18n="h1">Institutional Curriculum-as-Code, DOJ ADA Title II &amp; U.S. DOL TEN 07-25 Readiness Estimator</h1>
+      <p data-i18n="heroBody">Scope division-wide or campus-wide Curriculum-as-Code (S-A-R Standard v2.2) compilation, automated 9:1 WCAG 2.2 Level AA LMS remediation (28 CFR Part 35), and U.S. Department of Labor TEN No. 07-25 AI Literacy implementation—with instant FAR 2.101 / Arizona SLED procurement routing and a ready-to-copy Statement of Work (SOW).</p>
+    </section>
+
+    <aside class="oer-bridge" aria-label="Free Faculty OER Companion">
+      <div style="max-inline-size: 68ch;">
+        <strong style="color: #08454A; background-color: #FFFFFF;" data-i18n="bridgeTitle">Individual Instructor or Division Chair? Test-Drive 1 Assignment Free ($0 ZTC Public OER):</strong>
+        <span style="display: block; margin-block-start: 0.2rem;" data-i18n="bridgeDesc">Redesign a single syllabus assignment in 30 seconds using our open-access academic companion at alanpruitt.com/cac-studio/ (shared non-commercially under CC BY-NC-SA 4.0). Use this Webcognita estimator when scaling across 4 to 100+ courses.</span>
+      </div>
+      <a class="oer-bridge-cta" href="https://alanpruitt.com/cac-studio/" target="_blank" rel="noopener noreferrer" data-i18n="bridgeBtn">Try 1 Assignment Free (OER Studio) &rarr;</a>
+    </aside>
+
+    <div class="layout-grid">
+      <!-- LEFT COLUMN: SEMANTIC CONFIGURATION FORM -->
+      <section class="panel" aria-labelledby="estimator-heading">
+        <h2 id="estimator-heading" data-i18n="formHeading">1. Configure Institutional Fleet Scope</h2>
+        <form id="readiness-form" aria-labelledby="estimator-heading" action="/cac-readiness/" method="GET" novalidate>
+          <div class="form-group">
+            <label for="org-name" class="stacked-label" data-i18n="orgLabel">Institution, Division, or Workforce Agency (Optional):</label>
+            <span id="org-hint" class="field-hint" data-i18n="orgHint">Appears in your generated Statement of Work header (2–90 characters if provided).</span>
+            <input type="text" id="org-name" name="org" autocomplete="organization" minlength="2" maxlength="90" enterkeyhint="next" aria-describedby="org-hint org-error">
+            <span id="org-error" class="field-error" aria-live="polite"></span>
+          </div>
+
+          <fieldset class="choice-fieldset">
+            <legend data-i18n="buyerLegend">Institutional Buyer Profile</legend>
+            <div class="option-row">
+              <input type="radio" id="buyer-cc" name="buyer" value="cc" checked>
+              <label for="buyer-cc" data-i18n="buyerCc">Community College / HSI Academic Division</label>
+            </div>
+            <div class="option-row">
+              <input type="radio" id="buyer-univ" name="buyer" value="univ">
+              <label for="buyer-univ" data-i18n="buyerUniv">Public University / K–16 Dual-Enrollment Bridge</label>
+            </div>
+            <div class="option-row">
+              <input type="radio" id="buyer-wioa" name="buyer" value="wioa">
+              <label for="buyer-wioa" data-i18n="buyerWioa">State / County WIOA Workforce Board or Career Center</label>
+            </div>
+            <div class="option-row">
+              <input type="radio" id="buyer-fed" name="buyer" value="fed">
+              <label for="buyer-fed" data-i18n="buyerFed">Federal / Municipal Agency Training Academy</label>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="catalog-tier" class="stacked-label" data-i18n="tierLabel">Course &amp; Module Volume Tier: <span aria-hidden="true">*</span></label>
+            <span id="tier-hint" class="field-hint" data-i18n="tierHint">Determines micro-purchase vs. simplified quote threshold routing.</span>
+            <select id="catalog-tier" name="tier" required aria-describedby="tier-hint">
+              <option value="pilot">Tier 1: Single Flagship Pilot Course (12–16 Modules)</option>
+              <option value="pathway" selected>Tier 2: Certificate / Program Pathway (4–6 Courses)</option>
+              <option value="dept">Tier 3: Full Department Fleet (8–15 Courses)</option>
+              <option value="division">Tier 4: Multi-Department Division Catalog (16–40 Courses)</option>
+              <option value="campus">Tier 5: Campus-Wide ADA Title II Remediation Sprint (41–100 Courses)</option>
+              <option value="system">Tier 6: Multi-Campus / State Consortium System (100+ Courses)</option>
+            </select>
+          </div>
+
+          <fieldset class="choice-fieldset">
+            <legend data-i18n="lmsLegend">Target LMS &amp; Sovereign Delivery Architecture</legend>
+            <div class="option-row">
+              <input type="radio" id="lms-canvas" name="lms" value="canvas" checked>
+              <label for="lms-canvas">Canvas LMS (Automated GraphQL + REST CI/CD Sync)</label>
+            </div>
+            <div class="option-row">
+              <input type="radio" id="lms-cc" name="lms" value="cartridge">
+              <label for="lms-cc">Blackboard / D2L Brightspace / Moodle (IMS Common Cartridge)</label>
+            </div>
+            <div class="option-row">
+              <input type="radio" id="lms-pwa" name="lms" value="pwa">
+              <label for="lms-pwa">Zero-Login $0 ZTC Edge Progressive Web App Fleet</label>
+            </div>
+            <div class="option-row">
+              <input type="radio" id="lms-rag" name="lms" value="rag">
+              <label for="lms-rag">Hybrid LMS + Air-Gapped COTS Local RAG (Zero Cloud PII)</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="choice-fieldset">
+            <legend data-i18n="pillarsLegend">Required Compliance &amp; Engineering Pillars</legend>
+            <div class="option-row">
+              <input type="checkbox" id="pil-ada" name="pillars" value="ada" checked>
+              <label for="pil-ada">DOJ ADA Title II (28 CFR Part 35) &amp; 9:1 WCAG 2.2 AA Remediation</label>
+            </div>
+            <div class="option-row">
+              <input type="checkbox" id="pil-dol" name="pillars" value="dol" checked>
+              <label for="pil-dol">U.S. DOL ETA TEN No. 07-25 AI Literacy &amp; Active Verification</label>
+            </div>
+            <div class="option-row">
+              <input type="checkbox" id="pil-bilingual" name="pillars" value="bilingual" checked>
+              <label for="pil-bilingual">Bilingual (EN / Español Norteño) &amp; WCAG 3.0 Plain Language</label>
+            </div>
+            <div class="option-row">
+              <input type="checkbox" id="pil-provo" name="pillars" value="provo">
+              <label for="pil-provo">DOM GraphRAG &amp; W3C PROV-O SHA-256 Audit Receipts</label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn-submit" data-i18n="submitBtn">Generate Institutional Scope, Threshold Route &amp; SOW</button>
+        </form>
+      </section>
+
+      <!-- RIGHT COLUMN: THRESHOLD ROUTER + RESPONSIVE DELIVERABLES TABLE + SOW EXPORT -->
+      <section class="panel" aria-labelledby="output-heading">
+        <h2 id="output-heading" data-i18n="outHeading">2. Procurement Route, Deliverables &amp; Ready-to-Copy SOW</h2>
+
+        <div class="kpi-strip">
+          <div class="kpi-card">
+            <span class="kpi-label" data-i18n="kpiRouteLbl">Procurement Threshold Route</span>
+            <span class="kpi-val" id="kpi-route">FAR 13.2 Micro-Purchase / AZ Direct</span>
+          </div>
+          <div class="kpi-card cardinal">
+            <span class="kpi-label" data-i18n="kpiCodesLbl">Primary NAICS &amp; PSC</span>
+            <span class="kpi-val" id="kpi-codes">NAICS 611710, 541511 &bull; PSC U008</span>
+          </div>
+          <div class="kpi-card teal">
+            <span class="kpi-label" data-i18n="kpiSprintLbl">Estimated Turnkey Sprint</span>
+            <span class="kpi-val" id="kpi-sprint">3–4 Weeks (Zero SaaS Lock-In)</span>
+          </div>
+        </div>
+
+        <div class="table-wrapper" tabindex="0" role="region" aria-labelledby="matrix-caption">
+          <table>
+            <caption id="matrix-caption" data-i18n="tableCap">Contractual Deliverables &amp; Statutory Acceptance Gates</caption>
+            <thead>
+              <tr>
+                <th scope="col">Work Package</th>
+                <th scope="col">Deliverable &amp; Statutory Gate</th>
+                <th scope="col">Acceptance Verification Artifact</th>
+              </tr>
+            </thead>
+            <tbody id="deliverables-tbody"></tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-block: 0 0.5rem; color: #0B1D3A; background-color: #FFFFFF; font-size: 1.05rem;" data-i18n="sowHeading">Procurement-Ready Statement of Work (SOW) Draft</h3>
+        <div class="sow-toolbar">
+          <span class="copy">
+            <button type="button" class="copy-button" command="--copy" commandfor="sow-output">
+              <span class="copy-icon" aria-hidden="true"></span>
+              <span data-i18n="copyBtnText">Copy SOW Text</span>
+            </button>
+            <span class="tip" role="status"></span>
+          </span>
+          <button type="button" id="btn-print-sow" class="btn-secondary" data-i18n="printBtnText">Print / Save PDF Brief</button>
+          <a class="btn-secondary" href="https://www.webcognita.com/contact.html" data-i18n="contactBtnText">Request Formal Quote &rarr;</a>
+        </div>
+
+        <pre id="sow-output" tabindex="0" aria-label="Generated Statement of Work text"></pre>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p style="margin-block: 0 0.4rem;">
+        <strong>Webcognita LLC</strong> (100% Veteran-Owned Small Business &bull; Active SAM.gov <code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; <code>EIN: 81-0809739</code> &bull; <code>AZ ACC ID: L17046120</code>) &mdash; 1906 S 6th Ave, Yuma, AZ 85364.
+      </p>
+      <p style="margin-block: 0;">
+        100% Client-Side Execution (Zero Data Egress; Zero Cookies; Zero Student or Agency PII Transmitted). Conforms to DOJ ADA Title II (<code>28 CFR Part 35</code>), Section 508, and WCAG 2.2 Level AA (<code>&gt;= 9:1</code> Double-Contrast Guard). Principal academic affiliations (Arizona Western College; volunteer Designated Campus Colleague at The University of Arizona) are cited on corporate credentials for qualification verification only.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/cac-readiness/sw.js').catch(function () {});
+        });
+      }
+
+      // --- 1. Bilingual EN/ES Dictionary ---
+      let lang = 'en';
+      const I18N = {
+        en: {
+          toggle: 'Español (ES)',
+          h1: 'Institutional Curriculum-as-Code, DOJ ADA Title II & U.S. DOL TEN 07-25 Readiness Estimator',
+          heroBody: 'Scope division-wide or campus-wide Curriculum-as-Code (S-A-R Standard v2.2) compilation, automated 9:1 WCAG 2.2 Level AA LMS remediation (28 CFR Part 35), and U.S. Department of Labor TEN No. 07-25 AI Literacy implementation—with instant FAR 2.101 / Arizona SLED procurement routing and a ready-to-copy Statement of Work (SOW).',
+          bridgeTitle: 'Individual Instructor or Division Chair? Test-Drive 1 Assignment Free ($0 ZTC Public OER):',
+          bridgeDesc: 'Redesign a single syllabus assignment in 30 seconds using our open-access academic companion at alanpruitt.com/cac-studio/ (shared non-commercially under CC BY-NC-SA 4.0). Use this Webcognita estimator when scaling across 4 to 100+ courses.',
+          bridgeBtn: 'Try 1 Assignment Free (OER Studio) \u2192',
+          formHeading: '1. Configure Institutional Fleet Scope',
+          orgLabel: 'Institution, Division, or Workforce Agency (Optional):',
+          orgHint: 'Appears in your generated Statement of Work header (2–90 characters if provided).',
+          buyerLegend: 'Institutional Buyer Profile',
+          buyerCc: 'Community College / HSI Academic Division',
+          buyerUniv: 'Public University / K–16 Dual-Enrollment Bridge',
+          buyerWioa: 'State / County WIOA Workforce Board or Career Center',
+          buyerFed: 'Federal / Municipal Agency Training Academy',
+          tierLabel: 'Course & Module Volume Tier: *',
+          tierHint: 'Determines micro-purchase vs. simplified quote threshold routing.',
+          lmsLegend: 'Target LMS & Sovereign Delivery Architecture',
+          pillarsLegend: 'Required Compliance & Engineering Pillars',
+          submitBtn: 'Generate Institutional Scope, Threshold Route & SOW',
+          outHeading: '2. Procurement Route, Deliverables & Ready-to-Copy SOW',
+          kpiRouteLbl: 'Procurement Threshold Route',
+          kpiCodesLbl: 'Primary NAICS & PSC',
+          kpiSprintLbl: 'Estimated Turnkey Sprint',
+          tableCap: 'Contractual Deliverables & Statutory Acceptance Gates',
+          sowHeading: 'Procurement-Ready Statement of Work (SOW) Draft',
+          copyBtnText: 'Copy SOW Text',
+          printBtnText: 'Print / Save PDF Brief',
+          contactBtnText: 'Request Formal Quote \u2192'
+        },
+        es: {
+          toggle: 'English (EN)',
+          h1: 'Estimador Institucional Curriculum-as-Code, ADA Título II y U.S. DOL TEN 07-25',
+          heroBody: 'Dimensione despliegues divisionales o institucionales de Curriculum-as-Code (Estándar S-A-R v2.2), remediación automatizada WCAG 2.2 AA con contraste 9:1 (28 CFR Parte 35) e implementación laboral U.S. DOL TEN No. 07-25—con enrutamiento inmediato de umbrales FAR 2.101 / SLED de Arizona y borrador de Alcance Técnico (SOW).',
+          bridgeTitle: '¿Docente Individual o Jefatura de División? Pruebe 1 Tarea Gratis (OER Abierto $0 ZTC):',
+          bridgeDesc: 'Rediseñe una tarea individual en 30 segundos en nuestro estudio académico abierto alanpruitt.com/cac-studio/ (licencia no comercial CC BY-NC-SA 4.0). Utilice este estimador corporativo de Webcognita para escalar de 4 a 100+ cursos.',
+          bridgeBtn: 'Probar 1 Tarea Gratis (Estudio OER) \u2192',
+          formHeading: '1. Configurar Alcance Institucional',
+          orgLabel: 'Institución, División o Agencia Laboral (Opcional):',
+          orgHint: 'Se incluye en el encabezado del Alcance Técnico (SOW) generado (2–90 caracteres).',
+          buyerLegend: 'Perfil del Comprador Institucional',
+          buyerCc: 'Colegio Comunitario / División Académica HSI',
+          buyerUniv: 'Universidad Pública / Puente Dual K–16',
+          buyerWioa: 'Junta Estatal o Condal de Fuerza Laboral WIOA',
+          buyerFed: 'Academia de Capacitación Federal o Municipal',
+          tierLabel: 'Volumen de Cursos y Módulos: *',
+          tierHint: 'Determina la vía de micro-compra o cotización simplificada.',
+          lmsLegend: 'Arquitectura LMS y Entrega Soberana',
+          pillarsLegend: 'Pilares Normativos y Técnicos Requeridos',
+          submitBtn: 'Generar Alcance Institucional, Vía de Compra y SOW',
+          outHeading: '2. Vía de Adquisición, Entregables y Borrador SOW',
+          kpiRouteLbl: 'Vía de Umbral de Compra',
+          kpiCodesLbl: 'Códigos NAICS y PSC',
+          kpiSprintLbl: 'Plazo Estimado de Entrega',
+          tableCap: 'Entregables Contractuales y Compuertas de Aceptación',
+          sowHeading: 'Borrador de Declaración de Alcance Técnico (SOW)',
+          copyBtnText: 'Copiar Texto SOW',
+          printBtnText: 'Imprimir / Guardar PDF',
+          contactBtnText: 'Solicitar Cotización Formal \u2192'
+        }
+      };
+
+      const liveStatus = document.getElementById('form-live-status');
+      function announcePolite(msg) {
+        if (!liveStatus) return;
+        liveStatus.textContent = '';
+        window.setTimeout(function () { liveStatus.textContent = msg; }, 40);
+      }
+
+      document.getElementById('lang-toggle').addEventListener('click', function (e) {
+        lang = lang === 'en' ? 'es' : 'en';
+        document.documentElement.lang = lang;
+        e.currentTarget.textContent = I18N[lang].toggle;
+        document.querySelectorAll('[data-i18n]').forEach(function (node) {
+          const k = node.getAttribute('data-i18n');
+          if (I18N[lang][k]) node.textContent = I18N[lang][k];
+        });
+        announcePolite(lang === 'es' ? 'Interfaz cambiada a Español' : 'Interface switched to English');
+      });
+
+      // --- 2. Validation Timing Matrix (`forms` guide: validate on blur if edited, clear on input, route focus on submit) ---
+      const form = document.getElementById('readiness-form');
+      const orgInput = document.getElementById('org-name');
+      const orgError = document.getElementById('org-error');
+      let orgTouched = false;
+
+      function validateOrgField() {
+        const val = orgInput.value.trim();
+        if (val.length > 0 && val.length < 2) {
+          const errMsg = 'Please enter at least 2 characters for the institution name, or leave this optional field blank.';
+          orgInput.setCustomValidity(errMsg);
+          orgInput.setAttribute('aria-invalid', 'true');
+          orgError.textContent = errMsg;
+          return false;
+        }
+        orgInput.setCustomValidity('');
+        orgInput.removeAttribute('aria-invalid');
+        orgError.textContent = '';
+        return true;
+      }
+
+      orgInput.addEventListener('blur', function () {
+        if (orgTouched) validateOrgField();
+      });
+
+      orgInput.addEventListener('input', function () {
+        orgTouched = true;
+        if (orgInput.getAttribute('aria-invalid') === 'true') {
+          validateOrgField();
+        }
+      });
+
+      // --- 3. Scope & Threshold Routing Engine ---
+      const TIER_CONFIG = {
+        pilot: {
+          label: 'Tier 1 — Single Flagship Pilot Course (12–16 Modules)',
+          route: 'Micro-Purchase Eligible (<= $15K FAR 2.101 GPC / <= $10K AZ Direct PO)',
+          sprint: '10–15 Business Days ($0 Recurring SaaS)',
+          mechanism: 'Federal Government Purchase Card (GPC) under FAR 13.203 ($15,000 MPT) or Arizona Municipal/College Direct Micro-Purchase PO without formal RFP delay.'
+        },
+        pathway: {
+          label: 'Tier 2 — Certificate / Academic Pathway (4–6 Courses)',
+          route: 'FAR 13.2 Micro-Purchase / AZ A.R.S. § 41-2535 Small-Dollar Quote',
+          sprint: '3–4 Weeks ($0 Recurring SaaS)',
+          mechanism: 'Direct Small-Dollar Quote under Arizona SPO A.R.S. § 41-2535 (up to $100,000 informal quote ceiling) or Federal Simplified Acquisition (FAR Subpart 13.5).'
+        },
+        dept: {
+          label: 'Tier 3 — Full Department Fleet (8–15 Courses)',
+          route: 'A.R.S. § 41-2535 Simplified Quote (<= $100K) / Bonfire & OpenGov SLED',
+          sprint: '5–6 Weeks ($0 Recurring SaaS)',
+          mechanism: 'Informal 3-Quote Written Solicitation under A.R.S. § 41-2535 / County & Community College Procurement Portal (Bonfire, OpenGov, or State APP).'
+        },
+        division: {
+          label: 'Tier 4 — Multi-Department Division Catalog (16–40 Courses)',
+          route: 'Simplified Acquisition (<= $350K FAR 2.101 SAT / AZ SLED Written Quote)',
+          sprint: '8–10 Weeks ($0 Recurring SaaS)',
+          mechanism: 'Federal Simplified Acquisition Procedures (FAR Part 13 up to $350,000 SAT) or State/Higher-Ed Cooperative & Informal RFP Task Order.'
+        },
+        campus: {
+          label: 'Tier 5 — Campus-Wide ADA Title II Remediation Sprint (41–100 Courses)',
+          route: 'FAR Part 13 SAT / SLED RFP or Non-Competing Grant Subaward',
+          sprint: '12–16 Weeks ($0 Recurring SaaS)',
+          mechanism: 'Formal SLED Solicitation (Bonfire / OpenGov / Arizona APP), Federal SAT Task Order, or Non-Competing NSF / DOL / Title V HSI Enabling Subaward.'
+        },
+        system: {
+          label: 'Tier 6 — Multi-Campus / State Consortium System (100+ Courses)',
+          route: 'Consortium Master Agreement / Federal & State Enabling Subaward',
+          sprint: 'Phased 2-Semester Rollout ($0 Recurring SaaS)',
+          mechanism: 'Multi-Institution Enabling Partnership, State Workforce / Higher-Ed RFP, or MBO Partners Enterprise Corp-to-Corp Task Order.'
+        }
+      };
+
+      const BUYER_CONFIG = {
+        cc: { label: 'Community College / Title V HSI Academic Division', naics: 'NAICS 611710, 541511, 541690 • PSC U008, U012' },
+        univ: { label: 'Public University / K–16 Dual-Enrollment Bridge', naics: 'NAICS 611710, 541511, 541715 • PSC U008, AN12' },
+        wioa: { label: 'State / County WIOA Workforce Development Board', naics: 'NAICS 611420, 611710, 541511 • PSC U008, U012' },
+        fed: { label: 'Federal / Municipal Agency Training Academy', naics: 'NAICS 541511, 541512, 611420 • PSC U012, DA01, DJ01' }
+      };
+
+      const LMS_CONFIG = {
+        canvas: 'Canvas LMS via Automated GraphQL + REST API Sync & Pre-Commit Accessibility Gates',
+        cartridge: 'Blackboard / D2L Brightspace / Moodle via IMS Common Cartridge + Semantic 9:1 HTML',
+        pwa: 'Standalone Zero-Login $0 ZTC Progressive Web Apps (ServiceWorker Offline + 0 Bytes PII Egress)',
+        rag: 'Hybrid LMS + Air-Gapped COTS Local Hybrid RAG (SQLite FTS5 BM25 + RRF on Existing Hardware)'
+      };
+
+      function buildDeliverableRows(pillars, lmsKey) {
+        const rows = [
+          {
+            wp: 'WP-1: S-A-R v2.2 Compiler & LMS Pipeline',
+            gate: 'Version-controlled Markdown Single Source of Truth compiled to ' + LMS_CONFIG[lmsKey] + '.',
+            proof: 'Git repository handoff + automated sync log with timestamped rollback backups.'
+          }
+        ];
+        if (pillars.includes('ada')) {
+          rows.push({
+            wp: 'WP-2: DOJ ADA Title II & 9:1 WCAG 2.2 AA',
+            gate: '28 CFR Part 35 compliance with explicit >= 9:1 foreground/background hex pairs, sequential headings, and table scopes.',
+            proof: 'Automated Accessibility Audit Report showing 0 open violations across 100% of compiled pages.'
+          });
+        }
+        if (pillars.includes('dol')) {
+          rows.push({
+            wp: 'WP-3: U.S. DOL ETA TEN No. 07-25 AI Literacy',
+            gate: 'Operationalizes all 5 Foundational AI Content Areas & 7 Community College Design Principles via Pattern -> Rule -> Solve.',
+            proof: 'Course-to-ILO/CLO Crosswalk Matrix + Traffic-Light AI Governance & ### Delimiter Rubrics.'
+          });
+        }
+        if (pillars.includes('bilingual')) {
+          rows.push({
+            wp: 'WP-4: EN / Español Parity & Plain Language',
+            gate: 'WCAG 3.0 cognitive scaffolding + culturally grounded Norteño/Borderlands Spanish lang="es" parity and $0 ZTC OER.',
+            proof: 'Bilingual HTML/Audio-Glossary verification report + $0 student textbook/paywall attestation.'
+          });
+        }
+        if (pillars.includes('provo')) {
+          rows.push({
+            wp: 'WP-5: DOM GraphRAG & W3C PROV-O Receipts',
+            gate: 'Client-side BM25 + Graph RRF knowledge workbench with cryptographic SHA-256 verification tokens and 0 bytes FERPA egress.',
+            proof: 'Live zero-egress PWA endpoint + W3C PROV-O JSON-LD provenance manifest.'
+          });
+        }
+        return rows;
+      }
+
+      function renderEstimate(announceResult) {
+        const orgRaw = orgInput.value.trim();
+        const orgDisplay = orgRaw.length >= 2 ? orgRaw : '[Client Institution / Division]';
+        const buyerKey = (form.querySelector('input[name="buyer"]:checked') || { value: 'cc' }).value;
+        const tierKey = document.getElementById('catalog-tier').value;
+        const lmsKey = (form.querySelector('input[name="lms"]:checked') || { value: 'canvas' }).value;
+        const pillars = Array.from(form.querySelectorAll('input[name="pillars"]:checked')).map(function (c) { return c.value; });
+
+        const buyer = BUYER_CONFIG[buyerKey];
+        const tier = TIER_CONFIG[tierKey];
+        const rows = buildDeliverableRows(pillars, lmsKey);
+
+        document.getElementById('kpi-route').textContent = tier.route;
+        document.getElementById('kpi-codes').textContent = buyer.naics;
+        document.getElementById('kpi-sprint').textContent = tier.sprint;
+
+        const tbody = document.getElementById('deliverables-tbody');
+        tbody.innerHTML = '';
+        rows.forEach(function (r) {
+          const tr = document.createElement('tr');
+          const th = document.createElement('th');
+          th.scope = 'row';
+          th.textContent = r.wp;
+          const tdGate = document.createElement('td');
+          tdGate.textContent = r.gate;
+          const tdProof = document.createElement('td');
+          tdProof.textContent = r.proof;
+          tr.append(th, tdGate, tdProof);
+          tbody.appendChild(tr);
+        });
+
+        const sowLines = [
+          'STATEMENT OF WORK (SOW) — CURRICULUM-AS-CODE & ADA TITLE II COMPLIANCE SPRINT',
+          '=============================================================================',
+          'Client Agency / Division : ' + orgDisplay + ' (' + buyer.label + ')',
+          'Vendor                   : Webcognita LLC (100% Veteran-Owned Small Business)',
+          'Federal / State IDs      : SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739',
+          'Classification Codes     : ' + buyer.naics,
+          'Selected Catalog Scope   : ' + tier.label,
+          'Target Delivery Stack    : ' + LMS_CONFIG[lmsKey],
+          'Recommended Acquisition  : ' + tier.mechanism,
+          'Estimated Schedule       : ' + tier.sprint,
+          '',
+          '1. OBJECTIVE & STATUTORY MANDATE',
+          'Webcognita LLC shall engineer, remediate, and verify a zero-lock-in Curriculum-as-Code',
+          '(S-A-R Standard v2.2) instructional fleet for ' + orgDisplay + ', ensuring full technical',
+          'conformance with DOJ ADA Title II (28 CFR Part 35), Section 508, WCAG 2.2 Level AA',
+          '(>= 9:1 Double-Contrast Guard), and zero FERPA/PII cloud data egress.',
+          '',
+          '2. WORK PACKAGES & ACCEPTANCE GATES'
+        ];
+
+        rows.forEach(function (r, idx) {
+          sowLines.push('  ' + (idx + 1) + '. ' + r.wp);
+          sowLines.push('     - Standard : ' + r.gate);
+          sowLines.push('     - Proof    : ' + r.proof);
+        });
+
+        sowLines.push(
+          '',
+          '3. DATA SOVEREIGNTY & ZERO RECURRING SAAS LOCK-IN',
+          'All compiled HTML, Markdown Single-Source-of-Truth repositories, and client-side',
+          'verification utilities operate at $0/month recurring SaaS cost to ' + orgDisplay + ',',
+          'with 0 bytes of student or agency PII transmitted to external AI vendors.',
+          '',
+          '4. VERIFIED LIVE PAST PERFORMANCE (FAR 9.104-1)',
+          '- Live Course 42051 Fleet Hub : https://exwdemo.dev',
+          '- Free 1-Assignment OER Proof : https://alanpruitt.com/cac-studio/',
+          '- Workforce AI Readiness PWA  : https://gail2026.dev',
+          '- Corporate Capabilities      : https://www.webcognita.com/capabilities-statement.html'
+        );
+
+        document.getElementById('sow-output').textContent = sowLines.join('\n');
+
+        if (announceResult) {
+          announcePolite('Updated institutional scope and Statement of Work for ' + tier.label);
+        }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        orgTouched = true;
+        if (!validateOrgField()) {
+          orgInput.focus();
+          return;
+        }
+        renderEstimate(true);
+      });
+
+      // --- 4. Declarative Invoker Commands Copy Button + Progressive Fallback (`copy-button` guide) ---
+      const timers = new WeakMap();
+      let lastMessage = '';
+
+      function legacyCopy(text) {
+        const field = Object.assign(document.createElement('textarea'), { value: text });
+        field.setAttribute('readonly', '');
+        field.style.cssText = 'position:fixed;inset-block-start:0;opacity:0';
+        document.body.append(field);
+        field.select();
+        try { return document.execCommand('copy'); } finally { field.remove(); }
+      }
+
+      function report(button, ok) {
+        const tip = button.nextElementSibling;
+        clearTimeout(timers.get(button));
+        button.removeAttribute('data-copied');
+        button.removeAttribute('data-failed');
+        let message = ok ? 'Copied' : 'Copy failed';
+        if (message === lastMessage) message += '\u00A0';
+        lastMessage = message;
+        tip.textContent = '';
+        void button.offsetWidth;
+        button.setAttribute(ok ? 'data-copied' : 'data-failed', '');
+        requestAnimationFrame(function () { tip.textContent = message; });
+        timers.set(button, window.setTimeout(function () {
+          button.removeAttribute('data-copied');
+          button.removeAttribute('data-failed');
+          tip.textContent = '';
+        }, 2200));
+      }
+
+      async function copyTarget(button, target) {
+        const text = target.matches('input, textarea') ? target.value : target.innerText.trim();
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          report(button, true);
+        } catch (err) {
+          if (legacyCopy(text)) {
+            report(button, true);
+          } else {
+            report(button, false);
+          }
+        }
+      }
+
+      if ('CommandEvent' in window) {
+        document.addEventListener('command', function (event) {
+          if (event.command && event.command.indexOf('--copy') === 0) {
+            copyTarget(event.source, event.target);
+          }
+        }, true);
+      } else {
+        document.addEventListener('click', function (event) {
+          const button = event.target.closest('button[command^="--copy"]');
+          if (!button) return;
+          const target = document.getElementById(button.getAttribute('commandfor'));
+          if (target) copyTarget(button, target);
+        });
+      }
+
+      document.getElementById('btn-print-sow').addEventListener('click', function () {
+        window.print();
+      });
+
+      renderEstimate(false);
+    })();
+  </script>
+</body>
+</html>

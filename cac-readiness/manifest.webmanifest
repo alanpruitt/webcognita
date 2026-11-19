@@ -1,0 +1,17 @@
+{
+  "name": "Webcognita Institutional C-a-C, ADA Title II & DOL TEN 07-25 Readiness Estimator",
+  "short_name": "CaC Readiness",
+  "description": "Zero-egress institutional scope router and Statement of Work (SOW) generator for Curriculum-as-Code (S-A-R v2.2), DOJ ADA Title II (28 CFR Part 35), and U.S. DOL ETA TEN No. 07-25 workforce deployments.",
+  "start_url": "/cac-readiness/",
+  "scope": "/cac-readiness/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B1D3A",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
