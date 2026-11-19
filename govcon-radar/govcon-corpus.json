@@ -233,13 +233,17 @@
         "sled",
         "ada title ii",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 2"
       ],
       "summary": "Official municipal procurement portal for City of Tucson, Arizona (~550K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 2,
       "ringLabel": "Ring 2",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-24",
@@ -487,13 +491,17 @@
         "county",
         "arizona",
         "sled",
+        "registered",
+        "compliant",
+        "active",
         "ring 2"
       ],
       "summary": "Official Pinal County, AZ (~480K Pop) procurement entry point (OpenGov Procurement ($0 Single Login)). Statutory accessibility status: ADA Title II Active (Apr 2026).",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 2,
       "ringLabel": "Ring 2",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-01",
@@ -585,6 +593,8 @@
       "platform": "OpenGov Procurement (PHX & FLG Single Login)",
       "thresholds": "ADA Title II + USDOT 49 CFR Part 27 + Title VI Bilingual LEP + ADOT SBC",
       "url": "https://www.skyharbor.com/airport-business/business-opportunities/",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement (PHX & FLG Live 2026-11-19)",
       "tags": [
         "sky harbor",
         "phx",
@@ -595,13 +605,15 @@
         "sbc",
         "accessibility",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "PHX (Destination PHX 2050) and FLG publish solicitations via OpenGov Procurement and recognize statewide ADOT AZ UTRACS Small Business Concern (SBC) registration.",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-11",
@@ -745,13 +757,17 @@
         "sled",
         "ada title ii",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Official municipal procurement portal for City of Scottsdale, Arizona (~245K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-18",
@@ -882,13 +898,17 @@
         "sled",
         "ada title ii",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Official municipal procurement portal for City of Avondale, Arizona (~93K population; OpenGov Procurement). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-27",
@@ -1082,6 +1102,8 @@
       "platform": "OpenGov Procurement & Bonfire / Euna ($0 Single-Sign-On)",
       "thresholds": "Apr 2026 ADA Title II active >= 50K (Sierra Vista ~45K due Apr 26, 2027)",
       "url": "https://www.yumaaz.gov/business/city-bids",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on Both OpenGov & Bonfire SSO (All 9 Cities Live 2026-11-19)",
       "tags": [
         "city of yuma",
         "tucson",
@@ -1094,13 +1116,15 @@
         "sierra vista",
         "opengov",
         "bonfire",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Zero extra portal accounts required: City of Yuma (yumaaz.bonfirehub.com), Tempe, Peoria, and Buckeye run on Bonfire; Tucson, Scottsdale, Avondale, Flagstaff, and Sierra Vista run on OpenGov; Chandler runs inside app.az.gov.",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-MUN-02",
@@ -1146,6 +1170,8 @@
       "platform": "OpenGov Procurement (Single $0 Vendor Login)",
       "thresholds": "Enables direct POs > $100,000 with zero new RFP (~1% fee on closed sales only)",
       "url": "https://1gpa.org/",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement (Registered 2026-11-19)",
       "tags": [
         "1gpa",
         "mohave",
@@ -1157,13 +1183,15 @@
         "higher ed",
         "k-12",
         "municipal",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Both 1GPA (1gpa.org) and Mohave (mesc.org, 500+ AZ colleges/districts/cities) solicit competitive master contracts on OpenGov Procurement, letting public buyers issue >$100K POs without a 5-month RFP.",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-23",
@@ -1182,13 +1210,17 @@
         "sled",
         "ada title ii",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 4"
       ],
       "summary": "Official municipal procurement portal for City of Flagstaff, Arizona (~77K population; OpenGov Procurement (Includes FLG Airport)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 4,
       "ringLabel": "Ring 4",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-25",
@@ -1207,13 +1239,17 @@
         "sled",
         "ada title ii",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 4"
       ],
       "summary": "Official municipal procurement portal for City of Sierra Vista, Arizona (~45K population; OpenGov Procurement (Fort Huachuca Gateway)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 4,
       "ringLabel": "Ring 4",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-30",
@@ -1382,13 +1418,17 @@
         "sled",
         "ada title ii",
         "opengov",
+        "registered",
+        "compliant",
+        "active",
         "ring 4"
       ],
       "summary": "Official municipal procurement portal for City of Benson, Arizona (~5.4K population; OpenGov Procurement (bensonaz)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 4,
       "ringLabel": "Ring 4",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-39",
@@ -1515,13 +1555,17 @@
         "county",
         "arizona",
         "sled",
+        "registered",
+        "compliant",
+        "active",
         "ring 4"
       ],
       "summary": "Official Yavapai County, AZ (~249K Pop) procurement entry point (OpenGov Procurement ($0 Single Login)). Statutory accessibility status: ADA Title II Active (Apr 2026).",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Registered 2026-11-19)",
       "ring": 4,
       "ringLabel": "Ring 4",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "CYB-01",
