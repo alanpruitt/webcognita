@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedOn": "2026-11-18",
+  "generatedOn": "2026-11-19",
   "title": "Webcognita Federal & Arizona SLED Hybrid RAG OSINT Radar",
   "cleanRoomNotice": "100% public-domain federal (.gov/.mil) and Arizona SLED procurement metadata synthesized independently by Webcognita LLC. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. SBA, or Arizona APEX Accelerator.",
   "nodes": [
@@ -178,15 +178,17 @@
         "ada title ii",
         "bonfire",
         "licensed",
+        "registered",
         "compliant",
+        "active",
         "ring 1"
       ],
       "summary": "Official municipal procurement portal for City of Yuma, Arizona (~101K population; Bonfire (yumaaz.bonfirehub.com)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
-      "wcgStatus": "Webcognita Licensed (City of Yuma #SERV-051803)",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on City of Yuma Bonfire (Registered 2026-11-19 • License #SERV-051803)",
       "ring": 1,
       "ringLabel": "Ring 1",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CTY-YUMA",
@@ -768,13 +770,17 @@
         "sled",
         "ada title ii",
         "bonfire",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Official municipal procurement portal for City of Peoria, Arizona (~198K population; Bonfire / OpenGov). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on Bonfire / Euna SSO (Registered 2026-11-19)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-19",
@@ -793,13 +799,17 @@
         "sled",
         "ada title ii",
         "bonfire",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Official municipal procurement portal for City of Tempe, Arizona (~190K population; Bonfire Interactive). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on Bonfire / Euna SSO (Registered 2026-11-19)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-20",
@@ -818,13 +828,17 @@
         "sled",
         "ada title ii",
         "bonfire",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Official municipal procurement portal for City of Buckeye, Arizona (~115K population; Bonfire Interactive). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on Bonfire / Euna SSO (Registered 2026-11-19)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-21",
@@ -1038,6 +1052,8 @@
       "platform": "Bonfire / Euna (maricopa.bonfirehub.com — $0 Login)",
       "thresholds": "Active Apr 2026 ADA Title II Mandate • Canvas LMS Fleet",
       "url": "https://procurement.maricopa.edu/",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on Bonfire / Euna SSO (Registered 2026-11-19 • 18 UNSPSC Codes)",
       "tags": [
         "maricopa community colleges",
         "mcccd",
@@ -1048,13 +1064,15 @@
         "oer",
         "ztc",
         "ten 07-25",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "10-college Canvas LMS system sharing the same $0 Bonfire vendor login as City of Yuma and Cochise County; hosts Arizona APEX Accelerator.",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-MUN-01",
@@ -1415,13 +1433,17 @@
         "county",
         "arizona",
         "sled",
+        "registered",
+        "compliant",
+        "active",
         "ring 4"
       ],
       "summary": "Official Cochise County, AZ (~125K Pop) procurement entry point (Bonfire / Euna (cochise.bonfirehub.com)). Statutory accessibility status: ADA Title II Active (Apr 2026) • Fort Huachuca Corridor.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on Bonfire / Euna SSO (Registered 2026-11-19)",
       "ring": 4,
       "ringLabel": "Ring 4",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CTY-COCONINO",
