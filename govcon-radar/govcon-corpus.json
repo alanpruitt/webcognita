@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedOn": "2026-11-17",
+  "generatedOn": "2026-11-18",
   "title": "Webcognita Federal & Arizona SLED Hybrid RAG OSINT Radar",
   "cleanRoomNotice": "100% public-domain federal (.gov/.mil) and Arizona SLED procurement metadata synthesized independently by Webcognita LLC. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. SBA, or Arizona APEX Accelerator.",
   "nodes": [
@@ -11,7 +11,7 @@
       "jurisdiction": "Yuma & La Paz Counties, AZ (Hispanic-Serving Institution)",
       "platform": "AWC Purchasing (purchasing@azwestern.edu) & AZPurchasing.org",
       "thresholds": "Direct / P-Card < $10K • 3 Quotes $10K–$99.9K • >= $25K SAM.gov Verified • Co-Ops: AZPurchasing, 1GPA, Mohave",
-      "url": "https://www.azwestern.edu/faculty-and-staff/business-services/purchasing",
+      "url": "https://www.azwestern.edu/administrative-services/purchasing/vendor-guide",
       "tags": [
         "arizona western college",
         "awc",
@@ -36,10 +36,12 @@
       "id": "AZ-ED-01",
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "AZPurchasing.org — 200+ Arizona School Districts & Community Colleges Hub",
-      "jurisdiction": "Arizona Statewide Education & Municipal Consortium (Founded in Yuma)",
-      "platform": "AZPurchasing.org ($0.00 Free Vendor Registration)",
+      "jurisdiction": "Arizona Statewide Education & Municipal Consortium (1250 W. 11th St., Yuma, AZ 85364)",
+      "platform": "AZPurchasing.org ($0.00 Free Vendor Registration — vendorform.asp)",
       "thresholds": "P-Card <= $10K • 3-Quote Roster $10,001–$100,000 (A.A.C. R7-2-1001) • > $100K RFP / 1GPA / Mohave",
       "url": "https://www.azpurchasing.org/",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on AZPurchasing.org (Registered 2026-11-18 • All 15 AZ Counties • 10 Categories)",
       "tags": [
         "azpurchasing",
         "school districts",
@@ -50,13 +52,19 @@
         "yuma",
         "mesa public schools",
         "phoenix union",
+        "4628",
+        "6205",
+        "7103",
+        "7151",
+        "registered",
+        "compliant",
+        "active",
         "ring 0"
       ],
-      "summary": "Founded by the Yuma Educational Purchasing Association and used by 200+ AZ K-12 districts (including Mesa Public Schools & Phoenix Union HS) and colleges for free bid alerts and $10K–$100K 3-quote sourcing.",
+      "summary": "Operated at 1250 W. 11th St., Yuma, AZ by the Yuma Educational Purchasing Association and used by AWC plus 200+ AZ K-12 districts and colleges for $0 bid alerts and $10K–$100K 3-quote sourcing (active Webcognita 10-category roster: 1818, 4610, 4628, 4639, 4654, 6205, 6206, 7102, 7103, 7151).",
       "ring": 0,
       "ringLabel": "Ring 0",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-ED-02A",
@@ -187,7 +195,7 @@
       "jurisdiction": "Yuma County, AZ (~213K Pop)",
       "platform": "Yuma County Portal (2725 S. Ave B)",
       "thresholds": "ADA Title II Active (Apr 2026) • P-Card & Formal RFPs",
-      "url": "https://www.yumacountyaz.gov/government/general-services/procurement-portal",
+      "url": "https://www.yumacountyaz.gov/government/procurement-portal",
       "tags": [
         "yuma county",
         "yuma",
@@ -388,7 +396,7 @@
       "jurisdiction": "Yuma (~213K), La Paz (~17K), & Santa Cruz (~49K) Counties, AZ",
       "platform": "Yuma Procurement Portal & CivicPlus /Bids.aspx ($0 Notify Me)",
       "thresholds": "ADA Title II: Yuma active Apr 2026; La Paz & Santa Cruz due Apr 26, 2027",
-      "url": "https://www.yumacountyaz.gov/government/general-services/procurement-portal",
+      "url": "https://www.yumacountyaz.gov/government/procurement-portal",
       "tags": [
         "yuma county",
         "la paz county",
@@ -700,7 +708,7 @@
       "jurisdiction": "City of Glendale, AZ (~255K Pop)",
       "platform": "Munis VSS + PaymentWorks",
       "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
-      "url": "https://www.glendaleaz.gov/your_government/city_finances/procurement",
+      "url": "https://www.glendaleaz.gov/Government/City-Finances/Procurement/Vendor-Self-Service-VSS",
       "tags": [
         "city of glendale",
         "city",
@@ -1344,9 +1352,9 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "City of Benson — Municipal Procurement & Solicitations",
       "jurisdiction": "City of Benson, AZ (~5.4K Pop)",
-      "platform": "Municipal Bid Opportunities",
+      "platform": "OpenGov Procurement (bensonaz)",
       "thresholds": "Apr 26, 2027 ADA Due (<50K) • P-Card & 1GPA / Mohave Co-Op Eligible",
-      "url": "https://www.bensonaz.gov/government/bid_opportunities.php",
+      "url": "https://www.bensonaz.gov/164/Bid-Opportunities",
       "tags": [
         "city of benson",
         "city",
@@ -1355,10 +1363,10 @@
         "arizona",
         "sled",
         "ada title ii",
-        "municipal",
+        "opengov",
         "ring 4"
       ],
-      "summary": "Official municipal procurement portal for City of Benson, Arizona (~5.4K population; Municipal Bid Opportunities). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
+      "summary": "Official municipal procurement portal for City of Benson, Arizona (~5.4K population; OpenGov Procurement (bensonaz)). DOJ 28 CFR Part 35 accessibility gate: Apr 26, 2027 ADA Due (<50K).",
       "ring": 4,
       "ringLabel": "Ring 4",
       "isPortal": true,
