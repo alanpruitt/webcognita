@@ -1,0 +1,8 @@
+# Webcognita LLC — Vulnerability Disclosure & Security Policy (RFC 9116 / CISA BOD 20-01)
+# Entity: WEBCOGNITA LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6)
+Contact: https://www.webcognita.com/contact.html
+Contact: https://github.com/alanpruitt/webcognita/security/advisories/new
+Expires: 2027-11-19T23:59:59.000Z
+Preferred-Languages: en, es
+Canonical: https://www.webcognita.com/.well-known/security.txt
+Policy: https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf

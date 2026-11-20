@@ -4,6 +4,7 @@ User-agent: *
 Allow: /
 Allow: /llms.txt
 Allow: /docs/
+Allow: /.well-known/security.txt
 
 # Disallow administrative or raw build artifacts if applicable
 Disallow: /admin/
