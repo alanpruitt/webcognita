@@ -18,7 +18,7 @@
       "url": "https://www.webcognita.com/capabilities-statement.html",
       "name": "Webcognita LLC — Official 1-Page Federal Capabilities Statement (UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)",
       "inLanguage": "en-US",
-      "dateModified": "2026-11-17",
+      "dateModified": "2026-11-19",
       "isPartOf": {
         "@id": "https://www.webcognita.com/#website"
       },
@@ -333,6 +333,15 @@
     background-color: #0B1D3A;
     text-decoration: underline;
   }
+  :where(a:any-link, button):focus-visible {
+    outline: 3px solid #0B1D3A;
+    outline-offset: 2px;
+  }
+  .screen-toolbar :where(a:any-link, button):focus-visible,
+  .footer-bar a:focus-visible {
+    outline: 3px solid #FFFFFF;
+    outline-offset: 2px;
+  }
 </style>
 </head>
 <body>
@@ -341,9 +350,10 @@
       <strong>Webcognita LLC — Official 1-Page Federal Capabilities Statement Exhibit</strong>
       <span style="font-size: 8.5pt; margin-left: 8px;">(SAM.gov UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)</span>
     </div>
-    <div style="display: flex; gap: 8px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
       <a href="/assets/Webcognita_LLC_Capabilities_Statement.pdf" download="Webcognita_LLC_Capabilities_Statement.pdf">Download 1-Page PDF</a>
-      <button type="button" onclick="window.print()">Print 1-Page Exhibit</button>
+      <a href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf">CMMC L1 Cyber MFR (PDF)</a>
+      <button type="button" id="print-exhibit-btn">Print 1-Page Exhibit</button>
       <a href="https://www.webcognita.com/">Return to Webcognita.com</a>
     </div>
   </div>
@@ -372,7 +382,7 @@
       <div class="proc-item"><strong>NAICS:</strong> <strong>541511</strong>, 541512, 541715, 611710, 541690</div>
       <div class="proc-item"><strong>PSC Codes:</strong> U008, U012, DA01, DJ01, R425, AN12</div>
       <div class="proc-item"><strong>Standing:</strong> <a href="https://www.webcognita.com/docs/Webcognita_LLC_AZ_Certificate_of_Good_Standing.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">AZ ACC #L17046120</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">Yuma #SERV-051803</a></div>
-      <div class="proc-item"><strong>Payment Rails:</strong> <a href="https://www.webcognita.com/support/" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">GPC &amp; AZ P-Card</a> &bull; ACH</div>
+      <div class="proc-item"><strong>Cyber &amp; Pay:</strong> <a href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">CMMC L1 Cyber MFR (PDF)</a> &bull; <a href="https://www.webcognita.com/support/" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">GPC/ACH</a></div>
     </section>
 
     <!-- EXECUTIVE SUMMARY -->
@@ -398,7 +408,7 @@
         <h2 id="diff-heading" class="panel-title">Key Differentiators &amp; Principal Qualifications</h2>
         <ul class="compact-list">
           <li><strong>Non-Competing 50-State Enabling Partner:</strong> We never compete against universities, community colleges, or state consortia for primary grant awards—providing plug-and-play subaward implementation, faculty training, and open-source CI/CD infrastructure.</li>
-          <li><strong>Cleared Security Pedigree &amp; Unescorted DoD Access:</strong> Principal is a <strong>USMC (Honorable, 1980&ndash;1992) &amp; U.S. Army, National Guard, Army Reserve CI Agent (Honorable, 1992&ndash;2001)</strong>, former <strong>CA Licensed Private Investigator (Lic. #17984, 2001&ndash;2004, QM &amp; Owner)</strong>, with documented <strong>Top Secret / SCI (Special Intelligence / TK)</strong> &amp; <strong>TSCM</strong> leadership, holding a <strong>U.S. Department of Defense / Uniformed Services Identification and Privilege Card (Affiliation: 100% Disabled American Veteran, Indefinite Expiration)</strong> for unescorted DoD/federal access (<code>FAR 9.104-1</code>, <code>52.204-21 SSP</code>, <code>Sec. 889</code> &amp; <code>SF 1408</code> Ready).</li>
+          <li><strong>Cleared Security Pedigree &amp; Unescorted DoD Access:</strong> Principal is a <strong>USMC (Honorable, 1980&ndash;1992) &amp; U.S. Army, National Guard, Army Reserve CI Agent (Honorable, 1992&ndash;2001)</strong>, former <strong>CA Licensed Private Investigator (Lic. #17984, 2001&ndash;2004, QM &amp; Owner)</strong>, with documented <strong>Top Secret / SCI (Special Intelligence / TK)</strong> &amp; <strong>TSCM</strong> leadership, holding a <strong>U.S. Department of Defense / Uniformed Services Identification and Privilege Card (Affiliation: 100% Disabled American Veteran, Indefinite Expiration)</strong> for unescorted DoD/federal access (<a class="verify-chip" href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" style="white-space: nowrap;">CMMC L1 Cyber MFR (PDF)</a>, <code>FAR 9.104-1</code>, <code>Sec. 889</code> &amp; <code>SF 1408</code> Ready).</li>
           <li><strong>Verified Google Credentials, ORCID &amp; Education:</strong> <strong>Executive Certificate in Non-Profit/Public/Organizational Management (2017&ndash;2018)</strong>, Thunderbird School of Global Management, Phoenix, AZ (<strong>Team RWB Eagle Leader Fellow</strong>); <strong>B.S. in Management (1999)</strong>, University of Phoenix; <a class="verify-chip" href="https://orcid.org/0009-0002-5038-7111" style="white-space: nowrap;">ORCID: 0009-0002-5038-7111</a>; <a class="verify-chip" href="https://edu.google.accredible.com/22b51965-eadb-4477-a9ac-1b1e2c4a45f2">Google Gemini Certified Faculty</a>, <a class="verify-chip" href="https://www.coursera.org/account/accomplishments/professional-cert/TIASZGL7JPG0">Google AI Professional</a>, &amp; <strong>Launchpad for Veterans / Google I/O (2010–2026)</strong> (<a class="verify-chip" href="https://me.developers.google.com/u/alanpruitt">g.dev/alanpruitt</a>); unpaid volunteer <strong>DCC</strong> at <strong>The University of Arizona</strong> (<em>The Yuma Sun</em>, B3, 11/30/25).</li>
           <li><strong>Pre-ChatGPT AI &amp; Accessible HTML Pioneer (2021):</strong> Earned the national <strong>2021 NADO Aliceann Wohlbruck Impact Award</strong> and <a class="verify-chip" href="https://www.statsamerica.org/newsletter/2021Q3.aspx">U.S. EDA StatsAmerica Spotlight</a> for an open-source AI Co-Pilot &amp; Python API screen-reader CEDS.</li>
           <li><strong>Bilingual (EN / Norteño-Spanish) HSI &amp; Tribal Execution:</strong> Field-proven across Yuma, AZ / Imperial Valley, CA serving AWC&rsquo;s <strong>77% Latino</strong> (<code>3.08x</code> Title V HSI threshold) &amp; <strong>62% first-generation</strong> cohorts (<em>Pres. Dr. Reetika Dhawan, The Yuma Sun, Nov. 11, 2026</em>) and tribal nations.</li>
@@ -486,5 +496,11 @@
       </div>
     </footer>
   </main>
+  <script>
+    const printExhibitBtn = document.getElementById('print-exhibit-btn');
+    if (printExhibitBtn) {
+      printExhibitBtn.addEventListener('click', () => window.print());
+    }
+  </script>
 </body>
 </html>
