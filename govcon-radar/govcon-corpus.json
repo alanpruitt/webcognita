@@ -1054,6 +1054,35 @@
       "portalActive": false
     },
     {
+      "id": "AZ-CITY-42",
+      "category": "AZ_CITIES_ED_AIRPORTS",
+      "title": "City of Surprise — Municipal Procurement & Solicitations",
+      "jurisdiction": "City of Surprise, AZ (~160K Pop)",
+      "platform": "OpenGov Vendor Portal (vendor-portal.opengov.com/agencies/surpriseaz)",
+      "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
+      "url": "https://vendor-portal.opengov.com/agencies/surpriseaz",
+      "tags": [
+        "city of surprise",
+        "city",
+        "town",
+        "municipal",
+        "arizona",
+        "sled",
+        "ada title ii",
+        "opengov",
+        "registered",
+        "compliant",
+        "active",
+        "ring 3"
+      ],
+      "summary": "Official municipal procurement portal for City of Surprise, Arizona (~160K population; OpenGov Vendor Portal (vendor-portal.opengov.com/agencies/surpriseaz)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Subscribed 2026-11-21)",
+      "ring": 3,
+      "ringLabel": "Ring 3",
+      "isPortal": true
+    },
+    {
       "id": "AZ-CTY-02",
       "category": "AZ_STATE_COUNTIES",
       "title": "8 Arizona SaaS-Portal Counties (Maricopa, Pima, Pinal, Yavapai, Mohave, Cochise, Coconino & Gila)",
@@ -1204,15 +1233,16 @@
     {
       "id": "AZ-MUN-01",
       "category": "AZ_CITIES_ED_AIRPORTS",
-      "title": "Arizona OpenGov & Bonfire Cities (Phoenix, Tucson, Scottsdale, Peoria, Tempe, Buckeye, Goodyear, Yuma, Avondale, Flagstaff, Sierra Vista, Benson)",
-      "jurisdiction": "12 Major & Mid-Sized Arizona Municipalities",
+      "title": "Arizona OpenGov & Bonfire Cities (Phoenix, Tucson, Scottsdale, Peoria, Tempe, Surprise, Buckeye, Goodyear, Yuma, Avondale, Flagstaff, Sierra Vista, Benson)",
+      "jurisdiction": "13 Major & Mid-Sized Arizona Municipalities",
       "platform": "OpenGov Procurement & Bonfire / Euna ($0 Single-Sign-On)",
       "thresholds": "Apr 2026 ADA Title II active >= 50K (Sierra Vista ~45K & Benson ~5.4K due Apr 26, 2027)",
       "url": "https://vendor-portal.opengov.com/agencies/phoenix",
       "portalActive": true,
-      "wcgStatus": "Active Vendor on Both OpenGov & Bonfire SSO (All 12 Cities Live 2026-11-21)",
+      "wcgStatus": "Active Vendor on Both OpenGov & Bonfire SSO (All 13 Cities Live 2026-11-21)",
       "tags": [
         "city of phoenix",
+        "city of surprise",
         "city of yuma",
         "tucson",
         "scottsdale",
@@ -1231,7 +1261,7 @@
         "active",
         "ring 3"
       ],
-      "summary": "Zero extra portal accounts required: Phoenix (vendor-portal.opengov.com/agencies/phoenix), Tucson, Scottsdale, Avondale, Flagstaff, Sierra Vista, and Benson run on OpenGov; City of Yuma (yumaaz.bonfirehub.com), Peoria, Tempe, Buckeye, and Goodyear (goodyearaz.bonfirehub.com) run on Bonfire; Chandler runs inside app.az.gov.",
+      "summary": "Zero extra portal accounts required: Phoenix (vendor-portal.opengov.com/agencies/phoenix), Tucson, Scottsdale, Surprise (vendor-portal.opengov.com/agencies/surpriseaz), Avondale, Flagstaff, Sierra Vista, and Benson run on OpenGov; City of Yuma (yumaaz.bonfirehub.com), Peoria, Tempe, Buckeye, and Goodyear (goodyearaz.bonfirehub.com) run on Bonfire; Chandler runs inside app.az.gov.",
       "ring": 3,
       "ringLabel": "Ring 3",
       "isPortal": true
