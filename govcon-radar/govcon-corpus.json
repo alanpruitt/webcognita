@@ -588,9 +588,9 @@
       "category": "AZ_STATE_COUNTIES",
       "title": "ADOT AZ UTRACS — Small Business Concern (SBC) Registry",
       "jurisdiction": "Arizona Statewide (All 15 Counties — 49 CFR 26.39)",
-      "platform": "AZ UTRACS (utracs.azdot.gov)",
+      "platform": "AZ UTRACS (utracs.azdot.gov • Public Bidder ID #23545)",
       "thresholds": "$0 • Active 3-Year Statewide SBC Credential • Zero PNW Audit",
-      "url": "https://utracs.azdot.gov/",
+      "url": "https://utracs.azdot.gov/firmProfile?bidderId=23545",
       "portalActive": true,
       "wcgStatus": "Active AZ UTRACS & SBC Vendor (#23545 • Registered 2026-11-20 • Valid Through 2029-11-20)",
       "tags": [
