@@ -1051,10 +1051,10 @@
       "title": "8 Arizona SaaS-Portal Counties (Maricopa, Pima, Pinal, Yavapai, Mohave, Cochise, Coconino & Gila)",
       "jurisdiction": "8 Arizona Counties (>= 50,000 Pop — Apr 2026 ADA Title II Active)",
       "platform": "OpenGov (Pinal, Yavapai, Mohave, Gila) • Bonfire (Cochise) • BidNet $0 Tier (Maricopa, Pima) • IonWave (Coconino)",
-      "thresholds": "7 of 8 Active via OpenGov, Bonfire & BidNet Direct ($0 Tier); Only Coconino IonWave Remains",
+      "thresholds": "8 of 8 Active (100% Statewide County SaaS Portal Coverage Achieved 2026-11-21)",
       "url": "https://www.maricopa.gov/2087/Procurement-Services",
       "portalActive": true,
-      "wcgStatus": "Active Across 7 of 8 Counties (OpenGov, Bonfire & BidNet Direct Active 2026-11-21; Only Coconino IonWave Pending)",
+      "wcgStatus": "Active Vendor Across All 8 SaaS-Portal Counties (OpenGov, Bonfire, BidNet Direct & Coconino IonWave Active 2026-11-21)",
       "tags": [
         "maricopa county",
         "pima county",
@@ -1073,7 +1073,7 @@
         "active",
         "ring 3"
       ],
-      "summary": "All 8 counties exceed 50K population (DOJ ADA Title II active now). Pinal, Yavapai, Mohave, and Gila share Webcognita's active OpenGov SSO; Cochise shares active Bonfire SSO; Maricopa and Pima are active via BidNet Direct ($0.00 Tier, registered 2026-11-21); only Coconino (coconino.ionwave.net) requires a separate $0 login.",
+      "summary": "All 8 counties exceed 50K population (DOJ ADA Title II active now) and 100% are active in Webcognita's vendor stack: Pinal, Yavapai, Mohave, and Gila via OpenGov SSO; Cochise via Bonfire SSO; Maricopa and Pima via BidNet Direct ($0 Tier); and Coconino via Ion Wave (coconino.ionwave.net, activated 2026-11-21).",
       "ring": 3,
       "ringLabel": "Ring 3",
       "isPortal": true
@@ -1631,13 +1631,17 @@
         "county",
         "arizona",
         "sled",
+        "registered",
+        "compliant",
+        "active",
         "ring 4"
       ],
       "summary": "Official Coconino County, AZ (~145K Pop) procurement entry point (Ion Wave Technologies (coconino.ionwave.net)). Statutory accessibility status: ADA Title II Active (Apr 2026). Board of Supervisors approves formal awards under A.R.S. 11-254.01; eligible for 1GPA/Mohave co-op orders under A.R.S. 41-2632.",
+      "portalActive": true,
+      "wcgStatus": "Active Supplier on Coconino County IonWave (coconino.ionwave.net — Activated 2026-11-21)",
       "ring": 4,
       "ringLabel": "Ring 4",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CTY-GILA",
@@ -2746,7 +2750,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "ADOT AZ UTRACS SBC (#23545), BidNet Direct (Maricopa/Pima), OpenGov (1GPA/Mohave), Bonfire, AZPurchasing, & Arizona APP (<$100K SB)"
+      "label": "15/15 AZ Counties Active (OpenGov, Bonfire, BidNet, Coconino IonWave), ADOT AZ UTRACS SBC (#23545), AZPurchasing, & Arizona APP"
     },
     {
       "id": "G13",
