@@ -680,9 +680,9 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "City of Phoenix — Municipal Procurement & Solicitations",
       "jurisdiction": "City of Phoenix, AZ (~1.66M Pop)",
-      "platform": "OpenGov Procurement (procurement.opengov.com/portal/phoenix)",
+      "platform": "OpenGov Vendor Portal (vendor-portal.opengov.com/agencies/phoenix)",
       "thresholds": "Apr 2026 ADA Active • ADOT SBC • P-Card & 1GPA / Mohave Co-Op Eligible",
-      "url": "https://procurement.opengov.com/portal/phoenix",
+      "url": "https://vendor-portal.opengov.com/agencies/phoenix",
       "tags": [
         "city of phoenix",
         "city",
@@ -697,7 +697,7 @@
         "active",
         "ring 3"
       ],
-      "summary": "Official municipal procurement portal for City of Phoenix, Arizona (~1.66M population; OpenGov Procurement (procurement.opengov.com/portal/phoenix)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC.",
+      "summary": "Official municipal procurement portal for City of Phoenix, Arizona (~1.66M population; OpenGov Vendor Portal (vendor-portal.opengov.com/agencies/phoenix)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active • ADOT SBC.",
       "portalActive": true,
       "wcgStatus": "Active Vendor on OpenGov Procurement SSO (Verified 2026-11-21 • AZ UTRACS SBC #23545)",
       "ring": 3,
@@ -1208,7 +1208,7 @@
       "jurisdiction": "12 Major & Mid-Sized Arizona Municipalities",
       "platform": "OpenGov Procurement & Bonfire / Euna ($0 Single-Sign-On)",
       "thresholds": "Apr 2026 ADA Title II active >= 50K (Sierra Vista ~45K & Benson ~5.4K due Apr 26, 2027)",
-      "url": "https://procurement.opengov.com/portal/phoenix",
+      "url": "https://vendor-portal.opengov.com/agencies/phoenix",
       "portalActive": true,
       "wcgStatus": "Active Vendor on Both OpenGov & Bonfire SSO (All 12 Cities Live 2026-11-21)",
       "tags": [
@@ -1231,7 +1231,7 @@
         "active",
         "ring 3"
       ],
-      "summary": "Zero extra portal accounts required: Phoenix (procurement.opengov.com/portal/phoenix), Tucson, Scottsdale, Avondale, Flagstaff, Sierra Vista, and Benson run on OpenGov; City of Yuma (yumaaz.bonfirehub.com), Peoria, Tempe, Buckeye, and Goodyear (goodyearaz.bonfirehub.com) run on Bonfire; Chandler runs inside app.az.gov.",
+      "summary": "Zero extra portal accounts required: Phoenix (vendor-portal.opengov.com/agencies/phoenix), Tucson, Scottsdale, Avondale, Flagstaff, Sierra Vista, and Benson run on OpenGov; City of Yuma (yumaaz.bonfirehub.com), Peoria, Tempe, Buckeye, and Goodyear (goodyearaz.bonfirehub.com) run on Bonfire; Chandler runs inside app.az.gov.",
       "ring": 3,
       "ringLabel": "Ring 3",
       "isPortal": true
