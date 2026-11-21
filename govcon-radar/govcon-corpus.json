@@ -146,7 +146,7 @@
       "thresholds": "ADA Title II + USDOT 49 CFR Part 27 + Title VI Bilingual LEP + ADOT SBC",
       "url": "https://www.flyyuma.com/rfq.php",
       "portalActive": true,
-      "wcgStatus": "Open RFQ/RFP Board — No Vendor Login Gate (Direct Bid Ready)",
+      "wcgStatus": "Open RFQ/RFP Board — Direct Bid Ready (AZ UTRACS SBC #23545 Active)",
       "tags": [
         "yuma international airport",
         "yum",
@@ -562,25 +562,22 @@
       "category": "AZ_STATE_COUNTIES",
       "title": "Arizona State Procurement Office (ADOA-SPO) & APP Portal (app.az.gov)",
       "jurisdiction": "State of Arizona & AZ Cooperative Members",
-      "platform": "APP / Ivalua (app.az.gov) — Uses 5-Digit NIGP Codes",
+      "platform": "APP / Ivalua (app.az.gov) — Uses UNSPSC Commodity Codes (Help Desk: 602-542-7600)",
       "thresholds": "P-Card <= $10,000 • Mandatory Small Business eQuotes $10,001–$100,000 (A.R.S. 41-2535) • Formal RFP > $100K",
       "url": "https://spo.az.gov/suppliers/how-do-business-state-arizona",
       "tags": [
         "spo.az.gov",
         "app.az.gov",
         "adoa",
+        "unspsc",
         "nigp",
-        "208",
-        "918",
-        "920",
-        "924",
         "small business",
         "100000",
         "p-card",
         "equote",
         "ring 3"
       ],
-      "summary": "Under A.R.S. 41-2535(B), AZ state purchases $10,001–$100,000 are statutorily restricted to Small Businesses (<100 FTE or <$4M). Select NIGP classes 208, 209, 918, 920, 924, and 958 in APP.",
+      "summary": "Under A.R.S. 41-2535(B), AZ state purchases $10,001–$100,000 are statutorily restricted to Small Businesses (<100 FTE or <$4M). APP Part 1/Part 2 enrollment uses UNSPSC codes (APP Help Desk: app@azdoa.gov / 602-542-7600).",
       "ring": 3,
       "ringLabel": "Ring 3",
       "isPortal": true,
@@ -592,11 +589,14 @@
       "title": "ADOT AZ UTRACS — Small Business Concern (SBC) Registry",
       "jurisdiction": "Arizona Statewide (All 15 Counties — 49 CFR 26.39)",
       "platform": "AZ UTRACS (utracs.azdot.gov)",
-      "thresholds": "$0 • 15-Minute Online Registration • Valid 3 Years • Zero PNW Audit",
-      "url": "https://azdot.gov/small-business-concern-sbc-guide",
+      "thresholds": "$0 • Active 3-Year Statewide SBC Credential • Zero PNW Audit",
+      "url": "https://utracs.azdot.gov/",
+      "portalActive": true,
+      "wcgStatus": "Active AZ UTRACS & SBC Vendor (#23545 • Registered 2026-11-20 • Valid Through 2029-11-20)",
       "tags": [
         "adot",
         "utracs",
+        "23545",
         "sbc",
         "small business concern",
         "sky harbor",
@@ -605,13 +605,15 @@
         "pag",
         "mag",
         "49 cfr 26.39",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
-      "summary": "Race/gender-neutral statewide Small Business registry recognized across ADOT, Phoenix Sky Harbor, Tucson, Valley Metro, MAG, PAG, and Yuma YMPO federally funded contracts (unlike Maricopa-only Phoenix SBE).",
+      "summary": "Active Webcognita LLC statewide Small Business Concern credential (AZ UTRACS #23545, 14 IT/Accessibility/Training/Research categories) recognized across ADOT, Phoenix Sky Harbor, City of Tucson, Valley Metro, MAG, PAG, and Yuma YMPO/YUM federally funded contracts.",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-03",
@@ -648,7 +650,7 @@
       "thresholds": "ADA Title II + USDOT 49 CFR Part 27 + Title VI Bilingual LEP + ADOT SBC",
       "url": "https://www.skyharbor.com/airport-business/business-opportunities/",
       "portalActive": true,
-      "wcgStatus": "Active Vendor on OpenGov Procurement (PHX & FLG Live 2026-11-19)",
+      "wcgStatus": "Active Vendor on OpenGov Procurement + AZ UTRACS SBC #23545 (Live 2026-11-20)",
       "tags": [
         "sky harbor",
         "phx",
@@ -2732,7 +2734,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "Arizona APP (app.az.gov NIGP codes + <$100K SB flag), OpenGov (1GPA/Mohave), Bonfire, AZPurchasing & ADOT SBC"
+      "label": "ADOT AZ UTRACS SBC Active (#23545), OpenGov (1GPA/Mohave), Bonfire, AZPurchasing, & Arizona APP (<$100K SB flag)"
     },
     {
       "id": "G13",
