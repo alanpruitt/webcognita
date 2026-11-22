@@ -1,4 +1,4 @@
-const CACHE_NAME = 'webcognita-cac-readiness-v1.0.0';
+const CACHE_NAME = 'webcognita-cac-readiness-v1.1.0';
 const ASSETS = [
   '/cac-readiness/',
   '/cac-readiness/index.html',

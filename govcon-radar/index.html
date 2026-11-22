@@ -332,8 +332,8 @@
       color: #FFFFFF;
     }
     .btn-secondary {
-      min-height: 38px;
-      padding: 0.35rem 0.75rem;
+      min-block-size: 44px;
+      padding: 0.45rem 0.85rem;
       font-size: 0.84rem;
       font-weight: 700;
       color: #0B1D3A;
@@ -345,6 +345,340 @@
     .btn-secondary[aria-pressed="true"], .btn-secondary:hover {
       background-color: #0B1D3A;
       color: #FFFFFF;
+    }
+    .btn-ada-countdown {
+      color: #7E061E;
+      background-color: #FFFFFF;
+      border: 2px solid #7E061E;
+      font-weight: 800;
+    }
+    .btn-ada-countdown[aria-pressed="true"], .btn-ada-countdown:hover {
+      background-color: #7E061E;
+      color: #FFFFFF;
+      border-color: #7E061E;
+    }
+    .btn-nextup {
+      color: #08454A;
+      background-color: #FFFFFF;
+      border: 2px solid #08454A;
+      font-weight: 800;
+    }
+    .btn-nextup[aria-pressed="true"], .btn-nextup:hover {
+      background-color: #08454A;
+      color: #FFFFFF;
+      border-color: #08454A;
+    }
+    /* Concentric Ring Portal Readiness Progress Bar (`progress` guide) */
+    .ring-progress-well {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .ring-progress-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+    }
+    .ring-progress-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #F4F7FB;
+    }
+    .ring-progress-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    progress.ring-progress-bar {
+      appearance: none;
+      border: 0 solid;
+      overflow: clip;
+      display: block;
+      inline-size: 100%;
+      block-size: 18px;
+      --progress-bar-radius: 1e5px;
+      --progress-bar-track: #DBE4F0;
+      --progress-bar-fill: #064E3B;
+      border-radius: var(--progress-bar-radius);
+      background: var(--progress-bar-track);
+      box-shadow: inset 0 0 0 1.5px #0B1D3A;
+      margin-bottom: 0.6rem;
+    }
+    progress.ring-progress-bar::-webkit-progress-bar {
+      background: transparent;
+    }
+    progress.ring-progress-bar::-webkit-progress-value {
+      background: var(--progress-bar-fill);
+      border-radius: var(--progress-bar-radius);
+      transition: inline-size 0.25s ease;
+    }
+    progress.ring-progress-bar::-moz-progress-bar {
+      background: var(--progress-bar-fill);
+      border-radius: var(--progress-bar-radius);
+      transition: inline-size 0.25s ease;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      progress.ring-progress-bar::-webkit-progress-value {
+        transition: none;
+      }
+      progress.ring-progress-bar::-moz-progress-bar {
+        transition: none;
+      }
+    }
+    .ring-breakdown-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .ring-lane-chip {
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      min-block-size: 38px;
+      padding: 0.28rem 0.68rem;
+      border-radius: 6px;
+      border: 1.5px solid #0B1D3A;
+      background-color: #FFFFFF;
+      color: #0B1D3A;
+      cursor: pointer;
+    }
+    .ring-lane-chip.is-locked {
+      background-color: #064E3B;
+      color: #FFFFFF;
+      border-color: #064E3B;
+    }
+    .ring-lane-chip.is-focused {
+      outline: 3px solid #7E061E;
+      outline-offset: 1px;
+    }
+    .ring-lane-chip:hover {
+      background-color: #0B1D3A;
+      color: #FFFFFF;
+      border-color: #0B1D3A;
+    }
+    /* Tab 5 Export Brief Button + Native Modal `<dialog>` (`dialog` & `copy-button` guides) */
+    .btn-export-brief {
+      min-block-size: 40px;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      border: 2px solid #08454A;
+      background-color: #FFFFFF;
+      color: #08454A;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .btn-export-brief.is-pursue,
+    .btn-export-brief:hover {
+      background-color: #08454A;
+      color: #FFFFFF;
+      border-color: #08454A;
+    }
+    .btn-export-brief.is-pursue:hover {
+      background-color: #7E061E;
+      border-color: #7E061E;
+      color: #FFFFFF;
+    }
+    dialog:modal {
+      overscroll-behavior: contain;
+    }
+    dialog::backdrop {
+      overflow: hidden;
+      overscroll-behavior: contain;
+      background-color: rgba(11, 29, 58, 0.66);
+    }
+    dialog#bid-brief-dialog {
+      inline-size: min(94vw, 880px);
+      max-block-size: 90vh;
+      border: 3px solid #0B1D3A;
+      border-radius: 10px;
+      padding: 1.25rem 1.35rem;
+      background-color: #FFFFFF;
+      color: #111827;
+      box-shadow: 0 20px 50px rgba(11, 29, 58, 0.35);
+    }
+    dialog#bid-brief-dialog[open] {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .brief-dialog-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      border-bottom: 2px solid #0B1D3A;
+      padding-bottom: 0.65rem;
+    }
+    .brief-inputs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 0.75rem;
+      background-color: #F4F7FB;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      padding: 0.75rem 0.85rem;
+    }
+    .brief-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .copy-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .copy-btn-invoker {
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 800;
+      min-inline-size: 44px;
+      min-block-size: 44px;
+      padding: 0.5rem 0.95rem;
+      border-radius: 6px;
+      background-color: #064E3B;
+      color: #FFFFFF;
+      border: 2px solid #064E3B;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .copy-btn-invoker[data-copied] {
+      background-color: #0B1D3A;
+      border-color: #0B1D3A;
+    }
+    .copy-btn-invoker[data-failed] {
+      background-color: #7E061E;
+      border-color: #7E061E;
+    }
+    .copy-glyph::before {
+      content: "\2398";
+      font-size: 1rem;
+    }
+    .copy-btn-invoker[data-copied] .copy-glyph::before {
+      content: "\2713";
+    }
+    .copy-btn-invoker[data-failed] .copy-glyph::before {
+      content: "!";
+    }
+    .copy-tip {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 0.25rem 0.55rem;
+      border-radius: 4px;
+      background-color: #F4F7FB;
+      color: #064E3B;
+      border: 1.5px solid #064E3B;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    .copy-btn-invoker[data-copied] + .copy-tip,
+    .copy-btn-invoker[data-failed] + .copy-tip {
+      opacity: 1;
+    }
+    .copy-btn-invoker[data-failed] + .copy-tip {
+      color: #7E061E;
+      border-color: #7E061E;
+    }
+    pre#bid-brief-preview {
+      margin: 0;
+      padding: 0.9rem 1rem;
+      background-color: #F4F7FB;
+      color: #111827;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.83rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-y: auto;
+      max-block-size: 42vh;
+    }
+    .ada-countdown-banner {
+      border: 2.5px solid #7E061E;
+      border-inline-start: 8px solid #7E061E;
+      border-radius: 8px;
+      padding: 0.95rem 1.15rem;
+      margin-bottom: 0.95rem;
+      background-color: #F4F7FB;
+      color: #111827;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .ada-countdown-banner[hidden] {
+      display: none !important;
+    }
+    .ada-countdown-kicker {
+      display: inline-block;
+      background-color: #7E061E;
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 900;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .ada2027-pill {
+      display: inline-block;
+      background-color: #7E061E;
+      color: #FFFFFF;
+      border: 1.5px solid #7E061E;
+      padding: 0.14rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .card-cta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .card-sow-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: #08454A;
+      color: #FFFFFF;
+      border: 2px solid #08454A;
+      text-decoration: none;
+      padding: 0.55rem 0.85rem;
+      border-radius: 5px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      min-block-size: 44px;
+    }
+    .card-sow-btn:hover {
+      background-color: #7E061E;
+      border-color: #7E061E;
+      color: #FFFFFF;
+    }
+    @media (pointer: coarse) {
+      .btn-secondary,
+      .card-link-btn,
+      .card-sow-btn {
+        min-block-size: 48px;
+      }
     }
     .chip-row {
       display: flex;
@@ -464,16 +798,16 @@
       color: #FFFFFF;
       border-color: #6E061B;
     }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+    .sr-only:where(:not(:focus-within, :active)) {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
     }
     .node-card h3 {
       margin: 0.25rem 0;
@@ -549,16 +883,18 @@
       background-color: #FFFFFF;
     }
     .card-link-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       background-color: #0B1D3A;
       color: #FFFFFF;
       text-decoration: none;
-      padding: 0.5rem 0.85rem;
+      padding: 0.55rem 0.85rem;
       border-radius: 5px;
       font-size: 0.88rem;
       font-weight: 800;
-      min-height: 40px;
+      min-block-size: 44px;
     }
     .card-link-btn:hover {
       background-color: #0D5156;
@@ -793,7 +1129,9 @@
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
             <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (106)</button>
-            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (53)</button>
+            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (54)</button>
+            <button type="button" class="btn-secondary cat-btn btn-nextup" id="nextup-filter-btn" data-cat="PORTAL_NEXT_UP" aria-pressed="false">Next Up to Register (40)</button>
+            <button type="button" class="btn-secondary cat-btn btn-ada-countdown" id="ada2027-filter-btn" data-cat="ADA_APR_2027" aria-pressed="false">Apr 2027 ADA &lt;50K P-Card Targets (30)</button>
             <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (61)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
@@ -804,6 +1142,30 @@
             <button type="button" class="btn-secondary cat-btn" data-cat="AZ_CITIES_ED_AIRPORTS" aria-pressed="false">AZ Cities, Ed &amp; Airports</button>
           </div>
           <div id="save-live-status" class="sr-only" aria-live="polite"></div>
+
+          <div id="ring-progress-well" class="ring-progress-well">
+            <div class="ring-progress-header">
+              <span id="ring-progress-label" class="ring-progress-title">Concentric Portal Registration Progress (All Rings): 54 / 94 Active (57%) &bull; 40 Next Up</span>
+              <div class="ring-progress-actions" role="group" aria-label="Quick Toggle Active vs Next Up Portals">
+                <button type="button" id="ring-quick-active-btn" class="btn-secondary" aria-pressed="false">Active Only (54)</button>
+                <button type="button" id="ring-quick-nextup-btn" class="btn-secondary btn-nextup" aria-pressed="false">Next Up to Register (40)</button>
+              </div>
+            </div>
+            <progress id="ring-portal-progress" class="ring-progress-bar" value="54" max="94" aria-labelledby="ring-progress-label"></progress>
+            <div id="ring-breakdown-strip" class="ring-breakdown-row" role="group" aria-label="Concentric Ring Registration Breakdown"></div>
+          </div>
+
+          <div id="ada2027-banner" class="ada-countdown-banner" hidden>
+            <div style="max-inline-size: 74ch;">
+              <span class="ada-countdown-kicker" id="ada2027-kicker">DOJ 28 CFR PART 35 (&lt;50K POP &amp; SPECIAL DISTRICTS) &bull; <time id="ada2027-deadline-date" datetime="2027-04-26">APRIL 26, 2027</time></span>
+              <div style="font-size: 0.92rem; color: #111827; background-color: #F4F7FB;">
+                <strong id="ada2027-countdown-lead" style="color: #0B1D3A; background-color: #F4F7FB;">Statutory Window Active:</strong>
+                <span id="ada2027-countdown-detail">Arizona cities/towns under 50,000 population, rural counties (La Paz, Santa Cruz, Graham, Greenlee), and special districts (YUM Airport / YCAA) hit mandatory WCAG 2.1/2.2 Level AA web &amp; Council packet PDF compliance on April 26, 2027.</span>
+                Select <strong>Generate $4.5K&ndash;$9.9K P-Card SOW</strong> on any card below to pre-fill a direct P-Card (<code>&lt;= $10,000</code>) or 3-quote Statement of Work.
+              </div>
+            </div>
+            <a class="card-sow-btn" href="/cac-readiness/?buyer=sled&amp;tier=ada_pcard&amp;lms=pwa&amp;pillars=ada,bilingual,provo">Open Blank &lt;50K ADA SOW Builder &rarr;</a>
+          </div>
 
           <div id="rag-telemetry" class="telemetry-bar" aria-live="polite">
             <span>Loading clean-room OSINT corpus...</span>
@@ -922,8 +1284,9 @@
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
             <h2 style="margin: 0; color: #0B1D3A; background-color: #FFFFFF;">Private Morning BI Lead Triage (Concentric Ring 0 &rarr; Ring 9)</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-              <button type="button" id="btn-sync-m2" class="btn-primary" style="min-height: 40px; padding: 0.45rem 0.9rem;">Sync M2 Loopback Ledger (127.0.0.1:8767)</button>
-              <button type="button" id="btn-export-triage" class="btn-secondary" style="min-height: 40px;">Export Decisions JSON</button>
+              <button type="button" id="btn-sync-m2" class="btn-primary" style="min-block-size: 44px; padding: 0.45rem 0.9rem;">Sync M2 Loopback Ledger (127.0.0.1:8767)</button>
+              <button type="button" id="btn-batch-apex-pursue" class="btn-secondary btn-nextup" style="min-block-size: 44px;">Export All Pursue &rarr; APEX Brief (0)</button>
+              <button type="button" id="btn-export-triage" class="btn-secondary" style="min-block-size: 44px;">Export Decisions JSON</button>
             </div>
           </div>
 
@@ -959,6 +1322,50 @@
         </div>
       </div>
     </div>
+
+    <!-- Native Modal Dialog for Tab 5 1-Click Bid Brief / Arizona APEX Review / FAR 13 Quote Cover Sheet -->
+    <dialog id="bid-brief-dialog" closedby="any" aria-labelledby="bid-brief-title">
+      <div class="brief-dialog-top">
+        <div>
+          <h2 id="bid-brief-title" style="margin: 0 0 0.25rem 0; font-size: 1.18rem; color: #0B1D3A; background-color: #FFFFFF;">1-Click Arizona APEX Solicitation Review &amp; FAR 13 Quote Cover Sheet</h2>
+          <p id="bid-brief-subtitle" style="margin: 0; font-size: 0.85rem; color: #111827; background-color: #FFFFFF;">Zero-egress local synthesis from Tab 5 BI Triage &amp; M2 Loopback Ledger (127.0.0.1:8767).</p>
+        </div>
+        <form method="dialog" style="margin: 0;">
+          <button type="submit" value="close" class="btn-secondary">Close (Esc)</button>
+        </form>
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Choose Export Document Format" style="margin-bottom: 0;">
+        <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Document Mode:</span>
+        <button type="button" class="btn-secondary brief-mode-btn" data-brief-mode="APEX" aria-pressed="true">1. Arizona APEX 1-on-1 Solicitation Review Request</button>
+        <button type="button" class="btn-secondary brief-mode-btn" data-brief-mode="FAR13" aria-pressed="false">2. FAR Part 13 / AZ SLED Quote Cover Sheet</button>
+      </div>
+
+      <div class="brief-inputs-grid">
+        <div>
+          <label for="brief-sol-ref" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.25rem; font-size: 0.84rem;">Solicitation / RFQ # &amp; Target Quote Price (Optional):</label>
+          <input id="brief-sol-ref" class="search-input" type="text" placeholder="e.g., BPM006796 or RFQ #2027-04 • $9,500 Firm-Fixed-Price" autocomplete="off">
+        </div>
+        <div>
+          <label for="brief-custom-note" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.25rem; font-size: 0.84rem;">Capture Note / Specific Counselor Questions (Saved to M2 Ledger):</label>
+          <input id="brief-custom-note" class="search-input" type="text" placeholder="e.g., Verify Section M evaluation weights &amp; A.R.S. 41-2535 SB restriction..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="brief-toolbar">
+        <span class="copy-wrap">
+          <button type="button" class="copy-btn-invoker" command="--copy" commandfor="bid-brief-preview" autofocus>
+            <span class="copy-glyph" aria-hidden="true"></span>
+            <span>Copy Document Text</span>
+          </button>
+          <span class="copy-tip" role="status"></span>
+        </span>
+        <button type="button" id="btn-download-brief" class="btn-secondary">Download .md</button>
+        <a id="btn-mailto-apex" class="card-sow-btn" href="mailto:azapex.admin@domail.maricopa.edu">Open Email Draft (AZ APEX) &rarr;</a>
+      </div>
+
+      <pre id="bid-brief-preview" tabindex="0" aria-label="Generated Arizona APEX Solicitation Review Request or FAR 13 Quote Cover Sheet"></pre>
+    </dialog>
 
     <footer class="footer-note">
       <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 106 portal records, concentric ring lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
@@ -1083,10 +1490,114 @@
         return canonicalActiveSet.has(id) || userActiveSet.has(id);
       }
 
+      const RING_TITLES = {
+        0: 'Ring 0 (Yuma Higher-Ed)',
+        1: 'Ring 1 (Yuma Home Court)',
+        2: 'Ring 2 (Western AZ / I-8)',
+        3: 'Ring 3 (Phoenix & Statewide)',
+        4: 'Ring 4 (Outer AZ Rim)',
+        9: 'Ring 9 (Federal / DoD / VMS)'
+      };
+
+      function setScopeFilter(catKey) {
+        activeCategory = catKey;
+        document.querySelectorAll('.cat-btn').forEach((b) => {
+          b.setAttribute('aria-pressed', b.dataset.cat === catKey ? 'true' : 'false');
+        });
+      }
+
+      function setRingFilter(ringVal) {
+        activeRing = ringVal;
+        document.querySelectorAll('.ring-btn').forEach((b) => {
+          b.setAttribute('aria-pressed', b.getAttribute('data-ring') === ringVal ? 'true' : 'false');
+        });
+      }
+
+      function updatePortalProgressUI() {
+        const portalDocs = indexedNodes.filter((d) => Boolean(d.raw.isPortal));
+        const totalAll = portalDocs.length;
+        const activeAll = portalDocs.filter((d) => isNodeActive(d.raw.id)).length;
+        const nextUpAll = Math.max(0, totalAll - activeAll);
+
+        const actBtn = document.getElementById('active-filter-btn');
+        if (actBtn) actBtn.textContent = `Active Portals (${activeAll})`;
+        const nextBtn = document.getElementById('nextup-filter-btn');
+        if (nextBtn) nextBtn.textContent = `Next Up to Register (${nextUpAll})`;
+
+        const ringOrder = [0, 1, 2, 3, 4, 9];
+        const statsByRing = {};
+        ringOrder.forEach((r) => { statsByRing[r] = { total: 0, active: 0, nextUp: 0 }; });
+        portalDocs.forEach((d) => {
+          const r = d.raw.ring;
+          if (!statsByRing[r]) statsByRing[r] = { total: 0, active: 0, nextUp: 0 };
+          statsByRing[r].total += 1;
+          if (isNodeActive(d.raw.id)) statsByRing[r].active += 1;
+          else statsByRing[r].nextUp += 1;
+        });
+
+        const scopedDocs = activeRing === 'ALL'
+          ? portalDocs
+          : activeRing === 'RESERVED'
+            ? []
+            : portalDocs.filter((d) => d.raw.ring === Number(activeRing));
+        const scopedTotal = scopedDocs.length;
+        const scopedActive = scopedDocs.filter((d) => isNodeActive(d.raw.id)).length;
+        const scopedNext = Math.max(0, scopedTotal - scopedActive);
+        const pct = scopedTotal > 0 ? Math.round((scopedActive / scopedTotal) * 100) : 0;
+
+        const lbl = document.getElementById('ring-progress-label');
+        const prog = document.getElementById('ring-portal-progress');
+        const qAct = document.getElementById('ring-quick-active-btn');
+        const qNext = document.getElementById('ring-quick-nextup-btn');
+
+        if (prog) {
+          prog.max = Math.max(1, scopedTotal);
+          prog.value = scopedActive;
+        }
+        if (lbl) {
+          if (activeRing === 'RESERVED') {
+            lbl.textContent = 'Rings 5–8 Reserved for Multi-State Expansion: 0 Portals Assigned Yet';
+          } else {
+            const scopeName = activeRing === 'ALL'
+              ? 'All Concentric Rings (Ring 0 \u2192 Ring 9)'
+              : (RING_TITLES[Number(activeRing)] || `Ring ${activeRing}`);
+            lbl.textContent = `${scopeName}: ${scopedActive} / ${scopedTotal} Portals Active (${pct}%) \u2022 ${scopedNext} Next Up to Register`;
+          }
+        }
+        if (qAct) {
+          qAct.textContent = activeRing === 'ALL' ? `Active Only (${activeAll})` : `Ring ${activeRing} Active (${scopedActive})`;
+          qAct.setAttribute('aria-pressed', activeCategory === 'PORTAL_ACTIVE' ? 'true' : 'false');
+        }
+        if (qNext) {
+          qNext.textContent = activeRing === 'ALL' ? `Next Up to Register (${nextUpAll})` : `Ring ${activeRing} Next Up (${scopedNext})`;
+          qNext.setAttribute('aria-pressed', activeCategory === 'PORTAL_NEXT_UP' ? 'true' : 'false');
+        }
+
+        const strip = document.getElementById('ring-breakdown-strip');
+        if (strip) {
+          const chips = ringOrder.map((r) => {
+            const st = statsByRing[r];
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            const locked = st.total > 0 && st.nextUp === 0;
+            const focused = activeRing === String(r);
+            btn.className = 'ring-lane-chip' + (locked ? ' is-locked' : '') + (focused ? ' is-focused' : '');
+            btn.textContent = locked
+              ? `Ring ${r}: ${st.active}/${st.total} Locked (100%)`
+              : `Ring ${r}: ${st.active}/${st.total} Active \u2022 ${st.nextUp} Next Up`;
+            btn.addEventListener('click', () => {
+              setRingFilter(String(r));
+              setScopeFilter(locked ? 'PORTAL_ACTIVE' : 'PORTAL_NEXT_UP');
+              runHybridSearch();
+            });
+            return btn;
+          });
+          strip.replaceChildren(...chips);
+        }
+      }
+
       function updateActiveFilterPill() {
-        const merged = new Set([...canonicalActiveSet, ...userActiveSet]);
-        const btn = document.getElementById('active-filter-btn');
-        if (btn) btn.textContent = `Active Portals (${merged.size})`;
+        updatePortalProgressUI();
       }
 
       function updateSavedFilterPill() {
@@ -1095,15 +1606,78 @@
       }
       updateSavedFilterPill();
 
+      let ada2027NodeCount = 30;
+      let ada2027ShortCountdown = '';
+
+      async function refreshAda2027Countdown() {
+        if (typeof Temporal === 'undefined') {
+          try {
+            const mod = await import('https://esm.sh/temporal-polyfill');
+            globalThis.Temporal = mod.Temporal;
+            if (mod.toTemporalInstant && !Date.prototype.toTemporalInstant) {
+              Date.prototype.toTemporalInstant = mod.toTemporalInstant;
+            }
+          } catch (_) {
+            return;
+          }
+        }
+        try {
+          const tz = 'America/Phoenix';
+          const now = Temporal.Now.zonedDateTimeISO(tz);
+          const deadline = Temporal.PlainDate.from('2027-04-26')
+            .toPlainDateTime('00:00:00')
+            .toZonedDateTime(tz);
+          const dayDiff = now.until(deadline, { largestUnit: 'day', smallestUnit: 'day', roundingMode: 'ceil' });
+          const calDiff = now.until(deadline, { largestUnit: 'month', smallestUnit: 'day', roundingMode: 'ceil' });
+          const leadEl = document.getElementById('ada2027-countdown-lead');
+          const kickerEl = document.getElementById('ada2027-kicker');
+          if (dayDiff.sign <= 0) {
+            ada2027ShortCountdown = 'Active Now';
+            if (leadEl) leadEl.textContent = 'April 26, 2027 Enforcement Active:';
+          } else {
+            const shortDays = dayDiff.toLocaleString('en-US', { style: 'short' });
+            const longCal = calDiff.toLocaleString('en-US', { style: 'long' });
+            ada2027ShortCountdown = `${shortDays} out`;
+            if (leadEl) {
+              leadEl.textContent = `${shortDays} Remaining (${longCal} until April 26, 2027 MST):`;
+            }
+            if (kickerEl) {
+              const tSpan = document.createElement('time');
+              tSpan.dateTime = dayDiff.toString();
+              tSpan.textContent = `${shortDays.toUpperCase()} LEFT`;
+              const dSpan = document.createElement('time');
+              dSpan.dateTime = '2027-04-26';
+              dSpan.textContent = 'APR 26, 2027';
+              kickerEl.replaceChildren(
+                document.createTextNode('DOJ 28 CFR PART 35 (<50K POP & SPECIAL DISTRICTS) \u2022 '),
+                tSpan,
+                document.createTextNode(' \u2022 '),
+                dSpan
+              );
+            }
+          }
+          updateAda2027FilterPill();
+        } catch (_) {}
+      }
+
+      function updateAda2027FilterPill() {
+        const btn = document.getElementById('ada2027-filter-btn');
+        if (!btn) return;
+        const suffix = ada2027ShortCountdown ? `${ada2027NodeCount} • ${ada2027ShortCountdown}` : String(ada2027NodeCount);
+        btn.textContent = `Apr 2027 ADA <50K P-Card Targets (${suffix})`;
+      }
+
       function buildIndex(nodes) {
         docFreq = {};
         let totalLen = 0;
         let wcgCount = 0;
+        let adaCount = 0;
         canonicalActiveSet = new Set();
         indexedNodes = nodes.map((n) => {
           if (n.wcgStatus) wcgCount += 1;
+          if (n.adaApr2027) adaCount += 1;
           if (n.portalActive) canonicalActiveSet.add(n.id);
-          const fullText = `${n.title} ${n.title} ${n.ringLabel || ''} ${n.portalActive ? 'ACTIVE' : ''} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
+          const fullText = `${n.title} ${n.title} ${n.ringLabel || ''} ${n.portalActive ? 'ACTIVE' : ''} ${n.adaApr2027 ? 'APR 26 2027 ADA <50K P-CARD SPRINT' : ''} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
           const toks = tokenize(fullText);
           totalLen += toks.length;
           const tf = {};
@@ -1135,6 +1709,8 @@
             btn.textContent = `Ring ${dr} (${ringCounts[dr] || 0})`;
           }
         });
+        ada2027NodeCount = adaCount;
+        updateAda2027FilterPill();
         updateActiveFilterPill();
       }
 
@@ -1142,15 +1718,22 @@
         if (!indexedNodes.length) return;
         const t0 = performance.now();
         const rawQ = document.getElementById('rag-query').value.trim();
+        const adaBanner = document.getElementById('ada2027-banner');
+        if (adaBanner) adaBanner.hidden = activeCategory !== 'ADA_APR_2027';
+        updatePortalProgressUI();
         let pool = activeCategory === 'ALL'
           ? indexedNodes
-          : activeCategory === 'PORTAL_ACTIVE'
-            ? indexedNodes.filter((d) => isNodeActive(d.raw.id))
-            : activeCategory === 'SAVED'
-              ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
-              : activeCategory === 'WCG_READY'
-                ? indexedNodes.filter((d) => Boolean(d.raw.wcgStatus))
-                : indexedNodes.filter((d) => d.raw.category === activeCategory);
+          : activeCategory === 'ADA_APR_2027'
+            ? indexedNodes.filter((d) => Boolean(d.raw.adaApr2027))
+            : activeCategory === 'PORTAL_ACTIVE'
+              ? indexedNodes.filter((d) => Boolean(d.raw.isPortal) && isNodeActive(d.raw.id))
+              : activeCategory === 'PORTAL_NEXT_UP'
+                ? indexedNodes.filter((d) => Boolean(d.raw.isPortal) && !isNodeActive(d.raw.id))
+                : activeCategory === 'SAVED'
+                  ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
+                  : activeCategory === 'WCG_READY'
+                    ? indexedNodes.filter((d) => Boolean(d.raw.wcgStatus))
+                    : indexedNodes.filter((d) => d.raw.category === activeCategory);
 
         if (activeRing === 'RESERVED') {
           pool = [];
@@ -1241,9 +1824,11 @@
         if (!items.length) {
           const emptyMsg = activeRing === 'RESERVED'
             ? '<strong>Rings 5, 6, 7, and 8 are reserved placeholder lanes.</strong> Held clean for future out-of-state and multi-state concentric expansion after Yuma Home Court (<strong>Ring 0</strong> &amp; <strong>Ring 1</strong>) and Arizona lanes (<strong>Ring 2&ndash;4</strong>) are locked.'
-            : activeCategory === 'SAVED' && savedSet.size === 0
-              ? '<strong>No saved portals yet.</strong> Select the <strong>Save</strong> button on any portal card to bookmark your priority targets here (stored locally in your browser).'
-              : '<strong>No matching nodes found.</strong> Try broadening your query or resetting the Concentric Lane and Scope Filters to <strong>All</strong>.';
+            : activeCategory === 'PORTAL_NEXT_UP' && activeRing !== 'ALL'
+              ? `<strong>100% of Concentric Ring ${escapeHtml(activeRing)} portals are already ACTIVE!</strong> Zero unregistered portals remain in this ring—select <strong>Active Only</strong> above or advance to the next Concentric Ring.`
+              : activeCategory === 'SAVED' && savedSet.size === 0
+                ? '<strong>No saved portals yet.</strong> Select the <strong>Save</strong> button on any portal card to bookmark your priority targets here (stored locally in your browser).'
+                : '<strong>No matching nodes found.</strong> Try broadening your query or resetting the Concentric Lane and Scope Filters to <strong>All</strong>.';
           grid.innerHTML = `<div class="plain-callout" style="grid-column: 1 / -1;">${emptyMsg}</div>`;
           return;
         }
@@ -1266,6 +1851,16 @@
           const wcgBadge = hasWcg
             ? `<div><span class="wcg-status-pill" style="color: #FFFFFF; background-color: #064E3B;">${escapeHtml(node.wcgStatus)}</span></div>`
             : '';
+          const isAda2027 = Boolean(node.adaApr2027);
+          const adaBadge = isAda2027
+            ? `<span class="ada2027-pill" style="color: #FFFFFF; background-color: #7E061E;">APR 26, 2027 ADA &lt;50K</span>`
+            : '';
+          const orgShort = node.shortOrgName || node.title.split(' — ')[0].trim();
+          const sowPillars = node.bilingualPriority ? 'ada,bilingual,provo' : 'ada,provo';
+          const sowHref = `/cac-readiness/?org=${encodeURIComponent(orgShort)}&buyer=sled&tier=ada_pcard&lms=pwa&pillars=${encodeURIComponent(sowPillars)}&node=${encodeURIComponent(node.id)}`;
+          const adaSowCta = isAda2027
+            ? `<a class="card-sow-btn" href="${escapeHtml(sowHref)}">Generate $4.5K&ndash;$9.9K P-Card SOW &rarr;<span class="sr-only"> for ${escapeHtml(orgShort)}</span></a>`
+            : '';
           const activeToggleBtn = node.isPortal && !isLockedAct
             ? `<button type="button" class="active-toggle-btn" data-act-id="${escapeHtml(node.id)}" data-act-title="${escapeHtml(node.title)}" aria-pressed="${isAct ? 'true' : 'false'}" aria-label="${isAct ? 'Portal registration active (select to unmark): ' : 'Mark portal registration active: '}${escapeHtml(node.title)}">${isAct ? 'ACTIVE' : 'Mark Active'}</button>`
             : '';
@@ -1276,6 +1871,7 @@
                   <div class="meta-row">
                     ${ringBadge}
                     ${activeBadge}
+                    ${adaBadge}
                     ${scoreBadge}
                     <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
                   </div>
@@ -1291,7 +1887,10 @@
                 <p class="kv-line"><strong>Thresholds / Gate:</strong> ${escapeHtml(node.thresholds)}</p>
                 <p style="font-size: 0.88rem; margin: 0.5rem 0 0 0;">${escapeHtml(node.summary)}</p>
               </div>
-              <a class="card-link-btn" href="${escapeHtml(node.url)}" target="_blank" rel="noopener noreferrer">Open Official Portal (${escapeHtml(new URL(node.url).hostname)})</a>
+              <div class="card-cta-stack">
+                ${adaSowCta}
+                <a class="card-link-btn" href="${escapeHtml(node.url)}" target="_blank" rel="noopener noreferrer">Open Official Portal (${escapeHtml(new URL(node.url).hostname)})<span class="sr-only"> &mdash; ${escapeHtml(orgShort)}</span></a>
+              </div>
             </article>
           `;
         }).join('');
@@ -1398,8 +1997,8 @@
           if (amt <= 10000) {
             heading = `${fmt} -> Direct County / Municipal P-Card Sprint (<= $10,000)`;
             authority = 'Local County / Municipal Charter Small-Dollar P-Card Authority';
-            rail = 'Direct Town Manager, City Clerk, or IT Director P-Card checkout — ideal for $4,500–$9,900 turnkey ADA Title II website & Council PDF audits.';
-            notes = '17 rural AZ towns + La Paz & Santa Cruz Counties (<50K pop) face the mandatory April 26, 2027 DOJ ADA Title II deadline!';
+            rail = 'Direct Town Manager, City Clerk, County Finance, or Airport Director P-Card checkout — ideal for $4,500–$9,900 turnkey ADA Title II website & Council PDF/UA sprints.';
+            notes = '24 AZ cities/towns (<50K pop), 4 rural counties (La Paz, Santa Cruz, Graham, Greenlee), & special districts (YUM Airport) hit the mandatory April 26, 2027 DOJ 28 CFR 35.200(b)(2) deadline — use Tab 1 "Apr 2027 ADA <50K P-Card Targets" to generate a ready SOW.';
           } else if (amt <= 100000) {
             heading = `${fmt} -> Informal 3-Quote County / Municipal Purchase ($10,001–$100,000)`;
             authority = 'County / Municipal Informal Written Quote Tier';
@@ -1613,11 +2212,24 @@
       });
       document.querySelectorAll('.cat-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
-          activeCategory = btn.getAttribute('data-cat');
-          document.querySelectorAll('.cat-btn').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          setScopeFilter(btn.getAttribute('data-cat'));
           runHybridSearch();
         });
       });
+      const qActBtn = document.getElementById('ring-quick-active-btn');
+      if (qActBtn) {
+        qActBtn.addEventListener('click', () => {
+          setScopeFilter(activeCategory === 'PORTAL_ACTIVE' ? 'ALL' : 'PORTAL_ACTIVE');
+          runHybridSearch();
+        });
+      }
+      const qNextBtn = document.getElementById('ring-quick-nextup-btn');
+      if (qNextBtn) {
+        qNextBtn.addEventListener('click', () => {
+          setScopeFilter(activeCategory === 'PORTAL_NEXT_UP' ? 'ALL' : 'PORTAL_NEXT_UP');
+          runHybridSearch();
+        });
+      }
       ['rt-amount', 'rt-buyer', 'rt-type'].forEach((id) => {
         document.getElementById(id).addEventListener('input', updateRouter);
         document.getElementById(id).addEventListener('change', updateRouter);
@@ -1765,7 +2377,7 @@
           if ((!biLeads.length || pushAllLocal) && data.latest_digest && Array.isArray(data.latest_digest.leads) && data.latest_digest.leads.length > 0) {
             const byHash = new Map(biLeads.map((x) => [x.h, x]));
             data.latest_digest.leads.forEach((ld) => {
-              if (!byHash.has(ld.h)) byHash.set(ld.h, ld);
+              byHash.set(ld.h, { ...(byHash.get(ld.h) || {}), ...ld });
             });
             biLeads = Array.from(byHash.values());
             if (!biDigestDate && data.latest_digest.date) biDigestDate = data.latest_digest.date;
@@ -1792,6 +2404,7 @@
 
       async function recordLeadDecision(lead, dec) {
         const current = biDecisions[lead.h]?.decision || '';
+        const existingNote = biDecisions[lead.h]?.note || lead.note || '';
         const nextDec = current === dec ? 'CLEAR' : dec;
         if (nextDec === 'CLEAR') {
           delete biDecisions[lead.h];
@@ -1803,6 +2416,7 @@
             matched_node_id: lead.n,
             title: lead.ti,
             canonical_url: lead.u,
+            note: existingNote,
             updated_at: new Date().toISOString(),
           };
         }
@@ -1822,11 +2436,224 @@
                   matched_node_id: lead.n,
                   title: lead.ti,
                   canonical_url: lead.u,
+                  note: existingNote,
                 },
               ],
             });
             const statusEl = document.getElementById('m2-sync-status');
             if (statusEl) statusEl.textContent = `Synced ${nextDec} to M2 SQLite Ledger (bi_seen_ledger.sqlite)`;
+          } catch (_) {}
+        }
+      }
+
+      // --- Tab 5 1-Click Bid Brief / Arizona APEX Review / FAR 13 Quote Cover Sheet Engine ---
+      let activeBriefLeads = [];
+      let activeBriefMode = 'APEX';
+
+      function lookupNodeById(nid) {
+        if (!CORPUS || !Array.isArray(CORPUS.nodes)) return null;
+        return CORPUS.nodes.find((n) => n.id === nid) || null;
+      }
+
+      function buildApexReviewText(leads, solRef, customNote) {
+        const todayIso = new Date().toISOString().slice(0, 10);
+        const primary = leads[0] || {};
+        const subjectLead = leads.length === 1
+          ? (primary.ti || 'Target Solicitation')
+          : `${leads.length} Priority Capture Targets (Ring 0 -> Ring 9)`;
+        const lines = [
+          'TO      : Arizona APEX Accelerator Counseling Team <azapex.admin@domail.maricopa.edu>',
+          'PHONE   : (623) 845-4700 (MCCCD Hosted • Mon–Fri 8:00 AM – 5:00 PM MST)',
+          `SUBJECT : 1-on-1 Solicitation & Compliance Review Request — Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) — ${subjectLead}`,
+          `DATE    : ${todayIso}`,
+          '======================================================================================',
+          '',
+          'Dear Arizona APEX Accelerator Counseling Team,',
+          '',
+          'Webcognita LLC (active SAM.gov VOSB headquartered in Yuma, AZ) respectfully requests a',
+          '1-on-1 Solicitation & Pre-Quote Compliance Review prior to submitting our formal response',
+          'on the qualified opportunity(ies) below:',
+          ''
+        ];
+
+        leads.forEach((ld, idx) => {
+          const node = lookupNodeById(ld.n);
+          const portalInfo = node ? `${node.id} — ${node.platform} (${node.thresholds})` : (ld.n || 'Public Portal');
+          const savedNote = biDecisions[ld.h]?.note || ld.note || '';
+          lines.push(`TARGET #${idx + 1}: ${ld.ti || 'Untitled Solicitation'}`);
+          lines.push(`  - Issuing Agency / Source : ${ld.ag || (node ? node.jurisdiction : 'Public Agency')}`);
+          lines.push(`  - Concentric Capture Ring : Ring ${Number(ld.r ?? 9)} (${RING_TITLES[Number(ld.r ?? 9)] || 'Target Lane'})`);
+          lines.push(`  - Matched Radar Portal    : ${portalInfo}`);
+          lines.push(`  - Timing / Award Window   : ${ld.dl || 'Open / Verify on Official Portal'}`);
+          if (solRef && idx === 0) lines.push(`  - Solicitation / Quote #  : ${solRef}`);
+          lines.push(`  - NAICS / Track Fit       : ${ld.na || '541511, 541512, 611710, 541690'} (${ld.tr || 'DIRECT_PRIME_VOSB'})`);
+          lines.push(`  - Official Notice URL     : ${ld.u || (node ? node.url : 'https://sam.gov')}`);
+          if (ld.sn) lines.push(`  - Signal Summary          : ${ld.sn}`);
+          if (savedNote && savedNote !== customNote) lines.push(`  - Ledger Triage Note      : ${savedNote}`);
+          lines.push('');
+        });
+
+        if (customNote) {
+          lines.push('SPECIFIC COUNSELOR REVIEW QUESTIONS / SCOPE FOCUS:');
+          lines.push(`  - ${customNote}`);
+          lines.push('');
+        }
+
+        lines.push(
+          'REQUESTED 1-ON-1 COUNSELING CHECKPOINTS:',
+          '  1. Solicitation Structure & Evaluation Matrix (UCF Sections L -> M -> C -> B or AZ SLED eQuote/RFP rules).',
+          '  2. Small Business / VOSB Set-Aside & Subcontracting Compliance (FAR 19.502-2, FAR 52.219-14 <=50% cap, or A.R.S. § 41-2535 / ABOR 3-803 D.1 <= $100K SB restriction).',
+          '  3. Pre-Award Responsibility & Cybersecurity Alignment (signed Exhibits R-01..R-04 on file: FAR 9.104-1, 15/15 FAR 52.204-21 FCI / CMMC Level 1 Zero-CUI boundary, Section 889).',
+          '  4. Pricing Realism & Past Performance (CPARS-aligned PPQ / live Section 508 & WCAG 2.2 AA >= 9:1 deliverables).',
+          '',
+          'CLIENT ENTITY SNAPSHOT (ACTIVE & VERIFIED):',
+          '  - Legal Entity     : Webcognita LLC (100% Veteran-Owned Small Business • 0% FOCI)',
+          '  - Headquarters     : 1906 S 6th Ave, Yuma, AZ 85364',
+          '  - Principal        : Alan Lee Pruitt, B.S. (USMC & U.S. Army CI Veteran • 100% DAV)',
+          '  - Identifiers      : SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739 | AZ ACC: #L17046120',
+          '  - AZ SLED & Co-Ops : ADOT AZ UTRACS SBC #23545 | DHS E-Verify #3119395 | AZPurchasing, OpenGov (50+ AZ Agencies), Bonfire, BidNet',
+          '  - Registered Codes : NAICS 541511 (Primary), 541512, 541715, 611710, 541690 | AZ NIGP 208, 209, 918, 920, 924, 958',
+          '  - Capabilities PDF : https://www.webcognita.com/capabilities-statement.html',
+          '',
+          'Respectfully,',
+          'Alan Lee Pruitt, Principal',
+          'Webcognita LLC • Yuma, Arizona • https://www.webcognita.com/'
+        );
+        return lines.join('\n');
+      }
+
+      function buildFar13QuoteCoverText(leads, solRef, customNote) {
+        const todayIso = new Date().toISOString().slice(0, 10);
+        const ld = leads[0] || {};
+        const node = lookupNodeById(ld.n);
+        const agencyLabel = ld.ag || (node ? node.jurisdiction : '[Issuing Contracting Office / Agency]');
+        const noticeUrl = ld.u || (node ? node.url : 'https://sam.gov');
+        const isFed = Number(ld.r ?? 9) === 9;
+        const authorityLine = isFed
+          ? 'FAR Part 13 Simplified Acquisition / FAR Part 12 Commercial Item (SF 1449 / Combined Synopsis-Solicitation)'
+          : 'Arizona SLED Small-Dollar / Simplified Quote (A.R.S. § 41-2535 / ABOR Policy 3-803 D.1 / Local Municipal Charter)';
+
+        const lines = [
+          'COMMERCIAL QUOTE COVER SHEET & STATUTORY REPRESENTATIONS',
+          '(FAR PART 13 / FAR PART 12 COMMERCIAL & ARIZONA SLED SIMPLIFIED QUOTE)',
+          '======================================================================================',
+          `Date Submitted       : ${todayIso} (Quote Valid for 60 Calendar Days)`,
+          `Target Opportunity   : ${ld.ti || '[Solicitation / Requirement Title]'}`,
+          `Solicitation / Price : ${solRef || '[Insert Solicitation / RFQ # & Firm-Fixed-Price Total]'}`,
+          `Issuing Agency       : ${agencyLabel}`,
+          `Acquisition Rail     : ${authorityLine}`,
+          `Matched Portal Node  : ${node ? `${node.id} (${node.platform})` : (ld.n || 'Official Portal')}`,
+          `Official Notice URL  : ${noticeUrl}`,
+          '--------------------------------------------------------------------------------------',
+          '',
+          '1. OFFEROR / VENDOR IDENTIFICATION (0 ACTIVE EXCLUSIONS — FAR 9.405)',
+          '  - Legal Business Name : WEBCOGNITA LLC (100% Veteran-Owned Small Business)',
+          '  - Physical Address    : 1906 S 6th Ave, Yuma, AZ 85364-5528 (Yuma County, Congressional District AZ-09)',
+          '  - SAM.gov UEI / CAGE  : UEI: EZ34U9KNJA17 | CAGE/NCAGE: 4ZCN6 (Active Registration)',
+          '  - Tax & State IDs     : Federal EIN: 81-0809739 | AZ Corp. Comm.: #L17046120 | City of Yuma: #SERV-051803',
+          '  - SLED & Transit Cert : ADOT AZ UTRACS Small Business Concern (SBC) #23545',
+          '  - Applicable Codes    : NAICS ' + (ld.na || '541511 (Primary), 541512, 541715, 611710, 541690') + ' | PSC DA01, DJ01, U008, U012 | AZ NIGP 208, 209, 918, 920, 924, 958',
+          '  - Payment Acceptance  : Federal GPC (GSA SmartPay 3 <= $15K / $25K Emerg.), AZ P-Card (<= $10K), WAWF/iRAPT, & ACH',
+          '',
+          '2. EXECUTIVE TECHNICAL APPROACH & DELIVERABLE SUMMARY',
+          '  - Scope Focus         : ' + (customNote || ld.sn || 'Turnkey zero-egress engineering, Section 508 / DOJ ADA Title II (28 CFR Part 35) >= 9:1 WCAG 2.2 AA & PDF/UA compliance, and EO 14434 SI / 15 U.S.C. 9401(3) AI readiness with $0 recurring SaaS lock-in.'),
+          '  - Data Sovereignty    : 100% client-controlled deliverables with 0 bytes of CUI, FERPA, or resident PII transmitted to third-party cloud AI APIs.',
+          '  - Continuity (RTO)    : Dual-host local workstation mirror (< 15 minute Recovery Time Objective per FAR 9.104-1(b)).',
+          '',
+          '3. FEDERAL & ARIZONA STATUTORY REPRESENTATIONS AND CERTIFICATIONS',
+          '  - [X] FAR 52.212-3 / SAM.gov Reps & Certs : Current, complete, and active online at https://sam.gov.',
+          '  - [X] FAR 52.204-21 & CMMC 2.0 Level 1    : All 15 Basic Safeguarding controls implemented under signed System Security Plan (Exhibit R-01); strict Zero-CUI-Spillage boundary.',
+          '  - [X] NDAA Sec. 889 & Supply Chain        : Compliant with FAR 52.204-24/25/26 (No Covered Telecom), FAR 52.204-23 (No Kaspersky), & FAR 52.204-27 (No ByteDance/TikTok).',
+          '  - [X] FAR 52.219-14 & 52.215-23           : 100% performed by Webcognita LLC in the United States (0% foreign ownership/FOCI; <=50% non-similarly situated cap strictly enforced).',
+          '  - [X] Arizona Statutory Warranties        : Active DHS E-Verify Participant (Company ID #3119395 per A.R.S. § 41-4401); compliant with A.R.S. § 35-394 (Forced Labor) & A.R.S. § 35-393.01.',
+          '  - [X] Workers\' Comp Waiver (Sole Member)  : Sole-member LLC with zero non-owner employees (A.R.S. § 23-901 waiver ready upon award).',
+          '',
+          '4. AUTHORIZED SIGNATURE & POINT OF CONTACT',
+          '  - Authorized Signatory : Alan Lee Pruitt, Principal & Managing Member, Webcognita LLC',
+          '  - Capabilities & Proof : https://www.webcognita.com/capabilities-statement.html | https://www.webcognita.com/govcon-radar/'
+        ];
+
+        if (leads.length > 1) {
+          lines.push('', 'ADDITIONAL BUNDLED PURSUE SIGNALS IN THIS DIGEST:');
+          leads.slice(1).forEach((extra, i) => {
+            lines.push(`  ${i + 2}. [Ring ${Number(extra.r ?? 9)}] ${extra.ti} — ${extra.u}`);
+          });
+        }
+        return lines.join('\n');
+      }
+
+      function renderBidBriefModalContent() {
+        const solRef = (document.getElementById('brief-sol-ref')?.value || '').trim();
+        const customNote = (document.getElementById('brief-custom-note')?.value || '').trim();
+        const preview = document.getElementById('bid-brief-preview');
+        const mailtoBtn = document.getElementById('btn-mailto-apex');
+        if (!preview) return;
+
+        const text = activeBriefMode === 'APEX'
+          ? buildApexReviewText(activeBriefLeads, solRef, customNote)
+          : buildFar13QuoteCoverText(activeBriefLeads, solRef, customNote);
+        preview.textContent = text;
+
+        if (mailtoBtn) {
+          mailtoBtn.hidden = activeBriefMode !== 'APEX';
+          if (activeBriefMode === 'APEX') {
+            const firstTitle = activeBriefLeads[0]?.ti || 'Solicitation Review';
+            const subj = activeBriefLeads.length > 1
+              ? `1-on-1 Solicitation Review Request (${activeBriefLeads.length} Targets) — Webcognita LLC (UEI: EZ34U9KNJA17)`
+              : `1-on-1 Solicitation Review Request — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 70)}`;
+            mailtoBtn.href = `mailto:azapex.admin@domail.maricopa.edu?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.slice(0, 1800))}`;
+          }
+        }
+      }
+
+      function openBidBriefDialog(leads, defaultMode = 'APEX') {
+        if (!leads || !leads.length) return;
+        activeBriefLeads = leads;
+        activeBriefMode = defaultMode;
+        document.querySelectorAll('.brief-mode-btn').forEach((b) => {
+          b.setAttribute('aria-pressed', b.getAttribute('data-brief-mode') === defaultMode ? 'true' : 'false');
+        });
+        const sub = document.getElementById('bid-brief-subtitle');
+        if (sub) {
+          sub.textContent = leads.length === 1
+            ? `Target: [Ring ${Number(leads[0].r ?? 9)}] ${leads[0].ti || 'Selected Lead'} (${leads[0].n || 'Portal'})`
+            : `Bundled Export: ${leads.length} "Pursue" Leads Sorted Concentric Ring 0 -> Ring 9`;
+        }
+        const noteInput = document.getElementById('brief-custom-note');
+        if (noteInput) {
+          noteInput.value = leads.length === 1 ? (biDecisions[leads[0].h]?.note || leads[0].note || '') : '';
+        }
+        renderBidBriefModalContent();
+        const dlg = document.getElementById('bid-brief-dialog');
+        if (dlg && typeof dlg.showModal === 'function') {
+          dlg.showModal();
+        }
+      }
+
+      async function saveBriefNoteForActiveLead() {
+        if (activeBriefLeads.length !== 1) return;
+        const ld = activeBriefLeads[0];
+        const noteVal = (document.getElementById('brief-custom-note')?.value || '').trim().slice(0, 500);
+        const curDec = biDecisions[ld.h]?.decision || 'PURSUE';
+        biDecisions[ld.h] = {
+          url_hash: ld.h,
+          decision: curDec,
+          ring: ld.r,
+          matched_node_id: ld.n,
+          title: ld.ti,
+          canonical_url: ld.u,
+          note: noteVal,
+          updated_at: new Date().toISOString(),
+        };
+        persistBiDecisionsLocal();
+        revealTriageTab(false);
+        renderTriageLeads();
+        const perm = await queryLnaPermissionSafe();
+        if (m2LoopbackConnected || perm === 'granted') {
+          try {
+            await fetchLoopbackBridge('/api/bi-triage/decision', 'POST', {
+              decisions: [biDecisions[ld.h]],
+            });
           } catch (_) {}
         }
       }
@@ -1847,9 +2674,14 @@
           return true;
         });
 
+        const pursueLeads = ordered.filter((it) => (biDecisions[it.h]?.decision || '') === 'PURSUE');
         const pursueCnt = Object.values(biDecisions).filter((x) => x.decision === 'PURSUE').length;
         const watchCnt = Object.values(biDecisions).filter((x) => x.decision === 'WATCH').length;
         const disCnt = Object.values(biDecisions).filter((x) => x.decision === 'DISMISS').length;
+        const batchBtn = document.getElementById('btn-batch-apex-pursue');
+        if (batchBtn) {
+          batchBtn.textContent = `Export All Pursue \u2192 APEX Brief (${pursueLeads.length})`;
+        }
         tel.innerHTML = `<span>Digest ${escapeHtml(biDigestDate || 'Latest')}: Showing ${filtered.length} of ${ordered.length} leads (${pursueCnt} Pursue &bull; ${watchCnt} Watch &bull; ${disCnt} Dismissed)</span><span>Concentric Order: Ring 0 &rarr; Ring 9</span>`;
 
         if (!filtered.length) {
@@ -1866,10 +2698,15 @@
         const cards = filtered.map((it) => {
           const rNum = Number(it.r ?? 9);
           const dec = biDecisions[it.h]?.decision || '';
+          const savedNote = biDecisions[it.h]?.note || it.note || '';
           const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
           const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
           const art = document.createElement('article');
           art.className = 'node-card' + (dec === 'PURSUE' ? ' is-wcg-ready' : '') + (dec === 'DISMISS' ? ' is-dismissed' : '');
+          const noteHtml = savedNote
+            ? `<p class="kv-line"><strong>Capture Note:</strong> ${escapeHtml(savedNote)}</p>`
+            : '';
+          const briefLabel = dec === 'PURSUE' ? '1-Click Bid / APEX Brief \u2192' : 'Bid / APEX Brief';
           art.innerHTML = `
             <div>
               <div class="card-top-row">
@@ -1882,6 +2719,7 @@
               <h3>${escapeHtml(it.ti || 'Untitled Signal')}</h3>
               <p class="kv-line"><strong>Agency / Source:</strong> ${escapeHtml(it.ag || 'Unspecified')}</p>
               <p class="kv-line"><strong>Timing / Award:</strong> ${escapeHtml(it.dl || 'See Notice')}</p>
+              ${noteHtml}
               <div class="triage-dec-row" role="group" aria-label="Triage decision for ${escapeHtml(it.ti || 'lead')}">
                 <button type="button" class="triage-dec-btn" data-dec="PURSUE" aria-pressed="${dec === 'PURSUE' ? 'true' : 'false'}">Pursue</button>
                 <button type="button" class="triage-dec-btn" data-dec="WATCH" aria-pressed="${dec === 'WATCH' ? 'true' : 'false'}">Watch</button>
@@ -1889,21 +2727,26 @@
                 <button type="button" class="btn-secondary jump-node-btn" data-node="${escapeHtml(it.n || 'FED-02')}">Radar Card (${escapeHtml(it.n || 'FED-02')})</button>
               </div>
             </div>
-            <a class="card-link-btn" href="${escapeHtml(it.u || 'https://sam.gov')}" target="_blank" rel="noopener noreferrer">Open Official Notice</a>
+            <div class="card-cta-stack">
+              <button type="button" class="btn-export-brief${dec === 'PURSUE' ? ' is-pursue' : ''}">${escapeHtml(briefLabel)}<span class="sr-only"> for ${escapeHtml(it.ti || 'lead')}</span></button>
+              <a class="card-link-btn" href="${escapeHtml(it.u || 'https://sam.gov')}" target="_blank" rel="noopener noreferrer">Open Official Notice<span class="sr-only"> &mdash; ${escapeHtml(it.ti || 'lead')}</span></a>
+            </div>
           `;
           art.querySelectorAll('.triage-dec-btn').forEach((btn) => {
             btn.addEventListener('click', () => recordLeadDecision(it, btn.getAttribute('data-dec')));
           });
+          const expBtn = art.querySelector('.btn-export-brief');
+          if (expBtn) {
+            expBtn.addEventListener('click', () => openBidBriefDialog([it], 'APEX'));
+          }
           const jumpBtn = art.querySelector('.jump-node-btn');
           if (jumpBtn) {
             jumpBtn.addEventListener('click', () => {
               const nid = jumpBtn.getAttribute('data-node') || '';
               const tabSearch = document.getElementById('tab-search');
               activateTab(tabSearch, false);
-              activeCategory = 'ALL';
-              activeRing = 'ALL';
-              document.querySelectorAll('.cat-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.cat === 'ALL' ? 'true' : 'false'));
-              document.querySelectorAll('.ring-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.ring === 'ALL' ? 'true' : 'false'));
+              setScopeFilter('ALL');
+              setRingFilter('ALL');
               const qInput = document.getElementById('rag-query');
               qInput.value = nid;
               runHybridSearch();
@@ -1930,6 +2773,116 @@
         renderTriageLeads();
         syncWithM2Loopback(true);
       });
+      document.getElementById('btn-batch-apex-pursue').addEventListener('click', () => {
+        const ordered = biLeads.toSorted((a, b) => (Number(a.r ?? 9) - Number(b.r ?? 9)) || (Number(b.s ?? 0) - Number(a.s ?? 0)));
+        const pursueList = ordered.filter((it) => (biDecisions[it.h]?.decision || '') === 'PURSUE');
+        if (!pursueList.length) {
+          const statusEl = document.getElementById('m2-sync-status');
+          if (statusEl) statusEl.textContent = 'Mark at least one lead as "Pursue" below (or click Bid / APEX Brief on any card) to generate a brief.';
+          return;
+        }
+        openBidBriefDialog(pursueList, 'APEX');
+      });
+
+      // Wire Bid Brief `<dialog>`, `closedby` light-dismiss fallback, and Declarative Invoker `--copy`
+      const briefDialog = document.getElementById('bid-brief-dialog');
+      if (briefDialog) {
+        briefDialog.addEventListener('close', () => {
+          briefDialog.returnValue = '';
+        });
+        if (!('closedBy' in HTMLDialogElement.prototype)) {
+          briefDialog.addEventListener('click', (event) => {
+            if (event.target !== briefDialog) return;
+            const rect = briefDialog.getBoundingClientRect();
+            const isInside = (
+              rect.top <= event.clientY &&
+              event.clientY <= rect.top + rect.height &&
+              rect.left <= event.clientX &&
+              event.clientX <= rect.left + rect.width
+            );
+            if (!isInside) briefDialog.close();
+          });
+        }
+      }
+      document.querySelectorAll('.brief-mode-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeBriefMode = btn.getAttribute('data-brief-mode') || 'APEX';
+          document.querySelectorAll('.brief-mode-btn').forEach((b) => {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          renderBidBriefModalContent();
+        });
+      });
+      document.getElementById('brief-sol-ref')?.addEventListener('input', renderBidBriefModalContent);
+      document.getElementById('brief-custom-note')?.addEventListener('input', renderBidBriefModalContent);
+      document.getElementById('brief-custom-note')?.addEventListener('change', saveBriefNoteForActiveLead);
+      document.getElementById('btn-download-brief')?.addEventListener('click', () => {
+        const txt = document.getElementById('bid-brief-preview')?.innerText || '';
+        if (!txt) return;
+        const prefix = activeBriefMode === 'APEX' ? 'webcognita-az-apex-review' : 'webcognita-far13-quote-cover';
+        const slug = (activeBriefLeads[0]?.h || 'batch').slice(0, 10);
+        const blob = new Blob([txt], { type: 'text/markdown;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `${prefix}-${slug}-${new Date().toISOString().slice(0, 10)}.md`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      });
+
+      const copyTimers = new WeakMap();
+      let lastCopyMsg = '';
+      function legacyClipboardCopy(text) {
+        const field = Object.assign(document.createElement('textarea'), { value: text });
+        field.setAttribute('readonly', '');
+        field.style.cssText = 'position:fixed;inset-block-start:0;opacity:0';
+        document.body.append(field);
+        field.select();
+        try { return document.execCommand('copy'); } finally { field.remove(); }
+      }
+      function reportInvokerCopy(button, ok) {
+        const tip = button.nextElementSibling;
+        if (!tip) return;
+        clearTimeout(copyTimers.get(button));
+        button.removeAttribute('data-copied');
+        button.removeAttribute('data-failed');
+        let msg = ok ? 'Copied' : 'Copy failed';
+        if (msg === lastCopyMsg) msg += '\u00A0';
+        lastCopyMsg = msg;
+        tip.textContent = '';
+        void button.offsetWidth;
+        button.setAttribute(ok ? 'data-copied' : 'data-failed', '');
+        requestAnimationFrame(() => { tip.textContent = msg; });
+        copyTimers.set(button, setTimeout(() => {
+          button.removeAttribute('data-copied');
+          button.removeAttribute('data-failed');
+          tip.textContent = '';
+        }, 2000));
+      }
+      async function runInvokerCopy(button, target) {
+        const text = target.matches('input, textarea') ? target.value : target.innerText.trim();
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          reportInvokerCopy(button, true);
+        } catch {
+          if (legacyClipboardCopy(text)) reportInvokerCopy(button, true);
+          else reportInvokerCopy(button, false);
+        }
+      }
+      if ('CommandEvent' in window) {
+        document.addEventListener('command', (event) => {
+          if (event.command && event.command.startsWith('--copy')) {
+            runInvokerCopy(event.source, event.target);
+          }
+        }, true);
+      } else {
+        document.addEventListener('click', (event) => {
+          const button = event.target.closest('button[command^="--copy"]');
+          if (!button) return;
+          const target = document.getElementById(button.getAttribute('commandfor'));
+          if (target) runInvokerCopy(button, target);
+        });
+      }
       document.getElementById('btn-export-triage').addEventListener('click', () => {
         const blob = new Blob([JSON.stringify({ exported_at: new Date().toISOString(), decisions: biDecisions }, null, 2)], { type: 'application/json' });
         const a = document.createElement('a');
@@ -1973,7 +2926,25 @@
       }
       window.addEventListener('hashchange', bootstrapBiTriageBridge);
 
+      function applyInitialFilterDeepLink() {
+        const searchParams = new URLSearchParams(location.search);
+        const rawHash = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
+        const f = searchParams.get('filter') || rawHash;
+        if (f === 'ada2027') {
+          setScopeFilter('ADA_APR_2027');
+        } else if (f === 'nextup') {
+          setScopeFilter('PORTAL_NEXT_UP');
+        } else if (f === 'active') {
+          setScopeFilter('PORTAL_ACTIVE');
+        }
+        const r = searchParams.get('ring');
+        if (r && ['0', '1', '2', '3', '4', '9', 'RESERVED'].includes(r)) {
+          setRingFilter(r);
+        }
+      }
+
       // Load clean-room corpus JSON
+      refreshAda2027Countdown();
       fetch('/govcon-radar/govcon-corpus.json', { cache: 'no-cache' })
         .catch(() => fetch('govcon-corpus.json', { cache: 'no-cache' }))
         .then((r) => r.json())
@@ -1981,6 +2952,7 @@
           CORPUS = data;
           ALL_CROSSWALK = data.crosswalk || [];
           buildIndex(data.nodes || []);
+          applyInitialFilterDeepLink();
           runHybridSearch();
           renderCrosswalk(ALL_CROSSWALK);
           renderGates(data.readinessGates || []);

@@ -210,6 +210,36 @@
       max-inline-size: 76ch;
     }
 
+    .handoff-banner {
+      background-color: #F4F7FB;
+      color: #111827;
+      border: 2px solid #7E061E;
+      border-inline-start: 8px solid #7E061E;
+      border-radius: 8px;
+      padding: 1rem 1.35rem;
+      margin-block-end: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .handoff-banner[hidden] {
+      display: none !important;
+    }
+
+    .handoff-kicker {
+      display: inline-block;
+      background-color: #7E061E;
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-block-end: 0.3rem;
+    }
+
     .oer-bridge {
       background-color: #FFFFFF;
       color: #111827;
@@ -698,7 +728,7 @@
     }
 
     @media print {
-      .top-bar, .oer-bridge, .sow-toolbar, .btn-submit {
+      .top-bar, .handoff-banner, .oer-bridge, .sow-toolbar, .btn-submit {
         display: none !important;
       }
       pre#sow-output {
@@ -734,6 +764,17 @@
       <h1 id="main-heading" tabindex="-1" data-i18n="h1">Institutional Curriculum-as-Code, DOJ ADA Title II &amp; U.S. DOL TEN 07-25 Readiness Estimator</h1>
       <p data-i18n="heroBody">Scope division-wide or campus-wide Curriculum-as-Code (S-A-R Standard v2.2) compilation, automated 9:1 WCAG 2.2 Level AA LMS remediation (28 CFR Part 35), and U.S. Department of Labor TEN No. 07-25 AI Literacy implementation—with instant FAR 2.101 / Arizona SLED procurement routing and a ready-to-copy Statement of Work (SOW).</p>
     </section>
+
+    <aside id="radar-handoff-banner" class="handoff-banner" aria-label="GovCon Radar ADA Target Handoff" hidden>
+      <div style="max-inline-size: 68ch;">
+        <span class="handoff-kicker" data-i18n="handoffKicker">APR 26, 2027 DOJ ADA TITLE II (&lt;50K POP &amp; SPECIAL DISTRICTS) SOW HANDOFF</span>
+        <div id="radar-handoff-msg" style="font-weight: 700; color: #0B1D3A; background-color: #F4F7FB;">Pre-configured $4,500–$9,900 P-Card / 3-Quote Statement of Work ready to copy or print.</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+        <button type="button" id="btn-toggle-ada-quote" class="btn-secondary" data-i18n="toggleQuoteBtn">Switch to 3-Quote Tier ($10K&ndash;$25K)</button>
+        <a class="btn-secondary" href="/govcon-radar/?filter=ada2027" data-i18n="backRadarBtn">&larr; Apr 2027 ADA &lt;50K Radar</a>
+      </div>
+    </aside>
 
     <aside class="oer-bridge" aria-label="Free Faculty OER Companion">
       <div style="max-inline-size: 68ch;">
@@ -773,12 +814,18 @@
               <input type="radio" id="buyer-fed" name="buyer" value="fed">
               <label for="buyer-fed" data-i18n="buyerFed">Federal / Municipal Agency Training Academy</label>
             </div>
+            <div class="option-row">
+              <input type="radio" id="buyer-sled" name="buyer" value="sled">
+              <label for="buyer-sled" data-i18n="buyerSled">Municipality, County, or Airport Authority (&lt;50K Pop Apr 26, 2027 ADA Title II)</label>
+            </div>
           </fieldset>
 
           <div class="form-group">
-            <label for="catalog-tier" class="stacked-label" data-i18n="tierLabel">Course &amp; Module Volume Tier: <span aria-hidden="true">*</span></label>
-            <span id="tier-hint" class="field-hint" data-i18n="tierHint">Determines micro-purchase vs. simplified quote threshold routing.</span>
+            <label for="catalog-tier" class="stacked-label" data-i18n="tierLabel">Course, Portal &amp; Sprint Volume Tier: <span aria-hidden="true">*</span></label>
+            <span id="tier-hint" class="field-hint" data-i18n="tierHint">Determines micro-purchase / P-Card vs. simplified 3-quote threshold routing.</span>
             <select id="catalog-tier" name="tier" required aria-describedby="tier-hint">
+              <option value="ada_pcard" data-i18n="tierAdaPcard">Tier 0A: &lt;50K Municipal / Agency Website &amp; Council PDF/UA P-Card Sprint ($4,500&ndash;$9,900)</option>
+              <option value="ada_3quote" data-i18n="tierAda3Quote">Tier 0B: Full Municipal / County Portal + Council Archive 3-Quote Sprint ($10,001&ndash;$24,999)</option>
               <option value="pilot">Tier 1: Single Flagship Pilot Course (12–16 Modules)</option>
               <option value="pathway" selected>Tier 2: Certificate / Program Pathway (4–6 Courses)</option>
               <option value="dept">Tier 3: Full Department Fleet (8–15 Courses)</option>
@@ -922,8 +969,13 @@
           buyerUniv: 'Public University / K–16 Dual-Enrollment Bridge',
           buyerWioa: 'State / County WIOA Workforce Board or Career Center',
           buyerFed: 'Federal / Municipal Agency Training Academy',
-          tierLabel: 'Course & Module Volume Tier: *',
-          tierHint: 'Determines micro-purchase vs. simplified quote threshold routing.',
+          buyerSled: 'Municipality, County, or Airport Authority (<50K Pop Apr 26, 2027 ADA Title II)',
+          tierAdaPcard: 'Tier 0A: <50K Municipal / Agency Website & Council PDF/UA P-Card Sprint ($4,500–$9,900)',
+          tierAda3Quote: 'Tier 0B: Full Municipal / County Portal + Council Archive 3-Quote Sprint ($10,001–$24,999)',
+          handoffKicker: 'APR 26, 2027 DOJ ADA TITLE II (<50K POP & SPECIAL DISTRICTS) SOW HANDOFF',
+          backRadarBtn: '\u2190 Apr 2027 ADA <50K Radar',
+          tierLabel: 'Course, Portal & Sprint Volume Tier: *',
+          tierHint: 'Determines micro-purchase / P-Card vs. simplified 3-quote threshold routing.',
           lmsLegend: 'Target LMS & Sovereign Delivery Architecture',
           pillarsLegend: 'Required Compliance & Engineering Pillars',
           submitBtn: 'Generate Institutional Scope, Threshold Route & SOW',
@@ -952,8 +1004,13 @@
           buyerUniv: 'Universidad Pública / Puente Dual K–16',
           buyerWioa: 'Junta Estatal o Condal de Fuerza Laboral WIOA',
           buyerFed: 'Academia de Capacitación Federal o Municipal',
-          tierLabel: 'Volumen de Cursos y Módulos: *',
-          tierHint: 'Determina la vía de micro-compra o cotización simplificada.',
+          buyerSled: 'Municipio, Condado o Autoridad Aeroportuaria (<50K Hab. ADA Título II 26 Abr 2027)',
+          tierAdaPcard: 'Nivel 0A: Sprint P-Card Web Municipal y Actas PDF/UA <50K Hab. ($4,500–$9,900)',
+          tierAda3Quote: 'Nivel 0B: Portal Municipal/Condal + Archivo de Actas 3 Cotizaciones ($10,001–$24,999)',
+          handoffKicker: 'ALCANCE ADA TÍTULO II 26 ABR 2027 (<50K HAB. Y DISTRITOS ESPECIALES)',
+          backRadarBtn: '\u2190 Radar ADA Abr 2027 <50K',
+          tierLabel: 'Volumen de Cursos, Portales o Sprint: *',
+          tierHint: 'Determina la vía de P-Card / micro-compra o 3 cotizaciones simplificadas.',
           lmsLegend: 'Arquitectura LMS y Entrega Soberana',
           pillarsLegend: 'Pilares Normativos y Técnicos Requeridos',
           submitBtn: 'Generar Alcance Institucional, Vía de Compra y SOW',
@@ -1021,6 +1078,18 @@
 
       // --- 3. Scope & Threshold Routing Engine ---
       const TIER_CONFIG = {
+        ada_pcard: {
+          label: 'Tier 0A — <50K Municipal / Agency Website & Council Packet PDF/UA P-Card Sprint ($4,500–$9,900)',
+          route: '$4,500–$9,900 Direct P-Card (<= $10K AZ Municipal / County Micro-Purchase)',
+          sprint: '10–15 Business Days ($0 Recurring SaaS)',
+          mechanism: 'Direct City Manager, Town Clerk, County Finance, or Airport Executive P-Card checkout ($4,500–$9,900 under the <= $10,000 Arizona municipal/county micro-purchase ceiling — zero formal RFP delay) ahead of the mandatory April 26, 2027 DOJ 28 CFR § 35.200(b)(2) deadline.'
+        },
+        ada_3quote: {
+          label: 'Tier 0B — Full Municipal / County Portal, Forms & Council Archive 3-Quote Sprint ($10,001–$24,999)',
+          route: '$10,001–$24,999 Informal 3-Quote Municipal / County PO',
+          sprint: '3–4 Weeks ($0 Recurring SaaS)',
+          mechanism: 'Informal 3-Quote Written Solicitation ($10,001–$24,999 under local charter / A.R.S. § 41-2535 via OpenGov, Bonfire, or zero-login CivicPlus Bids board) ahead of the mandatory April 26, 2027 DOJ 28 CFR § 35.200(b)(2) deadline.'
+        },
         pilot: {
           label: 'Tier 1 — Single Flagship Pilot Course (12–16 Modules)',
           route: 'Micro-Purchase Eligible (<= $15K FAR 2.101 GPC / <= $10K AZ Direct PO)',
@@ -1063,17 +1132,58 @@
         cc: { label: 'Community College / Title V HSI Academic Division', naics: 'NAICS 611710, 541511, 541690 • PSC U008, U012' },
         univ: { label: 'Public University / K–16 Dual-Enrollment Bridge', naics: 'NAICS 611710, 541511, 541715 • PSC U008, AN12' },
         wioa: { label: 'State / County WIOA Workforce Development Board', naics: 'NAICS 611420, 611710, 541511 • PSC U008, U012' },
-        fed: { label: 'Federal / Municipal Agency Training Academy', naics: 'NAICS 541511, 541512, 611420 • PSC U012, DA01, DJ01' }
+        fed: { label: 'Federal / Municipal Agency Training Academy', naics: 'NAICS 541511, 541512, 611420 • PSC U012, DA01, DJ01' },
+        sled: { label: 'Arizona Municipality, Rural County, or Special District (<50K Pop Apr 26, 2027 Gate)', naics: 'NAICS 541511, 541690 • AZ NIGP 920, 918-75 • SBC #23545' }
       };
 
       const LMS_CONFIG = {
         canvas: 'Canvas LMS via Automated GraphQL + REST API Sync & Pre-Commit Accessibility Gates',
         cartridge: 'Blackboard / D2L Brightspace / Moodle via IMS Common Cartridge + Semantic 9:1 HTML',
-        pwa: 'Standalone Zero-Login $0 ZTC Progressive Web Apps (ServiceWorker Offline + 0 Bytes PII Egress)',
+        pwa: 'Standalone Zero-Login $0 ZTC Progressive Web Apps & Public Municipal / Agency Web Portals (0 Bytes PII Egress)',
         rag: 'Hybrid LMS + Air-Gapped COTS Local Hybrid RAG (SQLite FTS5 BM25 + RRF on Existing Hardware)'
       };
 
-      function buildDeliverableRows(pillars, lmsKey) {
+      function buildDeliverableRows(pillars, lmsKey, buyerKey, tierKey) {
+        const isMunicipalAda = buyerKey === 'sled' || tierKey === 'ada_pcard' || tierKey === 'ada_3quote';
+        if (isMunicipalAda) {
+          const mRows = [
+            {
+              wp: 'WP-1: Public Web Portal, Navigation & Forms Baseline Audit',
+              gate: 'Automated + manual keyboard/screen-reader audit of public web pages, utility/permit links, and procurement boards against DOJ 28 CFR § 35.200(b)(2) (April 26, 2027 <50K population & special district mandate).',
+              proof: 'Prioritized Defect Matrix + remediated HTML/CSS patches with >= 9:1 Double-Contrast Guard.'
+            }
+          ];
+          if (pillars.includes('ada')) {
+            mRows.push({
+              wp: 'WP-2: Council / BOS Agendas, Minutes & Packet PDF/UA Sprint',
+              gate: 'Remediation of active Council/Board packets, fee schedules, and citizen PDFs to ISO 14289-1 (PDF/UA-1) + WCAG 2.2 AA, plus reusable accessible clerk templates.',
+              proof: 'PAC / VeraPDF 0-error PDF/UA validation log + Clerk Accessible Publishing Kit.'
+            });
+          }
+          if (pillars.includes('dol')) {
+            mRows.push({
+              wp: 'WP-3: Clerk & Staff Accessibility + EO 14434 AI Governance SOP',
+              gate: 'Hands-on staff briefing for Clerks, PIOs, and IT leads on maintaining accessible agendas and verified plain-language notices.',
+              proof: 'Signed Staff Completion Roster + 1-Page Municipal Pre-Publish Checklist.'
+            });
+          }
+          if (pillars.includes('bilingual')) {
+            mRows.push({
+              wp: 'WP-4: Title VI Spanish / English LEP Parity & Plain Language',
+              gate: 'Culturally accurate Borderlands Español (lang="es") parity, machine-readable language tags, and WCAG 3.0 plain-language citizen service notices (42 U.S.C. § 2000d / 49 CFR Part 27).',
+              proof: 'Bilingual HTML/PDF lang-tag verification report across high-traffic resident pages.'
+            });
+          }
+          if (pillars.includes('provo')) {
+            mRows.push({
+              wp: 'WP-5: Independent IV&V VPAT 2.5 & W3C PROV-O Audit Binder',
+              gate: 'Cryptographic SHA-256 compliance receipts and formal Accessibility Conformance Report (ACR / VPAT 2.5) for City Attorney / County Risk Management files.',
+              proof: 'Signed IV&V Compliance Certificate + W3C PROV-O JSON-LD provenance manifest.'
+            });
+          }
+          return mRows;
+        }
+
         const rows = [
           {
             wp: 'WP-1: S-A-R v2.2 Compiler & LMS Pipeline',
@@ -1120,13 +1230,23 @@
         const lmsKey = (form.querySelector('input[name="lms"]:checked') || { value: 'canvas' }).value;
         const pillars = Array.from(form.querySelectorAll('input[name="pillars"]:checked')).map(function (c) { return c.value; });
 
-        const buyer = BUYER_CONFIG[buyerKey];
-        const tier = TIER_CONFIG[tierKey];
-        const rows = buildDeliverableRows(pillars, lmsKey);
+        const buyer = BUYER_CONFIG[buyerKey] || BUYER_CONFIG.cc;
+        const tier = TIER_CONFIG[tierKey] || TIER_CONFIG.pathway;
+        const isMunicipalAda = buyerKey === 'sled' || tierKey === 'ada_pcard' || tierKey === 'ada_3quote';
+        const orgFallback = isMunicipalAda ? '[Client Municipality / County / Special District]' : '[Client Institution / Division]';
+        const effectiveOrg = orgRaw.length >= 2 ? orgRaw : orgFallback;
+        const rows = buildDeliverableRows(pillars, lmsKey, buyerKey, tierKey);
 
         document.getElementById('kpi-route').textContent = tier.route;
         document.getElementById('kpi-codes').textContent = buyer.naics;
         document.getElementById('kpi-sprint').textContent = tier.sprint;
+
+        const toggleAdaQuoteBtn = document.getElementById('btn-toggle-ada-quote');
+        if (toggleAdaQuoteBtn) {
+          toggleAdaQuoteBtn.textContent = tierKey === 'ada_pcard'
+            ? (lang === 'es' ? 'Cambiar a 3 Cotizaciones ($10K–$25K)' : 'Switch to 3-Quote Tier ($10K–$25K)')
+            : (lang === 'es' ? 'Cambiar a P-Card ($4.5K–$9.9K)' : 'Switch to P-Card Tier ($4.5K–$9.9K)');
+        }
 
         const tbody = document.getElementById('deliverables-tbody');
         tbody.innerHTML = '';
@@ -1143,23 +1263,41 @@
           tbody.appendChild(tr);
         });
 
+        const sowHeaderTitle = isMunicipalAda
+          ? 'STATEMENT OF WORK (SOW) — APRIL 26, 2027 DOJ ADA TITLE II (<50K POP) COMPLIANCE SPRINT'
+          : 'STATEMENT OF WORK (SOW) — CURRICULUM-AS-CODE & ADA TITLE II COMPLIANCE SPRINT';
+        const objectiveLines = isMunicipalAda
+          ? [
+              '1. OBJECTIVE & APRIL 26, 2027 STATUTORY MANDATE (28 CFR PART 35)',
+              'Webcognita LLC shall audit, remediate, and independently verify public-facing web pages,',
+              'online forms, and City Council / Board of Supervisors / Authority agenda & minutes PDFs',
+              'for ' + effectiveOrg + ' ahead of the mandatory April 26, 2027 DOJ ADA Title II',
+              '(28 CFR § 35.200(b)(2)) compliance deadline for jurisdictions under 50,000 population',
+              'and special district governments—enforcing WCAG 2.2 Level AA (>= 9:1 Double-Contrast',
+              'Guard), ISO 14289-1 (PDF/UA-1), and zero recurring SaaS vendor lock-in.'
+            ]
+          : [
+              '1. OBJECTIVE & STATUTORY MANDATE',
+              'Webcognita LLC shall engineer, remediate, and verify a zero-lock-in Curriculum-as-Code',
+              '(S-A-R Standard v2.2) instructional fleet for ' + effectiveOrg + ', ensuring full technical',
+              'conformance with DOJ ADA Title II (28 CFR Part 35), Section 508, WCAG 2.2 Level AA',
+              '(>= 9:1 Double-Contrast Guard), and zero FERPA/PII cloud data egress.'
+            ];
+
         const sowLines = [
-          'STATEMENT OF WORK (SOW) — CURRICULUM-AS-CODE & ADA TITLE II COMPLIANCE SPRINT',
-          '=============================================================================',
-          'Client Agency / Division : ' + orgDisplay + ' (' + buyer.label + ')',
-          'Vendor                   : Webcognita LLC (100% Veteran-Owned Small Business)',
-          'Federal / State IDs      : SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739',
+          sowHeaderTitle,
+          '======================================================================================',
+          'Client Agency / Division : ' + effectiveOrg + ' (' + buyer.label + ')',
+          'Vendor                   : Webcognita LLC (100% Veteran-Owned Small Business • Yuma, AZ)',
+          'Federal / Arizona IDs    : SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739 | ADOT SBC: #23545',
+          'AZ Statutory Warranties  : DHS E-Verify #3119395 (A.R.S. § 41-4401) | A.R.S. § 35-394 & § 35-393.01 Compliant',
           'Classification Codes     : ' + buyer.naics,
           'Selected Catalog Scope   : ' + tier.label,
           'Target Delivery Stack    : ' + LMS_CONFIG[lmsKey],
           'Recommended Acquisition  : ' + tier.mechanism,
           'Estimated Schedule       : ' + tier.sprint,
           '',
-          '1. OBJECTIVE & STATUTORY MANDATE',
-          'Webcognita LLC shall engineer, remediate, and verify a zero-lock-in Curriculum-as-Code',
-          '(S-A-R Standard v2.2) instructional fleet for ' + orgDisplay + ', ensuring full technical',
-          'conformance with DOJ ADA Title II (28 CFR Part 35), Section 508, WCAG 2.2 Level AA',
-          '(>= 9:1 Double-Contrast Guard), and zero FERPA/PII cloud data egress.',
+          ...objectiveLines,
           '',
           '2. WORK PACKAGES & ACCEPTANCE GATES'
         ];
@@ -1173,15 +1311,15 @@
         sowLines.push(
           '',
           '3. DATA SOVEREIGNTY & ZERO RECURRING SAAS LOCK-IN',
-          'All compiled HTML, Markdown Single-Source-of-Truth repositories, and client-side',
-          'verification utilities operate at $0/month recurring SaaS cost to ' + orgDisplay + ',',
-          'with 0 bytes of student or agency PII transmitted to external AI vendors.',
+          'All remediated HTML, accessible PDF/UA clerk templates, Single-Source-of-Truth files, and',
+          'verification utilities operate at $0/month recurring SaaS cost to ' + effectiveOrg + ',',
+          'with 0 bytes of resident, student, or agency PII transmitted to external AI vendors.',
           '',
           '4. VERIFIED LIVE PAST PERFORMANCE (FAR 9.104-1)',
-          '- Live Course 42051 Fleet Hub : https://exwdemo.dev',
-          '- Free 1-Assignment OER Proof : https://alanpruitt.com/cac-studio/',
-          '- Workforce AI Readiness PWA  : https://gail2026.dev',
-          '- Corporate Capabilities      : https://www.webcognita.com/capabilities-statement.html'
+          '- Corporate Capabilities & GPC : https://www.webcognita.com/capabilities-statement.html',
+          '- Federal & AZ SLED OSINT PWA  : https://www.webcognita.com/govcon-radar/',
+          '- Live Course 42051 Fleet Hub  : https://exwdemo.dev',
+          '- Workforce AI Readiness PWA   : https://gail2026.dev'
         );
 
         document.getElementById('sow-output').textContent = sowLines.join('\n');
@@ -1267,7 +1405,75 @@
         window.print();
       });
 
-      renderEstimate(false);
+      const toggleQuoteBtn = document.getElementById('btn-toggle-ada-quote');
+      if (toggleQuoteBtn) {
+        toggleQuoteBtn.addEventListener('click', function () {
+          const sel = document.getElementById('catalog-tier');
+          sel.value = sel.value === 'ada_pcard' ? 'ada_3quote' : 'ada_pcard';
+          renderEstimate(true);
+        });
+      }
+
+      // --- 5. Zero-XSS Query Parameter Deep-Link Hydration (`security` §1.2 textContent only) ---
+      (function hydrateFromQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        if (!params || Array.from(params.keys()).length === 0) {
+          renderEstimate(false);
+          return;
+        }
+        const qLang = params.get('lang');
+        if (qLang === 'es' || qLang === 'en') {
+          lang = qLang;
+          document.documentElement.lang = lang;
+          document.getElementById('lang-toggle').textContent = I18N[lang].toggle;
+          document.querySelectorAll('[data-i18n]').forEach(function (node) {
+            const k = node.getAttribute('data-i18n');
+            if (I18N[lang][k]) node.textContent = I18N[lang][k];
+          });
+        }
+        const rawOrg = (params.get('org') || '').replace(/[\u0000-\u001F\u007F]/g, '').trim().slice(0, 90);
+        if (rawOrg.length >= 2) {
+          orgInput.value = rawOrg;
+        }
+        const qBuyer = params.get('buyer') || '';
+        if (Object.prototype.hasOwnProperty.call(BUYER_CONFIG, qBuyer)) {
+          const bRadio = form.querySelector('input[name="buyer"][value="' + qBuyer + '"]');
+          if (bRadio) bRadio.checked = true;
+        }
+        const qTier = params.get('tier') || '';
+        if (Object.prototype.hasOwnProperty.call(TIER_CONFIG, qTier)) {
+          document.getElementById('catalog-tier').value = qTier;
+        }
+        const qLms = params.get('lms') || '';
+        if (Object.prototype.hasOwnProperty.call(LMS_CONFIG, qLms)) {
+          const lRadio = form.querySelector('input[name="lms"][value="' + qLms + '"]');
+          if (lRadio) lRadio.checked = true;
+        }
+        const qPillars = params.get('pillars');
+        if (qPillars !== null) {
+          const allowed = new Set(['ada', 'dol', 'bilingual', 'provo']);
+          const picked = new Set(
+            qPillars.split(',').map(function (s) { return s.trim(); }).filter(function (s) { return allowed.has(s); })
+          );
+          if (picked.size > 0) {
+            form.querySelectorAll('input[name="pillars"]').forEach(function (cb) {
+              cb.checked = picked.has(cb.value);
+            });
+          }
+        }
+        renderEstimate(false);
+
+        if (qBuyer === 'sled' || qTier === 'ada_pcard' || qTier === 'ada_3quote' || params.get('node')) {
+          const banner = document.getElementById('radar-handoff-banner');
+          const msgEl = document.getElementById('radar-handoff-msg');
+          if (banner && msgEl) {
+            banner.hidden = false;
+            const targetLabel = rawOrg.length >= 2 ? rawOrg : 'Arizona <50K Jurisdiction / Special District';
+            msgEl.textContent = 'Pre-configured $4,500–$9,900 P-Card & 3-Quote ADA Title II Statement of Work generated for ' + targetLabel + '. Ready to copy or print.';
+            announcePolite('Generated April 26, 2027 ADA Title II Statement of Work for ' + targetLabel);
+          }
+        }
+      })();
     })();
   </script>
 </body>
