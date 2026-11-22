@@ -1806,11 +1806,17 @@
             padding: 16px;
             display: flex;
             justify-content: center;
+            overflow-wrap: break-word;
+        }
+
+        :where(a, code) {
+            overflow-wrap: anywhere;
         }
 
         .container {
             width: 100%;
             max-width: var(--max-width);
+            min-inline-size: 0;
             margin: 0 auto;
         }
 
@@ -1921,12 +1927,17 @@
             flex-direction: column;
             gap: 10px;
             justify-content: center;
-            align-items: center;
+            align-items: safe center;
         }
 
         @media (min-width: 480px) {
             .cta-grid {
                 flex-direction: row;
+                flex-wrap: wrap;
+                flex-wrap: balance;
+            }
+            .cta-grid .btn-action {
+                flex: 1 1 180px;
             }
         }
 
@@ -2027,7 +2038,13 @@
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 24px;
+            min-inline-size: 0;
+            max-inline-size: 100%;
             box-shadow: 0 4px 12px rgba(11, 29, 58, 0.06);
+        }
+
+        .cert-content {
+            min-inline-size: 0;
         }
 
         .capability-statement-card h2 {
@@ -2043,7 +2060,7 @@
 
         .gov-data-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
             gap: 8px;
             background-color: var(--bg-box);
             padding: 12px;
@@ -2054,34 +2071,140 @@
             margin-bottom: 16px;
         }
 
+        .gov-data-grid > * {
+            min-inline-size: 0;
+        }
+
         @media (min-width: 480px) {
             .gov-data-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
+        .table-wrapper {
+            overflow-x: auto;
+            inline-size: 100%;
+            max-inline-size: 100%;
+            container: naics-wrap / inline-size;
+            margin-block: 12px 16px;
+            overscroll-behavior-x: contain;
+        }
+
+        .table-wrapper:focus-visible {
+            outline: 3px solid var(--accent-navy);
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
         .naics-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-            margin-bottom: 16px;
+            inline-size: 100%;
+            max-inline-size: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: 0.88rem;
         }
 
-        .naics-table th, .naics-table td {
-            border: 1px solid var(--border-color);
-            padding: 8px 10px;
-            text-align: left;
+        .naics-table thead {
+            position: sticky;
+            inset-block-start: 0;
+            z-index: 1;
         }
 
-        .naics-table th {
+        .naics-table th,
+        .naics-table td {
+            border-block-end: 1px solid var(--border-color);
+            border-inline-end: 1px solid var(--border-color);
+            padding: 8px 10px;
+            text-align: start;
+            vertical-align: top;
+            overflow-wrap: break-word;
+        }
+
+        .naics-table tr > :first-child {
+            border-inline-start: 1px solid var(--border-color);
+            inline-size: 29%;
+        }
+
+        .naics-table thead tr:first-child > * {
+            border-block-start: 1px solid var(--border-color);
+        }
+
+        .naics-table thead th {
             background-color: var(--accent-navy);
             color: #FFFFFF;
             font-weight: 700;
         }
 
-        .naics-table tr:nth-child(even) {
+        .naics-table tbody tr:nth-child(odd) > :where(th, td) {
+            background-color: #FFFFFF;
+            color: var(--text-main);
+        }
+
+        .naics-table tbody tr:nth-child(even) > :where(th, td) {
             background-color: var(--bg-box);
+            color: var(--text-main);
+        }
+
+        .naics-table tbody th {
+            position: sticky;
+            inset-inline-start: 0;
+            font-weight: 700;
+        }
+
+        @container naics-wrap (inline-size < 480px) {
+            .naics-table,
+            .naics-table thead,
+            .naics-table tbody,
+            .naics-table tr,
+            .naics-table th,
+            .naics-table td {
+                display: block;
+                inline-size: 100%;
+            }
+
+            .naics-table thead {
+                display: none;
+            }
+
+            .naics-table tr {
+                margin-block-end: 0.85rem;
+                border: 1.5px solid var(--accent-navy);
+                border-radius: 6px;
+                overflow: clip;
+            }
+
+            .naics-table tr:last-child {
+                margin-block-end: 0;
+            }
+
+            .naics-table tr > :first-child {
+                inline-size: 100%;
+                border: 0;
+                border-block-end: 1px solid var(--border-color);
+            }
+
+            .naics-table tbody th {
+                position: sticky;
+                inset-block-start: 0;
+                z-index: 2;
+                background-color: var(--bg-box) !important;
+                color: var(--accent-navy);
+            }
+
+            .naics-table tbody td {
+                border: 0;
+                background-color: #FFFFFF !important;
+                color: var(--text-main);
+            }
+
+            .naics-table td:nth-child(2)::before {
+                content: var(--label-2) ": ";
+                display: block;
+                font-weight: 800;
+                color: var(--accent-navy);
+                margin-block-end: 2px;
+            }
         }
 
         /* Products & Checkout Card Grid */
@@ -2747,37 +2870,39 @@
                         <div style="grid-column: 1 / -1;"><strong>Public Verification Folder:</strong> <a href="/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">CMMC L1 Cyber MFR (PDF)</a> &bull; <a href="/docs/Webcognita_LLC_Principal_Qualifications_CV.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Principal CV (2-Pg)</a> &bull; <a href="/docs/Webcognita_LLC_AZ_Certificate_of_Good_Standing.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">AZ Good Standing</a> &bull; <a href="/docs/Webcognita_LLC_IRS_Form_W9_Verification.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS W-9</a> &bull; <a href="/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS 147C</a> &bull; <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Yuma License</a> &bull; <a href="https://alanpruitt.com/curriculum-as-code/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">CaC Origin Whitepaper</a> &bull; <a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">SBA 2025 Champion</a> &bull; <a href="https://www.statsamerica.org/newsletter/2021Q3.aspx" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">U.S. EDA StatsAmerica 2021 Spotlight</a> &bull; <a href="https://www.azwestern.edu/news/adaptive-training-available-awc" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">AWC Adaptive Training Feature</a> &bull; <a href="https://me.developers.google.com/u/alanpruitt" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Google Developer Profile</a> &bull; <a href="https://github.com/alanpruitt" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">GitHub (@alanpruitt)</a></div>
                     </div>
 
-                    <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">NAICS Code Classification &amp; Core Specializations:</p>
-                    <table class="naics-table">
-                        <thead>
-                            <tr>
-                                <th>NAICS Code</th>
-                                <th>Designation / Specialization</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>541511 (Primary)</strong></td>
-                                <td><strong>Custom Computer Programming:</strong> <a href="https://alanpruitt.com/curriculum-as-code/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Curriculum-as-Code</a> &amp; Compliance-as-Code (S-A-R Standard v2.2: Scalable / Auditable / Repeatable • Tech. Report S-A-R-v2.2-ORIGIN, <a href="https://doi.org/10.5281/zenodo.24170270" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">DOI: 10.5281/zenodo.24170270</a>), DOM GraphRAG (3,265 nodes), W3C PROV-O cryptographic provenance, W3C SKOS bilingual ontologies, Canvas GraphQL-first (/api/graphql) &amp; REST engines, and accessible document compilers.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>541715</strong></td>
-                                <td><strong>R&amp;D in Life Sciences:</strong> Tier-1 Lab Integration, The Clinical Framing Protocol (Pattern / Rule / Solve), kinesiology &amp; culinary medicine clinical verification (PAGA 2018 2nd Ed., 2025–2030 DGA, ACSM 12th Ed., NASM OPT).</td>
-                            </tr>
-                            <tr>
-                                <td><strong>541512</strong></td>
-                                <td><strong>Computer Systems Design:</strong> Enterprise-grade <strong>Sovereign Hybrid RAG &amp; Zero-Residue Security</strong> on existing off-the-shelf (<code>COTS</code>) hardware at <strong>$0 new hardware CAPEX &amp; $0/mo SaaS fees</strong> (<code>SQLite FTS5 BM25</code> + <code>768-dim</code> local embeddings + <code>Reciprocal Rank Fusion</code> + <code>NIST AES-256-GCM</code> zero-knowledge vaulting + driverless <code>HTTPS eSCL</code> capture), plus Two-Lane Periodic AI on Apple Silicon M1/M2 (clean-room <strong>Hydrogen 4</strong> &amp; <strong>Gemini 4 Neon</strong> in Antigravity IDE + air-gapped <strong>Carbon 4</strong> &amp; <strong>Argon 4</strong> via Apache 2.0 <strong>Google Gemma 4</strong> / Ollama) with 100% FERPA/HIPAA/OPSEC privacy.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>611710</strong></td>
-                                <td><strong>Educational Support Services:</strong> LMS/Canvas Architecture, $0 ZTC Open Educational Resources (OER), WCAG 2.2 AA (9:1 Double-Contrast Guard) &amp; WCAG 3.0 cognitive accessibility design.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>541690</strong></td>
-                                <td><strong>Specialized Technical Consulting:</strong> Institutional AI Governance, Compliance-as-Code CI/CD pre-commit gates, ADA Title II compliance auditing, and desert AgTech 5G telemetry modeling.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <p id="naics-table-heading-en" style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">NAICS Code Classification &amp; Core Specializations:</p>
+                    <div tabindex="0" role="region" aria-labelledby="naics-table-heading-en" class="table-wrapper">
+                        <table class="naics-table" style="--label-2: 'Designation / Specialization';">
+                            <thead>
+                                <tr>
+                                    <th scope="col">NAICS Code</th>
+                                    <th scope="col">Designation / Specialization</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">541511 (Primary)</th>
+                                    <td><strong>Custom Computer Programming:</strong> <a href="https://alanpruitt.com/curriculum-as-code/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Curriculum-as-Code</a> &amp; Compliance-as-Code (S-A-R Standard v2.2: Scalable / Auditable / Repeatable • Tech. Report S-A-R-v2.2-ORIGIN, <a href="https://doi.org/10.5281/zenodo.24170270" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">DOI: 10.5281/zenodo.24170270</a>), DOM GraphRAG (3,265 nodes), W3C PROV-O cryptographic provenance, W3C SKOS bilingual ontologies, Canvas GraphQL-first (/api/graphql) &amp; REST engines, and accessible document compilers.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">541715</th>
+                                    <td><strong>R&amp;D in Life Sciences:</strong> Tier-1 Lab Integration, The Clinical Framing Protocol (Pattern / Rule / Solve), kinesiology &amp; culinary medicine clinical verification (PAGA 2018 2nd Ed., 2025–2030 DGA, ACSM 12th Ed., NASM OPT).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">541512</th>
+                                    <td><strong>Computer Systems Design:</strong> Enterprise-grade <strong>Sovereign Hybrid RAG &amp; Zero-Residue Security</strong> on existing off-the-shelf (<code>COTS</code>) hardware at <strong>$0 new hardware CAPEX &amp; $0/mo SaaS fees</strong> (<code>SQLite FTS5 BM25</code> + <code>768-dim</code> local embeddings + <code>Reciprocal Rank Fusion</code> + <code>NIST AES-256-GCM</code> zero-knowledge vaulting + driverless <code>HTTPS eSCL</code> capture), plus Two-Lane Periodic AI on Apple Silicon M1/M2 (clean-room <strong>Hydrogen 4</strong> &amp; <strong>Gemini 4 Neon</strong> in Antigravity IDE + air-gapped <strong>Carbon 4</strong> &amp; <strong>Argon 4</strong> via Apache 2.0 <strong>Google Gemma 4</strong> / Ollama) with 100% FERPA/HIPAA/OPSEC privacy.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">611710</th>
+                                    <td><strong>Educational Support Services:</strong> LMS/Canvas Architecture, $0 ZTC Open Educational Resources (OER), WCAG 2.2 AA (9:1 Double-Contrast Guard) &amp; WCAG 3.0 cognitive accessibility design.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">541690</th>
+                                    <td><strong>Specialized Technical Consulting:</strong> Institutional AI Governance, Compliance-as-Code CI/CD pre-commit gates, ADA Title II compliance auditing, and desert AgTech 5G telemetry modeling.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div lang="es">
@@ -2812,37 +2937,39 @@
                         <div style="grid-column: 1 / -1;"><strong>Expediente Público (/docs/):</strong> <a href="/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">MFR Ciberseguridad CMMC L1 (PDF)</a> &bull; <a href="/docs/Webcognita_LLC_Principal_Qualifications_CV.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">CV Principal (2 Págs)</a> &bull; <a href="/docs/Webcognita_LLC_AZ_Certificate_of_Good_Standing.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Vigencia AZ</a> &bull; <a href="/docs/Webcognita_LLC_IRS_Form_W9_Verification.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS W-9</a> &bull; <a href="/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">IRS 147C</a> &bull; <a href="/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" target="_blank" rel="noopener" style="color: var(--accent-navy); text-decoration: underline;">Licencia Yuma</a> &bull; <a href="https://alanpruitt.com/es/curriculum-as-code/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Whitepaper Origen CaC</a> &bull; <a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Premio SBA 2025</a> &bull; <a href="https://www.statsamerica.org/newsletter/2021Q3.aspx" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Nota StatsAmerica / U.S. EDA 2021</a> &bull; <a href="https://www.azwestern.edu/news/adaptive-training-available-awc" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Nota AWC Entrenamiento Adaptativo</a> &bull; <a href="https://me.developers.google.com/u/alanpruitt" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">Google Developer Profile</a> &bull; <a href="https://github.com/alanpruitt" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">GitHub (@alanpruitt)</a></div>
                     </div>
 
-                    <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">Clasificación de Códigos NAICS y Especialización:</p>
-                    <table class="naics-table">
-                        <thead>
-                            <tr>
-                                <th>Código NAICS</th>
-                                <th>Designación y Especialidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>541511 (Principal)</strong></td>
-                                <td><strong>Programación de Software:</strong> Arquitectura <a href="https://alanpruitt.com/es/curriculum-as-code/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">"Curriculum-as-Code"</a> y "Compliance-as-Code" bajo el estándar S-A-R v2.2 (Escalable / Auditable / Repetible • Informe S-A-R-v2.2-ORIGIN, <a href="https://doi.org/10.5281/zenodo.24170270" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">DOI: 10.5281/zenodo.24170270</a>), DOM GraphRAG (3,265 nodos), recibos criptográficos W3C PROV-O, ontologías bilingües W3C SKOS y tuberías Canvas GraphQL (/api/graphql) y REST.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>541715</strong></td>
-                                <td><strong>I+D en Ciencias de la Salud:</strong> Protocolo de Encuadre Clínico (Patrón / Regla / Solución), integración de laboratorios Tier-1 y verificación clínica (PAGA 2018, DGA 2025–2030, ACSM 12.ª ed., NASM OPT).</td>
-                            </tr>
-                            <tr>
-                                <td><strong>541512</strong></td>
-                                <td><strong>Diseño de Sistemas:</strong> <strong>RAG Híbrido Soberano y Seguridad de Cero Residuo</strong> de grado empresarial sobre equipos comerciales existentes (<code>COTS</code>) con <strong>$0 en nuevo CAPEX de hardware y $0/mes en suscripciones SaaS</strong> (<code>SQLite FTS5 BM25</code> + vectores locales de <code>768 dim</code> + <code>Reciprocal Rank Fusion</code> + bóveda criptográfica <code>NIST AES-256-GCM</code> + captura sin controladores <code>HTTPS eSCL</code>), junto con IA Periódica de Dos Carriles en Apple Silicon M1/M2 (<strong>Hydrogen 4</strong> y <strong>Gemini 4 Neon</strong> en Antigravity IDE para código limpio + <strong>Carbon 4</strong> y <strong>Argon 4</strong> fuera de línea en <strong>Google Gemma 4</strong> / Ollama) bajo blindaje total FERPA/HIPAA/OPSEC.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>611710</strong></td>
-                                <td><strong>Servicios de Soporte Educativo:</strong> Arquitectura LMS/Canvas, recursos abiertos $0 ZTC y accesibilidad WCAG 2.2 AA (contraste mínimo 9:1) y WCAG 3.0 cognitiva.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>541690</strong></td>
-                                <td><strong>Consultoría Técnica Especializada:</strong> Gobernanza institucional de IA, compuertas CI/CD de Compliance-as-Code, auditoría ADA Título II y modelado de retorno de inversión AgTech 5G.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <p id="naics-table-heading-es" style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">Clasificación de Códigos NAICS y Especialización:</p>
+                    <div tabindex="0" role="region" aria-labelledby="naics-table-heading-es" class="table-wrapper">
+                        <table class="naics-table" style="--label-2: 'Designación y Especialidad';">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Código NAICS</th>
+                                    <th scope="col">Designación y Especialidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">541511 (Principal)</th>
+                                    <td><strong>Programación de Software:</strong> Arquitectura <a href="https://alanpruitt.com/es/curriculum-as-code/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">"Curriculum-as-Code"</a> y "Compliance-as-Code" bajo el estándar S-A-R v2.2 (Escalable / Auditable / Repetible • Informe S-A-R-v2.2-ORIGIN, <a href="https://doi.org/10.5281/zenodo.24170270" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">DOI: 10.5281/zenodo.24170270</a>), DOM GraphRAG (3,265 nodos), recibos criptográficos W3C PROV-O, ontologías bilingües W3C SKOS y tuberías Canvas GraphQL (/api/graphql) y REST.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">541715</th>
+                                    <td><strong>I+D en Ciencias de la Salud:</strong> Protocolo de Encuadre Clínico (Patrón / Regla / Solución), integración de laboratorios Tier-1 y verificación clínica (PAGA 2018, DGA 2025–2030, ACSM 12.ª ed., NASM OPT).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">541512</th>
+                                    <td><strong>Diseño de Sistemas:</strong> <strong>RAG Híbrido Soberano y Seguridad de Cero Residuo</strong> de grado empresarial sobre equipos comerciales existentes (<code>COTS</code>) con <strong>$0 en nuevo CAPEX de hardware y $0/mes en suscripciones SaaS</strong> (<code>SQLite FTS5 BM25</code> + vectores locales de <code>768 dim</code> + <code>Reciprocal Rank Fusion</code> + bóveda criptográfica <code>NIST AES-256-GCM</code> + captura sin controladores <code>HTTPS eSCL</code>), junto con IA Periódica de Dos Carriles en Apple Silicon M1/M2 (<strong>Hydrogen 4</strong> y <strong>Gemini 4 Neon</strong> en Antigravity IDE para código limpio + <strong>Carbon 4</strong> y <strong>Argon 4</strong> fuera de línea en <strong>Google Gemma 4</strong> / Ollama) bajo blindaje total FERPA/HIPAA/OPSEC.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">611710</th>
+                                    <td><strong>Servicios de Soporte Educativo:</strong> Arquitectura LMS/Canvas, recursos abiertos $0 ZTC y accesibilidad WCAG 2.2 AA (contraste mínimo 9:1) y WCAG 3.0 cognitiva.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">541690</th>
+                                    <td><strong>Consultoría Técnica Especializada:</strong> Gobernanza institucional de IA, compuertas CI/CD de Compliance-as-Code, auditoría ADA Título II y modelado de retorno de inversión AgTech 5G.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
@@ -2959,39 +3086,41 @@
                     <p style="font-size: 0.9rem; color: var(--text-main); line-height: 1.6; margin-bottom: 12px; padding: 10px 14px; background-color: #F4F7FB; border-left: 4px solid var(--accent-navy); border-radius: 4px;">
                         <strong>Competitive Differentiator &mdash; Zero Accreditation Collision (50-State K&ndash;16 Dual-Enrollment, Running Start, Perkins V &amp; WIOA):</strong> Traditional courseware forces institutions to choose between regional collegiate accreditation rigor (HLC / NWCCU university transfer syllabi) and K&ndash;12 Dual-Enrollment / OER discovery standards. Our <strong>Dual-Namespace (<code>EXW</code> &rarr; <code>KIN / HLTH</code>) &amp; 4-Tier Standards Compiler</strong> decouples both planes from a single JSON registry: local college syllabi remain strictly anchored to post-secondary credit competencies, while Module 00 reference crosswalks, outbound <code>.zip</code> OER packages, and Google Dataset Search JSON-LD automatically bind <strong>Tier 1</strong> Federal Clinical SSoTs, <strong>Tier 2</strong> Workforce AI Literacy (<code>US-DOL-TEN-07-25</code> &amp; <code>NSF-TECHACCESS-AI-READY-2026</code>), <strong>Tier 3</strong> HLC ILOs, and <strong>Tier 4</strong> K&ndash;16 Bridge Standards (<code>CCSS.ELA-LITERACY.W.11-12.6</code>, <code>RST.11-12.7</code>, <code>WA.ELA.11-12.W.6</code>&mdash;adaptable in minutes to any of the 50 states&rsquo; CTE or Early College standards).
                     </p>
-                    <table class="naics-table">
-                        <thead>
-                            <tr>
-                                <th>Syndicated OER Dataset</th>
-                                <th>4-Tier Standards Alignment &amp; Direct Package Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>KIN-101 (EXW 101)</strong><br>Concepts of Kinesiology</td>
-                                <td><strong>Tier 1 SSoT:</strong> 2018 PAGA (2nd Ed.) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-101_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-101/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>HLTH-150 (EXW 150)</strong><br>Nutrition for Exercise &amp; Sport</td>
-                                <td><strong>Tier 1 SSoT:</strong> 2025&ndash;2030 DGA (&ldquo;Real Food&rdquo; Focus) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/hlth-150_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/hlth-150/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>KIN-265 (EXW 265)</strong><br>Exercise for Special Populations</td>
-                                <td><strong>Tier 1 SSoT:</strong> 2018 PAGA (2nd Ed., Ch. 6) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-265_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-265/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>KIN-210 (EXW 210)</strong><br>Essentials of Personal Training</td>
-                                <td><strong>Tier 1 SSoT:</strong> PAGA 2018 + ACSM 12th Ed. + NASM OPT Model &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-210_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-210/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>KIN-245 (EXW 245)</strong><br>Exercise Testing &amp; Prescription</td>
-                                <td><strong>Tier 1 SSoT:</strong> ACSM&rsquo;s Guidelines for Exercise Testing &amp; Prescription (12th Ed., 2025) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-245_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-245/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div tabindex="0" role="region" aria-labelledby="oer-deliverables-heading" class="table-wrapper">
+                        <table class="naics-table" style="--label-2: '4-Tier Standards Alignment & Direct Package Download';">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Syndicated OER Dataset</th>
+                                    <th scope="col">4-Tier Standards Alignment &amp; Direct Package Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">KIN-101 (EXW 101)<br><span style="font-weight: 500;">Concepts of Kinesiology</span></th>
+                                    <td><strong>Tier 1 SSoT:</strong> 2018 PAGA (2nd Ed.) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-101_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-101/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">HLTH-150 (EXW 150)<br><span style="font-weight: 500;">Nutrition for Exercise &amp; Sport</span></th>
+                                    <td><strong>Tier 1 SSoT:</strong> 2025&ndash;2030 DGA (&ldquo;Real Food&rdquo; Focus) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/hlth-150_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/hlth-150/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">KIN-265 (EXW 265)<br><span style="font-weight: 500;">Exercise for Special Populations</span></th>
+                                    <td><strong>Tier 1 SSoT:</strong> 2018 PAGA (2nd Ed., Ch. 6) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-265_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-265/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">KIN-210 (EXW 210)<br><span style="font-weight: 500;">Essentials of Personal Training</span></th>
+                                    <td><strong>Tier 1 SSoT:</strong> PAGA 2018 + ACSM 12th Ed. + NASM OPT Model &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-210_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-210/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">KIN-245 (EXW 245)<br><span style="font-weight: 500;">Exercise Testing &amp; Prescription</span></th>
+                                    <td><strong>Tier 1 SSoT:</strong> ACSM&rsquo;s Guidelines for Exercise Testing &amp; Prescription (12th Ed., 2025) &bull; <strong>Tier 2:</strong> U.S. DOL TEN 07-25 &amp; NSF AI-Ready &bull; <strong>Tier 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-245_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Full OER ZIP</a> | <a href="https://alanpruitt.com/export/kin-245/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">JSON-LD Manifest</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div lang="es">
-                    <h2>Entregables Llave en Mano $0 ZTC OER, Socio Habilitador No Competitivo en los 50 Estados y Doble Inscripción K&ndash;16</h2>
+                    <h2 id="oer-deliverables-heading-es">Entregables Llave en Mano $0 ZTC OER, Socio Habilitador No Competitivo en los 50 Estados y Doble Inscripción K&ndash;16</h2>
                     <p style="font-size: 0.9rem; color: var(--text-main); line-height: 1.6; margin-bottom: 12px;">
                         <strong>Socio Habilitador No Competitivo en los 50 Estados (<a href="https://www.nsf.gov/funding/initiatives/ai-ready" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); text-decoration: underline;">NSF TechAccess: AI-Ready America</a> y Simposio de IA del Suroeste de Arizona en AWC):</strong> Webcognita LLC y Alan Pruitt <strong>no compiten</strong> contra colegios comunitarios ni universidades por subvenciones primarias de NSF AI-Ready; servimos como un <strong>Socio Habilitador No Competitivo en los 50 Estados</strong>, arquitectura de referencia abierta de Currículo-como-Código y socio de implementación para <strong>Arizona Western College</strong> (una Institución al Servicio de los Hispanos [HSI] donde el <strong>77% del alumnado es latino</strong> [<code>3.08x</code> el umbral federal HSI del 25%] y el <strong>62% son estudiantes universitarios de primera generación</strong>&mdash;<em>&ldquo;En AWC, el 77% de los estudiantes son latinos y el 62% son estudiantes de primera generación. Servimos a esta hermosa comunidad, pero los desafíos están en todas partes&rdquo;</em>, Dra. Reetika Dhawan, Presidenta de AWC, citada en <em>The Yuma Sun</em>, 11 de noviembre de 2026&mdash;impulsando el liderazgo regional del <strong>Southwest Arizona AI Symposium</strong>, el reconocimiento de Alan Pruitt como <strong>Campeón de Pequeñas Empresas de Veteranos del Año en Arizona 2025 por la U.S. SBA</strong> [<a href="https://www.azwestern.edu/sites/default/files/awc/sbdc/stories/Alan%20Pruitt.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Caso de Éxito Oficial AWC SBDC PDF</a>], el premio <strong>Campeón del Desarrollo de Empresas Minoritarias — Defensor del Año 2023 del U.S. Department of Commerce [MBDA — Arizona MBDA Business Center, Phoenix]</strong> por su labor como <strong>Especialista en Desarrollo Económico para la Tribu Indígena Quechan</strong>, y tres etapas institucionales previas en el <strong>AWC Reskilling &amp; Technology Center</strong>: dos periodos como <strong>Consejero Empresarial del AWC SBDC</strong> reconocido con el <strong>Premio Centro de Excelencia SBDC</strong>, más el diseño curricular contextualizado bajo cumplimiento federal <strong>WIOA</strong>) y para los <strong>Centros de Coordinación AI-Ready en los 50 estados y territorios de EE. UU.</strong> Avanzamos a las cohortes regionales de <code>AI-AWARE</code> a <code>AI-READY</code> mediante inferencia local aislada (<em>air-gapped</em>) de cero huella en la nube (<strong>Google Gemma E2B/E4B</strong>, <strong>LiteRT-LM</strong>, <strong>Android AICore</strong>, <strong>Apple Silicon Ollama Carbon 4</strong>, aislamiento de tokens <code>###</code> y subagentes locales paralelos en <strong>Antigravity CLI/SDK</strong>) para educación superior, naciones tribales, agricultura del desierto (AgTech), pequeñas empresas y entornos de alta seguridad OPSEC/FERPA, mientras nuestro compilador S-A-R absorbe cambios terminológicos federales (incluyendo la gobernanza con supervisión humana para <em>superintelligence</em> / superinteligencia) mediante una sola actualización de registro JSON-LD sin reescrituras manuales.
                     </p>
@@ -2999,38 +3128,40 @@
                         Webcognita LLC compila y distribuye cinco paquetes completos de cursos <strong>$0 ZTC OER</strong> con sumas de verificación SHA-256 (<strong>CC BY-NC-SA 4.0</strong>) bajo <strong>NAICS 541511, 611710 y 541690</strong>, verificados en <strong>419 archivos HTML con 0 problemas WCAG 2.2 AA (contraste 9:1)</strong> y etiquetados con metadatos <code>Schema.org/Dataset</code> + <code>LRMI educationalAlignment</code> de 4 niveles (incluyendo <code>NSF-TECHACCESS-AI-READY-2026</code> y <code>US-DOL-TEN-07-25</code>).
                     </p>
                     <p style="font-size: 0.9rem; color: var(--text-main); line-height: 1.6; margin-bottom: 12px; padding: 10px 14px; background-color: #F4F7FB; border-left: 4px solid var(--accent-navy); border-radius: 4px;">
-                        <strong>Diferenciador Competitivo &mdash; Cero Colisión de Acreditación (Doble Inscripción K&ndash;16 en los 50 Estados, Running Start, Perkins V y WIOA):</strong> Nuestro <strong>Compilador de Doble Espacio de Nombres (<code>EXW</code> &rarr; <code>KIN / HLTH</code>) y Estándares de 4 Niveles</strong> separa la acreditación universitaria regional (HLC / transferencia universitaria en el programa oficial del curso) de los metadatos de descubrimiento K&ndash;16 y fuerza laboral: un único registro JSON inyecta automáticamente el <strong>Nivel 1</strong> (SSoT Clínico Federal), <strong>Nivel 2</strong> (<code>US-DOL-TEN-07-25</code> y <code>NSF-TECHACCESS-AI-READY-2026</code>), <strong>Nivel 3</strong> (ILOs HLC) y <strong>Nivel 4</strong> (<code>CCSS.ELA-LITERACY.W.11-12.6</code>, <code>RST.11-12.7</code>, <code>WA.ELA.11-12.W.6</code>&mdash;adaptable en minutos a los estándares CTE o de preparatoria de cualquiera de los 50 estados) en tablas de referencia del Módulo 00, paquetes <code>.zip</code> OER y <code>Schema.org/Dataset</code>.
+                        <strong>Diferenciador Competitivo &mdash; Cero Colisión de Acreditación (Doble Inscripción K&ndash;16 en los 50 Estados, Running Start, Perkins V y WIOA):</strong> Nuestro <strong>Compilador de Doble Espacio de Nombres (<code>EXW</code> &rarr; <code>KIN / HLTH</code>) y Estándares de 4 Niveles</strong> separa la acreditación universitaria regional (HLC / transferencia universitaria en el programa oficial del curso) de los metadatos de descubrimiento K&ndash;16 y fuerza laboral: un único registro JSON inyecta automáticamente el <strong>Nivel 1</strong> (SSoT Clínico Federal), <strong>Nivel 2</strong> (<code>US-DOL-TEN-07-25</code> y <code>NSF-TECHACCESS-AI-READY-2026</code>), <strong>Nivel 3</strong> (ILOs HLC) y <strong>Nivel 4</strong> (<code>CCSS.ELA-LITERACY.W.11-12.6</code>, <code>RST.11-12.7</code>, WA.ELA.11-12.W.6&mdash;adaptable en minutos a los estándares CTE o de preparatoria de cualquiera de los 50 estados) en tablas de referencia del Módulo 00, paquetes <code>.zip</code> OER y <code>Schema.org/Dataset</code>.
                     </p>
-                    <table class="naics-table">
-                        <thead>
-                            <tr>
-                                <th>Dataset OER Sindicado</th>
-                                <th>Alineación de 4 Niveles y Descarga Directa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>KIN-101 (EXW 101)</strong><br>Conceptos de Kinesiología</td>
-                                <td><strong>Nivel 1 SSoT:</strong> PAGA 2018 (2.ª Ed.) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-101_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-101/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>HLTH-150 (EXW 150)</strong><br>Nutrición para el Ejercicio y el Deporte</td>
-                                <td><strong>Nivel 1 SSoT:</strong> DGA 2025&ndash;2030 (Alimentos Reales) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/hlth-150_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/hlth-150/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>KIN-265 (EXW 265)</strong><br>Ejercicio para Poblaciones Especiales</td>
-                                <td><strong>Nivel 1 SSoT:</strong> PAGA 2018 (2.ª Ed., Cap. 6) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-265_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-265/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>KIN-210 (EXW 210)</strong><br>Fundamentos de Entrenamiento Personal</td>
-                                <td><strong>Nivel 1 SSoT:</strong> PAGA 2018 + ACSM 12.ª Ed. + NASM OPT &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-210_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-210/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>KIN-245 (EXW 245)</strong><br>Evaluación y Prescripción del Ejercicio</td>
-                                <td><strong>Nivel 1 SSoT:</strong> ACSM 12.ª Ed. (2025) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-245_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-245/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div tabindex="0" role="region" aria-labelledby="oer-deliverables-heading-es" class="table-wrapper">
+                        <table class="naics-table" style="--label-2: 'Alineación de 4 Niveles y Descarga Directa';">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Dataset OER Sindicado</th>
+                                    <th scope="col">Alineación de 4 Niveles y Descarga Directa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">KIN-101 (EXW 101)<br><span style="font-weight: 500;">Conceptos de Kinesiología</span></th>
+                                    <td><strong>Nivel 1 SSoT:</strong> PAGA 2018 (2.ª Ed.) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-101_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-101/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">HLTH-150 (EXW 150)<br><span style="font-weight: 500;">Nutrición para el Ejercicio y el Deporte</span></th>
+                                    <td><strong>Nivel 1 SSoT:</strong> DGA 2025&ndash;2030 (Alimentos Reales) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/hlth-150_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/hlth-150/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">KIN-265 (EXW 265)<br><span style="font-weight: 500;">Ejercicio para Poblaciones Especiales</span></th>
+                                    <td><strong>Nivel 1 SSoT:</strong> PAGA 2018 (2.ª Ed., Cap. 6) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-265_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-265/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">KIN-210 (EXW 210)<br><span style="font-weight: 500;">Fundamentos de Entrenamiento Personal</span></th>
+                                    <td><strong>Nivel 1 SSoT:</strong> PAGA 2018 + ACSM 12.ª Ed. + NASM OPT &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-210_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-210/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">KIN-245 (EXW 245)<br><span style="font-weight: 500;">Evaluación y Prescripción del Ejercicio</span></th>
+                                    <td><strong>Nivel 1 SSoT:</strong> ACSM 12.ª Ed. (2025) &bull; <strong>Nivel 2:</strong> U.S. DOL TEN 07-25 y NSF AI-Ready &bull; <strong>Nivel 4:</strong> CCSS.ELA-LITERACY.W.11-12.6, RST.11-12.7, WA.ELA.11-12.W.6 &bull; <a href="https://alanpruitt.com/export/kin-245_full_course_oer_package.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">Paquete ZIP</a> | <a href="https://alanpruitt.com/export/kin-245/metadata.json" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Manifiesto JSON-LD</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
@@ -3166,137 +3297,141 @@
                     <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">
                         Live progressive web applications and compilers engineered under NAICS 541511, 541715, 611710 &amp; 541690:
                     </p>
-                    <table class="naics-table">
-                        <thead>
-                            <tr>
-                                <th>Production Application</th>
-                                <th>NAICS &amp; Technical Architecture</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="https://exwtoolkit.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwtoolkit.com</a></td>
-                                <td><strong>EXW Digital Tool Kit (EN/ES):</strong> 9-Box clinical biometrics, desert heat-stress simulator &amp; cryptographic verification tokens (PAGA 2018 / DGA / ACSM 12th Ed.).</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://paga2018.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">paga2018.dev</a></td>
-                                <td><strong>EXW Physical Activity Tool Kit:</strong> $0 ZTC Student OER built on PAGA 2018 (2nd Ed.) with Pattern / Rule / Solve clinical activity audits.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://exwdemo.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwdemo.dev</a></td>
-                                <td><strong>EXW-Demo Fleet Architecture Hub:</strong> Zero-login PWA mirror of AWC Course ID 42051 showcasing Sovereign 3-Stage Curriculum-as-Code, 9:1 WCAG 2.2 AA pages &amp; 256 10/10 Exemplar Solves.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://flavorarchitect.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">flavorarchitect.dev</a></td>
-                                <td><strong>Flavor Architect &amp; Food Informatics (The University of Arizona NSW Foods Lab):</strong> Pattern / Rule / Solve Recipe Lab, USDA FDC &amp; DGA 2025&ndash;2030 gram-precision prototypes, and <a href="https://flavorarchitect.dev/food-informatics" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Food Informatics Consulting</a> (menu-to-formulation pipeline).</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://arquitectodelsabor.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">arquitectodelsabor.dev</a></td>
-                                <td><strong>Arquitecto del Sabor (The University of Arizona &bull; AZ&ndash;Sonora Borderlands):</strong> Bi-national (<code>es-MX</code>) molecular culinary &amp; DGA R&amp;D engine with Metric/Imperial formulations and <code>MXN</code> food-access pricing calibrated for San Luis Río Colorado, Sonora &amp; Yuma.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://mdtodocs.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">mdtodocs.app</a></td>
-                                <td><strong>Markdown to Documents Compiler:</strong> Transforms plain-text Markdown into born-accessible, WCAG-compliant PDF, Word (.docx) &amp; semantic HTML.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://prompt-mile-hero.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">prompt-mile-hero</a></td>
-                                <td><strong>Prompt-per-Mile Offset Calculator:</strong> Sustainability telemetry utility converting active-transit miles into CO2 savings and AI compute prompt offsets.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://agflow-roi-dash.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">agflow-roi-dash</a></td>
-                                <td><strong>AgFlow 5G Smart Irrigation Calculator:</strong> YCEDA desert AgTech utility modeling operational, financial &amp; water ROI of 5G remote irrigation.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://gail2026.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">gail2026.dev</a></td>
-                                <td><strong>GAIL 2026 Frontier AI Leader &amp; 4-Tier Workforce Readiness PWA:</strong> Zero-login $0 ZTC OER (NAICS 541511 &bull; PSC DA01/U008; canonical SSoT <a href="https://alanpruitt.com/gail2026/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/gail2026/</a>) uniting 7 accessible modes, W3C SKOS ontology, 50-state K&ndash;16 bridge re-compiler, and W3C PROV-O SHA-256 receipts.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://hybrid-rag.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">hybrid-rag.dev</a></td>
-                                <td><strong>DOM GraphRAG, Sovereign Local Hybrid RAG &amp; Zero-Laptop Travel Vault PWA:</strong> 4-plane installable desktop &amp; mobile PWA (canonical SSoT <a href="https://alanpruitt.com/hybrid-rag/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/hybrid-rag/</a> &bull; NAICS 541512 / 541511) uniting 980 W3C PROV-O SHA-256 nodes, zero-egress <code>127.0.0.1:8766</code> / WireGuard <code>View in RAM</code> HQ pairing, and Airplane-Mode <code>WCGVLT01</code> AES-256-GCM cross-border vaults with 1-tap <code>Border Lock</code>.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://www.webcognita.com/govcon-radar/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/govcon-radar</a></td>
-                                <td><strong>Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar PWA:</strong> Zero-egress client-side Okapi BM25 + Semantic Concept RRF (<code>k=60</code>) across 87 public Federal, Department of War (<code>PIEE</code>), Cooperative (<code>1GPA</code>, <code>Mohave</code>), and Arizona SLED procurement nodes (<code>Ring 0&ndash;9</code>), live <code>FAR 2.101</code> / <code>A.R.S. &sect; 41-2535</code> threshold router, <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalk, and 12-gate <code>FAR 9.104-1</code> &amp; <code>CMMC Level 1</code> self-check.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://www.webcognita.com/cac-readiness/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/cac-readiness</a></td>
-                                <td><strong>Institutional C-a-C, DOJ ADA Title II &amp; U.S. DOL TEN 07-25 Readiness Estimator PWA:</strong> Clean-room B2G division/campus scope router (<code>4&ndash;100+</code> courses), <code>FAR 13.2</code> / <code>A.R.S. &sect; 41-2535</code> micro-purchase &amp; simplified-quote classifier, and 1-click Statement of Work (<code>SOW</code>) generator under <code>NAICS 611710 / 541511 / 541690</code>.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://alanpruitt.com/cac-studio/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">alanpruitt.com/cac-studio</a></td>
-                                <td><strong>$0 ZTC Community College Faculty Adoption Studio (Open OER Proof-of-Capability):</strong> Non-commercial <code>CC BY-NC-SA 4.0</code> academic companion (Course ID <code>42051</code>; peer studio concepts attributed to Dr. Stacy Ybarra, OLLU CTE) allowing individual instructors to test-drive 1 assignment in 30 seconds with <code>9:1</code> Canvas HTML export and Community of Inquiry &harr; <code>TEN 07-25</code> alignment.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div tabindex="0" role="region" aria-labelledby="pwa-portfolio-heading" class="table-wrapper">
+                        <table class="naics-table" style="--label-2: 'NAICS & Technical Architecture';">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Production Application</th>
+                                    <th scope="col">NAICS &amp; Technical Architecture</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><a href="https://exwtoolkit.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwtoolkit.com</a></th>
+                                    <td><strong>EXW Digital Tool Kit (EN/ES):</strong> 9-Box clinical biometrics, desert heat-stress simulator &amp; cryptographic verification tokens (PAGA 2018 / DGA / ACSM 12th Ed.).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://paga2018.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">paga2018.dev</a></th>
+                                    <td><strong>EXW Physical Activity Tool Kit:</strong> $0 ZTC Student OER built on PAGA 2018 (2nd Ed.) with Pattern / Rule / Solve clinical activity audits.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://exwdemo.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwdemo.dev</a></th>
+                                    <td><strong>EXW-Demo Fleet Architecture Hub:</strong> Zero-login PWA mirror of AWC Course ID 42051 showcasing Sovereign 3-Stage Curriculum-as-Code, 9:1 WCAG 2.2 AA pages &amp; 256 10/10 Exemplar Solves.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://flavorarchitect.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">flavorarchitect.dev</a></th>
+                                    <td><strong>Flavor Architect &amp; Food Informatics (The University of Arizona NSW Foods Lab):</strong> Pattern / Rule / Solve Recipe Lab, USDA FDC &amp; DGA 2025&ndash;2030 gram-precision prototypes, and <a href="https://flavorarchitect.dev/food-informatics" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Food Informatics Consulting</a> (menu-to-formulation pipeline).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://arquitectodelsabor.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">arquitectodelsabor.dev</a></th>
+                                    <td><strong>Arquitecto del Sabor (The University of Arizona &bull; AZ&ndash;Sonora Borderlands):</strong> Bi-national (<code>es-MX</code>) molecular culinary &amp; DGA R&amp;D engine with Metric/Imperial formulations and <code>MXN</code> food-access pricing calibrated for San Luis Río Colorado, Sonora &amp; Yuma.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://mdtodocs.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">mdtodocs.app</a></th>
+                                    <td><strong>Markdown to Documents Compiler:</strong> Transforms plain-text Markdown into born-accessible, WCAG-compliant PDF, Word (.docx) &amp; semantic HTML.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://prompt-mile-hero.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">prompt-mile-hero</a></th>
+                                    <td><strong>Prompt-per-Mile Offset Calculator:</strong> Sustainability telemetry utility converting active-transit miles into CO2 savings and AI compute prompt offsets.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://agflow-roi-dash.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">agflow-roi-dash</a></th>
+                                    <td><strong>AgFlow 5G Smart Irrigation Calculator:</strong> YCEDA desert AgTech utility modeling operational, financial &amp; water ROI of 5G remote irrigation.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://gail2026.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">gail2026.dev</a></th>
+                                    <td><strong>GAIL 2026 Frontier AI Leader &amp; 4-Tier Workforce Readiness PWA:</strong> Zero-login $0 ZTC OER (NAICS 541511 &bull; PSC DA01/U008; canonical SSoT <a href="https://alanpruitt.com/gail2026/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/gail2026/</a>) uniting 7 accessible modes, W3C SKOS ontology, 50-state K&ndash;16 bridge re-compiler, and W3C PROV-O SHA-256 receipts.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://hybrid-rag.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">hybrid-rag.dev</a></th>
+                                    <td><strong>DOM GraphRAG, Sovereign Local Hybrid RAG &amp; Zero-Laptop Travel Vault PWA:</strong> 4-plane installable desktop &amp; mobile PWA (canonical SSoT <a href="https://alanpruitt.com/hybrid-rag/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/hybrid-rag/</a> &bull; NAICS 541512 / 541511) uniting 980 W3C PROV-O SHA-256 nodes, zero-egress <code>127.0.0.1:8766</code> / WireGuard <code>View in RAM</code> HQ pairing, and Airplane-Mode <code>WCGVLT01</code> AES-256-GCM cross-border vaults with 1-tap <code>Border Lock</code>.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://www.webcognita.com/govcon-radar/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/govcon-radar</a></th>
+                                    <td><strong>Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar PWA:</strong> Zero-egress client-side Okapi BM25 + Semantic Concept RRF (<code>k=60</code>) across 87 public Federal, Department of War (<code>PIEE</code>), Cooperative (<code>1GPA</code>, <code>Mohave</code>), and Arizona SLED procurement nodes (<code>Ring 0&ndash;9</code>), live <code>FAR 2.101</code> / <code>A.R.S. &sect; 41-2535</code> threshold router, <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalk, and 12-gate <code>FAR 9.104-1</code> &amp; <code>CMMC Level 1</code> self-check.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://www.webcognita.com/cac-readiness/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/cac-readiness</a></th>
+                                    <td><strong>Institutional C-a-C, DOJ ADA Title II &amp; U.S. DOL TEN 07-25 Readiness Estimator PWA:</strong> Clean-room B2G division/campus scope router (<code>4&ndash;100+</code> courses), <code>FAR 13.2</code> / <code>A.R.S. &sect; 41-2535</code> micro-purchase &amp; simplified-quote classifier, and 1-click Statement of Work (<code>SOW</code>) generator under <code>NAICS 611710 / 541511 / 541690</code>.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://alanpruitt.com/cac-studio/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">alanpruitt.com/cac-studio</a></th>
+                                    <td><strong>$0 ZTC Community College Faculty Adoption Studio (Open OER Proof-of-Capability):</strong> Non-commercial <code>CC BY-NC-SA 4.0</code> academic companion (Course ID <code>42051</code>; peer studio concepts attributed to Dr. Stacy Ybarra, OLLU CTE) allowing individual instructors to test-drive 1 assignment in 30 seconds with <code>9:1</code> Canvas HTML export and Community of Inquiry &harr; <code>TEN 07-25</code> alignment.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div lang="es">
-                    <h2>Portafolio de Software en Producción e I+D (13 Aplicaciones PWA, Mesas de Trabajo y Compiladores)</h2>
+                    <h2 id="pwa-portfolio-heading-es">Portafolio de Software en Producción e I+D (13 Aplicaciones PWA, Mesas de Trabajo y Compiladores)</h2>
                     <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px; font-weight: 600;">
                         Aplicaciones web progresivas y compiladores en vivo desarrollados bajo NAICS 541511, 541715, 611710 y 541690:
                     </p>
-                    <table class="naics-table">
-                        <thead>
-                            <tr>
-                                <th>Aplicación en Vivo</th>
-                                <th>Arquitectura Técnica y Especialidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="https://exwtoolkit.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwtoolkit.com</a></td>
-                                <td><strong>EXW Digital Tool Kit (EN/ES):</strong> 9 módulos de biometría clínica, estrés térmico del desierto y tokens criptográficos (PAGA 2018 / DGA / ACSM).</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://paga2018.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">paga2018.dev</a></td>
-                                <td><strong>EXW Physical Activity Tool Kit:</strong> Recurso abierto ($0 ZTC) basado en PAGA 2018 con auditorías clínicas Patrón / Regla / Solución.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://exwdemo.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwdemo.dev</a></td>
-                                <td><strong>EXW-Demo Portal de Arquitectura CaC:</strong> Espejo PWA sin login del Curso ID 42051 en AWC con páginas WCAG 2.2 AA (contraste 9:1) y 256 Ejemplares 10/10.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://flavorarchitect.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">flavorarchitect.dev</a></td>
-                                <td><strong>Flavor Architect e Informática de Alimentos (The University of Arizona NSW Foods Lab):</strong> Laboratorio Patrón / Regla / Solución, USDA FDC y DGA 2025&ndash;2030, y <a href="https://flavorarchitect.dev/food-informatics" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Consultoría en Informática de Alimentos</a> (captura de menús a formulaciones en gramos).</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://arquitectodelsabor.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">arquitectodelsabor.dev</a></td>
-                                <td><strong>Arquitecto del Sabor (The University of Arizona &bull; Frontera AZ&ndash;Sonora):</strong> Motor binacional (<code>es-MX</code>) de I+D culinaria y nutrición DGA con prototipos Métrico/Imperial y estimaciones de canasta en <code>MXN</code> para San Luis Río Colorado, Sonora y Yuma.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://mdtodocs.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">mdtodocs.app</a></td>
-                                <td><strong>Markdown to Documents:</strong> Compilador que transforma Markdown en documentos PDF, Word (.docx) y HTML accesibles desde el origen.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://prompt-mile-hero.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">prompt-mile-hero</a></td>
-                                <td><strong>Prompt-per-Mile Offset Calculator:</strong> Calculadora de telemetría ambiental que convierte millas de transporte verde en ahorro de CO2 y prompts de IA.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://agflow-roi-dash.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">agflow-roi-dash</a></td>
-                                <td><strong>AgFlow 5G Smart Irrigation Calculator:</strong> Utilidad AgTech del desierto (YCEDA) para modelar el ROI operativo, financiero e hídrico de riego 5G.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://gail2026.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">gail2026.dev</a></td>
-                                <td><strong>GAIL 2026 Frontier AI Leader y PWA de Preparación Laboral de 4 Niveles:</strong> Recurso abierto $0 ZTC sin login (NAICS 541511 &bull; PSC DA01/U008; fuente canónica <a href="https://alanpruitt.com/es/gail2026/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/es/gail2026/</a>) con 7 modos accesibles, ontología W3C SKOS, recompilador K&ndash;16 para los 50 estados y recibos SHA-256 W3C PROV-O.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://hybrid-rag.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">hybrid-rag.dev</a></td>
-                                <td><strong>PWA DOM GraphRAG, RAG Híbrido Soberano y Bóveda Móvil Sin Laptop:</strong> Aplicación instalable de 4 planos para escritorio y teléfono (fuente canónica <a href="https://alanpruitt.com/hybrid-rag/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/hybrid-rag/</a> &bull; NAICS 541512 / 541511) con 980 nodos SHA-256 W3C PROV-O, enlace local <code>127.0.0.1:8766</code> / WireGuard <code>View in RAM</code> y bóveda transfronteriza <code>WCGVLT01</code> AES-256-GCM en Modo Avión con <code>Bloqueo Fronterizo</code> en 1 toque.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://www.webcognita.com/govcon-radar/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/govcon-radar</a></td>
-                                <td><strong>Radar OSINT RAG Híbrido Federal, Defensa y Estatal de Arizona (PWA):</strong> Búsqueda local Okapi BM25 + Vectores Semánticos RRF (<code>k=60</code>) sin envío de datos sobre 87 portales públicos federales, Departamento de Guerra (<code>PIEE</code>), cooperativas (<code>1GPA</code>, <code>Mohave</code>) y SLED de Arizona (<code>Anillos 0&ndash;9</code>), enrutador de umbrales <code>FAR 2.101</code> / <code>A.R.S. &sect; 41-2535</code>, tabla Rosetta <code>NAICS / NIGP / PSC / GSA SIN</code> y autoevaluación <code>FAR 9.104-1</code> + <code>CMMC Nivel 1</code>.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://www.webcognita.com/cac-readiness/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/cac-readiness</a></td>
-                                <td><strong>Estimador Institucional CaC, ADA Título II y U.S. DOL TEN 07-25 (PWA):</strong> Enrutador corporativo B2G para despliegues divisionales o institucionales (<code>4&ndash;100+</code> cursos), clasificador de micro-compra <code>FAR 13.2</code> / <code>A.R.S. &sect; 41-2535</code> y generador de Alcance Técnico (<code>SOW</code>) bajo <code>NAICS 611710 / 541511 / 541690</code>.</td>
-                            </tr>
-                            <tr>
-                                <td><a href="https://alanpruitt.com/cac-studio/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">alanpruitt.com/cac-studio</a></td>
-                                <td><strong>Estudio Docente de Colegio Comunitario $0 ZTC (Evidencia OER Abierta):</strong> Compañero académico no comercial bajo <code>CC BY-NC-SA 4.0</code> (Curso ID <code>42051</code>; atribución académica a la Dra. Stacy Ybarra, OLLU CTE) para probar 1 tarea gratis en 30 segundos con exportación HTML Canvas <code>9:1</code> y cruce Comunidad de Indagación &harr; <code>TEN 07-25</code>.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div tabindex="0" role="region" aria-labelledby="pwa-portfolio-heading-es" class="table-wrapper">
+                        <table class="naics-table" style="--label-2: 'Arquitectura Técnica y Especialidad';">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Aplicación en Vivo</th>
+                                    <th scope="col">Arquitectura Técnica y Especialidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><a href="https://exwtoolkit.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwtoolkit.com</a></th>
+                                    <td><strong>EXW Digital Tool Kit (EN/ES):</strong> 9 módulos de biometría clínica, estrés térmico del desierto y tokens criptográficos (PAGA 2018 / DGA / ACSM).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://paga2018.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">paga2018.dev</a></th>
+                                    <td><strong>EXW Physical Activity Tool Kit:</strong> Recurso abierto ($0 ZTC) basado en PAGA 2018 con auditorías clínicas Patrón / Regla / Solución.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://exwdemo.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">exwdemo.dev</a></th>
+                                    <td><strong>EXW-Demo Portal de Arquitectura CaC:</strong> Espejo PWA sin login del Curso ID 42051 en AWC con páginas WCAG 2.2 AA (contraste 9:1) y 256 Ejemplares 10/10.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://flavorarchitect.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">flavorarchitect.dev</a></th>
+                                    <td><strong>Flavor Architect e Informática de Alimentos (The University of Arizona NSW Foods Lab):</strong> Laboratorio Patrón / Regla / Solución, USDA FDC y DGA 2025&ndash;2030, y <a href="https://flavorarchitect.dev/food-informatics" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">Consultoría en Informática de Alimentos</a> (captura de menús a formulaciones en gramos).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://arquitectodelsabor.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">arquitectodelsabor.dev</a></th>
+                                    <td><strong>Arquitecto del Sabor (The University of Arizona &bull; Frontera AZ&ndash;Sonora):</strong> Motor binacional (<code>es-MX</code>) de I+D culinaria y nutrición DGA con prototipos Métrico/Imperial y estimaciones de canasta en <code>MXN</code> para San Luis Río Colorado, Sonora y Yuma.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://mdtodocs.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">mdtodocs.app</a></th>
+                                    <td><strong>Markdown to Documents:</strong> Compilador que transforma Markdown en documentos PDF, Word (.docx) y HTML accesibles desde el origen.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://prompt-mile-hero.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">prompt-mile-hero</a></th>
+                                    <td><strong>Prompt-per-Mile Offset Calculator:</strong> Calculadora de telemetría ambiental que convierte millas de transporte verde en ahorro de CO2 y prompts de IA.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://agflow-roi-dash.lovable.app" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">agflow-roi-dash</a></th>
+                                    <td><strong>AgFlow 5G Smart Irrigation Calculator:</strong> Utilidad AgTech del desierto (YCEDA) para modelar el ROI operativo, financiero e hídrico de riego 5G.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://gail2026.dev" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">gail2026.dev</a></th>
+                                    <td><strong>GAIL 2026 Frontier AI Leader y PWA de Preparación Laboral de 4 Niveles:</strong> Recurso abierto $0 ZTC sin login (NAICS 541511 &bull; PSC DA01/U008; fuente canónica <a href="https://alanpruitt.com/es/gail2026/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/es/gail2026/</a>) con 7 modos accesibles, ontología W3C SKOS, recompilador K&ndash;16 para los 50 estados y recibos SHA-256 W3C PROV-O.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://hybrid-rag.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">hybrid-rag.dev</a></th>
+                                    <td><strong>PWA DOM GraphRAG, RAG Híbrido Soberano y Bóveda Móvil Sin Laptop:</strong> Aplicación instalable de 4 planos para escritorio y teléfono (fuente canónica <a href="https://alanpruitt.com/hybrid-rag/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 700; text-decoration: underline;">alanpruitt.com/hybrid-rag/</a> &bull; NAICS 541512 / 541511) con 980 nodos SHA-256 W3C PROV-O, enlace local <code>127.0.0.1:8766</code> / WireGuard <code>View in RAM</code> y bóveda transfronteriza <code>WCGVLT01</code> AES-256-GCM en Modo Avión con <code>Bloqueo Fronterizo</code> en 1 toque.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://www.webcognita.com/govcon-radar/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/govcon-radar</a></th>
+                                    <td><strong>Radar OSINT RAG Híbrido Federal, Defensa y Estatal de Arizona (PWA):</strong> Búsqueda local Okapi BM25 + Vectores Semánticos RRF (<code>k=60</code>) sin envío de datos sobre 87 portales públicos federales, Departamento de Guerra (<code>PIEE</code>), cooperativas (<code>1GPA</code>, <code>Mohave</code>) y SLED de Arizona (<code>Anillos 0&ndash;9</code>), enrutador de umbrales <code>FAR 2.101</code> / <code>A.R.S. &sect; 41-2535</code>, tabla Rosetta <code>NAICS / NIGP / PSC / GSA SIN</code> y autoevaluación <code>FAR 9.104-1</code> + <code>CMMC Nivel 1</code>.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://www.webcognita.com/cac-readiness/" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">webcognita.com/cac-readiness</a></th>
+                                    <td><strong>Estimador Institucional CaC, ADA Título II y U.S. DOL TEN 07-25 (PWA):</strong> Enrutador corporativo B2G para despliegues divisionales o institucionales (<code>4&ndash;100+</code> cursos), clasificador de micro-compra <code>FAR 13.2</code> / <code>A.R.S. &sect; 41-2535</code> y generador de Alcance Técnico (<code>SOW</code>) bajo <code>NAICS 611710 / 541511 / 541690</code>.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="https://alanpruitt.com/cac-studio/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-navy); font-weight: 800; text-decoration: underline;">alanpruitt.com/cac-studio</a></th>
+                                    <td><strong>Estudio Docente de Colegio Comunitario $0 ZTC (Evidencia OER Abierta):</strong> Compañero académico no comercial bajo <code>CC BY-NC-SA 4.0</code> (Curso ID <code>42051</code>; atribución académica a la Dra. Stacy Ybarra, OLLU CTE) para probar 1 tarea gratis en 30 segundos con exportación HTML Canvas <code>9:1</code> y cruce Comunidad de Indagación &harr; <code>TEN 07-25</code>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
