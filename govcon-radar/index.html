@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GovCon &amp; Arizona SLED Hybrid RAG Radar | Webcognita LLC</title>
-  <meta name="description" content="Zero-egress Edge Hybrid RAG (Okapi BM25 + Semantic Vector RRF) navigator across 83 public Federal, DoD, Cooperative, and Arizona SLED procurement portals, FAR 2.101 thresholds, and NAICS/NIGP crosswalks.">
+  <meta name="description" content="Zero-egress Edge Hybrid RAG (Okapi BM25 + Semantic Vector RRF) navigator across 106 public Federal, DoD, Cooperative, and Arizona SLED procurement portals, FAR 2.101 thresholds, and NAICS/NIGP crosswalks.">
   <meta name="author" content="Alan Pruitt">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.webcognita.com/govcon-radar/">
@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#0B1D3A">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <meta property="og:title" content="GovCon &amp; Arizona SLED Hybrid RAG Radar | Webcognita LLC">
-  <meta property="og:description" content="Client-side BM25 + Semantic RRF search across 83 Federal, DoD, Co-Op, and Arizona SLED procurement portals plus interactive FAR 2.101 / AZ SPO threshold routing.">
+  <meta property="og:description" content="Client-side BM25 + Semantic RRF search across 106 Federal, DoD, Co-Op, and Arizona SLED procurement portals plus interactive FAR 2.101 / AZ SPO threshold routing.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.webcognita.com/govcon-radar/">
   <meta property="og:image" content="https://www.webcognita.com/assets/og-preview.png">
@@ -734,7 +734,7 @@
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title">Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar</h1>
       <p style="margin: 0;">
-        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>88 public Federal, Department of War, Cooperative, VMS Force-Multiplier, and State of Arizona SLED procurement nodes</strong> across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
+        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>106 public Federal, Department of War, Cooperative, VMS Force-Multiplier, and State of Arizona SLED procurement nodes</strong> across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
       </p>
       <div class="plain-callout">
         <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Zero queries leave your device, zero cloud API keys are required, and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
@@ -743,7 +743,7 @@
 
     <!-- Accessible Single-Row Tablist -->
     <div id="main-tablist" class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
-      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (88 Nodes)</button>
+      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (106 Nodes)</button>
       <button type="button" role="tab" id="tab-router" aria-selected="false" tabindex="-1">2. Threshold &amp; Vehicle Router</button>
       <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
       <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
@@ -757,7 +757,7 @@
           <div class="control-well">
             <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
             <div>
-              <label for="rag-query" class="field-label">Type Keywords to Search All 88 Federal, DoD, Co-Op, VMS &amp; Arizona SLED Nodes (Live As You Type):</label>
+              <label for="rag-query" class="field-label">Type Keywords to Search All 106 Federal, DoD, Co-Op, VMS &amp; Arizona SLED Nodes (Live As You Type):</label>
               <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., Arizona Western, MBO Partners, Beeline, Ring 0, Yuma, EO 14434, Section 508..." autocomplete="off" autofocus>
             </div>
               <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
@@ -782,25 +782,25 @@
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Concentric Lane:</span>
             <button type="button" class="btn-secondary ring-btn" data-ring="ALL" aria-pressed="true">All Rings</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="0" aria-pressed="false">Ring 0 (4)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="1" aria-pressed="false">Ring 1 (3)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="2" aria-pressed="false">Ring 2 (11)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="3" aria-pressed="false">Ring 3 (25)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="4" aria-pressed="false">Ring 4 (14)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="1" aria-pressed="false">Ring 1 (4)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="2" aria-pressed="false">Ring 2 (13)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="3" aria-pressed="false">Ring 3 (33)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="4" aria-pressed="false">Ring 4 (21)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="RESERVED" aria-pressed="false">Rings 5&ndash;8 (Reserved)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="9" aria-pressed="false">Ring 9 (31)</button>
           </div>
 
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
-            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (88)</button>
-            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (21)</button>
-            <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (27)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (106)</button>
+            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (53)</button>
+            <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (60)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="CABINET_OSDBU" aria-pressed="false">15 Cabinet OSDBUs</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="DOD_CYBER_FAR" aria-pressed="false">DoD, FAR &amp; Cyber</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="SUBK_COOP_GSA_SBIR" aria-pressed="false">SubK, Co-Ops, GSA &amp; SBIR</button>
-            <button type="button" class="btn-secondary cat-btn" data-cat="AZ_STATE_COUNTIES" aria-pressed="false">AZ State &amp; 9 Counties</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="AZ_STATE_COUNTIES" aria-pressed="false">AZ State &amp; 15 Counties</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="AZ_CITIES_ED_AIRPORTS" aria-pressed="false">AZ Cities, Ed &amp; Airports</button>
           </div>
           <div id="save-live-status" class="sr-only" aria-live="polite"></div>
@@ -961,7 +961,7 @@
     </div>
 
     <footer class="footer-note">
-      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 88 portal records, concentric ring lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
+      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 106 portal records, concentric ring lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
     </footer>
   </main>
 
@@ -1120,6 +1120,21 @@
         avgDocLen = totalLen / Math.max(1, indexedNodes.length);
         const wcgBtn = document.getElementById('wcg-filter-btn');
         if (wcgBtn) wcgBtn.textContent = `Webcognita Verified (${wcgCount})`;
+        const allCatBtn = document.querySelector('.cat-btn[data-cat="ALL"]');
+        if (allCatBtn) allCatBtn.textContent = `All (${indexedNodes.length})`;
+        const tabSearchBtn = document.getElementById('tab-search');
+        if (tabSearchBtn) tabSearchBtn.textContent = `1. Hybrid RAG Portal Search (${indexedNodes.length} Nodes)`;
+        const ringCounts = {};
+        indexedNodes.forEach((d) => {
+          const rk = String(d.raw.ring);
+          ringCounts[rk] = (ringCounts[rk] || 0) + 1;
+        });
+        document.querySelectorAll('.ring-btn[data-ring]').forEach((btn) => {
+          const dr = btn.getAttribute('data-ring');
+          if (dr !== 'ALL' && dr !== 'RESERVED') {
+            btn.textContent = `Ring ${dr} (${ringCounts[dr] || 0})`;
+          }
+        });
         updateActiveFilterPill();
       }
 
