@@ -87,6 +87,20 @@
         whyInefficient: 'National EdTech vendors push recurring SaaS licenses that stall in IT/FERPA review; local zero-egress CaC / Hybrid RAG clears under $25K with zero bid.'
       },
       {
+        id: 'LANE-4FRONTED',
+        name: 'Ring 5: 4FrontED Megaregion (Tribal, Imperial CA <50K ADA & NADBank USD)',
+        archetype: 'Erubiel Durazo (Borderlands OBP + Power)',
+        rail: 'Quechan/Cocopah 2 CFR 200 • Imperial CA P-Cards • NADBank USD (0% FOCI)',
+        obp: 0.175,
+        avgDeal: 11500,
+        marginRate: 0.971,
+        bdHoursPerUnit: 1.6,
+        weeklyHrsNeeded: 1.0,
+        monthlyCashNeeded: 0,
+        annualAtBats: 10,
+        whyInefficient: '2-68 mi from Yuma HQ; remote Yuma delivery avoids $800/yr CA SOS tax & USD NADBank/consortia preserve 0% FOCI while utilizing 2023 MBDA Quechan & EN/ES trust.'
+      },
+      {
         id: 'LANE-FED-GPC',
         name: 'Ring 9 Federal GPC Micro-Purchases & VA VISN 22',
         archetype: 'Chad Bradford (Submarine Reliever)',
@@ -738,7 +752,7 @@
           ringStats[r].total += 1;
           if (p.portalActive || userActive.has(p.id)) ringStats[r].active += 1;
         });
-        live.lockedRings = [0, 1, 2, 3, 4, 9].filter((r) => ringStats[r] && ringStats[r].total > 0 && ringStats[r].active === ringStats[r].total);
+        live.lockedRings = [0, 1, 2, 3, 4, 5, 9].filter((r) => ringStats[r] && ringStats[r].total > 0 && ringStats[r].active === ringStats[r].total);
         live.synced = true;
       }
     } catch (_) {}
