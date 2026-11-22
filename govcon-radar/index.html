@@ -1179,8 +1179,8 @@
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
             <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All Portals (106)</button>
-            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (67)</button>
-            <button type="button" class="btn-secondary cat-btn btn-nextup" id="nextup-filter-btn" data-cat="PORTAL_NEXT_UP" aria-pressed="false">Next Up to Register (39)</button>
+            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (66)</button>
+            <button type="button" class="btn-secondary cat-btn btn-nextup" id="nextup-filter-btn" data-cat="PORTAL_NEXT_UP" aria-pressed="false">Next Up to Register (40)</button>
             <button type="button" class="btn-secondary cat-btn btn-ada-countdown" id="ada2027-filter-btn" data-cat="ADA_APR_2027" aria-pressed="false">Apr 2027 ADA &lt;50K P-Card Targets (36)</button>
             <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (67)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
@@ -2866,6 +2866,7 @@
         let obp = ({ 0: 0.21, 1: 0.185, 2: 0.16, 3: 0.145, 4: 0.13, 5: 0.175 })[r] || 0.11;
         if (/(p-card|micro-purchase|equote|small business|vosb|sdvosb|veterans first|ada|wcag|508)/.test(blob)) obp += 0.035;
         if (/(partner|subaward|sbir|sttr)/.test(blob)) obp += 0.025;
+        if (/(quechan|cocopah|tero|indian preference)/.test(blob) && !/(partner|subaward|subcontract)/.test(blob)) obp -= 0.045;
         const isTrap = r === 9 && sc < 55 && !/(vosb|sdvosb|small business|sbir|sttr|gpc|micro|508|wcag|rag|curriculum)/.test(blob);
         const finalObp = isTrap ? 0.02 : Math.min(0.32, Number((obp + Math.max(0, sc - 50) * 0.0012).toFixed(3)));
         const finalSlg = isTrap ? 0.09 : Math.min(0.95, Number((0.28 + Math.max(0, sc - 40) * 0.0085).toFixed(3)));

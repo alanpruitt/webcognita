@@ -88,17 +88,17 @@
       },
       {
         id: 'LANE-4FRONTED',
-        name: 'Ring 5: 4FrontED Megaregion (Tribal, Imperial CA <50K ADA & NADBank USD)',
+        name: 'Ring 5: 4FrontED Megaregion (Imperial CA <50K ADA, NADBank USD & Tribal TERO SubK)',
         archetype: 'Erubiel Durazo (Borderlands OBP + Power)',
-        rail: 'Quechan/Cocopah 2 CFR 200 • Imperial CA P-Cards • NADBank USD (0% FOCI)',
-        obp: 0.175,
+        rail: 'Imperial CA P-Cards • NADBank USD • Quechan/Cocopah TERO Native-Prime SubK',
+        obp: 0.155,
         avgDeal: 11500,
         marginRate: 0.971,
         bdHoursPerUnit: 1.6,
         weeklyHrsNeeded: 1.0,
-        monthlyCashNeeded: 0,
+        monthlyCashNeeded: 0, // 11/12 4FrontED portals are $0; $100/yr Quechan Pre-Bid Tribal License is budgeted explicitly in Runs Allowed (RA) below!
         annualAtBats: 10,
-        whyInefficient: '2-68 mi from Yuma HQ; remote Yuma delivery avoids $800/yr CA SOS tax & USD NADBank/consortia preserve 0% FOCI while utilizing 2023 MBDA Quechan & EN/ES trust.'
+        whyInefficient: 'Most Quechan/Cocopah bids enforce Indian Preference (25 U.S.C. 5307(b)) + TERO + $100 pre-bid license: team under TERO Native primes (never fight preference head-on) while pitching <50K Imperial CA P-Cards remotely ($0 CA SOS tax).'
       },
       {
         id: 'LANE-FED-GPC',
@@ -247,9 +247,11 @@
     const gateRatio = (live.gatesReady || 12) / Math.max(1, live.gatesTotal || 12);
     const govconOOBP = Number(Math.max(0.035, 0.220 - (0.185 * gateRatio)).toFixed(3));
     const govconOSLG = Number((0.020 + (cashCap / 2500)).toFixed(3));
+    const fourFrontedFunded = roster.some((r) => r.id === 'LANE-4FRONTED' && r.allocationRatio > 0);
+    const quechanLicenseReserve = fourFrontedFunded ? 100 : 0; // Mandatory $100/yr 1-Year Quechan Tribal Business License on file AT bid/RFP submission
     const coiReserve = totalExpectedWins >= 1 ? 1200 : 0;
     const gateFrictionPenalty = Math.round((1 - gateRatio) * 8500);
-    const totalRunsAllowed = (cashCap * 12) + coiReserve + gateFrictionPenalty;
+    const totalRunsAllowed = (cashCap * 12) + quechanLicenseReserve + coiReserve + gateFrictionPenalty;
     const runDifferential = totalRunsScored - totalRunsAllowed;
 
     // Bill James Pythagorean Expectation + DePodesta Playoff Clinch (>= 4.0 Signed PPQ Wins & >= $100K Net Run Difference)
@@ -343,7 +345,7 @@
         },
         items: [
           'MOAT #1 (Zero-Egress Cost Advantage): 100% client-side / local-edge code (0 cloud bytes, $0 LLM API burn) turns <= $10K P-Card & <= $15K GPC buys into ~97% margin base hits.',
-          'MOAT #2 (20-Year Borderlands Trust): 15-yr WAEDD Exec. Director, 2025 SBA AZ Veteran Champion, 2023 MBDA Advocate (Quechan Tribe), 2021 NADO AI/HTML Award & EN/Spanish fluency.',
+          'MOAT #2 (20-Year Borderlands & Tribal Insider Trust): 3-yr Quechan Business Desk tenure, 2023 MBDA Advocate of the Year (Quechan Tribe), 15-yr WAEDD Exec. Director, 2025 SBA AZ Veteran Champion & EN/Spanish fluency.',
           'MOAT #3 (Statutory + CI Security Pedigree): 100% VOSB, USMC & U.S. Army CI Veteran (TS/SCI pedigree), unescorted DoD access (100% DAV ID), CMMC L1 MFR.',
           'Verified Technical Slugging: Native WCAG 2.2 AA (>= 9:1 contrast) + ISO 14289-1 (PDF/UA) CI/CD (419+ HTML pages at 0 open errors) & SQLite FTS5 BM25+RRF Hybrid RAG.'
         ],
@@ -471,7 +473,7 @@
           '$0 Advisory Front Office: AWC SBDC, Arizona APEX Accelerator, SBA Arizona District Office & VBOC Region IX.',
           'University & Research Farm System: The University of Arizona Small Business Utilization (520-621-1747) & STTR Principal Investigators.',
           'Force-Multiplier Primes & VMS: MBO Partners, Beeline VMS, 1GPA, Mohave (MESC) & SBA Primes with mandatory FAR 52.219-9 SubK plans.',
-          'Borderlands Institutional Network: Yuma, La Paz, Mohave municipal/county leaders, airport authorities & tribal enterprise offices.'
+          'Borderlands & Tribal TERO Partners: TERO-certified Native-owned primes / Tribal Enterprises on Quechan & Cocopah (respecting Indian Preference + TERO), plus Yuma/Imperial civic & airport leaders.'
         ],
         defaultNote: ''
       },
@@ -491,7 +493,7 @@
         items: [
           '$0 Fixed Cloud & AI Payroll: Static edge hosting ($0) + local Apple Silicon M1/M2 Ollama inference ($0 token burn).',
           '$0 Portal Scouting Payroll: Strictly $0 official government tiers (SAM.gov, OpenGov, Bonfire, BidNet $0 tier, app.az.gov) + local SQLite BI sweep.',
-          'Award-Gated Insurance (Zero Idle Bleed): Bind COI coverage upon contract award notification (aligned with municipal rules like Casa Grande).',
+          'Surgical Licensing & TERO Discipline: Bind municipal COI post-award (Casa Grande), avoid $800/yr CA SOS tax via remote Yuma delivery, file $100/yr Quechan License BEFORE bid upload, and factor TERO fees/Native-prime SubK splits on tribal work.',
           'Success-Only Settlement Fee: ~2.9% PCI-DSS card fee paid only when a GPC or P-Card sprint invoice settles into checking.'
         ],
         defaultNote: ''
@@ -2303,7 +2305,7 @@
         <div class="bcm-stat-tile">
           <div class="bcm-stat-kicker">Defense: Runs Allowed (RA)</div>
           <div class="bcm-stat-big">$${model.totalRunsAllowed.toLocaleString('en-US')}/yr</div>
-          <div class="bcm-stat-sub">OOBP ${formatStat3(model.govconOOBP)} &bull; OSLG ${formatStat3(model.govconOSLG)} ($0 SaaS)</div>
+          <div class="bcm-stat-sub">OOBP ${formatStat3(model.govconOOBP)} &bull; $100 Quechan Lic + Award COI</div>
         </div>
         <div class="bcm-stat-tile">
           <div class="bcm-stat-kicker">Net Run Difference (RD)</div>
