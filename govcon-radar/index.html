@@ -135,37 +135,70 @@
       font-size: 0.95rem;
     }
 
-    /* Responsive Zero-Overflow Tablist (4-up or 5-up Desktop / 2x2 Tablet / Full-Width Mobile — Zero Horizontal Scroll) */
+    /* Single-Row Scrolling Tablist with Scroll-Driven Edge Fades (`tabs` guide) */
+    @property --fade-start {
+      syntax: "<length>";
+      inherits: false;
+      initial-value: 0px;
+    }
+    @property --fade-end {
+      syntax: "<length>";
+      inherits: false;
+      initial-value: 0px;
+    }
     .tablist-scroller {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
       gap: 0.5rem;
       margin-bottom: 1.25rem;
       width: 100%;
       max-width: 100%;
+      scroll-snap-type: inline proximity;
+      scroll-padding-inline: 2.25rem;
+      scrollbar-width: none;
+      --fade-size: 2.25rem;
+      --fade-dir: right;
+      --fade-start-pos: 0;
+      --fade-end-pos: 100%;
+      mask:
+        linear-gradient(black, black) no-clip subtract,
+        linear-gradient(to var(--fade-dir), black, transparent) var(--fade-start-pos) 0 / var(--fade-start) 100% no-repeat no-clip,
+        linear-gradient(to var(--fade-dir), transparent, black) var(--fade-end-pos) 0 / var(--fade-end) 100% no-repeat no-clip;
+      animation: reveal-fade-start linear both, hide-fade-end linear both;
+      animation-timeline: scroll(self inline);
+      animation-range: 0 var(--fade-size), calc(100% - var(--fade-size)) 100%;
+      transition: --fade-start 0.2s, --fade-end 0.2s;
     }
-    .tablist-scroller.has-triage {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+    .tablist-scroller::-webkit-scrollbar {
+      display: none;
     }
-    @media (max-width: 1040px) {
-      .tablist-scroller,
-      .tablist-scroller.has-triage {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .tablist-scroller:dir(rtl) {
+      --fade-dir: left;
+      --fade-start-pos: 100%;
+      --fade-end-pos: 0;
+    }
+    .tablist-scroller.more-start {
+      --fade-start: var(--fade-size);
+    }
+    .tablist-scroller.more-end {
+      --fade-end: var(--fade-size);
+    }
+    @keyframes reveal-fade-start {
+      to {
+        --fade-start: var(--fade-size);
       }
     }
-    @media (max-width: 480px) {
-      .tablist-scroller,
-      .tablist-scroller.has-triage {
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
+    @keyframes hide-fade-end {
+      from {
+        --fade-end: var(--fade-size);
       }
     }
     [role="tab"][hidden] {
       display: none !important;
     }
     [role="tab"] {
-      width: 100%;
-      max-width: 100%;
+      flex: 1 0 auto;
       position: relative;
       appearance: none;
       border: 2px solid #0B1D3A;
@@ -173,15 +206,15 @@
       background-color: #F4F7FB;
       color: #0B1D3A;
       font-family: inherit;
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       font-weight: 800;
       line-height: 1.25;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      text-align: left;
-      padding: 0.65rem 0.85rem;
+      white-space: nowrap;
+      text-align: center;
+      padding: 0.6rem 0.78rem;
       cursor: pointer;
-      min-height: 46px;
+      min-block-size: 46px;
+      scroll-snap-align: start;
     }
     [role="tab"]:hover {
       background-color: #0B1D3A;
@@ -253,13 +286,27 @@
       border-color: #940925;
     }
 
-    /* Tab Panels: standard block flow + strict display:none on [hidden] so inactive panels NEVER intercept clicks */
+    /* Tab Panels: zero box styles on [role="tabpanel"] itself so hidden="until-found" collapses to 0px while keeping Find-in-Page active */
     .panel-grid {
       display: block;
     }
-    [role="tabpanel"][hidden] {
+    [role="tabpanel"][hidden]:not([hidden="until-found"]) {
       display: none !important;
+    }
+    [role="tabpanel"][hidden] {
       pointer-events: none !important;
+    }
+    .statute-ref-pill {
+      display: inline-block;
+      background-color: #1E293B;
+      color: #FFFFFF;
+      border: 1.5px solid #0B1D3A;
+      padding: 0.14rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
     .panel-inner {
       background-color: #FFFFFF;
@@ -1070,20 +1117,21 @@
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title">Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar</h1>
       <p style="margin: 0;">
-        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>106 public Federal, Department of War, Cooperative, VMS Force-Multiplier, and State of Arizona SLED procurement nodes</strong> across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
+        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>94 public Federal, Department of War, Cooperative, VMS Force-Multiplier, and State of Arizona SLED procurement portals</strong> plus <strong>12 foundational statutory &amp; OSINT reference authorities</strong> (<code>106</code> total indexed nodes) across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
       </p>
       <div class="plain-callout">
-        <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Zero queries leave your device, zero cloud API keys are required, and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
+        <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Tab 1 browses your <strong>94 registerable portals</strong> cleanly while global keyword search still spans all <strong>106</strong> records (including the <strong>12 Statutes &amp; OSINT Reference Cards</strong> in Tab 5). Zero queries leave your device and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
       </div>
     </section>
 
     <!-- Accessible Single-Row Tablist -->
     <div id="main-tablist" class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
-      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (106 Nodes)</button>
+      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (94 Portals)</button>
       <button type="button" role="tab" id="tab-router" aria-selected="false" tabindex="-1">2. Threshold &amp; Vehicle Router</button>
       <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
       <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
-      <button type="button" role="tab" id="tab-triage" aria-selected="false" tabindex="-1" hidden>5. BI Lead Triage</button>
+      <button type="button" role="tab" id="tab-statutes" aria-selected="false" tabindex="-1">5. Statutes &amp; OSINT Deck (12)</button>
+      <button type="button" role="tab" id="tab-triage" aria-selected="false" tabindex="-1" hidden>6. BI Lead Triage</button>
     </div>
 
     <div class="panel-grid">
@@ -1093,7 +1141,7 @@
           <div class="control-well">
             <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
             <div>
-              <label for="rag-query" class="field-label">Type Keywords to Search All 106 Federal, DoD, Co-Op, VMS &amp; Arizona SLED Nodes (Live As You Type):</label>
+              <label for="rag-query" class="field-label">Type Keywords to Global-Search All 106 Nodes (94 Portals + 12 Statutory &amp; OSINT Reference Cards &mdash; Live As You Type):</label>
               <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., Arizona Western, MBO Partners, Beeline, Ring 0, Yuma, EO 14434, Section 508..." autocomplete="off" autofocus>
             </div>
               <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
@@ -1120,19 +1168,19 @@
             <button type="button" class="btn-secondary ring-btn" data-ring="0" aria-pressed="false">Ring 0 (4)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="1" aria-pressed="false">Ring 1 (4)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="2" aria-pressed="false">Ring 2 (13)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="3" aria-pressed="false">Ring 3 (33)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="3" aria-pressed="false">Ring 3 (32)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="4" aria-pressed="false">Ring 4 (21)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="RESERVED" aria-pressed="false">Rings 5&ndash;8 (Reserved)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="9" aria-pressed="false">Ring 9 (31)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="9" aria-pressed="false">Ring 9 (20)</button>
           </div>
 
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
-            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All (106)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All Portals (94)</button>
             <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (61)</button>
             <button type="button" class="btn-secondary cat-btn btn-nextup" id="nextup-filter-btn" data-cat="PORTAL_NEXT_UP" aria-pressed="false">Next Up to Register (33)</button>
             <button type="button" class="btn-secondary cat-btn btn-ada-countdown" id="ada2027-filter-btn" data-cat="ADA_APR_2027" aria-pressed="false">Apr 2027 ADA &lt;50K P-Card Targets (30)</button>
-            <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (68)</button>
+            <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (61)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="CABINET_OSDBU" aria-pressed="false">15 Cabinet OSDBUs</button>
@@ -1177,7 +1225,7 @@
       </div>
 
       <!-- PANEL 2: INTERACTIVE ACQUISITION THRESHOLD & VEHICLE ROUTER -->
-      <div role="tabpanel" id="panel-router" aria-labelledby="tab-router" hidden>
+      <div role="tabpanel" id="panel-router" aria-labelledby="tab-router" hidden="until-found">
         <div class="panel-inner">
           <h2 style="margin-top: 0; color: #0B1D3A;">Interactive Acquisition Threshold &amp; Procurement Vehicle Router</h2>
           <p>Compute the exact statutory citation, competition requirement, and fastest compliant purchasing rail across Federal (<code>FAR 2.101</code> FAC 2025-06) and Arizona SLED (<code>A.R.S. &sect; 41-2535</code> / <code>A.A.C. R7-2-1001</code>) rules.</p>
@@ -1213,7 +1261,7 @@
       </div>
 
       <!-- PANEL 3: NAICS <-> NIGP <-> PSC <-> GSA SIN CROSSWALK -->
-      <div role="tabpanel" id="panel-crosswalk" aria-labelledby="tab-crosswalk" hidden>
+      <div role="tabpanel" id="panel-crosswalk" aria-labelledby="tab-crosswalk" hidden="until-found">
         <div class="panel-inner">
           <h2 style="margin-top: 0; color: #0B1D3A;">Federal NAICS &harr; Arizona NIGP &harr; PSC &harr; GSA MAS SIN Rosetta Stone</h2>
           <p>Federal portals (<code>SAM.gov</code>, <code>USAspending</code>) index by 6-digit <code>NAICS</code> and 4-character <code>PSC</code>, whereas Arizona's <code>app.az.gov</code> routes bid alerts by 3-to-5-digit <code>NIGP</code> Commodity Codes.</p>
@@ -1247,7 +1295,7 @@
       </div>
 
       <!-- PANEL 4: FAR 9.104-1 & CMMC LEVEL 1 READINESS SELF-CHECK -->
-      <div role="tabpanel" id="panel-readiness" aria-labelledby="tab-readiness" hidden>
+      <div role="tabpanel" id="panel-readiness" aria-labelledby="tab-readiness" hidden="until-found">
         <div class="panel-inner">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
             <h2 style="margin: 0; color: #0B1D3A;">Pre-Award Responsibility (FAR 9.104-1) &amp; CMMC Level 1 Self-Check</h2>
@@ -1278,7 +1326,40 @@
         </div>
       </div>
 
-      <!-- PANEL 5: PRIVATE ZERO-EGRESS `#bi=...` & M2 LOOPBACK TRIAGE BRIDGE -->
+      <!-- PANEL 5: STATUTORY & OSINT REFERENCE DECK (12 NON-PORTAL AUTHORITIES) -->
+      <div role="tabpanel" id="panel-statutes" aria-labelledby="tab-statutes" hidden="until-found">
+        <div class="panel-inner">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.4rem;">
+            <h2 style="margin: 0; color: #0B1D3A; background-color: #FFFFFF;">Statutory Authorities, Cybersecurity Baselines &amp; Federal OSINT Reference Deck (12)</h2>
+          </div>
+          <p style="margin-top: 0.25rem;">
+            Dedicated reference deck for the <strong>12 foundational Federal &amp; Arizona SLED statutory rules, cybersecurity baselines, and OSINT research directories</strong> separated from Tab 1&#39;s <strong>94 registerable vendor portals</strong> (<code>61 Active + 33 Next Up = 94/94</code>). Typing any keyword in Tab 1 still searches all <strong>106</strong> records automatically.
+          </p>
+
+          <div class="control-well">
+            <label for="statutes-filter" class="field-label">Filter Statutory &amp; OSINT Reference Deck by Citation, Clause, or Keyword:</label>
+            <input id="statutes-filter" class="search-input" type="search" placeholder="e.g., FAR 2.101, 52.204-21, 800-171, A.R.S. 41-2632, EO 14434, 52.219-14, USAspending..." autocomplete="off">
+          </div>
+
+          <div class="chip-row" role="group" aria-label="Filter Statutory Reference Deck by Domain">
+            <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Reference Domain:</span>
+            <button type="button" class="btn-secondary stat-cat-btn" data-scat="ALL" aria-pressed="true">All Reference Cards (12)</button>
+            <button type="button" class="btn-secondary stat-cat-btn" data-scat="DOD_CYBER_FAR" aria-pressed="false">FAR, Responsibility &amp; CMMC / NIST (5)</button>
+            <button type="button" class="btn-secondary stat-cat-btn" data-scat="FEDERAL_OSINT" aria-pressed="false">Federal OSINT &amp; EO 14434 (4)</button>
+            <button type="button" class="btn-secondary stat-cat-btn" data-scat="SUBK_COOP_GSA_SBIR" aria-pressed="false">Subcontracting Caps &amp; SBA Primes (2)</button>
+            <button type="button" class="btn-secondary stat-cat-btn" data-scat="AZ_STATE_COUNTIES" aria-pressed="false">Arizona SLED Statutes (1)</button>
+          </div>
+
+          <div id="statutes-telemetry" class="telemetry-bar" aria-live="polite">
+            <span>Showing 12 of 12 statutory &amp; OSINT reference authorities</span>
+            <span>Separated from 94 Registerable Portals &bull; Included in Tab 1 Global Hybrid Search</span>
+          </div>
+
+          <div id="statutes-results" class="cards-grid" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- PANEL 6: PRIVATE ZERO-EGRESS `#bi=...` & M2 LOOPBACK TRIAGE BRIDGE -->
       <div role="tabpanel" id="panel-triage" aria-labelledby="tab-triage" hidden>
         <div class="panel-inner">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
@@ -1323,12 +1404,12 @@
       </div>
     </div>
 
-    <!-- Native Modal Dialog for Tab 5 1-Click Bid Brief / Arizona APEX Review / FAR 13 Quote Cover Sheet -->
+    <!-- Native Modal Dialog for BI Triage 1-Click Bid Brief / Arizona APEX Review / FAR 13 Quote Cover Sheet -->
     <dialog id="bid-brief-dialog" closedby="any" aria-labelledby="bid-brief-title">
       <div class="brief-dialog-top">
         <div>
           <h2 id="bid-brief-title" style="margin: 0 0 0.25rem 0; font-size: 1.18rem; color: #0B1D3A; background-color: #FFFFFF;">1-Click Arizona APEX Solicitation Review &amp; FAR 13 Quote Cover Sheet</h2>
-          <p id="bid-brief-subtitle" style="margin: 0; font-size: 0.85rem; color: #111827; background-color: #FFFFFF;">Zero-egress local synthesis from Tab 5 BI Triage &amp; M2 Loopback Ledger (127.0.0.1:8767).</p>
+          <p id="bid-brief-subtitle" style="margin: 0; font-size: 0.85rem; color: #111827; background-color: #FFFFFF;">Zero-egress local synthesis from BI Lead Triage &amp; M2 Loopback Ledger (127.0.0.1:8767).</p>
         </div>
         <form method="dialog" style="margin: 0;">
           <button type="submit" value="close" class="btn-secondary">Close (Esc)</button>
@@ -1376,7 +1457,7 @@
     (() => {
       'use strict';
 
-      // --- 1. Accessible Tablist with Strict Boolean `hidden` (Zero Grid Pointer Interception) ---
+      // --- 1. Accessible Single-Row Tablist (`tabs` guide: `hidden="until-found"`, `beforematch`, `scrollIntoView`, `IntersectionObserver` fallback) ---
       const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
       const panels = tabs.map((t) => document.getElementById(t.id.replace('tab-', 'panel-')));
 
@@ -1386,13 +1467,55 @@
           tab.setAttribute('aria-selected', isSel ? 'true' : 'false');
           tab.setAttribute('tabindex', isSel ? '0' : '-1');
           const panel = panels[idx];
-          panel.hidden = !isSel;
+          if (!panel) return;
+          if (isSel) {
+            panel.hidden = false;
+          } else if (tab.hidden) {
+            panel.hidden = true;
+          } else {
+            panel.hidden = 'until-found';
+          }
         });
-        if (moveFocus) {
-          selectedTab.focus();
-          if (selectedTab.scrollIntoView) {
+        if (selectedTab.scrollIntoView) {
+          try {
+            selectedTab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
+          } catch (_) {
             selectedTab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
           }
+        }
+        if (moveFocus) {
+          selectedTab.focus();
+        }
+      }
+
+      panels.forEach((panel, idx) => {
+        if (!panel) return;
+        panel.addEventListener('beforematch', () => {
+          if (!tabs[idx].hidden) activateTab(tabs[idx], false);
+        });
+      });
+
+      let syncTabScrollerObserver = () => {};
+      if (typeof CSS !== 'undefined' && !CSS.supports('animation-timeline', 'scroll()')) {
+        const scroller = document.getElementById('main-tablist');
+        if (scroller && 'IntersectionObserver' in window) {
+          let tabEdgeObserver = null;
+          syncTabScrollerObserver = () => {
+            if (tabEdgeObserver) tabEdgeObserver.disconnect();
+            const visTabs = tabs.filter((t) => !t.hidden);
+            if (visTabs.length < 2) return;
+            const first = visTabs[0];
+            const last = visTabs[visTabs.length - 1];
+            tabEdgeObserver = new IntersectionObserver((entries) => {
+              entries.forEach(({ target, intersectionRatio }) => {
+                if (target === first) scroller.classList.toggle('more-start', intersectionRatio < 1);
+                if (target === last) scroller.classList.toggle('more-end', intersectionRatio < 1);
+              });
+            }, { root: scroller, threshold: 1, rootMargin: '1px' });
+            tabEdgeObserver.observe(first);
+            tabEdgeObserver.observe(last);
+          };
+          syncTabScrollerObserver();
         }
       }
 
@@ -1670,11 +1793,18 @@
       function buildIndex(nodes) {
         docFreq = {};
         let totalLen = 0;
-        let wcgCount = 0;
+        let portalCount = 0;
+        let statuteCount = 0;
+        let portalWcgCount = 0;
         let adaCount = 0;
         canonicalActiveSet = new Set();
         indexedNodes = nodes.map((n) => {
-          if (n.wcgStatus) wcgCount += 1;
+          if (n.isPortal) {
+            portalCount += 1;
+            if (n.wcgStatus) portalWcgCount += 1;
+          } else {
+            statuteCount += 1;
+          }
           if (n.adaApr2027) adaCount += 1;
           if (n.portalActive) canonicalActiveSet.add(n.id);
           const fullText = `${n.title} ${n.title} ${n.ringLabel || ''} ${n.portalActive ? 'ACTIVE' : ''} ${n.adaApr2027 ? 'APR 26 2027 ADA <50K P-CARD SPRINT' : ''} ${n.jurisdiction} ${n.platform} ${n.thresholds} ${n.wcgStatus || ''} ${(n.tags || []).join(' ')} ${n.summary}`;
@@ -1693,13 +1823,16 @@
         });
         avgDocLen = totalLen / Math.max(1, indexedNodes.length);
         const wcgBtn = document.getElementById('wcg-filter-btn');
-        if (wcgBtn) wcgBtn.textContent = `Webcognita Verified (${wcgCount})`;
+        if (wcgBtn) wcgBtn.textContent = `Webcognita Verified (${portalWcgCount})`;
         const allCatBtn = document.querySelector('.cat-btn[data-cat="ALL"]');
-        if (allCatBtn) allCatBtn.textContent = `All (${indexedNodes.length})`;
+        if (allCatBtn) allCatBtn.textContent = `All Portals (${portalCount})`;
         const tabSearchBtn = document.getElementById('tab-search');
-        if (tabSearchBtn) tabSearchBtn.textContent = `1. Hybrid RAG Portal Search (${indexedNodes.length} Nodes)`;
+        if (tabSearchBtn) tabSearchBtn.textContent = `1. Hybrid RAG Portal Search (${portalCount} Portals)`;
+        const tabStatutesBtn = document.getElementById('tab-statutes');
+        if (tabStatutesBtn) tabStatutesBtn.textContent = `5. Statutes & OSINT Deck (${statuteCount})`;
         const ringCounts = {};
         indexedNodes.forEach((d) => {
+          if (!d.raw.isPortal) return;
           const rk = String(d.raw.ring);
           ringCounts[rk] = (ringCounts[rk] || 0) + 1;
         });
@@ -1718,13 +1851,19 @@
         if (!indexedNodes.length) return;
         const t0 = performance.now();
         const rawQ = document.getElementById('rag-query').value.trim();
+        const isQuery = Boolean(rawQ);
         const adaBanner = document.getElementById('ada2027-banner');
         if (adaBanner) adaBanner.hidden = activeCategory !== 'ADA_APR_2027';
         updatePortalProgressUI();
+        // Default browse (!isQuery) scopes Tab 1 strictly to the 94 registerable portals (unless viewing SAVED bookmarks);
+        // keyword queries (isQuery) span all 106 nodes (94 portals + 12 statutory/OSINT reference cards).
+        const baseNodes = (!isQuery && activeCategory !== 'SAVED')
+          ? indexedNodes.filter((d) => Boolean(d.raw.isPortal))
+          : indexedNodes;
         let pool = activeCategory === 'ALL'
-          ? indexedNodes
+          ? baseNodes
           : activeCategory === 'ADA_APR_2027'
-            ? indexedNodes.filter((d) => Boolean(d.raw.adaApr2027))
+            ? baseNodes.filter((d) => Boolean(d.raw.adaApr2027))
             : activeCategory === 'PORTAL_ACTIVE'
               ? indexedNodes.filter((d) => Boolean(d.raw.isPortal) && isNodeActive(d.raw.id))
               : activeCategory === 'PORTAL_NEXT_UP'
@@ -1732,8 +1871,8 @@
                 : activeCategory === 'SAVED'
                   ? indexedNodes.filter((d) => savedSet.has(d.raw.id))
                   : activeCategory === 'WCG_READY'
-                    ? indexedNodes.filter((d) => Boolean(d.raw.wcgStatus))
-                    : indexedNodes.filter((d) => d.raw.category === activeCategory);
+                    ? baseNodes.filter((d) => Boolean(d.raw.wcgStatus))
+                    : baseNodes.filter((d) => d.raw.category === activeCategory);
 
         if (activeRing === 'RESERVED') {
           pool = [];
@@ -1817,9 +1956,82 @@
           .replace(/"/g, '&quot;');
       }
 
+      function buildNodeCardMarkup({ node, rrf, bm25, sem }, isQuery) {
+        const isSaved = savedSet.has(node.id);
+        const isAct = isNodeActive(node.id);
+        const isLockedAct = canonicalActiveSet.has(node.id);
+        const hasWcg = Boolean(node.wcgStatus);
+        const rNum = typeof node.ring === 'number' ? node.ring : 9;
+        const rLabel = node.ringLabel || `Ring ${rNum}`;
+        const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
+        const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
+        const ringBadge = `<span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">${escapeHtml(rLabel)}</span>`;
+        const statuteBadge = !node.isPortal
+          ? `<span class="statute-ref-pill">STATUTE / OSINT REF</span>`
+          : '';
+        const activeBadge = node.isPortal && isAct
+          ? `<span class="active-pill" style="color: #000000; background-color: #FFA000;">ACTIVE</span>`
+          : '';
+        const scoreBadge = isQuery && rrf !== null
+          ? `<span class="score-chip-rrf" style="color: #FFFFFF; background-color: #940925;">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
+          : `<span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${escapeHtml(node.id)}</span>`;
+        const wcgBadge = hasWcg
+          ? `<div><span class="wcg-status-pill" style="color: #FFFFFF; background-color: #064E3B;">${escapeHtml(node.wcgStatus)}</span></div>`
+          : '';
+        const isAda2027 = Boolean(node.adaApr2027);
+        const adaBadge = isAda2027
+          ? `<span class="ada2027-pill" style="color: #FFFFFF; background-color: #7E061E;">APR 26, 2027 ADA &lt;50K</span>`
+          : '';
+        const orgShort = node.shortOrgName || node.title.split(' — ')[0].trim();
+        const sowPillars = node.bilingualPriority ? 'ada,bilingual,provo' : 'ada,provo';
+        const sowHref = `/cac-readiness/?org=${encodeURIComponent(orgShort)}&buyer=sled&tier=ada_pcard&lms=pwa&pillars=${encodeURIComponent(sowPillars)}&node=${encodeURIComponent(node.id)}`;
+        const adaSowCta = isAda2027
+          ? `<a class="card-sow-btn" href="${escapeHtml(sowHref)}">Generate $4.5K&ndash;$9.9K P-Card SOW &rarr;<span class="sr-only"> for ${escapeHtml(orgShort)}</span></a>`
+          : '';
+        const activeToggleBtn = node.isPortal && !isLockedAct
+          ? `<button type="button" class="active-toggle-btn" data-act-id="${escapeHtml(node.id)}" data-act-title="${escapeHtml(node.title)}" aria-pressed="${isAct ? 'true' : 'false'}" aria-label="${isAct ? 'Portal registration active (select to unmark): ' : 'Mark portal registration active: '}${escapeHtml(node.title)}">${isAct ? 'ACTIVE' : 'Mark Active'}</button>`
+          : '';
+        const ctaVerb = node.isPortal ? 'Open Official Portal' : 'Open Official Reference';
+        const sysLabel = node.isPortal ? 'Portal / System:' : 'Authority / Source:';
+        return `
+          <article class="node-card${isSaved ? ' is-saved' : (hasWcg ? ' is-wcg-ready' : '')}" data-nid="${escapeHtml(node.id)}" data-ring="${rNum}">
+            <div>
+              <div class="card-top-row">
+                <div class="meta-row">
+                  ${ringBadge}
+                  ${statuteBadge}
+                  ${activeBadge}
+                  ${adaBadge}
+                  ${scoreBadge}
+                  <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
+                </div>
+                <div class="card-actions">
+                  ${activeToggleBtn}
+                  <button type="button" class="save-toggle-btn" data-save-id="${escapeHtml(node.id)}" data-save-title="${escapeHtml(node.title)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Saved card (select to remove): ' : 'Save card: '}${escapeHtml(node.title)}">${isSaved ? 'Saved' : 'Save'}</button>
+                </div>
+              </div>
+              ${wcgBadge}
+              <h3>${escapeHtml(node.title)}</h3>
+              <p class="kv-line"><strong>Jurisdiction:</strong> ${escapeHtml(node.jurisdiction)}</p>
+              <p class="kv-line"><strong>${sysLabel}</strong> ${escapeHtml(node.platform)}</p>
+              <p class="kv-line"><strong>Thresholds / Gate:</strong> ${escapeHtml(node.thresholds)}</p>
+              <p style="font-size: 0.88rem; margin: 0.5rem 0 0 0;">${escapeHtml(node.summary)}</p>
+            </div>
+            <div class="card-cta-stack">
+              ${adaSowCta}
+              <a class="card-link-btn" href="${escapeHtml(node.url)}" target="_blank" rel="noopener noreferrer">${ctaVerb} (${escapeHtml(new URL(node.url).hostname)})<span class="sr-only"> &mdash; ${escapeHtml(orgShort)}</span></a>
+            </div>
+          </article>
+        `;
+      }
+
       function renderCards(items, elapsedMs, isQuery) {
         const tel = document.getElementById('rag-telemetry');
-        tel.innerHTML = `<span>Showing ${items.length} of ${indexedNodes.length} verified public nodes (${elapsedMs.toFixed(2)} ms &bull; ${savedSet.size} Saved)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`;
+        const portalTotal = indexedNodes.filter((d) => Boolean(d.raw.isPortal)).length;
+        const statuteTotal = indexedNodes.length - portalTotal;
+        tel.innerHTML = isQuery
+          ? `<span>Showing ${items.length} matches across all ${indexedNodes.length} nodes (${portalTotal} Portals + ${statuteTotal} Statutes/OSINT Refs &bull; ${elapsedMs.toFixed(2)} ms &bull; ${savedSet.size} Saved)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`
+          : `<span>Showing ${items.length} of ${portalTotal} registerable procurement portals (${elapsedMs.toFixed(2)} ms &bull; ${savedSet.size} Saved &bull; ${statuteTotal} Statutes in Tab 5)</span><span>Engine: Okapi BM25 + Semantic Concept RRF (k=60) &bull; Zero Cloud Egress</span>`;
         const grid = document.getElementById('rag-results');
         if (!items.length) {
           const emptyMsg = activeRing === 'RESERVED'
@@ -1827,73 +2039,35 @@
             : activeCategory === 'PORTAL_NEXT_UP' && activeRing !== 'ALL'
               ? `<strong>100% of Concentric Ring ${escapeHtml(activeRing)} portals are already ACTIVE!</strong> Zero unregistered portals remain in this ring—select <strong>Active Only</strong> above or advance to the next Concentric Ring.`
               : activeCategory === 'SAVED' && savedSet.size === 0
-                ? '<strong>No saved portals yet.</strong> Select the <strong>Save</strong> button on any portal card to bookmark your priority targets here (stored locally in your browser).'
-                : '<strong>No matching nodes found.</strong> Try broadening your query or resetting the Concentric Lane and Scope Filters to <strong>All</strong>.';
+                ? '<strong>No saved cards yet.</strong> Select the <strong>Save</strong> button on any portal or statutory reference card to bookmark your priority targets here (stored locally in your browser).'
+                : '<strong>No matching nodes found.</strong> Try broadening your query, resetting Concentric Lane and Scope Filters to <strong>All Portals</strong>, or browsing <strong>5. Statutes &amp; OSINT Deck (12)</strong>.';
           grid.innerHTML = `<div class="plain-callout" style="grid-column: 1 / -1;">${emptyMsg}</div>`;
           return;
         }
-        grid.innerHTML = items.map(({ node, rrf, bm25, sem }) => {
-          const isSaved = savedSet.has(node.id);
-          const isAct = isNodeActive(node.id);
-          const isLockedAct = canonicalActiveSet.has(node.id);
-          const hasWcg = Boolean(node.wcgStatus);
-          const rNum = typeof node.ring === 'number' ? node.ring : 9;
-          const rLabel = node.ringLabel || `Ring ${rNum}`;
-          const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
-          const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
-          const ringBadge = `<span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">${escapeHtml(rLabel)}</span>`;
-          const activeBadge = isAct
-            ? `<span class="active-pill" style="color: #000000; background-color: #FFA000;">ACTIVE</span>`
-            : '';
-          const scoreBadge = isQuery && rrf !== null
-            ? `<span class="score-chip-rrf" style="color: #FFFFFF; background-color: #940925;">RRF ${(rrf * 1000).toFixed(1)} (BM25 ${bm25.toFixed(1)} &bull; Sem ${(sem * 100).toFixed(0)}%)</span>`
-            : `<span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${escapeHtml(node.id)}</span>`;
-          const wcgBadge = hasWcg
-            ? `<div><span class="wcg-status-pill" style="color: #FFFFFF; background-color: #064E3B;">${escapeHtml(node.wcgStatus)}</span></div>`
-            : '';
-          const isAda2027 = Boolean(node.adaApr2027);
-          const adaBadge = isAda2027
-            ? `<span class="ada2027-pill" style="color: #FFFFFF; background-color: #7E061E;">APR 26, 2027 ADA &lt;50K</span>`
-            : '';
-          const orgShort = node.shortOrgName || node.title.split(' — ')[0].trim();
-          const sowPillars = node.bilingualPriority ? 'ada,bilingual,provo' : 'ada,provo';
-          const sowHref = `/cac-readiness/?org=${encodeURIComponent(orgShort)}&buyer=sled&tier=ada_pcard&lms=pwa&pillars=${encodeURIComponent(sowPillars)}&node=${encodeURIComponent(node.id)}`;
-          const adaSowCta = isAda2027
-            ? `<a class="card-sow-btn" href="${escapeHtml(sowHref)}">Generate $4.5K&ndash;$9.9K P-Card SOW &rarr;<span class="sr-only"> for ${escapeHtml(orgShort)}</span></a>`
-            : '';
-          const activeToggleBtn = node.isPortal && !isLockedAct
-            ? `<button type="button" class="active-toggle-btn" data-act-id="${escapeHtml(node.id)}" data-act-title="${escapeHtml(node.title)}" aria-pressed="${isAct ? 'true' : 'false'}" aria-label="${isAct ? 'Portal registration active (select to unmark): ' : 'Mark portal registration active: '}${escapeHtml(node.title)}">${isAct ? 'ACTIVE' : 'Mark Active'}</button>`
-            : '';
-          return `
-            <article class="node-card${isSaved ? ' is-saved' : (hasWcg ? ' is-wcg-ready' : '')}" data-nid="${escapeHtml(node.id)}" data-ring="${rNum}">
-              <div>
-                <div class="card-top-row">
-                  <div class="meta-row">
-                    ${ringBadge}
-                    ${activeBadge}
-                    ${adaBadge}
-                    ${scoreBadge}
-                    <span class="cat-chip">${escapeHtml(CAT_LABELS[node.category] || node.category)}</span>
-                  </div>
-                  <div class="card-actions">
-                    ${activeToggleBtn}
-                    <button type="button" class="save-toggle-btn" data-save-id="${escapeHtml(node.id)}" data-save-title="${escapeHtml(node.title)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Saved portal (select to remove): ' : 'Save portal: '}${escapeHtml(node.title)}">${isSaved ? 'Saved' : 'Save'}</button>
-                  </div>
-                </div>
-                ${wcgBadge}
-                <h3>${escapeHtml(node.title)}</h3>
-                <p class="kv-line"><strong>Jurisdiction:</strong> ${escapeHtml(node.jurisdiction)}</p>
-                <p class="kv-line"><strong>Portal / System:</strong> ${escapeHtml(node.platform)}</p>
-                <p class="kv-line"><strong>Thresholds / Gate:</strong> ${escapeHtml(node.thresholds)}</p>
-                <p style="font-size: 0.88rem; margin: 0.5rem 0 0 0;">${escapeHtml(node.summary)}</p>
-              </div>
-              <div class="card-cta-stack">
-                ${adaSowCta}
-                <a class="card-link-btn" href="${escapeHtml(node.url)}" target="_blank" rel="noopener noreferrer">Open Official Portal (${escapeHtml(new URL(node.url).hostname)})<span class="sr-only"> &mdash; ${escapeHtml(orgShort)}</span></a>
-              </div>
-            </article>
-          `;
-        }).join('');
+        grid.innerHTML = items.map((item) => buildNodeCardMarkup(item, isQuery)).join('');
+      }
+
+      let activeStatuteCat = 'ALL';
+      function renderStatutesDeck() {
+        const grid = document.getElementById('statutes-results');
+        const tel = document.getElementById('statutes-telemetry');
+        if (!grid || !tel) return;
+        const allStatutes = indexedNodes.filter((d) => !d.raw.isPortal);
+        const q = (document.getElementById('statutes-filter')?.value || '').trim().toLowerCase();
+        const filtered = allStatutes.filter((d) => {
+          if (activeStatuteCat !== 'ALL' && d.raw.category !== activeStatuteCat) return false;
+          if (!q) return true;
+          const hay = `${d.raw.id} ${d.raw.title} ${d.raw.jurisdiction} ${d.raw.platform} ${d.raw.thresholds} ${d.raw.wcgStatus || ''} ${(d.raw.tags || []).join(' ')} ${d.raw.summary}`.toLowerCase();
+          return hay.includes(q);
+        });
+        tel.innerHTML = `<span>Showing ${filtered.length} of ${allStatutes.length} statutory &amp; OSINT reference authorities (${savedSet.size} Saved)</span><span>Separated from 94 Registerable Portals &bull; Included in Tab 1 Global Hybrid Search</span>`;
+        if (!filtered.length) {
+          grid.innerHTML = '<div class="plain-callout" style="grid-column: 1 / -1;"><strong>No matching statutory reference cards.</strong> Clear the filter text or select <strong>All Reference Cards (12)</strong> above.</div>';
+          return;
+        }
+        grid.innerHTML = filtered
+          .map((d) => buildNodeCardMarkup({ node: d.raw, rrf: null, bm25: 0, sem: 0 }, false))
+          .join('');
       }
 
       // --- 3. Interactive Threshold & Procurement Vehicle Router ---
@@ -2128,6 +2302,27 @@
         syncProgress();
       }
 
+      function handleCardSaveToggle(btn) {
+        const nid = btn.getAttribute('data-save-id');
+        const ntitle = btn.getAttribute('data-save-title') || nid;
+        if (!nid) return;
+        const nowSaved = !savedSet.has(nid);
+        if (nowSaved) savedSet.add(nid);
+        else savedSet.delete(nid);
+        try {
+          localStorage.setItem(SAVED_STORAGE_KEY, JSON.stringify(Array.from(savedSet)));
+        } catch (_) {}
+        updateSavedFilterPill();
+        const live = document.getElementById('save-live-status');
+        if (live) {
+          live.textContent = nowSaved
+            ? `Saved ${ntitle}. Total saved cards: ${savedSet.size}.`
+            : `Removed ${ntitle} from saved cards. Total saved cards: ${savedSet.size}.`;
+        }
+        runHybridSearch();
+        renderStatutesDeck();
+      }
+
       document.getElementById('rag-results').addEventListener('click', (e) => {
         const actBtn = e.target.closest('.active-toggle-btn');
         if (actBtn) {
@@ -2151,36 +2346,22 @@
           return;
         }
         const btn = e.target.closest('.save-toggle-btn');
-        if (!btn) return;
-        const nid = btn.getAttribute('data-save-id');
-        const ntitle = btn.getAttribute('data-save-title') || nid;
-        if (!nid) return;
-        const nowSaved = !savedSet.has(nid);
-        if (nowSaved) savedSet.add(nid);
-        else savedSet.delete(nid);
-        try {
-          localStorage.setItem(SAVED_STORAGE_KEY, JSON.stringify(Array.from(savedSet)));
-        } catch (_) {}
-        updateSavedFilterPill();
-        const live = document.getElementById('save-live-status');
-        if (live) {
-          live.textContent = nowSaved
-            ? `Saved ${ntitle}. Total saved portals: ${savedSet.size}.`
-            : `Removed ${ntitle} from saved portals. Total saved portals: ${savedSet.size}.`;
-        }
-        if (activeCategory === 'SAVED') {
-          runHybridSearch();
-        } else {
-          btn.setAttribute('aria-pressed', nowSaved ? 'true' : 'false');
-          btn.setAttribute('aria-label', `${nowSaved ? 'Saved portal (select to remove): ' : 'Save portal: '}${ntitle}`);
-          btn.textContent = nowSaved ? 'Saved' : 'Save';
-          const card = btn.closest('.node-card');
-          if (card) card.classList.toggle('is-saved', nowSaved);
-          const telFirst = document.querySelector('#rag-telemetry span:first-child');
-          if (telFirst) {
-            telFirst.textContent = telFirst.textContent.replace(/\d+\s+Saved/, `${savedSet.size} Saved`);
-          }
-        }
+        if (btn) handleCardSaveToggle(btn);
+      });
+
+      document.getElementById('statutes-results').addEventListener('click', (e) => {
+        const btn = e.target.closest('.save-toggle-btn');
+        if (btn) handleCardSaveToggle(btn);
+      });
+      document.getElementById('statutes-filter').addEventListener('input', renderStatutesDeck);
+      document.querySelectorAll('.stat-cat-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeStatuteCat = btn.getAttribute('data-scat') || 'ALL';
+          document.querySelectorAll('.stat-cat-btn').forEach((b) => {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          renderStatutesDeck();
+        });
       });
 
       // Wire events
@@ -2268,8 +2449,16 @@
         tabTriage.hidden = false;
         tablist.classList.add('has-triage');
         const activeCount = biLeads.filter((it) => (biDecisions[it.h]?.decision || '') !== 'DISMISS').length;
-        tabTriage.textContent = `5. BI Lead Triage (${activeCount})`;
-        if (selectNow) activateTab(tabTriage, false);
+        tabTriage.textContent = `6. BI Lead Triage (${activeCount})`;
+        syncTabScrollerObserver();
+        if (selectNow) {
+          activateTab(tabTriage, false);
+        } else {
+          const panelTriage = document.getElementById('panel-triage');
+          if (panelTriage && tabTriage.getAttribute('aria-selected') !== 'true') {
+            panelTriage.hidden = 'until-found';
+          }
+        }
       }
 
       function persistBiDecisionsLocal() {
@@ -2929,6 +3118,18 @@
       function applyInitialFilterDeepLink() {
         const searchParams = new URLSearchParams(location.search);
         const rawHash = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
+        const tabKey = searchParams.get('tab') || rawHash;
+        const tabMap = {
+          search: 'tab-search',
+          router: 'tab-router',
+          crosswalk: 'tab-crosswalk',
+          readiness: 'tab-readiness',
+          statutes: 'tab-statutes'
+        };
+        if (tabMap[tabKey]) {
+          const targetTab = document.getElementById(tabMap[tabKey]);
+          if (targetTab && !targetTab.hidden) activateTab(targetTab, false);
+        }
         const f = searchParams.get('filter') || rawHash;
         if (f === 'ada2027') {
           setScopeFilter('ADA_APR_2027');
@@ -2937,11 +3138,22 @@
         } else if (f === 'active') {
           setScopeFilter('PORTAL_ACTIVE');
         }
+        const qParam = searchParams.get('q');
+        if (qParam !== null) {
+          const qInput = document.getElementById('rag-query');
+          if (qInput) qInput.value = qParam;
+        }
+        const sqParam = searchParams.get('sq');
+        if (sqParam !== null) {
+          const sqInput = document.getElementById('statutes-filter');
+          if (sqInput) sqInput.value = sqParam;
+        }
         const r = searchParams.get('ring');
         if (r && ['0', '1', '2', '3', '4', '9', 'RESERVED'].includes(r)) {
           setRingFilter(r);
         }
       }
+      window.addEventListener('hashchange', applyInitialFilterDeepLink);
 
       // Load clean-room corpus JSON
       refreshAda2027Countdown();
@@ -2954,6 +3166,7 @@
           buildIndex(data.nodes || []);
           applyInitialFilterDeepLink();
           runHybridSearch();
+          renderStatutesDeck();
           renderCrosswalk(ALL_CROSSWALK);
           renderGates(data.readinessGates || []);
           bootstrapBiTriageBridge();
