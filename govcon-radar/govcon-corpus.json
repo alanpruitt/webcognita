@@ -888,7 +888,7 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "City of Mesa — Municipal Procurement & Solicitations",
       "jurisdiction": "City of Mesa, AZ (~515K Pop)",
-      "platform": "Mesa VSS + 1GPA / Mohave Co-Op",
+      "platform": "Mesa Vendor Self Service (VSS — Registered) + 1GPA / Mohave Co-Op",
       "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
       "url": "https://www.mesaaz.gov/Business-Development/Procurement-Services",
       "tags": [
@@ -900,13 +900,20 @@
         "sled",
         "ada title ii",
         "mesa",
+        "mesa vss",
+        "mesaaz",
+        "nigp",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
-      "summary": "Official municipal procurement portal for City of Mesa, Arizona (~515K population; Mesa VSS + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "summary": "Official municipal procurement portal for City of Mesa, Arizona (~515K population; Mesa Vendor Self Service (VSS — Registered) + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on City of Mesa VSS (Registered 2026-11-22 • NIGP 208/209/918/920/924/956/958)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-14",
@@ -963,7 +970,7 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "City of Glendale — Municipal Procurement & Solicitations",
       "jurisdiction": "City of Glendale, AZ (~255K Pop)",
-      "platform": "Munis VSS + PaymentWorks",
+      "platform": "Tyler Munis VSS (Registered) + 1GPA / Mohave Co-Op",
       "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
       "url": "https://www.glendaleaz.gov/Government/City-Finances/Procurement/Vendor-Self-Service-VSS",
       "tags": [
@@ -974,14 +981,21 @@
         "arizona",
         "sled",
         "ada title ii",
-        "munis",
+        "tyler",
+        "munis vss",
+        "glendaleaz",
+        "nigp",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
-      "summary": "Official municipal procurement portal for City of Glendale, Arizona (~255K population; Munis VSS + PaymentWorks). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "summary": "Official municipal procurement portal for City of Glendale, Arizona (~255K population; Tyler Munis VSS (Registered) + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor on City of Glendale Munis VSS (Registered 2026-11-22 • NIGP 208/209/918/920/924/956/958)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-17",
