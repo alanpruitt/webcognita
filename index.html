@@ -4283,6 +4283,25 @@
             const savedLang = localStorage.getItem('webcognita_lang') || 'en';
             setLanguage(savedLang);
         });
+
+        // Private zero-egress fragment route (`/#bcm/`) — lazy-loaded only when invoked
+        function syncPrivateBcmRoute() {
+            const isBcm = /^#\/?bcm(\/|$|\?|=)/i.test(window.location.hash || '');
+            if (isBcm) {
+                if (window.WebcognitaBcmWorkbench) {
+                    window.WebcognitaBcmWorkbench.mount();
+                } else if (!document.getElementById('bcm-counselor-loader')) {
+                    const s = document.createElement('script');
+                    s.id = 'bcm-counselor-loader';
+                    s.src = '/bcm/bcm-app.js';
+                    document.body.appendChild(s);
+                }
+            } else if (window.WebcognitaBcmWorkbench) {
+                window.WebcognitaBcmWorkbench.unmount();
+            }
+        }
+        window.addEventListener('hashchange', syncPrivateBcmRoute);
+        syncPrivateBcmRoute();
     </script>
 </body>
 </html>

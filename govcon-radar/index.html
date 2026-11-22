@@ -1365,8 +1365,9 @@
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
             <h2 style="margin: 0; color: #0B1D3A; background-color: #FFFFFF;">Private Morning BI Lead Triage (Concentric Ring 0 &rarr; Ring 9)</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-              <button type="button" id="btn-sync-m2" class="btn-primary" style="min-block-size: 44px; padding: 0.45rem 0.9rem;">Sync M2 Loopback Ledger (127.0.0.1:8767)</button>
+              <button type="button" id="btn-sync-m2" class="btn-primary" style="min-block-size: 44px; padding: 0.45rem 0.9rem;">Sync Carbon 4 Quant (127.0.0.1:8767)</button>
               <button type="button" id="btn-batch-apex-pursue" class="btn-secondary btn-nextup" style="min-block-size: 44px;">Export All Pursue &rarr; APEX Brief (0)</button>
+              <a href="/#bcm/?lens=apex" class="btn-secondary" style="min-block-size: 44px; text-decoration: none; display: inline-flex; align-items: center;">Carbon 4 Moneyball BCM &rarr;</a>
               <button type="button" id="btn-export-triage" class="btn-secondary" style="min-block-size: 44px;">Export Decisions JSON</button>
             </div>
           </div>
@@ -2847,6 +2848,27 @@
         }
       }
 
+      // Carbon 4 ('Paul DePodesta / Peter Brand') Sabermetric Lead Quant (Samford Moneyball Science: 2737.8 / 1584.9 = 1.7274 OBP:SLG weight)
+      function computeClientLeadQuant(it) {
+        if (it.quant && typeof it.quant.wops === 'number') return it.quant;
+        const r = Number(it.r ?? 9);
+        const sc = Number(it.s || 0);
+        const blob = `${it.ti || ''} ${it.sn || ''} ${it.tr || ''}`.toLowerCase();
+        let obp = ({ 0: 0.21, 1: 0.185, 2: 0.16, 3: 0.145, 4: 0.13 })[r] || 0.11;
+        if (/(p-card|micro-purchase|equote|small business|vosb|sdvosb|veterans first|ada|wcag|508)/.test(blob)) obp += 0.035;
+        if (/(partner|subaward|sbir|sttr)/.test(blob)) obp += 0.025;
+        const isTrap = r === 9 && sc < 55 && !/(vosb|sdvosb|small business|sbir|sttr|gpc|micro|508|wcag|rag|curriculum)/.test(blob);
+        const finalObp = isTrap ? 0.02 : Math.min(0.32, Number((obp + Math.max(0, sc - 50) * 0.0012).toFixed(3)));
+        const finalSlg = isTrap ? 0.09 : Math.min(0.95, Number((0.28 + Math.max(0, sc - 40) * 0.0085).toFixed(3)));
+        const drag = isTrap ? 0.12 : 0;
+        const wops = Math.max(0.05, Number((1.7274 * finalObp + finalSlg - drag).toFixed(3)));
+        const call = (isTrap || wops < 0.52) ? 'TAKE_PITCH_TRAP' : (wops >= 0.82 ? 'GREEN_LIGHT_SWING' : 'SELECTIVE_PITCH');
+        const label = call === 'GREEN_LIGHT_SWING'
+          ? 'Carbon 4: Green-Light Swing'
+          : (call === 'TAKE_PITCH_TRAP' ? 'Carbon 4: Take Pitch (BA Trap)' : 'Carbon 4: Selective Pitch');
+        return { obp: finalObp, slg: finalSlg, wops, call, label };
+      }
+
       function renderTriageLeads() {
         const container = document.getElementById('triage-results');
         const tel = document.getElementById('triage-telemetry');
@@ -2895,12 +2917,16 @@
           const noteHtml = savedNote
             ? `<p class="kv-line"><strong>Capture Note:</strong> ${escapeHtml(savedNote)}</p>`
             : '';
+          const qInfo = computeClientLeadQuant(it);
+          const qBg = qInfo.call === 'GREEN_LIGHT_SWING' ? '#064E3B' : (qInfo.call === 'TAKE_PITCH_TRAP' ? '#7E061E' : '#0B1D3A');
+          const wopsStr = qInfo.wops >= 1 ? qInfo.wops.toFixed(3) : qInfo.wops.toFixed(3).slice(1);
           const briefLabel = dec === 'PURSUE' ? '1-Click Bid / APEX Brief \u2192' : 'Bid / APEX Brief';
           art.innerHTML = `
             <div>
               <div class="card-top-row">
                 <div class="meta-row">
                   <span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">Ring ${rNum}</span>
+                  <span class="score-chip" style="color: #FFFFFF; background-color: ${qBg}; border-color: ${qBg};">${escapeHtml(qInfo.label)} &bull; wOPS ${wopsStr}</span>
                   <span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${Number(it.s || 0)} pts &bull; ${escapeHtml(it.c || 'BI')}</span>
                   <span class="cat-chip">${escapeHtml(it.t || 'LEAD')}</span>
                 </div>
