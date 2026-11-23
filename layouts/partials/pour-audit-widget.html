@@ -132,7 +132,7 @@
 
           <a 
             id="pour-intake-btn"
-            href="mailto:alan.pruitt@gmail.com?subject=POUR%20Audit%20Advisory%20Inquiry&body=POUR%20Maturity%20Score:%200/12%20Criteria%20Met"
+            href="mailto:alan@webcognita.com?subject=POUR%20Audit%20Advisory%20Inquiry&body=POUR%20Maturity%20Score:%200/12%20Criteria%20Met"
             class="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-lg bg-zinc-950 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-zinc-950 dark:focus-visible:outline-white"
           >
             {{ if eq .Lang "es" }}Enviar Resultados para Consulta{{ else }}Submit Audit for Review{{ end }}
@@ -193,7 +193,7 @@
         '- Unmet Criteria Count: ' + (12 - score)
       );
 
-      intakeBtn.href = 'mailto:alan.pruitt@gmail.com?subject=Institutional%20Inquiry:%20POUR-Audit%20Maturity%20Assessment&body=' + mailBody;
+      intakeBtn.href = 'mailto:alan@webcognita.com?subject=Institutional%20Inquiry:%20POUR-Audit%20Maturity%20Assessment&body=' + mailBody;
 
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {

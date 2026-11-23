@@ -108,7 +108,7 @@
           </div>
           <a 
             id="roi-consult-btn"
-            href="mailto:alan.pruitt@gmail.com?subject=Institutional%20Inquiry:%20ADA%20Title%20II%20Fleet%20Audit&body=Course%20Shells:%20120%0D%0AManual%20Hours%20Per%20Shell:%2012%0D%0AEstimated%20Liability:%20$64,800"
+            href="mailto:alan@webcognita.com?subject=Institutional%20Inquiry:%20ADA%20Title%20II%20Fleet%20Audit&body=Course%20Shells:%20120%0D%0AManual%20Hours%20Per%20Shell:%2012%0D%0AEstimated%20Liability:%20$64,800"
             class="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-lg bg-zinc-950 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-zinc-950 dark:focus-visible:outline-white"
           >
             {{ if eq .Lang "es" }}Solicitar Auditoría de Flota{{ else }}Request Fleet Audit{{ end }}
@@ -160,7 +160,7 @@
         '- Total Manual Exposure: $' + totalManualCost.toLocaleString() + ' (' + totalManualHours.toLocaleString() + ' hrs)\n' +
         '- Potential Budget Recaptured: $' + budgetRecaptured.toLocaleString()
       );
-      consultBtn.href = 'mailto:alan.pruitt@gmail.com?subject=Institutional%20Inquiry:%20ADA%20Title%20II%20Fleet%20Audit&body=' + mailBody;
+      consultBtn.href = 'mailto:alan@webcognita.com?subject=Institutional%20Inquiry:%20ADA%20Title%20II%20Fleet%20Audit&body=' + mailBody;
 
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
