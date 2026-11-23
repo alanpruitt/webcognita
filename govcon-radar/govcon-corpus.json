@@ -756,26 +756,31 @@
       "category": "AZ_STATE_COUNTIES",
       "title": "Arizona State Procurement Office (ADOA-SPO) & APP Portal (app.az.gov)",
       "jurisdiction": "State of Arizona & AZ Cooperative Members",
-      "platform": "APP / Ivalua (app.az.gov) — Uses UNSPSC Commodity Codes (Help Desk: 602-542-7600)",
+      "platform": "APP / Ivalua (app.az.gov • Supplier ID: IV0000112720)",
       "thresholds": "P-Card <= $10,000 • Mandatory Small Business eQuotes $10,001–$100,000 (A.R.S. 41-2535) • Formal RFP > $100K",
       "url": "https://spo.az.gov/suppliers/how-do-business-state-arizona",
+      "portalActive": true,
+      "wcgStatus": "Active Arizona APP Supplier (Supplier ID: IV0000112720 • Registered 2026-11-23 • A.R.S. 41-2535 SB Eligible)",
       "tags": [
         "spo.az.gov",
         "app.az.gov",
         "adoa",
+        "iv0000112720",
         "unspsc",
         "nigp",
         "small business",
         "100000",
         "p-card",
         "equote",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
-      "summary": "Under A.R.S. 41-2535(B), AZ state purchases $10,001–$100,000 are statutorily restricted to Small Businesses (<100 FTE or <$4M). APP Part 1/Part 2 enrollment uses UNSPSC codes (APP Help Desk: app@azdoa.gov / 602-542-7600).",
+      "summary": "Active Webcognita LLC State of Arizona supplier record (APP Supplier ID: IV0000112720). Under A.R.S. 41-2535(B), AZ state purchases $10,001–$100,000 are statutorily restricted to Small Businesses (<100 FTE or <$4M).",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-02",
@@ -813,27 +818,32 @@
       "id": "AZ-03",
       "category": "AZ_STATE_COUNTIES",
       "title": "AZ Dept. of Emergency & Military Affairs (AZ DEMA & USPFO-AZ National Guard)",
-      "jurisdiction": "Dual State (app.az.gov) & Federal DoD (W912L2 / W50S6Z / W50S6Y)",
-      "platform": "State APP + Federal SAM.gov / PIEE",
+      "jurisdiction": "Dual State (app.az.gov #IV0000112720) & Federal DoD (W912L2 / W50S6Z / W50S6Y)",
+      "platform": "State APP (Supplier ID: IV0000112720) + Federal SAM.gov / PIEE",
       "thresholds": "State P-Card <= $10K / SB <= $100K • Federal DoD GPC <= $15K / SAT <= $350K",
       "url": "https://dema.az.gov/arizona-national-guard",
+      "portalActive": true,
+      "wcgStatus": "Active on State APP (Supplier ID: IV0000112720) & Federal SAM.gov (UEI: EZ34U9KNJA17)",
       "tags": [
         "dema",
         "national guard",
         "air national guard",
         "uspfo",
+        "iv0000112720",
         "w912l2",
         "w50s6z",
         "w50s6y",
         "adem",
         "emergency",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
-      "summary": "Dual-hatted agency: State emergency missions buy via app.az.gov, while federal Army/Air Guard units buy via SAM.gov & PIEE under DoDAACs W912L2 (AZARNG), W50S6Z (161st ARW), and W50S6Y (162nd Wing).",
+      "summary": "Dual-hatted agency: State emergency missions buy via app.az.gov (Webcognita APP Supplier ID: IV0000112720), while federal Army/Air Guard units buy via SAM.gov & PIEE under DoDAACs W912L2 (AZARNG), W50S6Z (161st ARW), and W50S6Y (162nd Wing).",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-AIR-01",
@@ -944,13 +954,20 @@
         "sled",
         "ada title ii",
         "hosted",
+        "app.az.gov",
+        "iv0000112720",
+        "chandleraz",
+        "registered",
+        "compliant",
+        "active",
         "ring 3"
       ],
       "summary": "Official municipal procurement portal for City of Chandler, Arizona (~280K population; Hosted Inside State APP (app.az.gov)). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "portalActive": true,
+      "wcgStatus": "Active via State of Arizona APP (Supplier ID: IV0000112720 • Registered 2026-11-23)",
       "ring": 3,
       "ringLabel": "Ring 3",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "AZ-CITY-15",
@@ -3835,7 +3852,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "15/15 AZ Counties Active (OpenGov, Bonfire, BidNet, Coconino IonWave), ADOT AZ UTRACS SBC (#23545), AZPurchasing, & Arizona APP"
+      "label": "15/15 AZ Counties Active (OpenGov, Bonfire, BidNet, Coconino IonWave), Arizona APP (#IV0000112720), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
     },
     {
       "id": "G13",

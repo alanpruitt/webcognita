@@ -116,17 +116,17 @@
       },
       {
         id: 'LANE-AZ-EQUOTE',
-        name: 'Ring 3-4 AZ State APP Small-Business eQuotes & Co-Ops',
+        name: 'Ring 3-4 AZ State APP (#IV0000112720) Small-Business eQuotes & Co-Ops',
         archetype: 'David Justice (Veteran Slugging)',
-        rail: 'A.R.S. 41-2535 ($10K-$100K SB Reserve) & 1GPA / Mohave',
-        obp: 0.140,
+        rail: 'A.R.S. 41-2535 ($10K-$100K SB Reserve • APP #IV0000112720) & 1GPA / Mohave',
+        obp: 0.155,
         avgDeal: 32000,
         marginRate: 0.96,
         bdHoursPerUnit: 3.0,
         weeklyHrsNeeded: 1.5,
         monthlyCashNeeded: 0,
         annualAtBats: Math.max(6, Math.round(12 * portalRatio)),
-        whyInefficient: 'Large out-of-state firms are statutorily barred from A.R.S. 41-2535 SB eQuotes (<100 FTE / <$4M); 5-min daily BI radar catches quotes on Day 1.'
+        whyInefficient: 'Active AZ APP Supplier #IV0000112720: large out-of-state firms are statutorily barred from A.R.S. 41-2535 SB eQuotes (<100 FTE / <$4M); 5-min daily BI radar catches quotes on Day 1.'
       },
       {
         id: 'LANE-GRANTS-SBIR',
