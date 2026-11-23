@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "generatedOn": "2026-11-21",
+  "generatedOn": "2026-11-23",
   "title": "Webcognita Federal & Arizona SLED Hybrid RAG OSINT Radar",
   "cleanRoomNotice": "100% public-domain federal (.gov/.mil) and Arizona SLED procurement metadata synthesized independently by Webcognita LLC. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. SBA, or Arizona APEX Accelerator.",
   "nodes": [
@@ -910,7 +910,7 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "City of Mesa — Municipal Procurement & Solicitations",
       "jurisdiction": "City of Mesa, AZ (~515K Pop)",
-      "platform": "Mesa Vendor Self Service (VSS — Registered) + 1GPA / Mohave Co-Op",
+      "platform": "Mesa ADVANTAGE 4 VSS (Certified Vendor #VS0000020834) + 1GPA / Mohave Co-Op",
       "thresholds": "Apr 2026 ADA Active • P-Card & 1GPA / Mohave Co-Op Eligible",
       "url": "https://www.mesaaz.gov/Business-Development/Procurement-Services",
       "tags": [
@@ -924,15 +924,17 @@
         "mesa",
         "mesa vss",
         "mesaaz",
+        "vs0000020834",
+        "adv4",
         "nigp",
         "registered",
         "compliant",
         "active",
         "ring 3"
       ],
-      "summary": "Official municipal procurement portal for City of Mesa, Arizona (~515K population; Mesa Vendor Self Service (VSS — Registered) + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
+      "summary": "Official municipal procurement portal for City of Mesa, Arizona (~515K population; Mesa ADVANTAGE 4 VSS (Certified Vendor #VS0000020834) + 1GPA / Mohave Co-Op). DOJ 28 CFR Part 35 accessibility gate: Apr 2026 ADA Active.",
       "portalActive": true,
-      "wcgStatus": "Active Vendor on City of Mesa VSS (Registered 2026-11-22 • NIGP 208/209/918/920/924/956/958)",
+      "wcgStatus": "Active Certified Vendor on City of Mesa ADV4 VSS (Vendor ID: VS0000020834 • Certified 2026-11-23 • NIGP 208/209/918/920/924/956/958)",
       "ring": 3,
       "ringLabel": "Ring 3",
       "isPortal": true
@@ -1749,7 +1751,7 @@
       "category": "AZ_CITIES_ED_AIRPORTS",
       "title": "Mesa, Gilbert, Glendale, Scottsdale & 16 Small/Rural AZ Open-Board Towns (< 50K Pop Apr 2027 ADA Sprint)",
       "jurisdiction": "Mesa, Gilbert, Glendale, Scottsdale, Casa Grande + 16 Rural AZ Towns",
-      "platform": "Mesa VSS / Glendale Munis VSS / Scottsdale Purchasing & eServices + 16 Zero-Login-Gate CivicPlus /Bids.aspx Boards",
+      "platform": "Mesa ADV4 VSS (#VS0000020834) / Glendale Munis VSS / Scottsdale Purchasing & eServices + 16 Zero-Login-Gate CivicPlus /Bids.aspx Boards",
       "thresholds": "16 Rural Towns (< 50K pop) hit mandatory DOJ ADA Title II deadline on April 26, 2027",
       "url": "https://www.mesaaz.gov/Business-Development/Procurement-Services",
       "adaApr2027": true,
@@ -3852,7 +3854,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "15/15 AZ Counties Active (OpenGov, Bonfire, BidNet, Coconino IonWave), Arizona APP (#IV0000112720), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
+      "label": "15/15 AZ Counties Active (OpenGov, Bonfire, BidNet, Coconino IonWave), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
     },
     {
       "id": "G13",
