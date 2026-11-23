@@ -2865,17 +2865,28 @@
         const blob = `${it.ti || ''} ${it.sn || ''} ${it.tr || ''}`.toLowerCase();
         let obp = ({ 0: 0.21, 1: 0.185, 2: 0.16, 3: 0.145, 4: 0.13, 5: 0.175 })[r] || 0.11;
         if (/(p-card|micro-purchase|equote|small business|vosb|sdvosb|veterans first|ada|wcag|508)/.test(blob)) obp += 0.035;
-        if (/(partner|subaward|sbir|sttr)/.test(blob)) obp += 0.025;
+        if (/(partner|subaward|subcontract|sbir|sttr|isbee)/.test(blob)) obp += 0.025;
+        const isBlmOrBor = /\b(bureau of land management|blm|yuma field office|lower sonoran|gila district|bureau of reclamation|usbr)\b/.test(blob);
+        if (isBlmOrBor) obp += 0.04;
+        const isBuyIndian = /\b(bureau of indian affairs|bia|bureau of indian education|bie|indian health service|ihs|fort yuma health|phoenix area ihs|tucson area ihs|buy indian)\b/.test(blob);
+        const hasBuyIndianUnlock = /(partner|subaward|subcontract|isbee|native prime|sources sought|rfi|deviation|gpc|micro-purchase|p-card)/.test(blob);
+        if (isBuyIndian && !hasBuyIndianUnlock) obp -= 0.035;
+        else if (isBuyIndian && hasBuyIndianUnlock) obp += 0.02;
         if (/(quechan|cocopah|tero|indian preference)/.test(blob) && !/(partner|subaward|subcontract)/.test(blob)) obp -= 0.045;
-        const isTrap = r === 9 && sc < 55 && !/(vosb|sdvosb|small business|sbir|sttr|gpc|micro|508|wcag|rag|curriculum)/.test(blob);
+        const isTrap = r === 9 && sc < 55 && !isBlmOrBor && !/(vosb|sdvosb|small business|sbir|sttr|gpc|micro|508|wcag|rag|curriculum|sources sought|isbee)/.test(blob);
         const finalObp = isTrap ? 0.02 : Math.min(0.32, Number((obp + Math.max(0, sc - 50) * 0.0012).toFixed(3)));
         const finalSlg = isTrap ? 0.09 : Math.min(0.95, Number((0.28 + Math.max(0, sc - 40) * 0.0085).toFixed(3)));
         const drag = isTrap ? 0.12 : 0;
         const wops = Math.max(0.05, Number((1.7274 * finalObp + finalSlg - drag).toFixed(3)));
-        const call = (isTrap || wops < 0.52) ? 'TAKE_PITCH_TRAP' : (wops >= 0.82 ? 'GREEN_LIGHT_SWING' : 'SELECTIVE_PITCH');
+        const buyIndianGate = isBuyIndian && !hasBuyIndianUnlock && wops < 0.9;
+        const call = (isTrap || wops < 0.52)
+          ? 'TAKE_PITCH_TRAP'
+          : (buyIndianGate ? 'SELECTIVE_PITCH' : (wops >= 0.82 ? 'GREEN_LIGHT_SWING' : 'SELECTIVE_PITCH'));
         const label = call === 'GREEN_LIGHT_SWING'
           ? 'Carbon 4: Green-Light Swing'
-          : (call === 'TAKE_PITCH_TRAP' ? 'Carbon 4: Take Pitch (BA Trap)' : 'Carbon 4: Selective Pitch');
+          : (call === 'TAKE_PITCH_TRAP'
+              ? 'Carbon 4: Take Pitch (BA Trap)'
+              : (buyIndianGate ? 'Carbon 4: Buy Indian Gate (Team <=49% ISBEE SubK or Sources Sought)' : 'Carbon 4: Selective Pitch'));
         return { obp: finalObp, slg: finalSlg, wops, call, label };
       }
 

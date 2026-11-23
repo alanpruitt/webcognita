@@ -102,17 +102,17 @@
       },
       {
         id: 'LANE-FED-GPC',
-        name: 'Ring 9 Federal GPC Micro-Purchases & VA VISN 22',
+        name: 'Ring 9 AZ I-8/I-10 Federal Corridor: BLM (Direct FAR 19), VA VISN 22 & BIA/IHS (ISBEE SubK / GPC)',
         archetype: 'Chad Bradford (Submarine Reliever)',
-        rail: 'FAR 13.203 GPC (<= $15K) & 38 U.S.C. 8127 Veterans First',
-        obp: 0.150,
-        avgDeal: 13500,
+        rail: 'BLM/BOR FAR 19.502-2 & GPC (<= $15K) • VA 38 U.S.C. 8127 • BIA/IHS <=49% ISBEE SubK / Deviation',
+        obp: 0.160,
+        avgDeal: 14500,
         marginRate: 0.971,
         bdHoursPerUnit: 1.8,
         weeklyHrsNeeded: 1.2,
         monthlyCashNeeded: 0,
-        annualAtBats: Math.round(10 * (0.65 + 0.35 * portalRatio)),
-        whyInefficient: 'Defense primes ignore sub-$15K GPC buys at YPG / MCAS Yuma / VA; 100% VOSB + Army CI pedigree + unescorted base access removes buyer friction.'
+        annualAtBats: Math.round(11 * (0.65 + 0.35 * portalRatio)),
+        whyInefficient: 'BLM (Yuma/Lower Sonoran/Gila) has NO Buy Indian barrier (direct FAR 19 NEPA PDF/UA & RAG), while BIA & IHS (25 U.S.C. 47) reward <=49% technical SubK under ISBEE Native primes + Sources Sought Deviations.'
       },
       {
         id: 'LANE-AZ-EQUOTE',
@@ -326,7 +326,7 @@
           `Inefficiency #1 — Ring 0-2 <50K SLED (.125 OBP): ${adaTargets} AZ cities, rural counties & YUM Airport facing DOJ 28 CFR Part 35 ADA Title II (${adaCountdown})—too small for Deloitte, 97% margin for us.`,
           'Inefficiency #2 — Ring 0-3 Higher-Ed (.180 OBP): The University of Arizona (< $25K no-bid SB POs under ABOR 3-803 D.1) & community college/K-12 co-op buyers.',
           'Inefficiency #3 — Ring 3-4 AZ Small-Business Reserve (.140 OBP): State app.az.gov $10K-$100K eQuotes statutorily locked to Small Businesses (A.R.S. 41-2535).',
-          'Inefficiency #4 — Ring 9 VOSB & GPC Micro-Buys (.150 OBP): VA VISN 22 (38 U.S.C. 8127 Veterans First), YPG/MCAS Yuma GPC (<= $15K), MBO Partners & Beeline.'
+          'Inefficiency #4 — Ring 9 AZ I-8/I-10 Federal Corridor (.160 OBP): BLM/Reclamation (direct FAR 19.502-2 SB/VOSB & <= $15K GPC—no Buy Indian gate), VA VISN 22 (38 U.S.C. 8127), plus BIA & IHS (25 U.S.C. 47 <=49% ISBEE SubK & Sources Sought Deviations).'
         ],
         defaultNote: ''
       },
