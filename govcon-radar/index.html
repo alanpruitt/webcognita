@@ -553,6 +553,14 @@
       color: #111827;
       box-shadow: 0 20px 50px rgba(11, 29, 58, 0.35);
     }
+    dialog#bid-brief-dialog:modal {
+      overscroll-behavior: contain;
+    }
+    dialog#bid-brief-dialog::backdrop {
+      overflow: hidden;
+      overscroll-behavior: contain;
+      background-color: rgba(11, 29, 58, 0.68);
+    }
     dialog#bid-brief-dialog[open] {
       display: flex;
       flex-direction: column;
@@ -1392,6 +1400,7 @@
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A; background-color: #FFFFFF;">Triage View:</span>
             <button type="button" class="btn-secondary triage-filter-btn" data-tf="ACTIVE" aria-pressed="true">Active Queue</button>
             <button type="button" class="btn-secondary triage-filter-btn" data-tf="RING01" aria-pressed="false">Ring 0&ndash;1 Home Court</button>
+            <button type="button" class="btn-secondary triage-filter-btn" id="triage-partner-filter-btn" data-tf="PARTNER" aria-pressed="false">50-State Enabling Partner (0)</button>
             <button type="button" class="btn-secondary triage-filter-btn" data-tf="PURSUE" aria-pressed="false">Pursue</button>
             <button type="button" class="btn-secondary triage-filter-btn" data-tf="WATCH" aria-pressed="false">Watch</button>
             <button type="button" class="btn-secondary triage-filter-btn" data-tf="DISMISS" aria-pressed="false">Dismissed</button>
@@ -1408,11 +1417,11 @@
       </div>
     </div>
 
-    <!-- Native Modal Dialog for BI Triage 1-Click Bid Brief / Arizona APEX Review / FAR 13 Quote Cover Sheet -->
+    <!-- Native Modal Dialog for BI Triage 1-Click Bid Brief / Arizona APEX Review / FAR 13 Quote / 50-State PI Pitch -->
     <dialog id="bid-brief-dialog" closedby="any" aria-labelledby="bid-brief-title">
       <div class="brief-dialog-top">
         <div>
-          <h2 id="bid-brief-title" style="margin: 0 0 0.25rem 0; font-size: 1.18rem; color: #0B1D3A; background-color: #FFFFFF;">1-Click Arizona APEX Solicitation Review &amp; FAR 13 Quote Cover Sheet</h2>
+          <h2 id="bid-brief-title" style="margin: 0 0 0.25rem 0; font-size: 1.18rem; color: #0B1D3A; background-color: #FFFFFF;">1-Click Capture Brief: AZ APEX Review, FAR 13 Quote &amp; 50-State Enabling Partner Pitch</h2>
           <p id="bid-brief-subtitle" style="margin: 0; font-size: 0.85rem; color: #111827; background-color: #FFFFFF;">Zero-egress local synthesis from BI Lead Triage &amp; M2 Loopback Ledger (127.0.0.1:8767).</p>
         </div>
         <form method="dialog" style="margin: 0;">
@@ -1424,6 +1433,7 @@
         <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Document Mode:</span>
         <button type="button" class="btn-secondary brief-mode-btn" data-brief-mode="APEX" aria-pressed="true">1. Arizona APEX 1-on-1 Solicitation Review Request</button>
         <button type="button" class="btn-secondary brief-mode-btn" data-brief-mode="FAR13" aria-pressed="false">2. FAR Part 13 / AZ SLED Quote Cover Sheet</button>
+        <button type="button" class="btn-secondary brief-mode-btn" data-brief-mode="PARTNER" aria-pressed="false">3. Non-Competing 50-State PI / Consortium Pitch (LOC / 2 CFR 200.320)</button>
       </div>
 
       <div class="brief-inputs-grid">
@@ -2781,6 +2791,90 @@
         return lines.join('\n');
       }
 
+      function isEnablingPartnerLead(it) {
+        if (!it) return false;
+        const t = String(it.t || '').toUpperCase();
+        const tr = String(it.tr || '').toUpperCase();
+        const ti = String(it.ti || '').toLowerCase();
+        return (
+          t === 'PARTNER_SUBAWARD'
+          || tr.includes('NON_COMPETING_50STATE_ENABLING_PARTNER')
+          || tr.includes('ENABLE_PARTNER')
+          || /^\[(nsf funded award|grants\.gov|usaspending funded grant)/.test(ti)
+        );
+      }
+
+      function extractLeadEmail(it) {
+        if (!it) return '';
+        if (it.em && typeof it.em === 'string' && it.em.includes('@')) return it.em.trim();
+        const blob = `${it.ag || ''} ${it.sn || ''}`;
+        const matches = blob.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g) || [];
+        for (const m of matches) {
+          const clean = m.replace(/\.+$/, '');
+          if (!/(noreply|no-reply|donotreply|customer\.ionwave\.net)/i.test(clean)) return clean;
+        }
+        return '';
+      }
+
+      function buildEnablingPartnerPitchText(leads, solRef, customNote) {
+        const todayIso = new Date().toISOString().slice(0, 10);
+        const ld = leads[0] || {};
+        const piEmail = extractLeadEmail(ld);
+        const recipientLine = ld.ag || '[Principal Investigator / Workforce Consortium Director / Sponsored Projects Office]';
+        const noticeUrl = ld.u || 'https://www.grants.gov/';
+        const lines = [
+          `TO      : ${recipientLine}${piEmail && !recipientLine.includes(piEmail) ? ` <${piEmail}>` : ''}`,
+          `SUBJECT : Non-Competing Technical Enabling Partner (Curriculum-as-Code, WCAG 2.2 AA & Local AI) — ${ld.ti || 'Grant / Subaward Collaboration'}`,
+          `DATE    : ${todayIso}`,
+          '======================================================================================',
+          '',
+          'Dear Principal Investigator / Project Director,',
+          '',
+          'Congratulations on your leadership around ' + (ld.ti || 'this initiative') + '. I am writing to introduce',
+          'Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6), a Veteran-Owned Small Business in Yuma, Arizona.',
+          '',
+          '1. STRICT NON-COMPETING 50-STATE ENABLING PARTNER PLEDGE',
+          '  - Webcognita LLC NEVER competes against community colleges, universities, Tribal colleges, or state',
+          '    workforce boards as a lead grant applicant. We attach strictly as a Non-Competing Technical Enabling',
+          '    Partner so your institution retains 100% of primary leadership, indirect recovery, and academic credit.',
+          '',
+          '2. TURNKEY DELIVERABLES WE PLUG INTO YOUR GRANT OR FUNDED AWARD',
+          '  - S-A-R Standard v2.2 & Curriculum-as-Code (Zenodo DOI): Version-controlled, $0 Zero-Textbook-Cost (ZTC)',
+          '    dual-namespace OER courseware (authentic English / Spanish) built for Canvas LMS & open web deployment.',
+          '  - Mandatory DOJ ADA Title II (28 CFR Part 35) & Section 508 Guarantee: Automated >= 9:1 WCAG 2.2 AA',
+          '    DOM engineering and ISO 14289-1 (PDF/UA-1) accessible syllabus/packet remediation.',
+          '  - U.S. DOL TEN No. 07-25 & EO 14434 Super Intelligence (SI) Literacy: Zero-cloud-egress local SQLite',
+          '    Hybrid RAG (`https://hybrid-rag.dev`) keeping 100% of FERPA / HIPAA / research data on-device ($0 SaaS fees).',
+          ...(customNote ? [`  - Tailored Scope Note: ${customNote}`] : []),
+          '',
+          '3. TWO FRICTIONLESS 2 CFR PART 200 ATTACHMENT RAILS',
+          '  - Option A — Pre-Award Proposal Attachment (2 CFR 200.331 Named Partner / Budgeted Contractor):',
+          '    Same-day 1-page Letter of Commitment (LOC), Scope of Work, and Budget Justification (' + (solRef || '$25,000-$75,000/yr') + ');',
+          '    once named in your peer-reviewed award, zero post-award RFP is required.',
+          '  - Option B — Post-Award Turnkey Purchase Order (2 CFR 200.320(a)(1) & 200.331(b) Procurement Contract):',
+          '    Fixed-price turnkey deliverable (' + (solRef || '$9,500-$24,500') + ') under institutional micro-purchase / simplified SB',
+          '    thresholds (e.g., < $25K ABOR Policy 3-803 D.1 at The University of Arizona or up to $50K at self-certified',
+          '    universities under Oct 2024 Uniform Guidance) — paid via departmental PO or P-Card with zero subrecipient',
+          '    audit flow-down overhead.',
+          '',
+          '4. REFERENCE SIGNAL & VERIFIED ENTITY CREDENTIALS',
+          `  - Matched Award / NOFO : ${ld.ti || 'Institutional Grant Opportunity'} (${ld.dl || 'Active Window'})`,
+          `  - Official Record URL  : ${noticeUrl}`,
+          '  - Entity & Compliance  : Webcognita LLC (100% VOSB • UEI: EZ34U9KNJA17 • CAGE: 4ZCN6 • 0 Exclusions)',
+          '  - Principal Pedigree   : Alan Lee Pruitt, B.S. (USMC & U.S. Army CI Veteran; 2025 SBA AZ Veteran Small',
+          '                           Business Champion; 2023 U.S. Dept. of Commerce MBDA Advocate of the Year;',
+          '                           Designated Campus Colleague, The University of Arizona)',
+          '  - Capabilities PDF/UA  : https://www.webcognita.com/capabilities-statement.html',
+          '',
+          'Would a brief 10-minute Zoom/phone introduction be helpful as you finalize your technical milestones?',
+          '',
+          'Respectfully,',
+          'Alan Lee Pruitt, Principal',
+          'Webcognita LLC • 1906 S 6th Ave, Yuma, AZ 85364 • https://www.webcognita.com/'
+        ];
+        return lines.join('\n');
+      }
+
       function renderBidBriefModalContent() {
         const solRef = (document.getElementById('brief-sol-ref')?.value || '').trim();
         const customNote = (document.getElementById('brief-custom-note')?.value || '').trim();
@@ -2790,17 +2884,29 @@
 
         const text = activeBriefMode === 'APEX'
           ? buildApexReviewText(activeBriefLeads, solRef, customNote)
-          : buildFar13QuoteCoverText(activeBriefLeads, solRef, customNote);
+          : (activeBriefMode === 'PARTNER'
+              ? buildEnablingPartnerPitchText(activeBriefLeads, solRef, customNote)
+              : buildFar13QuoteCoverText(activeBriefLeads, solRef, customNote));
         preview.textContent = text;
 
         if (mailtoBtn) {
-          mailtoBtn.hidden = activeBriefMode !== 'APEX';
           if (activeBriefMode === 'APEX') {
+            mailtoBtn.hidden = false;
+            mailtoBtn.textContent = 'Open Email Draft (AZ APEX) \u2192';
             const firstTitle = activeBriefLeads[0]?.ti || 'Solicitation Review';
             const subj = activeBriefLeads.length > 1
               ? `1-on-1 Solicitation Review Request (${activeBriefLeads.length} Targets) — Webcognita LLC (UEI: EZ34U9KNJA17)`
               : `1-on-1 Solicitation Review Request — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 70)}`;
             mailtoBtn.href = `mailto:azapex.admin@domail.maricopa.edu?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.slice(0, 1800))}`;
+          } else if (activeBriefMode === 'PARTNER') {
+            const piEmail = extractLeadEmail(activeBriefLeads[0]);
+            mailtoBtn.hidden = false;
+            mailtoBtn.textContent = piEmail ? `Open Email Draft to PI (${piEmail}) \u2192` : 'Open Email Draft (PI / Director) \u2192';
+            const firstTitle = activeBriefLeads[0]?.ti || 'Grant Collaboration';
+            const subj = `Non-Competing Enabling Partner (WCAG 2.2 AA / Curriculum-as-Code / Local AI) — ${firstTitle.slice(0, 68)}`;
+            mailtoBtn.href = `mailto:${encodeURIComponent(piEmail)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.slice(0, 1800))}`;
+          } else {
+            mailtoBtn.hidden = true;
           }
         }
       }
@@ -2863,7 +2969,8 @@
         const r = Number(it.r ?? 9);
         const sc = Number(it.s || 0);
         const blob = `${it.ti || ''} ${it.sn || ''} ${it.tr || ''}`.toLowerCase();
-        let obp = ({ 0: 0.21, 1: 0.185, 2: 0.16, 3: 0.145, 4: 0.13, 5: 0.175 })[r] || 0.11;
+        const isPartner = isEnablingPartnerLead(it);
+        let obp = (isPartner && r === 9) ? 0.185 : (({ 0: 0.21, 1: 0.185, 2: 0.16, 3: 0.145, 4: 0.13, 5: 0.175 })[r] || 0.11);
         if (/(p-card|micro-purchase|equote|small business|vosb|sdvosb|veterans first|ada|wcag|508)/.test(blob)) obp += 0.035;
         if (/(partner|subaward|subcontract|sbir|sttr|isbee)/.test(blob)) obp += 0.025;
         const isBlmOrBor = /\b(bureau of land management|blm|yuma field office|lower sonoran|gila district|bureau of reclamation|usbr)\b/.test(blob);
@@ -2873,7 +2980,7 @@
         if (isBuyIndian && !hasBuyIndianUnlock) obp -= 0.035;
         else if (isBuyIndian && hasBuyIndianUnlock) obp += 0.02;
         if (/(quechan|cocopah|tero|indian preference)/.test(blob) && !/(partner|subaward|subcontract)/.test(blob)) obp -= 0.045;
-        const isTrap = r === 9 && sc < 55 && !isBlmOrBor && !/(vosb|sdvosb|small business|sbir|sttr|gpc|micro|508|wcag|rag|curriculum|sources sought|isbee)/.test(blob);
+        const isTrap = r === 9 && sc < 55 && !isPartner && !isBlmOrBor && !/(vosb|sdvosb|small business|sbir|sttr|gpc|micro|508|wcag|rag|curriculum|sources sought|isbee)/.test(blob);
         const finalObp = isTrap ? 0.02 : Math.min(0.32, Number((obp + Math.max(0, sc - 50) * 0.0012).toFixed(3)));
         const finalSlg = isTrap ? 0.09 : Math.min(0.95, Number((0.28 + Math.max(0, sc - 40) * 0.0085).toFixed(3)));
         const drag = isTrap ? 0.12 : 0;
@@ -2896,10 +3003,17 @@
         if (!container || !tel) return;
 
         const ordered = biLeads.toSorted((a, b) => (Number(a.r ?? 9) - Number(b.r ?? 9)) || (Number(b.s ?? 0) - Number(a.s ?? 0)));
+        const partnerActiveCount = ordered.filter((it) => isEnablingPartnerLead(it) && (biDecisions[it.h]?.decision || '') !== 'DISMISS').length;
+        const partnerFilterBtn = document.getElementById('triage-partner-filter-btn');
+        if (partnerFilterBtn) {
+          partnerFilterBtn.textContent = `50-State Enabling Partner (${partnerActiveCount})`;
+        }
+
         const filtered = ordered.filter((it) => {
           const dec = biDecisions[it.h]?.decision || '';
           if (activeTriageFilter === 'ACTIVE') return dec !== 'DISMISS';
           if (activeTriageFilter === 'RING01') return Number(it.r ?? 9) <= 1 && dec !== 'DISMISS';
+          if (activeTriageFilter === 'PARTNER') return isEnablingPartnerLead(it) && dec !== 'DISMISS';
           if (activeTriageFilter === 'PURSUE') return dec === 'PURSUE';
           if (activeTriageFilter === 'WATCH') return dec === 'WATCH';
           if (activeTriageFilter === 'DISMISS') return dec === 'DISMISS';
@@ -2914,7 +3028,7 @@
         if (batchBtn) {
           batchBtn.textContent = `Export All Pursue \u2192 APEX Brief (${pursueLeads.length})`;
         }
-        tel.innerHTML = `<span>Digest ${escapeHtml(biDigestDate || 'Latest')}: Showing ${filtered.length} of ${ordered.length} leads (${pursueCnt} Pursue &bull; ${watchCnt} Watch &bull; ${disCnt} Dismissed)</span><span>Concentric Order: Ring 0 &rarr; Ring 9</span>`;
+        tel.innerHTML = `<span>Digest ${escapeHtml(biDigestDate || 'Latest')}: Showing ${filtered.length} of ${ordered.length} leads (${partnerActiveCount} 50-State Partner &bull; ${pursueCnt} Pursue &bull; ${watchCnt} Watch &bull; ${disCnt} Dismissed)</span><span>Concentric Order: Ring 0 &rarr; Ring 9</span>`;
 
         if (!filtered.length) {
           const empty = document.createElement('div');
@@ -2931,6 +3045,8 @@
           const rNum = Number(it.r ?? 9);
           const dec = biDecisions[it.h]?.decision || '';
           const savedNote = biDecisions[it.h]?.note || it.note || '';
+          const isPartner = isEnablingPartnerLead(it);
+          const piEmail = extractLeadEmail(it);
           const ringClass = rNum === 0 ? 'ring-chip-0' : (rNum === 9 ? 'ring-chip-9' : 'ring-chip');
           const ringBg = rNum === 0 ? '#940925' : (rNum === 9 ? '#1E293B' : '#0B1D3A');
           const art = document.createElement('article');
@@ -2938,15 +3054,24 @@
           const noteHtml = savedNote
             ? `<p class="kv-line"><strong>Capture Note:</strong> ${escapeHtml(savedNote)}</p>`
             : '';
+          const piEmailHtml = (isPartner && piEmail)
+            ? `<p class="kv-line"><strong>Direct PI / Contact Email:</strong> <code>${escapeHtml(piEmail)}</code></p>`
+            : '';
+          const partnerPillHtml = isPartner
+            ? `<span class="score-chip" style="color: #FFFFFF; background-color: #08454A; border-color: #08454A;">50-STATE ENABLING PARTNER</span>`
+            : '';
           const qInfo = computeClientLeadQuant(it);
           const qBg = qInfo.call === 'GREEN_LIGHT_SWING' ? '#064E3B' : (qInfo.call === 'TAKE_PITCH_TRAP' ? '#7E061E' : '#0B1D3A');
           const wopsStr = qInfo.wops >= 1 ? qInfo.wops.toFixed(3) : qInfo.wops.toFixed(3).slice(1);
-          const briefLabel = dec === 'PURSUE' ? '1-Click Bid / APEX Brief \u2192' : 'Bid / APEX Brief';
+          const briefLabel = isPartner
+            ? '1-Click PI / Subaward Pitch \u2192'
+            : (dec === 'PURSUE' ? '1-Click Bid / APEX Brief \u2192' : 'Bid / APEX Brief');
           art.innerHTML = `
             <div>
               <div class="card-top-row">
                 <div class="meta-row">
                   <span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">Ring ${rNum}</span>
+                  ${partnerPillHtml}
                   <span class="score-chip" style="color: #FFFFFF; background-color: ${qBg}; border-color: ${qBg};">${escapeHtml(qInfo.label)} &bull; wOPS ${wopsStr}</span>
                   <span class="score-chip" style="color: #0B1D3A; background-color: #F4F7FB;">${Number(it.s || 0)} pts &bull; ${escapeHtml(it.c || 'BI')}</span>
                   <span class="cat-chip">${escapeHtml(it.t || 'LEAD')}</span>
@@ -2954,6 +3079,7 @@
               </div>
               <h3>${escapeHtml(it.ti || 'Untitled Signal')}</h3>
               <p class="kv-line"><strong>Agency / Source:</strong> ${escapeHtml(it.ag || 'Unspecified')}</p>
+              ${piEmailHtml}
               <p class="kv-line"><strong>Timing / Award:</strong> ${escapeHtml(it.dl || 'See Notice')}</p>
               ${noteHtml}
               <div class="triage-dec-row" role="group" aria-label="Triage decision for ${escapeHtml(it.ti || 'lead')}">
@@ -2964,7 +3090,7 @@
               </div>
             </div>
             <div class="card-cta-stack">
-              <button type="button" class="btn-export-brief${dec === 'PURSUE' ? ' is-pursue' : ''}">${escapeHtml(briefLabel)}<span class="sr-only"> for ${escapeHtml(it.ti || 'lead')}</span></button>
+              <button type="button" class="btn-export-brief${(dec === 'PURSUE' || isPartner) ? ' is-pursue' : ''}">${escapeHtml(briefLabel)}<span class="sr-only"> for ${escapeHtml(it.ti || 'lead')}</span></button>
               <a class="card-link-btn" href="${escapeHtml(it.u || 'https://sam.gov')}" target="_blank" rel="noopener noreferrer">Open Official Notice<span class="sr-only"> &mdash; ${escapeHtml(it.ti || 'lead')}</span></a>
             </div>
           `;
@@ -2973,7 +3099,7 @@
           });
           const expBtn = art.querySelector('.btn-export-brief');
           if (expBtn) {
-            expBtn.addEventListener('click', () => openBidBriefDialog([it], 'APEX'));
+            expBtn.addEventListener('click', () => openBidBriefDialog([it], isPartner ? 'PARTNER' : 'APEX'));
           }
           const jumpBtn = art.querySelector('.jump-node-btn');
           if (jumpBtn) {
@@ -3027,17 +3153,13 @@
           briefDialog.returnValue = '';
         });
         if (!('closedBy' in HTMLDialogElement.prototype)) {
-          briefDialog.addEventListener('click', (event) => {
-            if (event.target !== briefDialog) return;
-            const rect = briefDialog.getBoundingClientRect();
-            const isInside = (
-              rect.top <= event.clientY &&
-              event.clientY <= rect.top + rect.height &&
-              rect.left <= event.clientX &&
-              event.clientX <= rect.left + rect.width
-            );
-            if (!isInside) briefDialog.close();
-          });
+          const isOutsideDialog = (e, dialog) => {
+            const r = dialog.getBoundingClientRect();
+            return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+          };
+          let pressedOutside = false;
+          briefDialog.addEventListener('pointerdown', (e) => { pressedOutside = isOutsideDialog(e, briefDialog); });
+          briefDialog.addEventListener('pointerup', (e) => { if (pressedOutside && isOutsideDialog(e, briefDialog)) briefDialog.close(); });
         }
       }
       document.querySelectorAll('.brief-mode-btn').forEach((btn) => {
@@ -3055,7 +3177,9 @@
       document.getElementById('btn-download-brief')?.addEventListener('click', () => {
         const txt = document.getElementById('bid-brief-preview')?.innerText || '';
         if (!txt) return;
-        const prefix = activeBriefMode === 'APEX' ? 'webcognita-az-apex-review' : 'webcognita-far13-quote-cover';
+        const prefix = activeBriefMode === 'APEX'
+          ? 'webcognita-az-apex-review'
+          : (activeBriefMode === 'PARTNER' ? 'webcognita-50state-enabling-partner-pitch' : 'webcognita-far13-quote-cover');
         const slug = (activeBriefLeads[0]?.h || 'batch').slice(0, 10);
         const blob = new Blob([txt], { type: 'text/markdown;charset=utf-8' });
         const a = document.createElement('a');
