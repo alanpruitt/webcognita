@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Webcognita LLC — Federal Capabilities Statement | Alan Pruitt</title>
-<meta name="description" content="Official 1-page Federal Capabilities Statement for Webcognita LLC (Veteran-Owned Small Business • VOSB • UEI: EZ34U9KNJA17 • CAGE: 4ZCN6), founded by Alan Pruitt.">
+<meta name="description" content="Official 1-page Federal Capabilities Statement for Webcognita LLC (Veteran-Owned Small Business • VOSB • Yuma City LSA • FEMA Disaster Response • UEI: EZ34U9KNJA17 • CAGE: 4ZCN6), founded by Alan Pruitt.">
 <link rel="canonical" href="https://www.webcognita.com/capabilities-statement.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.webcognita.com/capabilities-statement.html">
 <meta property="og:title" content="Webcognita LLC — 1-Page Federal Capabilities Statement &amp; CMMC L1 MFR (UEI: EZ34U9KNJA17)">
-<meta property="og:description" content="100% Veteran-Owned Small Business (VOSB • CAGE: 4ZCN6 • CMMC 2.0 Level 1 Verified) — Sovereign Local Hybrid RAG, Edge SI/AI (EO 14434), ADA Title II / Section 508, and Curriculum-as-Code.">
+<meta property="og:description" content="100% Veteran-Owned Small Business (VOSB • Yuma City LSA • FEMA DRR • CAGE: 4ZCN6 • 10 NAICS / 10 PSCs) — Sovereign Local Hybrid RAG, Edge SI/AI (EO 14434), ADA Title II / Section 508, and Curriculum-as-Code.">
 <meta property="og:image" content="https://www.webcognita.com/assets/og-preview.png">
 <meta property="og:image:secure_url" content="https://www.webcognita.com/assets/og-preview.png">
 <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
       "url": "https://www.webcognita.com/capabilities-statement.html",
       "name": "Webcognita LLC — Official 1-Page Federal Capabilities Statement (UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)",
       "inLanguage": "en-US",
-      "dateModified": "2026-11-19",
+      "dateModified": "2026-11-25",
       "isPartOf": {
         "@id": "https://www.webcognita.com/#website"
       },
@@ -44,6 +44,7 @@
       "name": "Webcognita LLC",
       "legalName": "WEBCOGNITA LLC",
       "url": "https://www.webcognita.com/",
+      "telephone": "+1-928-421-1050",
       "foundingDate": "2011-08-23",
       "taxID": "81-0809739",
       "naics": "541511",
@@ -53,7 +54,12 @@
         { "@type": "PropertyValue", "propertyID": "SAM.gov UEI", "value": "EZ34U9KNJA17" },
         { "@type": "PropertyValue", "propertyID": "CAGE/NCAGE", "value": "4ZCN6" },
         { "@type": "PropertyValue", "propertyID": "EIN", "value": "81-0809739" },
-        { "@type": "PropertyValue", "propertyID": "AZ ACC Business ID", "value": "L17046120" }
+        { "@type": "PropertyValue", "propertyID": "DHS E-Verify", "value": "3119395" },
+        { "@type": "PropertyValue", "propertyID": "AZ ACC Business ID", "value": "L17046120" },
+        { "@type": "PropertyValue", "propertyID": "AZ APP Supplier ID", "value": "IV0000112720" },
+        { "@type": "PropertyValue", "propertyID": "ADOT AZ UTRACS SBC", "value": "23545" },
+        { "@type": "PropertyValue", "propertyID": "City of Mesa VSS", "value": "VS0000020834" },
+        { "@type": "PropertyValue", "propertyID": "City of Yuma Business License", "value": "SERV-051803" }
       ],
       "founder": {
         "@id": "https://alanpruitt.com/#person"
@@ -129,7 +135,8 @@
     .verify-chip {
       display: inline-flex;
       align-items: center;
-      min-height: 28px;
+      min-block-size: 28px;
+      min-inline-size: 24px;
       padding: 2px 6px;
       margin: 2px 3px 2px 0;
       border: 1px solid #0B1D3A;
@@ -234,7 +241,8 @@
     border-radius: 5px;
     padding: 4px 8px;
     margin-bottom: 4px;
-    font-size: 7.1pt;
+    font-size: 6.85pt;
+    line-height: 1.15;
   }
   .proc-item strong {
     font-weight: 900;
@@ -316,12 +324,18 @@
     vertical-align: top;
     line-height: 1.14;
   }
-  table.cap-table th {
+  table.cap-table thead th {
     background-color: #E8EEF5;
     color: #0B1D3A;
     font-weight: 800;
   }
-  table.cap-table tr:nth-child(even) td {
+  table.cap-table tbody th {
+    background-color: #FFFFFF;
+    color: #0B1D3A;
+    font-weight: 800;
+  }
+  table.cap-table tbody tr:nth-child(even) th,
+  table.cap-table tbody tr:nth-child(even) td {
     background-color: #F9FBFD;
     color: #0B1D3A;
   }
@@ -354,7 +368,7 @@
 </style>
 </head>
 <body>
-  <div class="screen-toolbar" role="region" aria-label="Document Actions">
+  <nav class="screen-toolbar" aria-label="Document actions">
     <div>
       <strong>Webcognita LLC — Official 1-Page Federal Capabilities Statement Exhibit</strong>
       <span style="font-size: 8.5pt; margin-left: 8px;">(SAM.gov UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)</span>
@@ -363,9 +377,9 @@
       <a href="/assets/Webcognita_LLC_Capabilities_Statement.pdf" download="Webcognita_LLC_Capabilities_Statement.pdf">Download 1-Page PDF</a>
       <a href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf">CMMC L1 Cyber MFR (PDF)</a>
       <button type="button" id="print-exhibit-btn">Print 1-Page Exhibit</button>
-      <a href="https://www.webcognita.com/">Return to Webcognita.com</a>
+      <a href="https://www.webcognita.com/">webcognita.com</a>
     </div>
-  </div>
+  </nav>
 
   <main class="page-sheet">
     <!-- ZONE A: TOP HEADER WITH SCANNABLE QR CODE -->
@@ -374,7 +388,7 @@
         <span class="doc-kicker">Capabilities Statement • Federal, State &amp; Higher Education Subaward Exhibit</span>
         <h1 class="company-title">WEBCOGNITA LLC</h1>
         <p class="company-sub">Curriculum-as-Code (S-A-R) • Compliance-as-Code • Air-Gapped Edge Super Intelligence (SI / AI) • Workforce Literacy</p>
-        <p class="company-badges">100% Veteran-Owned Small Business (VOSB) • U.S. SBA 2025 Veteran Champion • U.S. Dept. of Commerce MBDA 2023 Advocate of the Year</p>
+        <p class="company-badges">100% Veteran-Owned Small Business (VOSB) • Yuma City LSA (FAR 52.219-2) • FEMA Disaster Response (AZ/CA) • SBA 2025 Veteran Champion • MBDA 2023 Advocate</p>
       </div>
       <div class="qr-box" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" width="84" height="84" shape-rendering="crispEdges" aria-hidden="true"><rect width="33" height="33" fill="#ffffff"/><g fill="#0B1D3A"><rect x="4" y="4" width="1" height="1"/><rect x="5" y="4" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="10" y="4" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="15" y="4" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="19" y="4" width="1" height="1"/><rect x="22" y="4" width="1" height="1"/><rect x="23" y="4" width="1" height="1"/><rect x="24" y="4" width="1" height="1"/><rect x="25" y="4" width="1" height="1"/><rect x="26" y="4" width="1" height="1"/><rect x="27" y="4" width="1" height="1"/><rect x="28" y="4" width="1" height="1"/><rect x="4" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="13" y="5" width="1" height="1"/><rect x="15" y="5" width="1" height="1"/><rect x="18" y="5" width="1" height="1"/><rect x="19" y="5" width="1" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="22" y="5" width="1" height="1"/><rect x="28" y="5" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="7" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="13" y="6" width="1" height="1"/><rect x="19" y="6" width="1" height="1"/><rect x="22" y="6" width="1" height="1"/><rect x="24" y="6" width="1" height="1"/><rect x="25" y="6" width="1" height="1"/><rect x="26" y="6" width="1" height="1"/><rect x="28" y="6" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="6" y="7" width="1" height="1"/><rect x="7" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="13" y="7" width="1" height="1"/><rect x="14" y="7" width="1" height="1"/><rect x="15" y="7" width="1" height="1"/><rect x="16" y="7" width="1" height="1"/><rect x="18" y="7" width="1" height="1"/><rect x="22" y="7" width="1" height="1"/><rect x="24" y="7" width="1" height="1"/><rect x="25" y="7" width="1" height="1"/><rect x="26" y="7" width="1" height="1"/><rect x="28" y="7" width="1" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="7" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="17" y="8" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="19" y="8" width="1" height="1"/><rect x="22" y="8" width="1" height="1"/><rect x="24" y="8" width="1" height="1"/><rect x="25" y="8" width="1" height="1"/><rect x="26" y="8" width="1" height="1"/><rect x="28" y="8" width="1" height="1"/><rect x="4" y="9" width="1" height="1"/><rect x="10" y="9" width="1" height="1"/><rect x="16" y="9" width="1" height="1"/><rect x="18" y="9" width="1" height="1"/><rect x="19" y="9" width="1" height="1"/><rect x="20" y="9" width="1" height="1"/><rect x="22" y="9" width="1" height="1"/><rect x="28" y="9" width="1" height="1"/><rect x="4" y="10" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="7" y="10" width="1" height="1"/><rect x="8" y="10" width="1" height="1"/><rect x="9" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="12" y="10" width="1" height="1"/><rect x="14" y="10" width="1" height="1"/><rect x="16" y="10" width="1" height="1"/><rect x="18" y="10" width="1" height="1"/><rect x="20" y="10" width="1" height="1"/><rect x="22" y="10" width="1" height="1"/><rect x="23" y="10" width="1" height="1"/><rect x="24" y="10" width="1" height="1"/><rect x="25" y="10" width="1" height="1"/><rect x="26" y="10" width="1" height="1"/><rect x="27" y="10" width="1" height="1"/><rect x="28" y="10" width="1" height="1"/><rect x="13" y="11" width="1" height="1"/><rect x="14" y="11" width="1" height="1"/><rect x="16" y="11" width="1" height="1"/><rect x="17" y="11" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="8" y="12" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="15" y="12" width="1" height="1"/><rect x="17" y="12" width="1" height="1"/><rect x="20" y="12" width="1" height="1"/><rect x="24" y="12" width="1" height="1"/><rect x="27" y="12" width="1" height="1"/><rect x="5" y="13" width="1" height="1"/><rect x="8" y="13" width="1" height="1"/><rect x="14" y="13" width="1" height="1"/><rect x="15" y="13" width="1" height="1"/><rect x="16" y="13" width="1" height="1"/><rect x="20" y="13" width="1" height="1"/><rect x="22" y="13" width="1" height="1"/><rect x="28" y="13" width="1" height="1"/><rect x="6" y="14" width="1" height="1"/><rect x="7" y="14" width="1" height="1"/><rect x="8" y="14" width="1" height="1"/><rect x="9" y="14" width="1" height="1"/><rect x="10" y="14" width="1" height="1"/><rect x="11" y="14" width="1" height="1"/><rect x="13" y="14" width="1" height="1"/><rect x="15" y="14" width="1" height="1"/><rect x="16" y="14" width="1" height="1"/><rect x="18" y="14" width="1" height="1"/><rect x="20" y="14" width="1" height="1"/><rect x="21" y="14" width="1" height="1"/><rect x="22" y="14" width="1" height="1"/><rect x="23" y="14" width="1" height="1"/><rect x="26" y="14" width="1" height="1"/><rect x="27" y="14" width="1" height="1"/><rect x="28" y="14" width="1" height="1"/><rect x="5" y="15" width="1" height="1"/><rect x="6" y="15" width="1" height="1"/><rect x="7" y="15" width="1" height="1"/><rect x="13" y="15" width="1" height="1"/><rect x="16" y="15" width="1" height="1"/><rect x="17" y="15" width="1" height="1"/><rect x="18" y="15" width="1" height="1"/><rect x="22" y="15" width="1" height="1"/><rect x="27" y="15" width="1" height="1"/><rect x="4" y="16" width="1" height="1"/><rect x="5" y="16" width="1" height="1"/><rect x="6" y="16" width="1" height="1"/><rect x="7" y="16" width="1" height="1"/><rect x="8" y="16" width="1" height="1"/><rect x="9" y="16" width="1" height="1"/><rect x="10" y="16" width="1" height="1"/><rect x="11" y="16" width="1" height="1"/><rect x="12" y="16" width="1" height="1"/><rect x="13" y="16" width="1" height="1"/><rect x="16" y="16" width="1" height="1"/><rect x="17" y="16" width="1" height="1"/><rect x="20" y="16" width="1" height="1"/><rect x="21" y="16" width="1" height="1"/><rect x="22" y="16" width="1" height="1"/><rect x="23" y="16" width="1" height="1"/><rect x="25" y="16" width="1" height="1"/><rect x="27" y="16" width="1" height="1"/><rect x="28" y="16" width="1" height="1"/><rect x="5" y="17" width="1" height="1"/><rect x="8" y="17" width="1" height="1"/><rect x="9" y="17" width="1" height="1"/><rect x="11" y="17" width="1" height="1"/><rect x="12" y="17" width="1" height="1"/><rect x="13" y="17" width="1" height="1"/><rect x="15" y="17" width="1" height="1"/><rect x="17" y="17" width="1" height="1"/><rect x="18" y="17" width="1" height="1"/><rect x="20" y="17" width="1" height="1"/><rect x="22" y="17" width="1" height="1"/><rect x="25" y="17" width="1" height="1"/><rect x="28" y="17" width="1" height="1"/><rect x="4" y="18" width="1" height="1"/><rect x="9" y="18" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="11" y="18" width="1" height="1"/><rect x="14" y="18" width="1" height="1"/><rect x="21" y="18" width="1" height="1"/><rect x="22" y="18" width="1" height="1"/><rect x="23" y="18" width="1" height="1"/><rect x="26" y="18" width="1" height="1"/><rect x="27" y="18" width="1" height="1"/><rect x="28" y="18" width="1" height="1"/><rect x="5" y="19" width="1" height="1"/><rect x="8" y="19" width="1" height="1"/><rect x="9" y="19" width="1" height="1"/><rect x="11" y="19" width="1" height="1"/><rect x="15" y="19" width="1" height="1"/><rect x="16" y="19" width="1" height="1"/><rect x="17" y="19" width="1" height="1"/><rect x="19" y="19" width="1" height="1"/><rect x="20" y="19" width="1" height="1"/><rect x="22" y="19" width="1" height="1"/><rect x="24" y="19" width="1" height="1"/><rect x="27" y="19" width="1" height="1"/><rect x="4" y="20" width="1" height="1"/><rect x="7" y="20" width="1" height="1"/><rect x="8" y="20" width="1" height="1"/><rect x="9" y="20" width="1" height="1"/><rect x="10" y="20" width="1" height="1"/><rect x="11" y="20" width="1" height="1"/><rect x="14" y="20" width="1" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="16" y="20" width="1" height="1"/><rect x="17" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/><rect x="21" y="20" width="1" height="1"/><rect x="22" y="20" width="1" height="1"/><rect x="23" y="20" width="1" height="1"/><rect x="24" y="20" width="1" height="1"/><rect x="25" y="20" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="13" y="21" width="1" height="1"/><rect x="16" y="21" width="1" height="1"/><rect x="17" y="21" width="1" height="1"/><rect x="19" y="21" width="1" height="1"/><rect x="20" y="21" width="1" height="1"/><rect x="24" y="21" width="1" height="1"/><rect x="25" y="21" width="1" height="1"/><rect x="27" y="21" width="1" height="1"/><rect x="28" y="21" width="1" height="1"/><rect x="4" y="22" width="1" height="1"/><rect x="5" y="22" width="1" height="1"/><rect x="6" y="22" width="1" height="1"/><rect x="7" y="22" width="1" height="1"/><rect x="8" y="22" width="1" height="1"/><rect x="9" y="22" width="1" height="1"/><rect x="10" y="22" width="1" height="1"/><rect x="14" y="22" width="1" height="1"/><rect x="18" y="22" width="1" height="1"/><rect x="19" y="22" width="1" height="1"/><rect x="20" y="22" width="1" height="1"/><rect x="22" y="22" width="1" height="1"/><rect x="24" y="22" width="1" height="1"/><rect x="25" y="22" width="1" height="1"/><rect x="27" y="22" width="1" height="1"/><rect x="28" y="22" width="1" height="1"/><rect x="4" y="23" width="1" height="1"/><rect x="10" y="23" width="1" height="1"/><rect x="13" y="23" width="1" height="1"/><rect x="16" y="23" width="1" height="1"/><rect x="17" y="23" width="1" height="1"/><rect x="18" y="23" width="1" height="1"/><rect x="20" y="23" width="1" height="1"/><rect x="24" y="23" width="1" height="1"/><rect x="25" y="23" width="1" height="1"/><rect x="27" y="23" width="1" height="1"/><rect x="28" y="23" width="1" height="1"/><rect x="4" y="24" width="1" height="1"/><rect x="6" y="24" width="1" height="1"/><rect x="7" y="24" width="1" height="1"/><rect x="8" y="24" width="1" height="1"/><rect x="10" y="24" width="1" height="1"/><rect x="12" y="24" width="1" height="1"/><rect x="13" y="24" width="1" height="1"/><rect x="14" y="24" width="1" height="1"/><rect x="15" y="24" width="1" height="1"/><rect x="16" y="24" width="1" height="1"/><rect x="17" y="24" width="1" height="1"/><rect x="18" y="24" width="1" height="1"/><rect x="20" y="24" width="1" height="1"/><rect x="21" y="24" width="1" height="1"/><rect x="22" y="24" width="1" height="1"/><rect x="23" y="24" width="1" height="1"/><rect x="24" y="24" width="1" height="1"/><rect x="25" y="24" width="1" height="1"/><rect x="4" y="25" width="1" height="1"/><rect x="6" y="25" width="1" height="1"/><rect x="7" y="25" width="1" height="1"/><rect x="8" y="25" width="1" height="1"/><rect x="10" y="25" width="1" height="1"/><rect x="14" y="25" width="1" height="1"/><rect x="16" y="25" width="1" height="1"/><rect x="20" y="25" width="1" height="1"/><rect x="21" y="25" width="1" height="1"/><rect x="23" y="25" width="1" height="1"/><rect x="24" y="25" width="1" height="1"/><rect x="25" y="25" width="1" height="1"/><rect x="26" y="25" width="1" height="1"/><rect x="4" y="26" width="1" height="1"/><rect x="6" y="26" width="1" height="1"/><rect x="7" y="26" width="1" height="1"/><rect x="8" y="26" width="1" height="1"/><rect x="10" y="26" width="1" height="1"/><rect x="12" y="26" width="1" height="1"/><rect x="17" y="26" width="1" height="1"/><rect x="19" y="26" width="1" height="1"/><rect x="20" y="26" width="1" height="1"/><rect x="24" y="26" width="1" height="1"/><rect x="28" y="26" width="1" height="1"/><rect x="4" y="27" width="1" height="1"/><rect x="10" y="27" width="1" height="1"/><rect x="13" y="27" width="1" height="1"/><rect x="14" y="27" width="1" height="1"/><rect x="17" y="27" width="1" height="1"/><rect x="20" y="27" width="1" height="1"/><rect x="22" y="27" width="1" height="1"/><rect x="24" y="27" width="1" height="1"/><rect x="25" y="27" width="1" height="1"/><rect x="27" y="27" width="1" height="1"/><rect x="4" y="28" width="1" height="1"/><rect x="5" y="28" width="1" height="1"/><rect x="6" y="28" width="1" height="1"/><rect x="7" y="28" width="1" height="1"/><rect x="8" y="28" width="1" height="1"/><rect x="9" y="28" width="1" height="1"/><rect x="10" y="28" width="1" height="1"/><rect x="12" y="28" width="1" height="1"/><rect x="16" y="28" width="1" height="1"/><rect x="17" y="28" width="1" height="1"/><rect x="19" y="28" width="1" height="1"/><rect x="20" y="28" width="1" height="1"/><rect x="23" y="28" width="1" height="1"/><rect x="27" y="28" width="1" height="1"/><rect x="28" y="28" width="1" height="1"/></g></svg>
@@ -383,25 +397,25 @@
     </header>
 
     <!-- ZONE B: PROCUREMENT IDENTIFIERS BAR -->
-    <section class="procurement-bar" aria-label="Federal Procurement Identifiers">
+    <div class="procurement-bar">
       <div class="proc-item"><strong>SAM.gov UEI:</strong> EZ34U9KNJA17 (Active)</div>
-      <div class="proc-item"><strong>CAGE / NCAGE:</strong> 4ZCN6 (Exp. 11/08/27)</div>
-      <div class="proc-item"><strong>EIN:</strong> 81-0809739 (<a href="https://www.webcognita.com/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">147C</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_IRS_Form_W9_Verification.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">W-9</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_Principal_Qualifications_CV.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">CV</a>)</div>
-      <div class="proc-item"><strong>Socioeconomic:</strong> Veteran-Owned (VOSB &bull; SAM.gov)</div>
-      <div class="proc-item"><strong>NAICS:</strong> <strong>541511</strong>, 541512, 541715, 611710, 541690</div>
-      <div class="proc-item"><strong>PSC Codes:</strong> U008, U012, DA01, DJ01, R425, AN12</div>
-      <div class="proc-item"><strong>Standing:</strong> <a href="https://www.webcognita.com/docs/Webcognita_LLC_AZ_Certificate_of_Good_Standing.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">ACC #L17046120</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_AZ_Trade_Name_Certification.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">SOS #9260023</a> &bull; APP #IV0000112720 &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">Yuma #SERV-051803</a></div>
-      <div class="proc-item"><strong>Cyber &amp; Pay:</strong> <a href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">CMMC L1 Cyber MFR (PDF)</a> &bull; <a href="https://www.webcognita.com/support/" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">GPC/ACH</a></div>
-    </section>
+      <div class="proc-item"><strong>CAGE / E-Verify:</strong> 4ZCN6 (11/25/27) &bull; #3119395</div>
+      <div class="proc-item"><strong>EIN / Tax:</strong> 81-0809739 (<a href="https://www.webcognita.com/docs/Webcognita_LLC_IRS_EIN_Letter_147C.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">147C</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_IRS_Form_W9_Verification.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">W-9</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_Principal_Qualifications_CV.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">CV</a>)</div>
+      <div class="proc-item"><strong>Priority:</strong> VOSB &bull; Yuma City LSA &bull; FEMA (AZ/CA)</div>
+      <div class="proc-item"><strong>10 NAICS:</strong> <strong>541511</strong>, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710</div>
+      <div class="proc-item"><strong>10 PSCs:</strong> AN12, DA01, DJ01, R408, R425, R612, U008, U009, U012, 7A21</div>
+      <div class="proc-item"><strong>AZ SLED:</strong> <a href="https://www.webcognita.com/docs/Webcognita_LLC_AZ_Certificate_of_Good_Standing.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">ACC #L17046120</a> &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_AZ_Trade_Name_Certification.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">SOS #9260023</a> &bull; APP #IV0000112720 &bull; UTRACS #23545</div>
+      <div class="proc-item"><strong>Local / Cyber / Pay:</strong> <a href="https://www.webcognita.com/docs/Webcognita_LLC_City_of_Yuma_Business_License.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">Yuma #SERV-051803</a> &bull; Mesa #VS0000020834 &bull; <a href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">CMMC L1 Cyber MFR (PDF)</a> &bull; <a href="https://www.webcognita.com/support/" style="color: #0B1D3A; background-color: #F4F7FB; text-decoration: underline;">GPC/ACH</a></div>
+    </div>
 
     <!-- EXECUTIVE SUMMARY -->
-    <section class="exec-summary" aria-label="Executive Overview">
-      <strong>Executive Summary:</strong> Webcognita LLC (<code>SAM.gov: WEBCOGNITA LLC</code>) is a <strong>100% Veteran-Owned, Sole-Member Small Business (VOSB)</strong> technical consulting and software firm independently headquartered at <strong>1906 S 6th Ave, Yuma, AZ 85364</strong> (Mon&ndash;Fri 8AM&ndash;5PM MST) and led by <strong>Alan Pruitt, B.S.</strong> (USMC &amp; U.S. Army CI Veteran, Google Gemini Certified Faculty). We engineer Git-governed <strong>Curriculum-as-Code (S-A-R)</strong> pipelines, <strong>ADA Title II / WCAG 2.2 AA (9:1) &amp; WCAG 3.0 CI/CD</strong> compilers, and <strong>air-gapped Edge Super Intelligence (SI / AI, EO 14434 &amp; 15 U.S.C. 9401(3))</strong>—serving as a <strong>Non-Competing 50-State Enabling Partner</strong> for <strong>NSF TechAccess: AI-Ready America (NSF 26-508)</strong> and <strong>U.S. DOL ETA TEN No. 07-25</strong> institutions.
-    </section>
+    <div class="exec-summary">
+      <strong>Executive Summary:</strong> Webcognita LLC (<code>SAM.gov: WEBCOGNITA LLC</code>) is a <strong>100% Veteran-Owned, Sole-Member Small Business (VOSB)</strong> and <strong>Yuma City Labor Surplus Area (FAR 52.219-2) / FEMA Disaster Response (FAR 26.205)</strong> consulting and software firm headquartered at <strong>1906 S 6th Ave, Yuma, AZ 85364</strong> (Mon&ndash;Fri 8AM&ndash;5PM MST) and led by <strong>Alan Pruitt, B.S.</strong> (USMC &amp; U.S. Army CI Veteran, Google Gemini Certified Faculty). We engineer Git-governed <strong>Curriculum-as-Code (S-A-R)</strong> pipelines, <strong>ADA Title II / WCAG 2.2 AA (9:1) &amp; WCAG 3.0 CI/CD</strong> compilers, and <strong>air-gapped Edge Super Intelligence (SI / AI, EO 14434 &amp; 15 U.S.C. 9401(3))</strong>—serving as a <strong>Non-Competing 50-State Enabling Partner</strong> for <strong>NSF TechAccess: AI-Ready America (NSF 26-508)</strong> and <strong>U.S. DOL ETA TEN No. 07-25</strong> institutions.
+    </div>
 
     <!-- ZONE C: CORE COMPETENCIES & DIFFERENTIATORS -->
     <div class="two-col">
-      <section class="panel" aria-labelledby="comp-heading">
+      <section class="panel">
         <h2 id="comp-heading" class="panel-title">Core Competencies &amp; Technical Deliverables</h2>
         <ul class="compact-list">
           <li><strong><a href="https://alanpruitt.com/curriculum-as-code/" style="color: #0B1D3A; background-color: #FFFFFF; text-decoration: underline;">Curriculum-as-Code (S-A-R v2.2)</a> &amp; Zero-Drift LMS Engineering:</strong> Author of <code>S-A-R-v2.2-ORIGIN</code> (<a class="verify-chip" href="https://doi.org/10.5281/zenodo.24170270" style="white-space: nowrap;">DOI: 10.5281/zenodo.24170270</a>); Git compilers (<code>DOM GraphRAG</code> 3,265-node graph, <code>W3C PROV-O</code> provenance, <code>W3C SKOS</code> &amp; <code>Canvas GraphQL</code> sync).</li>
@@ -413,13 +427,13 @@
         </ul>
       </section>
 
-      <section class="panel" aria-labelledby="diff-heading">
+      <section class="panel">
         <h2 id="diff-heading" class="panel-title">Key Differentiators &amp; Principal Qualifications</h2>
         <ul class="compact-list">
           <li><strong>Non-Competing 50-State Enabling Partner:</strong> We never compete against universities, community colleges, or state consortia for primary grant awards—providing plug-and-play subaward implementation, faculty training, and open-source CI/CD infrastructure.</li>
           <li><strong>Cleared Security Pedigree &amp; Unescorted DoD Access:</strong> Principal is a <strong>USMC (Honorable, 1980&ndash;1992) &amp; U.S. Army, National Guard, Army Reserve CI Agent (Honorable, 1992&ndash;2001)</strong>, former <strong>CA Licensed Private Investigator (Lic. #17984, 2001&ndash;2004, QM &amp; Owner)</strong>, with documented <strong>Top Secret / SCI (Special Intelligence / TK)</strong> &amp; <strong>TSCM</strong> leadership, holding a <strong>U.S. Department of Defense / Uniformed Services Identification and Privilege Card (Affiliation: 100% Disabled American Veteran, Indefinite Expiration)</strong> for unescorted DoD/federal access (<a class="verify-chip" href="https://www.webcognita.com/docs/Webcognita_LLC_CMMC_L1_AC_3_1_1_Cyber_Compliance_MFR.pdf" style="white-space: nowrap;">CMMC L1 Cyber MFR (PDF)</a>, <code>FAR 9.104-1</code>, <code>Sec. 889</code> &amp; <code>SF 1408</code> Ready).</li>
           <li><strong>Verified Google Credentials, ORCID &amp; Education:</strong> <strong>Executive Certificate in Non-Profit/Public/Organizational Management (2017&ndash;2018)</strong>, Thunderbird School of Global Management, Phoenix, AZ (<strong>Team RWB Eagle Leader Fellow</strong>); <strong>B.S. in Management (1999)</strong>, University of Phoenix; <a class="verify-chip" href="https://orcid.org/0009-0002-5038-7111" style="white-space: nowrap;">ORCID: 0009-0002-5038-7111</a>; <a class="verify-chip" href="https://edu.google.accredible.com/22b51965-eadb-4477-a9ac-1b1e2c4a45f2">Google Gemini Certified Faculty</a>, <a class="verify-chip" href="https://www.coursera.org/account/accomplishments/professional-cert/TIASZGL7JPG0">Google AI Professional</a>, &amp; <strong>Launchpad for Veterans / Google I/O (2010–2026)</strong> (<a class="verify-chip" href="https://me.developers.google.com/u/alanpruitt">g.dev/alanpruitt</a>); unpaid volunteer <strong>DCC</strong> at <strong>The University of Arizona</strong> (<em>The Yuma Sun</em>, B3, 11/30/25).</li>
-          <li><strong>Pre-ChatGPT AI &amp; Accessible HTML Pioneer (2021):</strong> Earned the national <strong>2021 NADO Aliceann Wohlbruck Impact Award</strong> and <a class="verify-chip" href="https://www.statsamerica.org/newsletter/2021Q3.aspx">U.S. EDA StatsAmerica Spotlight</a> for an open-source AI Co-Pilot &amp; Python API screen-reader CEDS.</li>
+          <li><strong>Pre-ChatGPT AI &amp; Accessible HTML Pioneer (2021):</strong> Earned the national <strong>2021 NADO Aliceann Wohlbruck Impact Award</strong> and <a class="verify-chip" href="https://www.statsamerica.org/newsletter/2021Q3.aspx">U.S. EDA StatsAmerica Q3 2021</a> spotlight for an open-source AI Co-Pilot &amp; Python API screen-reader CEDS.</li>
           <li><strong>Bilingual (EN / Norteño-Spanish) HSI &amp; Tribal Execution:</strong> Field-proven across Yuma, AZ / Imperial Valley, CA serving AWC&rsquo;s <strong>77% Latino</strong> (<code>3.08x</code> Title V HSI threshold) &amp; <strong>62% first-generation</strong> cohorts (<em>Pres. Dr. Reetika Dhawan, The Yuma Sun, Nov. 11, 2026</em>) and tribal nations.</li>
         </ul>
       </section>
@@ -427,40 +441,40 @@
 
     <!-- ZONE D: NAICS / PSC CLASSIFICATION MATRIX -->
     <table class="cap-table">
-      <caption>NAICS &amp; Federal Product Service Code (PSC) Matrix</caption>
+      <caption>NAICS &amp; Federal Product Service Code (PSC) Matrix (10 NAICS &bull; 10 PSCs)</caption>
       <thead>
         <tr>
-          <th scope="col" style="width: 16%;">NAICS / PSC</th>
-          <th scope="col" style="width: 28%;">Federal Designation</th>
+          <th scope="col" style="width: 19%;">NAICS / PSC</th>
+          <th scope="col" style="width: 26%;">Federal Designation</th>
           <th scope="col">Verified Technical Scope &amp; Production Artifacts</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>541511 (Primary)</strong><br>PSC: DA01, U008</td>
-          <td>Custom Computer Programming Services</td>
-          <td>Curriculum-as-Code &amp; Compliance-as-Code compilers (S-A-R v2.2), 3,265-node DOM GraphRAG, W3C PROV-O provenance, Canvas GraphQL API engines, and <code>mdtodocs.app</code>.</td>
+          <th scope="row">541511 (Primary) &amp; 541519<br><span style="font-weight: 400;">PSC: DA01, 7A21, DJ01</span></th>
+          <td>Custom Programming, COTS PWAs &amp; Cyber/508 Compliance</td>
+          <td>Curriculum-as-Code &amp; Compliance-as-Code compilers (S-A-R v2.2), 3,265-node DOM GraphRAG, W3C PROV-O provenance, Canvas GraphQL API engines, ITVAR/PWA software (<code>mdtodocs.app</code>), &amp; ADA Title II / Section 508 remediation.</td>
         </tr>
         <tr>
-          <td><strong>541512</strong><br>PSC: DJ01, U012</td>
-          <td>Computer Systems Design Services</td>
-          <td>Sovereign Hybrid RAG (<code>hybrid-rag.dev</code>, <code>SQLite FTS5 BM25 + RRF</code>), <code>WCGVLT01 AES-256-GCM</code> zero-residue cross-border vaults, Apple Silicon M1/M2 Edge SI / AI (Carbon 4 / Gemma 4), &amp; triple-hash <code>###</code> isolation.</td>
+          <th scope="row">541512 &amp; 561410<br><span style="font-weight: 400;">PSC: R612, DJ01</span></th>
+          <td>Computer Systems Design, Hybrid RAG &amp; Tagged PDF/UA</td>
+          <td>Sovereign Hybrid RAG information retrieval (<code>hybrid-rag.dev</code>, <code>SQLite FTS5 BM25 + RRF</code>), <code>WCGVLT01 AES-256-GCM</code> zero-residue Travel Vaults, Apple Silicon Edge SI / AI (Carbon 4 / Gemma 4), &amp; accessible <code>PDF/UA</code> technical docs.</td>
         </tr>
         <tr>
-          <td><strong>541715</strong><br>PSC: AN12</td>
-          <td>R&amp;D in Physical, Engineering &amp; Life Sciences</td>
+          <th scope="row">541715<br><span style="font-weight: 400;">PSC: AN12, R425</span></th>
+          <td>R&amp;D in Physical, Engineering &amp; Life Sciences (SBIR/STTR)</td>
           <td>Clinical Framing Protocol (<code>Pattern / Rule / Solve</code>), kinesiology &amp; culinary medicine telemetry (<code>exwtoolkit.com</code>, <code>flavorarchitect.dev</code> Food Informatics, <code>arquitectodelsabor.dev</code> AZ&ndash;Sonora <code>es-MX</code> / <code>MXN</code> borderlands R&amp;D).</td>
         </tr>
         <tr>
-          <td><strong>611710 &amp; 541690</strong><br>PSC: U008, R425</td>
-          <td>Educational Support &amp; Technical Consulting</td>
-          <td>EO 14434 Super Intelligence (SI) governance, U.S. DOL TEN 07-25 &amp; NSF AI-Ready enabling implementation, 5-course <code>$0 ZTC</code> OER fleet (<code>KIN-101, HLTH-150, KIN-210, KIN-245, KIN-265</code>), &amp; ADA Title II.</td>
+          <th scope="row">611420, 611430, 611710, 541611 &amp; 541690<br><span style="font-weight: 400;">PSC: U008, U009, U012, R408</span></th>
+          <td>IT/AI &amp; Management Training, Ed Support &amp; Consulting</td>
+          <td>EO 14434 Super Intelligence (SI) governance, U.S. DOL TEN 07-25 &amp; NSF AI-Ready enabling implementation, executive/faculty AI training, program consulting, &amp; 5-course <code>$0 ZTC</code> OER fleet (<code>KIN-101..265</code>).</td>
         </tr>
       </tbody>
     </table>
 
     <!-- ZONE E: PAST PERFORMANCE & FEDERAL / NATIONAL HONORS -->
-    <table class="cap-table" style="margin-bottom: 6px;">
+    <table class="cap-table" style="margin-bottom: 5px;">
       <caption>Verified Past Performance, Federal Recognition &amp; Institutional Track Record</caption>
       <thead>
         <tr>
@@ -471,22 +485,22 @@
       </thead>
       <tbody>
         <tr>
-          <td><strong>U.S. Small Business Administration (SBA)</strong></td>
+          <th scope="row">U.S. Small Business Administration (SBA)</th>
           <td><strong>2025 Arizona Veteran Small Business Champion of the Year</strong></td>
           <td>Recognized by U.S. SBA Arizona District Office for AI-driven veteran startup innovation; featured as an official <strong>AWC SBDC Client Success Story</strong>.</td>
         </tr>
         <tr>
-          <td><strong>U.S. Dept. of Commerce (MBDA) &amp; Quechan Indian Tribe</strong></td>
+          <th scope="row">U.S. Dept. of Commerce (MBDA) &amp; Quechan Indian Tribe</th>
           <td><strong>2023 Champion of Minority Business Development (Advocate of the Year)</strong></td>
           <td>Awarded by Arizona MBDA Business Center (Phoenix) for service as <strong>Economic Development Specialist for the Quechan Indian Tribe</strong> (Fort Yuma Reservation).</td>
         </tr>
         <tr>
-          <td><strong>Western Arizona Economic Development District (WAEDD)</strong></td>
+          <th scope="row">Western Arizona Economic Development District (WAEDD)</th>
           <td><strong>Executive Director</strong> (2007–2022) &bull; <strong>2021 NADO Impact Award</strong></td>
           <td>Directed U.S. EDA 3-county district; <strong>2017&ndash;2018 Team RWB Eagle Leader Fellow (Thunderbird)</strong>; engineered Aug 2021 AI Co-Pilot &amp; Python API screen-reader HTML CEDS (<a href="https://www.statsamerica.org/newsletter/2021Q3.aspx" style="color: #0B1D3A; background-color: #FFFFFF; text-decoration: underline; font-weight: 700;">U.S. EDA StatsAmerica Q3 2021</a>).</td>
         </tr>
         <tr>
-          <td><strong>Arizona Western College (AWC) &amp; Sonoma College</strong></td>
+          <th scope="row">Arizona Western College (AWC) &amp; Sonoma College</th>
           <td><strong>EXW Adjunct (Contract/Stipend) • 2x SBDC Counselor • Federal WIOA • Dept. Chair</strong></td>
           <td>Engineered 5-course Canvas fleet (Course ID <code>42051</code>, 419 HTML files, <code>0 WCAG errors</code>); recipient of <strong>SBDC Center of Excellence Award</strong>; former <strong>Sonoma College</strong> EM Dept. Chair (2004&ndash;2006).</td>
         </tr>
@@ -495,12 +509,12 @@
 
     <!-- FOOTER BAR -->
     <footer class="footer-bar">
-      <div><strong>POC:</strong> Alan Pruitt, Principal • 1906 S 6th Ave, Yuma, AZ 85364 (Mon&ndash;Fri 8AM&ndash;5PM MST) • <a href="mailto:alan@webcognita.com">alan@webcognita.com</a></div>
+      <div><strong>POC:</strong> Alan Pruitt, Principal • 1906 S 6th Ave, Yuma, AZ 85364 • <a href="tel:+19284211050">(928) 421-1050</a> • <a href="mailto:alan@webcognita.com">alan@webcognita.com</a></div>
       <div>
-        <a href="https://www.webcognita.com">webcognita.com</a> •
-        <a href="https://alanpruitt.com/curriculum-as-code/">alanpruitt.com/curriculum-as-code</a> •
+        <a href="https://www.webcognita.com/">webcognita.com</a> •
+        <a href="https://alanpruitt.com/">alanpruitt.com</a> •
         <a href="https://alanpruitt.com/research-log/">research-log</a> •
-        <a href="https://exwtoolkit.com">exwtoolkit.com</a> •
+        <a href="https://exwtoolkit.com/">exwtoolkit.com</a> •
         <a href="https://me.developers.google.com/u/alanpruitt">g.dev/alanpruitt</a>
       </div>
     </footer>
