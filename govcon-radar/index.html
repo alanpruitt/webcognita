@@ -1456,7 +1456,7 @@
           <span class="copy-tip" role="status"></span>
         </span>
         <button type="button" id="btn-download-brief" class="btn-secondary">Download .md</button>
-        <a id="btn-mailto-apex" class="card-sow-btn" href="mailto:azapex.admin@domail.maricopa.edu">Open Email Draft (AZ APEX) &rarr;</a>
+        <a id="btn-mailto-apex" class="card-sow-btn" href="https://mail.google.com/mail/?authuser=alan.pruitt%40gmail.com&amp;view=cm&amp;fs=1&amp;tf=1" target="_blank" rel="noopener noreferrer">Open Gmail Draft (alan@webcognita.com) &rarr;</a>
       </div>
 
       <pre id="bid-brief-preview" tabindex="0" aria-label="Generated Arizona APEX Solicitation Review Request or FAR 13 Quote Cover Sheet"></pre>
@@ -2551,12 +2551,12 @@
         }
       }
 
-      async function fetchLoopbackBridge(path, method = 'GET', bodyObj = null) {
+      async function fetchLoopbackBridge(path, method = 'GET', bodyObj = null, timeoutMs = 2500) {
         const opts = {
           method,
           mode: 'cors',
           targetAddressSpace: 'loopback',
-          signal: AbortSignal.timeout(2500),
+          signal: AbortSignal.timeout(timeoutMs),
         };
         if (bodyObj !== null) {
           opts.headers = { 'Content-Type': 'application/json' };
@@ -2876,6 +2876,28 @@
         return lines.join('\n');
       }
 
+      const GMAIL_PRIMARY_AUTHUSER = 'alan.pruitt@gmail.com';
+      const GMAIL_SEND_AS_EMAIL = 'alan@webcognita.com';
+
+      function stripMemoHeaderForGmailBody(rawText, mode) {
+        if (mode !== 'PARTNER') return rawText;
+        const idx = rawText.indexOf('Dear Principal Investigator');
+        return idx > 0 ? rawText.slice(idx) : rawText;
+      }
+
+      function buildGmailWebComposeUrl(toAddr, subj, bodyText) {
+        const params = new URLSearchParams({
+          authuser: GMAIL_PRIMARY_AUTHUSER,
+          view: 'cm',
+          fs: '1',
+          tf: '1',
+          su: subj || '',
+          body: (bodyText || '').slice(0, 1800),
+        });
+        if (toAddr) params.set('to', toAddr);
+        return `https://mail.google.com/mail/?${params.toString()}`;
+      }
+
       function renderBidBriefModalContent() {
         const solRef = (document.getElementById('brief-sol-ref')?.value || '').trim();
         const customNote = (document.getElementById('brief-custom-note')?.value || '').trim();
@@ -2891,23 +2913,38 @@
         preview.textContent = text;
 
         if (mailtoBtn) {
+          const emailBody = stripMemoHeaderForGmailBody(text, activeBriefMode);
           if (activeBriefMode === 'APEX') {
-            mailtoBtn.hidden = false;
-            mailtoBtn.textContent = 'Open Email Draft (AZ APEX) \u2192';
+            const toAddr = 'azapex.admin@domail.maricopa.edu';
             const firstTitle = activeBriefLeads[0]?.ti || 'Solicitation Review';
             const subj = activeBriefLeads.length > 1
               ? `1-on-1 Solicitation Review Request (${activeBriefLeads.length} Targets) — Webcognita LLC (UEI: EZ34U9KNJA17)`
               : `1-on-1 Solicitation Review Request — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 70)}`;
-            mailtoBtn.href = `mailto:azapex.admin@domail.maricopa.edu?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.slice(0, 1800))}`;
+            mailtoBtn.hidden = false;
+            mailtoBtn.textContent = `Open Gmail Draft (AZ APEX \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`;
+            mailtoBtn.dataset.to = toAddr;
+            mailtoBtn.dataset.subject = subj;
+            mailtoBtn.href = buildGmailWebComposeUrl(toAddr, subj, emailBody);
           } else if (activeBriefMode === 'PARTNER') {
             const piEmail = extractLeadEmail(activeBriefLeads[0]);
-            mailtoBtn.hidden = false;
-            mailtoBtn.textContent = piEmail ? `Open Email Draft to PI (${piEmail}) \u2192` : 'Open Email Draft (PI / Director) \u2192';
             const firstTitle = activeBriefLeads[0]?.ti || 'Grant Collaboration';
             const subj = `Non-Competing Enabling Partner (WCAG 2.2 AA / Curriculum-as-Code / Local AI) — ${firstTitle.slice(0, 68)}`;
-            mailtoBtn.href = `mailto:${encodeURIComponent(piEmail)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.slice(0, 1800))}`;
+            mailtoBtn.hidden = false;
+            mailtoBtn.textContent = piEmail
+              ? `Open Gmail Draft to PI (${piEmail} \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`
+              : `Open Gmail Draft (PI / Director \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`;
+            mailtoBtn.dataset.to = piEmail;
+            mailtoBtn.dataset.subject = subj;
+            mailtoBtn.href = buildGmailWebComposeUrl(piEmail, subj, emailBody);
           } else {
-            mailtoBtn.hidden = true;
+            const coEmail = extractLeadEmail(activeBriefLeads[0]);
+            const firstTitle = activeBriefLeads[0]?.ti || 'Commercial Quote';
+            const subj = `Commercial Quote Submission — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 68)}`;
+            mailtoBtn.hidden = false;
+            mailtoBtn.textContent = `Open Gmail Draft (Quote Cover \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`;
+            mailtoBtn.dataset.to = coEmail;
+            mailtoBtn.dataset.subject = subj;
+            mailtoBtn.href = buildGmailWebComposeUrl(coEmail, subj, emailBody);
           }
         }
       }
@@ -3188,6 +3225,53 @@
         a.download = `${prefix}-${slug}-${new Date().toISOString().slice(0, 10)}.md`;
         a.click();
         setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      });
+      document.getElementById('btn-mailto-apex')?.addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        const rawText = document.getElementById('bid-brief-preview')?.innerText || '';
+        if (!rawText) return;
+        e.preventDefault();
+        const toAddr = btn.dataset.to || '';
+        const subj = btn.dataset.subject || 'Webcognita LLC Inquiry';
+        const emailBody = stripMemoHeaderForGmailBody(rawText, activeBriefMode);
+        const fallbackComposeUrl = buildGmailWebComposeUrl(toAddr, subj, emailBody);
+
+        // Open new tab synchronously inside user gesture so popup blockers never suppress Gmail
+        const gmailWin = window.open('about:blank', '_blank');
+        if (gmailWin) {
+          try {
+            gmailWin.opener = null;
+            gmailWin.document.title = 'Staging Gmail Draft (alan@webcognita.com)...';
+          } catch (_) {}
+        }
+
+        const origLabel = btn.textContent;
+        btn.textContent = 'Staging Gmail Draft (alan@webcognita.com)...';
+        try {
+          const perm = await queryLnaPermissionSafe();
+          if (perm === 'denied') throw new Error('LNA loopback denied');
+          const res = await fetchLoopbackBridge(
+            '/api/bi-triage/gmail-draft',
+            'POST',
+            { to: toAddr, subject: subj, body: emailBody, mode: activeBriefMode },
+            10000
+          );
+          const targetUrl = (res && res.ok && res.gmail_draft_url) ? res.gmail_draft_url : fallbackComposeUrl;
+          if (gmailWin && !gmailWin.closed) {
+            gmailWin.location.replace(targetUrl);
+          } else {
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+          }
+        } catch (_) {
+          // Graceful fallback when away from M2 HQ: still opens Gmail Web Compose (never Outlook mailto:)
+          if (gmailWin && !gmailWin.closed) {
+            gmailWin.location.replace(fallbackComposeUrl);
+          } else {
+            window.open(fallbackComposeUrl, '_blank', 'noopener,noreferrer');
+          }
+        } finally {
+          btn.textContent = origLabel;
+        }
       });
 
       const copyTimers = new WeakMap();
