@@ -731,9 +731,60 @@
     @media (pointer: coarse) {
       .btn-secondary,
       .card-link-btn,
-      .card-sow-btn {
+      .card-sow-btn,
+      .usa-radio-row {
         min-block-size: 48px;
       }
+    }
+    .usa-stream-fieldset {
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      margin: 0 0 0.85rem 0;
+      background-color: #FFFFFF;
+      color: #111827;
+    }
+    .usa-stream-fieldset legend {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #FFFFFF;
+      padding: 0 0.35rem;
+    }
+    .usa-radio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+    }
+    .usa-radio-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.5rem 0.65rem;
+      border: 1.5px solid #94A3B8;
+      border-radius: 6px;
+      background-color: #F4F7FB;
+      color: #111827;
+      min-block-size: 44px;
+    }
+    .usa-radio-row:has(input[type="radio"]:checked) {
+      border-color: #0B1D3A;
+      background-color: #FFFFFF;
+      box-shadow: inset 0 0 0 1px #0B1D3A;
+    }
+    .usa-radio-row input[type="radio"] {
+      accent-color: #0B1D3A;
+      inline-size: 1.15rem;
+      block-size: 1.15rem;
+      margin-block-start: 0.18rem;
+      flex-shrink: 0;
+    }
+    .usa-radio-row label {
+      font-size: 0.85rem;
+      line-height: 1.38;
+      color: #0B1D3A;
+      cursor: pointer;
     }
     .chip-row {
       display: flex;
@@ -1139,7 +1190,8 @@
       <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
       <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
       <button type="button" role="tab" id="tab-statutes" aria-selected="false" tabindex="-1">5. Statutes &amp; OSINT Deck (12)</button>
-      <button type="button" role="tab" id="tab-triage" aria-selected="false" tabindex="-1" hidden>6. BI Lead Triage</button>
+      <button type="button" role="tab" id="tab-usaspending" aria-selected="false" tabindex="-1">6. Live USAspending.gov API</button>
+      <button type="button" role="tab" id="tab-triage" aria-selected="false" tabindex="-1" hidden>7. BI Lead Triage</button>
     </div>
 
     <div class="panel-grid">
@@ -1370,7 +1422,66 @@
         </div>
       </div>
 
-      <!-- PANEL 6: PRIVATE ZERO-EGRESS `#bi=...` & M2 LOOPBACK TRIAGE BRIDGE -->
+      <!-- PANEL 6: ON-DEMAND LIVE USASPENDING.GOV V2 RECOMPETE, GPC & GRANT LOOKUP -->
+      <div role="tabpanel" id="panel-usaspending" aria-labelledby="tab-usaspending" hidden="until-found">
+        <div class="panel-inner">
+          <h2 id="usa-panel-heading" style="margin-top: 0; color: #0B1D3A; background-color: #FFFFFF;">On-Demand Live USAspending.gov v2 Award, GPC &amp; Recompete Lookup</h2>
+          <p style="margin: 0 0 0.85rem 0; font-size: 0.9rem; color: #111827; background-color: #FFFFFF;">
+            <strong>Strict Opt-In Zero-Egress:</strong> Zero external requests run when you open GovCon Radar. Only when you submit below does your browser query the public Treasury endpoint (<code>POST https://api.usaspending.gov/api/v2/search/spending_by_award/</code> with <code>credentials: 'omit'</code> and <code>no-referrer</code>) to surface incumbent contractors, 12-month recompete windows, <code>&lt;= $15K</code> GPC benchmarks, and funded 50-State institutional grants.
+          </p>
+
+          <search class="control-well" style="margin-bottom: 0.9rem;">
+            <form id="usa-live-form" aria-labelledby="usa-panel-heading" action="https://www.usaspending.gov/search" method="GET">
+              <fieldset class="usa-stream-fieldset">
+                <legend>1. Choose Capture Stream (Webcognita NAICS 541511, 541512, 541715, 611710, 541690)</legend>
+                <div class="usa-radio-grid">
+                  <div class="usa-radio-row">
+                    <input type="radio" id="usa-stream-a" name="usa_stream" value="STREAM_A" checked>
+                    <label for="usa-stream-a"><strong>Stream A &mdash; $3K&ndash;$350K Prime &amp; Recompetes:</strong> Nationwide FAR 2.101 SAT contracts, GPC micro-purchases (<code>&lt;= $15K</code>), &amp; 12-month recompete windows.</label>
+                  </div>
+                  <div class="usa-radio-row">
+                    <input type="radio" id="usa-stream-b" name="usa_stream" value="STREAM_B">
+                    <label for="usa-stream-b"><strong>Stream B &mdash; AZ + San Diego + Imperial Corridor:</strong> Home-court Arizona, Imperial (<code>CA-025</code>), &amp; San Diego (<code>CA-073</code>) primes &amp; <code>10% VOSB</code> subcontracting targets.</label>
+                  </div>
+                  <div class="usa-radio-row">
+                    <input type="radio" id="usa-stream-c" name="usa_stream" value="STREAM_C">
+                    <label for="usa-stream-c"><strong>Stream C &mdash; 50-State Institutional Grants:</strong> Domestic DOL, ED, USDA, HHS, NSF, &amp; DOC awards to colleges/universities for Non-Competing Enabling Partner outreach.</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="search-box">
+                <div>
+                  <label for="usa-keywords" class="field-label">2. Award Description Keywords (Comma-Separated Phrases):</label>
+                  <div id="usa-keywords-hint" style="font-size: 0.82rem; color: #111827; background-color: #F4F7FB; margin-bottom: 0.3rem;">Separate phrases with commas (for example: <code>Section 508, WCAG, AI literacy, Canvas LMS</code>).</div>
+                  <input id="usa-keywords" name="keywords" class="search-input" type="search" value="Section 508, WCAG, digital accessibility, AI literacy, Canvas LMS, curriculum development, Progressive Web App" aria-describedby="usa-keywords-hint" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+                </div>
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                  <button type="submit" id="btn-usa-submit" class="btn-primary">Query USAspending.gov v2 API</button>
+                </div>
+              </div>
+
+              <div class="chip-row" style="margin-top: 0.65rem; margin-bottom: 0;">
+                <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Load Keyword Preset:</span>
+                <button type="button" class="btn-secondary usa-preset-btn" data-usa-kw="Section 508, WCAG, digital accessibility, ADA Title II, PDF remediation">Section 508 &amp; WCAG Remediation</button>
+                <button type="button" class="btn-secondary usa-preset-btn" data-usa-kw="AI literacy, Super Intelligence, artificial intelligence training, curriculum development, Canvas LMS">AI / SI Literacy &amp; Curriculum-as-Code</button>
+                <button type="button" class="btn-secondary usa-preset-btn" data-usa-kw="Strengthening Community Colleges, Open Educational Resources, Hispanic-Serving, Tribal College, Food as Medicine">50-State College &amp; Food-as-Medicine Grants</button>
+              </div>
+            </form>
+          </search>
+
+          <progress id="usa-loading-bar" class="ring-progress-bar" style="margin-bottom: 0.85rem;" aria-label="Querying USAspending.gov v2 API" hidden></progress>
+
+          <div id="usa-telemetry" class="telemetry-bar" aria-live="polite">
+            <span>Idle (0 external requests sent). Choose a Capture Stream and select Query USAspending.gov v2 API.</span>
+            <span>Source: api.usaspending.gov/api/v2 ($0 &bull; Key-Free)</span>
+          </div>
+
+          <div id="usa-results" class="cards-grid"></div>
+        </div>
+      </div>
+
+      <!-- PANEL 7: PRIVATE ZERO-EGRESS `#bi=...` & M2 LOOPBACK TRIAGE BRIDGE -->
       <div role="tabpanel" id="panel-triage" aria-labelledby="tab-triage" hidden>
         <div class="panel-inner">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
@@ -2008,6 +2119,9 @@
         const adaSowCta = isAda2027
           ? `<a class="card-sow-btn" href="${escapeHtml(sowHref)}">Generate $4.5K&ndash;$9.9K P-Card SOW &rarr;<span class="sr-only"> for ${escapeHtml(orgShort)}</span></a>`
           : '';
+        const usaLiveCta = node.id === 'FED-01'
+          ? `<button type="button" class="card-sow-btn" data-open-usaspending="true">Open Live USAspending v2 Lookup &rarr;</button>`
+          : '';
         const activeToggleBtn = node.isPortal && !isLockedAct
           ? `<button type="button" class="active-toggle-btn" data-act-id="${escapeHtml(node.id)}" data-act-title="${escapeHtml(node.title)}" aria-pressed="${isAct ? 'true' : 'false'}" aria-label="${isAct ? 'Portal registration active (select to unmark): ' : 'Mark portal registration active: '}${escapeHtml(node.title)}">${isAct ? 'ACTIVE' : 'Mark Active'}</button>`
           : '';
@@ -2039,6 +2153,7 @@
             </div>
             <div class="card-cta-stack">
               ${adaSowCta}
+              ${usaLiveCta}
               <a class="card-link-btn" href="${escapeHtml(node.url)}" target="_blank" rel="noopener noreferrer">${ctaVerb} (${escapeHtml(new URL(node.url).hostname)})<span class="sr-only"> &mdash; ${escapeHtml(orgShort)}</span></a>
             </div>
           </article>
@@ -3371,6 +3486,276 @@
       }
       window.addEventListener('hashchange', bootstrapBiTriageBridge);
 
+      // --- 6. On-Demand Live USAspending.gov v2 Award, GPC & Recompete Lookup (Strict User-Initiated Opt-In) ---
+      const USA_NAICS_LIST = ['541511', '541512', '541715', '611710', '541690'];
+      const USA_NOISE_RE = /\b(animal research|husbandry|veterinary|screwworm|swine influenza|avian influenza|livestock|chaplain|catholic|protestant|religious education|janitorial|custodial|hvac|plumbing|roofing|paving|landscaping|munitions|aerodynamic|flight simulator|weapon system)\b/i;
+
+      function hashUsaAwardId(urlStr) {
+        let h = 2166136261;
+        for (let i = 0; i < urlStr.length; i += 1) {
+          h ^= urlStr.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return 'usa_' + (h >>> 0).toString(16).padStart(8, '0');
+      }
+
+      document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-open-usaspending="true"]');
+        if (!trigger) return;
+        const usaTab = document.getElementById('tab-usaspending');
+        if (usaTab) {
+          activateTab(usaTab, false);
+          document.getElementById('usa-keywords')?.focus();
+        }
+      });
+
+      document.querySelectorAll('.usa-preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const kwInput = document.getElementById('usa-keywords');
+          if (kwInput) {
+            kwInput.value = btn.getAttribute('data-usa-kw') || '';
+            kwInput.focus();
+          }
+        });
+      });
+
+      function buildUsaSpendingPayload(streamMode, kwRaw) {
+        const now = new Date();
+        const startIso = new Date(now.getTime() - 240 * 86400000).toISOString().slice(0, 10);
+        const endIso = new Date(now.getTime() + 365 * 86400000).toISOString().slice(0, 10);
+        const keywords = String(kwRaw || '')
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+          .slice(0, 12);
+        const kwSafe = keywords.length ? keywords : ['Section 508', 'WCAG', 'AI literacy', 'curriculum'];
+        const fields = [
+          'Award ID',
+          'Recipient Name',
+          'Start Date',
+          'End Date',
+          'Award Amount',
+          'Awarding Agency',
+          'Awarding Sub Agency',
+          'Description',
+          'NAICS Code',
+          'Place of Performance State Code',
+          'generated_internal_id',
+        ];
+        let filters;
+        if (streamMode === 'STREAM_B') {
+          filters = {
+            time_period: [{ start_date: startIso, end_date: endIso }],
+            award_type_codes: ['A', 'B', 'C', 'D'],
+            naics_codes: { require: USA_NAICS_LIST },
+            place_of_performance_locations: [
+              { country: 'USA', state: 'AZ' },
+              { country: 'USA', state: 'CA', county: '073' },
+              { country: 'USA', state: 'CA', county: '025' },
+            ],
+            keywords: kwSafe,
+          };
+        } else if (streamMode === 'STREAM_C') {
+          filters = {
+            time_period: [{ start_date: startIso, end_date: endIso }],
+            award_type_codes: ['02', '03', '04', '05'],
+            place_of_performance_scope: 'domestic',
+            agencies: [
+              { type: 'awarding', tier: 'toptier', name: 'Department of Labor' },
+              { type: 'awarding', tier: 'toptier', name: 'Department of Education' },
+              { type: 'awarding', tier: 'toptier', name: 'Department of Agriculture' },
+              { type: 'awarding', tier: 'toptier', name: 'Department of Health and Human Services' },
+              { type: 'awarding', tier: 'toptier', name: 'National Science Foundation' },
+              { type: 'awarding', tier: 'toptier', name: 'Department of Commerce' },
+            ],
+            keywords: kwSafe,
+          };
+        } else {
+          filters = {
+            time_period: [{ start_date: startIso, end_date: endIso }],
+            award_type_codes: ['A', 'B', 'C', 'D'],
+            naics_codes: { require: USA_NAICS_LIST },
+            award_amounts: [{ lower_bound: 3000, upper_bound: 350000 }],
+            keywords: kwSafe,
+          };
+        }
+        return {
+          fields,
+          filters,
+          page: 1,
+          limit: 24,
+          sort: 'Start Date',
+          order: 'desc',
+        };
+      }
+
+      function renderUsaSpendingResults(rows, streamMode) {
+        const grid = document.getElementById('usa-results');
+        const tel = document.getElementById('usa-telemetry');
+        if (!grid || !tel) return;
+
+        const nowMs = Date.now();
+        const leads = [];
+        let noiseKilled = 0;
+
+        (rows || []).forEach((row) => {
+          const desc = String(row['Description'] || '').replace(/\s+/g, ' ').trim();
+          const recip = String(row['Recipient Name'] || 'Unknown Recipient').trim();
+          const agency = String(row['Awarding Agency'] || 'Federal Agency').trim();
+          const subAgency = String(row['Awarding Sub Agency'] || agency).trim();
+          const combined = `${desc} ${recip} ${agency} ${subAgency}`;
+          if (USA_NOISE_RE.test(combined)) {
+            noiseKilled += 1;
+            return;
+          }
+          const genId = String(row['generated_internal_id'] || '').trim();
+          const awardId = String(row['Award ID'] || '').trim();
+          const canonUrl = genId
+            ? `https://www.usaspending.gov/award/${encodeURIComponent(genId)}`
+            : `https://www.usaspending.gov/search?hash=${encodeURIComponent(awardId)}`;
+          const amt = Number(row['Award Amount'] || 0);
+          const amtFmt = '$' + Math.round(amt).toLocaleString('en-US');
+          const startD = String(row['Start Date'] || '').slice(0, 10);
+          const endD = String(row['End Date'] || '').slice(0, 10);
+          const popState = String(row['Place of Performance State Code'] || 'US').trim();
+          const naics = String(row['NAICS Code'] || '541511, 541512, 611710');
+
+          const isGrant = streamMode === 'STREAM_C';
+          const tags = [];
+          if (isGrant) {
+            tags.push('Funded Grant');
+          } else if (amt > 0 && amt <= 15000) {
+            tags.push('GPC Micro-Purchase Benchmark');
+          } else if (amt > 350000) {
+            tags.push('10% VOSB SubK Target');
+          }
+          if (endD) {
+            const daysLeft = Math.round((Date.parse(endD) - nowMs) / 86400000);
+            if (!Number.isNaN(daysLeft) && daysLeft >= -30 && daysLeft <= 365) {
+              tags.push(`Recompete Window (${endD})`);
+            }
+          }
+          const tagLabel = tags.length ? tags.join(' \u2022 ') : 'Contract Benchmark';
+          const ringNum = popState === 'AZ' ? 3 : (streamMode === 'STREAM_B' && popState === 'CA' ? 5 : 9);
+          const scoreEst = isGrant ? 78 : (popState === 'AZ' ? 84 : (amt > 0 && amt <= 15000 ? 80 : 72));
+
+          leads.push({
+            h: hashUsaAwardId(canonUrl),
+            r: ringNum,
+            n: 'FED-01',
+            s: scoreEst,
+            t: isGrant ? 'PARTNER_SUBAWARD' : 'PURSUE_PRIME',
+            c: 'USASPENDING_LIVE',
+            ti: `[USAspending ${tagLabel} \u2014 ${amtFmt} | ${popState}] ${subAgency}: ${desc.slice(0, 115)}`,
+            ag: isGrant ? `${recip} (${subAgency})` : `${subAgency} (Incumbent: ${recip})`,
+            dl: `${amtFmt} | Start: ${startD || 'N/A'} | Ends: ${endD || 'N/A'}`,
+            u: canonUrl,
+            na: naics,
+            tr: isGrant ? 'NON_COMPETING_50STATE_ENABLING_PARTNER' : 'DIRECT_PRIME_VOSB',
+            sn: `Recipient/Incumbent: ${recip} | Award ID: ${awardId || 'N/A'} | Agency: ${agency} (${subAgency}) | ${desc.slice(0, 220)}`,
+            recip,
+            awardId,
+            tagLabel,
+          });
+        });
+
+        tel.innerHTML = `<span>Returned ${leads.length} qualified USAspending.gov awards (${noiseKilled} irrelevant noise filtered)</span><span>Click 1-Click Brief to stage Gmail Draft (alan@webcognita.com)</span>`;
+
+        if (!leads.length) {
+          const empty = document.createElement('div');
+          empty.className = 'plain-callout';
+          empty.style.gridColumn = '1 / -1';
+          empty.textContent = 'No matching USAspending.gov awards found for these keywords and stream filters. Broaden keywords or switch Capture Streams above.';
+          grid.replaceChildren(empty);
+          return;
+        }
+
+        const cards = leads.map((ld) => {
+          const isPartner = isEnablingPartnerLead(ld);
+          const qInfo = computeClientLeadQuant(ld);
+          const qBg = qInfo.call === 'GREEN_LIGHT_SWING' ? '#064E3B' : (qInfo.call === 'TAKE_PITCH_TRAP' ? '#7E061E' : '#0B1D3A');
+          const wopsStr = qInfo.wops >= 1 ? qInfo.wops.toFixed(3) : qInfo.wops.toFixed(3).slice(1);
+          const ringClass = ld.r === 9 ? 'ring-chip-9' : 'ring-chip';
+          const ringBg = ld.r === 9 ? '#1E293B' : '#0B1D3A';
+          const savedDec = biDecisions[ld.h]?.decision || '';
+
+          const art = document.createElement('article');
+          art.className = 'node-card' + (savedDec === 'PURSUE' ? ' is-wcg-ready' : '');
+          art.innerHTML = `
+            <div>
+              <div class="card-top-row">
+                <div class="meta-row">
+                  <span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">Ring ${ld.r}</span>
+                  <span class="score-chip" style="color: #FFFFFF; background-color: #08454A; border-color: #08454A;">${escapeHtml(ld.tagLabel)}</span>
+                  <span class="score-chip" style="color: #FFFFFF; background-color: ${qBg}; border-color: ${qBg};">${escapeHtml(qInfo.label)} &bull; wOPS ${wopsStr}</span>
+                </div>
+              </div>
+              <h3>${escapeHtml(ld.ti)}</h3>
+              <p class="kv-line"><strong>Agency &amp; Incumbent/Recipient:</strong> ${escapeHtml(ld.ag)}</p>
+              <p class="kv-line"><strong>Obligation &amp; Period:</strong> ${escapeHtml(ld.dl)}</p>
+              <p class="kv-line"><strong>Award ID / NAICS:</strong> <code>${escapeHtml(ld.awardId || 'N/A')}</code> &bull; NAICS ${escapeHtml(ld.na)}</p>
+              <p style="font-size: 0.86rem; margin: 0.45rem 0 0 0;">${escapeHtml(ld.sn)}</p>
+            </div>
+            <div class="card-cta-stack">
+              <button type="button" class="btn-export-brief is-pursue usa-brief-btn">${isPartner ? '1-Click PI / Subaward Pitch \u2192' : '1-Click Bid / APEX Brief \u2192'}<span class="sr-only"> for ${escapeHtml(ld.ti)}</span></button>
+              <button type="button" class="btn-secondary usa-save-triage-btn" aria-pressed="${savedDec === 'PURSUE' ? 'true' : 'false'}">${savedDec === 'PURSUE' ? 'Saved to BI Triage (Pursue)' : 'Save to BI Triage (Pursue)'}<span class="sr-only"> &mdash; ${escapeHtml(ld.ti)}</span></button>
+              <a class="card-link-btn" href="${escapeHtml(ld.u)}" target="_blank" rel="noopener noreferrer">Open Official USAspending Record<span class="sr-only"> &mdash; ${escapeHtml(ld.ti)}</span></a>
+            </div>
+          `;
+          art.querySelector('.usa-brief-btn')?.addEventListener('click', () => {
+            openBidBriefDialog([ld], isPartner ? 'PARTNER' : 'APEX');
+          });
+          const saveBtn = art.querySelector('.usa-save-triage-btn');
+          saveBtn?.addEventListener('click', async () => {
+            if (!biLeads.some((x) => x.h === ld.h)) {
+              biLeads.unshift(ld);
+              persistBiLeadsCache();
+            }
+            revealTriageTab(false);
+            await recordLeadDecision(ld, 'PURSUE');
+            const nowPursue = (biDecisions[ld.h]?.decision || '') === 'PURSUE';
+            saveBtn.setAttribute('aria-pressed', nowPursue ? 'true' : 'false');
+            saveBtn.textContent = nowPursue ? 'Saved to BI Triage (Pursue)' : 'Save to BI Triage (Pursue)';
+          });
+          return art;
+        });
+        grid.replaceChildren(...cards);
+      }
+
+      document.getElementById('usa-live-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('btn-usa-submit');
+        const progressEl = document.getElementById('usa-loading-bar');
+        const tel = document.getElementById('usa-telemetry');
+        const streamChecked = document.querySelector('input[name="usa_stream"]:checked');
+        const streamMode = streamChecked ? streamChecked.value : 'STREAM_A';
+        const kwVal = document.getElementById('usa-keywords')?.value || '';
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (progressEl) progressEl.hidden = false;
+        try {
+          const payload = buildUsaSpendingPayload(streamMode, kwVal);
+          const resp = await fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            credentials: 'omit',
+            referrerPolicy: 'no-referrer',
+            signal: AbortSignal.timeout(20000),
+          });
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+          const data = await resp.json();
+          renderUsaSpendingResults(data.results || [], streamMode);
+        } catch (err) {
+          if (tel) {
+            tel.innerHTML = `<span>USAspending.gov API request failed (${escapeHtml(err.message || String(err))}). Verify connectivity or retry.</span><span>Source: api.usaspending.gov/api/v2</span>`;
+          }
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+          if (progressEl) progressEl.hidden = true;
+        }
+      });
+
       function applyInitialFilterDeepLink() {
         const searchParams = new URLSearchParams(location.search);
         const rawHash = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
@@ -3380,7 +3765,8 @@
           router: 'tab-router',
           crosswalk: 'tab-crosswalk',
           readiness: 'tab-readiness',
-          statutes: 'tab-statutes'
+          statutes: 'tab-statutes',
+          usaspending: 'tab-usaspending'
         };
         if (tabMap[tabKey]) {
           const targetTab = document.getElementById(tabMap[tabKey]);
