@@ -3,45 +3,45 @@
 
   const STORAGE_PRIMARY_KEY = 'webcognita_bcm_state_v1';
   const STORAGE_SHADOW_KEY = 'webcognita_bcm_shadow_lkg_v1';
-  const SCHEMA_VERSION = 3;
+  const SCHEMA_VERSION = 4;
   const SAMFORD_MONEYBALL_URL = 'https://www.samford.edu/sports-analytics/fans/2019/The-Moneyball-Science';
   const DEPODESTA_OBP_WEIGHT = 2737.8 / 1584.9; // 1.7274x (Samford "The Moneyball Science": RS = -804.6 + 2737.8*OBP + 1584.9*SLG)
 
   const LENS_META = {
     ALL: {
       label: 'Master Moneyball View',
-      counselorTitle: 'Sabermetrics (OBP + SLG = OPS) + Regression Forecast + Constrained Optimization',
+      counselorTitle: 'Sabermetrics (OBP + SLG = OPS) + 8-5 Auto-Shifting Capture + Constrained Optimization',
       checklist: [
-        'Sabermetrics Over Gut Feel: Buy on-base percentage (OBP = zero-quote P-Card / GPC / SB eQuote wins + signed PPQs), never chase 2%-win open-market RFP "home runs."',
-        'Predictive Regression: Forecast annual "Runs Scored" (net contribution $) vs. "Runs Allowed" ($0 cloud/SaaS burn + capped BD hours) required to clinch Stage 3 vehicles.',
-        'Constrained Optimization: Solve the weekly principal-hour knapsack so undervalued Ring 0-2 rural ADA & statutory set-aside lanes get 100% of capture capacity.'
+        'Sabermetrics Over Gut Feel: Buy on-base percentage (OBP = zero-quote P-Card / GPC / SB eQuote wins, Open-Market 6-12 Mo Recompetes & signed PPQs), never chase 2%-win blind RFP cattle calls.',
+        'Self-Rebalancing 8-5 Rhythm: Cap daily BD at 75 mins (25m Morning BI Triage + 20m "2 Portals/Day" Next-Up cap that auto-shrinks to 0m at 108/108 + 30m Afternoon Recompete/PI pitch).',
+        'Constrained Optimization: Solve the weekly principal-hour knapsack across 10 NAICS x 10 PSCs, Yuma City LSA (FAR 52.219-2), DoD PIEE/SPRS + 5-Base AZ Lodging, and ADE BPM007864 (Submitted 11/25).'
       ]
     },
     SBDC: {
       label: 'SBDC Session',
-      counselorTitle: 'AWC / AZ SBDC Focus: Oakland A\'s Unit Economics, Regression Cash Flow & AZ FAST ($3K)',
+      counselorTitle: 'AWC / AZ SBDC Focus: Oakland A\'s Unit Economics, GBP + Trade Name Moat & AZ FAST ($3K)',
       checklist: [
-        'Audit our Constrained Payroll Advantage: $0 debt, $0 recurring SaaS/LLM burn, and 97.1% net-of-card-fee contribution margin on $4,500-$9,900 P-Card sprints.',
-        'Stress-test the Linear Regression Run-Differential model (outbound SOW velocity -> expected paid invoices -> working capital Exhibit R-03).',
-        'Lock the $3,000 Arizona Commerce Authority AZ FAST Phase 0 grant timeline (highest-OPS $0-equity slugging catalyst in Arizona).'
+        'Audit our Constrained Payroll Advantage: $0 debt, $0 recurring SaaS/LLM burn, certified AZ SOS Trade Name (#9260023 thru 2032), reinstated Yuma Google Business Profile, and 97.1% net-of-card-fee margin.',
+        'Stress-test the Linear Regression Run-Differential model (outbound SOW + 6-12 Mo Recompete velocity -> expected paid invoices -> working capital Exhibit R-03).',
+        'Lock the $3,000 Arizona Commerce Authority AZ FAST Phase 0 grant timeline (NAICS 541715 SBIR/STTR active on SAM.gov as of 11/25).'
       ]
     },
     APEX: {
       label: 'APEX Accelerator',
-      counselorTitle: 'Arizona APEX Focus: Statutory OBP Multipliers, VetCert, APP eQuotes & Co-Op Slugging',
+      counselorTitle: 'Chris Bridgewater (Mon Nov 30 Zoom): ADE BPM007864 Red-Team, 10x10 BidMatch, PIEE/SPRS & Case #00009160',
       checklist: [
-        'Raise OBP via Statutory Set-Asides: Pre-submit QA on staged SBA VetCert packet (38 U.S.C. 8127 VA Veterans First) + app.az.gov Small Business eQuotes (A.R.S. 41-2535).',
-        'Raise SLG via Piggyback Vehicles: Identify next open 1GPA or Mohave (MESC) IT/Accessibility cooperative RFP so 200+ AZ buyers can issue > $100K POs with zero new RFP.',
-        'Enforce the Moneyball "No-Swing Rule": Request 1-on-1 APEX solicitation reviews only on high-OPS restricted/local bids; bench low-OBP full-and-open cattle calls.'
+        'Post-Submission Red-Team on ADE BPM007864 (Submitted 11/25, 28d early): Confirm $1.00 Items (F) entry, toggle APP #IV0000112720 Small Business flag, and fix "Webcognita LCC" -> "Webcognita LLC" profile typo from Yuma IP.',
+        'Activate $0 APEX BidMatch across all 10 NAICS x 10 PSCs + 5-Base AZ DoD Corridor (MCAS Yuma, YPG, Luke AFB 56 CONS, Davis-Monthan 355 CONS, Fort Huachuca) & confirm proactive SPRS CMMC L1 affirmation (PIEE linked).',
+        'Escalate MySBA VetCert Case #00009160 (UEI EZ34U9KNJA17 SAM.gov sync) ahead of Dec 8-18 Israel OPSEC blackout (strictly zero foreign-IP portal logins).'
       ]
     },
     GRANTS: {
       label: 'Higher-Ed & Grants',
-      counselorTitle: 'University & Federal R&D Focus: Non-Competing OBP + SBIR/STTR Extra-Base Slugging',
+      counselorTitle: 'University & Federal R&D Focus: Non-Competing 50-State Enabling Partner (NSF AI-Ready + DOL TEN 07-25)',
       checklist: [
-        'Maximize Institutional OBP: Enter NSF 26-508 AI-Ready and U.S. DOL TEN No. 07-25 consortia strictly as a Non-Competing Enabling Partner ($0 ZTC OER + S-A-R v2.2).',
-        'Partner with The University of Arizona Small Business Utilization (FNSV-Purchasing@arizona.edu) on < $25K ABOR 3-803 D.1 direct POs and STTR (>= 30% R&D inflow).',
-        'Compound into Phase III Sole-Source Authority (15 U.S.C. 638(r)(4)) with 0% equity dilution and 20-year SBIR Data Rights.'
+        'Maximize Institutional OBP: Enter NSF 26-508 AI-Ready and U.S. DOL ETA TEN No. 07-25 (Streams D & E live in /govcon-radar/) strictly as a Non-Competing Enabling Partner ($0 ZTC OER + S-A-R v2.2).',
+        'Deploy 2 Frictionless 2 CFR Part 200 Rails: Option A Pre-Award Named Partner LOC ($25K-$75K/yr, zero post-award RFP) or Option B Post-Award Turnkey PO ($9.5K-$24.5K under < $25K ABOR 3-803 D.1 / $50K Uniform Guidance).',
+        'Compound NAICS 541715 into SBIR/STTR Phase III Sole-Source Authority (15 U.S.C. 638(r)(4)) with 0% equity dilution and 20-year SBIR Data Rights.'
       ]
     }
   };
@@ -53,16 +53,16 @@
   // bdHoursPerAtBat = principal BD/capture hours per pitch or proposal
   // cashCost = out-of-pocket BD cash required (USD)
   function buildSabermetricLanes(live, opt) {
-    const portalRatio = (live.activePortals || 61) / Math.max(1, live.totalPortals || 94);
+    const portalRatio = (live.activePortals || 71) / Math.max(1, live.totalPortals || 108);
     const pitchesWk = opt.sowPitchesPerWeek || 3;
-    const maxAdaPool = (live.adaTargets || 30) + 18; // 30 core <50K cities/counties/airports + 18 special districts
+    const maxAdaPool = (live.adaTargets || 36) + 18; // 36 core <50K cities/counties/airports + 18 special districts
     const boundedAdaAtBats = Math.min(maxAdaPool, pitchesWk * 12);
     return [
       {
         id: 'LANE-ADA-PCARD',
         name: 'Ring 0-2 <50K Municipal/County ADA P-Card Sprints',
         archetype: 'Scott Hatteberg (Walks to 1B)',
-        rail: `AZ SLED P-Card (<= $10K • ${live.adaTargets || 30} core Apr 2027 targets)`,
+        rail: `AZ SLED P-Card (<= $10K • ${live.adaTargets || 36} core Apr 2027 targets)`,
         obp: 0.125,
         avgDeal: 7200,
         marginRate: 0.971,
@@ -96,51 +96,51 @@
         marginRate: 0.971,
         bdHoursPerUnit: 1.6,
         weeklyHrsNeeded: 1.0,
-        monthlyCashNeeded: 0, // 11/12 4FrontED portals are $0; $100/yr Quechan Pre-Bid Tribal License is budgeted explicitly in Runs Allowed (RA) below!
+        monthlyCashNeeded: 0, // 11/12 4FrontED portals are $0; $50/yr Quechan Pre-Bid Tribal License is budgeted explicitly in Runs Allowed (RA) below!
         annualAtBats: 10,
-        whyInefficient: 'Most Quechan/Cocopah bids enforce Indian Preference (25 U.S.C. 5307(b)) + TERO + $100 pre-bid license: team under TERO Native primes (never fight preference head-on) while pitching <50K Imperial CA P-Cards remotely ($0 CA SOS tax).'
+        whyInefficient: 'Most Quechan/Cocopah bids enforce Indian Preference (25 U.S.C. 5307(b)) + TERO + $50 pre-bid license: team under TERO Native primes (never fight preference head-on) while pitching <50K Imperial CA P-Cards remotely ($0 CA SOS tax).'
       },
       {
         id: 'LANE-FED-GPC',
-        name: 'Ring 9 AZ I-8/I-10 Federal Corridor: BLM (Direct FAR 19), VA VISN 22 & BIA/IHS (ISBEE SubK / GPC)',
+        name: 'Ring 9 AZ 5-Base DoD + Federal Recompete Sweet Spot (6-12 Mo Open-Market POs, PIEE/SPRS & Yuma LSA)',
         archetype: 'Chad Bradford (Submarine Reliever)',
-        rail: 'BLM/BOR FAR 19.502-2 & GPC (<= $15K) • VA 38 U.S.C. 8127 • BIA/IHS <=49% ISBEE SubK / Deviation',
-        obp: 0.160,
-        avgDeal: 14500,
+        rail: 'PIEE/SPRS Linked • 5-Base AZ DoD (Luke/DM/Huachuca/MCAS/YPG) • Yuma LSA FAR 52.219-2 • 6-12m Recompetes',
+        obp: 0.170,
+        avgDeal: 18500,
         marginRate: 0.971,
         bdHoursPerUnit: 1.8,
         weeklyHrsNeeded: 1.2,
         monthlyCashNeeded: 0,
-        annualAtBats: Math.round(11 * (0.65 + 0.35 * portalRatio)),
-        whyInefficient: 'BLM (Yuma/Lower Sonoran/Gila) has NO Buy Indian barrier (direct FAR 19 NEPA PDF/UA & RAG), while BIA & IHS (25 U.S.C. 47) reward <=49% technical SubK under ISBEE Native primes + Sources Sought Deviations.'
+        annualAtBats: Math.round(12 * (0.65 + 0.35 * portalRatio)),
+        whyInefficient: 'PIEE/SPRS active + authorized DoD lodging across Luke AFB, Davis-Monthan, Fort Huachuca, MCAS Yuma & YPG cuts travel overhead, while 6-12 Mo Open-Market PO recompetes trigger SB/VOSB/LSA set-asides before RFPs drop.'
       },
       {
         id: 'LANE-AZ-EQUOTE',
-        name: 'Ring 3-4 AZ State APP (#IV0000112720) Small-Business eQuotes & Co-Ops',
+        name: 'Ring 3-4 AZ State APP (#IV0000112720 • ADE BPM007864 Submitted), Mesa VSS & Co-Ops',
         archetype: 'David Justice (Veteran Slugging)',
-        rail: 'A.R.S. 41-2535 ($10K-$100K SB Reserve • APP #IV0000112720) & 1GPA / Mohave',
-        obp: 0.155,
+        rail: 'ADE BPM007864 QVL (Submitted 11/25) • A.R.S. 41-2535 SB eQuotes • Mesa VSS #VS0000020834 • 1GPA/Mohave',
+        obp: 0.165,
         avgDeal: 32000,
         marginRate: 0.96,
         bdHoursPerUnit: 3.0,
         weeklyHrsNeeded: 1.5,
         monthlyCashNeeded: 0,
         annualAtBats: Math.max(6, Math.round(12 * portalRatio)),
-        whyInefficient: 'Active AZ APP Supplier #IV0000112720: large out-of-state firms are statutorily barred from A.R.S. 41-2535 SB eQuotes (<100 FTE / <$4M); 5-min daily BI radar catches quotes on Day 1.'
+        whyInefficient: 'First 5-yr State QVL bid already submitted (ADE BPM007864, 28d early) + Mesa VSS #VS0000020834 certified; out-of-state primes are barred from A.R.S. 41-2535 SB eQuotes.'
       },
       {
         id: 'LANE-GRANTS-SBIR',
-        name: 'Non-Competing Grant Subawards + SBIR/STTR & AZ FAST',
+        name: '50-State Enabling Partner (NSF AI-Ready + DOL TEN 07-25) + SBIR/STTR (NAICS 541715) & AZ FAST',
         archetype: 'Miguel Tejada (0%-Dilution Power)',
-        rail: 'NSF 26-508 / DOL TEN 07-25 Subaward + AZ FAST ($3K -> $150K+)',
-        obp: 0.200,
+        rail: '2 CFR 200.331 Named Partner / 200.320 < $25K-$50K PO • DOL Streams D/E • AZ FAST ($3K -> $150K+)',
+        obp: 0.205,
         avgDeal: 48000,
         marginRate: 0.95,
-        bdHoursPerUnit: 4.0,
+        bdHoursPerUnit: 3.5,
         weeklyHrsNeeded: 1.4,
         monthlyCashNeeded: 0,
-        annualAtBats: 4,
-        whyInefficient: 'Vendors compete against colleges or demand equity; Webcognita enters as a Non-Competing Enabling Partner with Zenodo-DOI S-A-R v2.2 & $0 ZTC OER.'
+        annualAtBats: 5,
+        whyInefficient: '1-Click Rich HTML Gmail drafts (`alan@webcognita.com` + auto-resolved NSF/DOL PI emails) pitch 100% non-competing WCAG 2.2 AA & CaC deliverables with zero subrecipient audit burden.'
       },
       {
         id: 'LANE-OPEN-RFP-TRAP',
@@ -231,8 +231,8 @@
       };
     });
 
-    // Radar coverage regression multiplier: locking portals from 61/94 -> 94/94 lifts inbound OBP yield
-    const portalRatio = (live.activePortals || 61) / Math.max(1, live.totalPortals || 94);
+    // Radar coverage regression multiplier: locking portals from 71/108 -> 108/108 lifts inbound OBP yield
+    const portalRatio = (live.activePortals || 71) / Math.max(1, live.totalPortals || 108);
     const radarMultiplier = 0.88 + (0.18 * portalRatio);
 
     const totalRunsScored = Math.round(
@@ -248,7 +248,7 @@
     const govconOOBP = Number(Math.max(0.035, 0.220 - (0.185 * gateRatio)).toFixed(3));
     const govconOSLG = Number((0.020 + (cashCap / 2500)).toFixed(3));
     const fourFrontedFunded = roster.some((r) => r.id === 'LANE-4FRONTED' && r.allocationRatio > 0);
-    const quechanLicenseReserve = fourFrontedFunded ? 100 : 0; // Mandatory $100/yr 1-Year Quechan Tribal Business License on file AT bid/RFP submission
+    const quechanLicenseReserve = fourFrontedFunded ? 50 : 0; // $50/yr 1-Year Quechan Tribal Business License deferred until bidding a specific tribal RFP
     const coiReserve = totalExpectedWins >= 1 ? 1200 : 0;
     const gateFrictionPenalty = Math.round((1 - gateRatio) * 8500);
     const totalRunsAllowed = (cashCap * 12) + quechanLicenseReserve + coiReserve + gateFrictionPenalty;
@@ -299,11 +299,11 @@
   }
 
   function buildCanonicalBlocks(live, model) {
-    const activePortals = live.activePortals || 61;
-    const totalPortals = live.totalPortals || 94;
+    const activePortals = live.activePortals || 71;
+    const totalPortals = live.totalPortals || 108;
     const nextUpPortals = Math.max(0, totalPortals - activePortals);
     const pctPortals = Math.round((activePortals / Math.max(1, totalPortals)) * 100);
-    const adaTargets = live.adaTargets || 30;
+    const adaTargets = live.adaTargets || 36;
     const adaCountdown = live.adaCountdown || 'April 26, 2027 deadline active';
     const gatesReady = live.gatesReady || 12;
     const gatesTotal = live.gatesTotal || 12;
@@ -317,16 +317,16 @@
         shortTitle: 'Customer Segments (Undervalued Lanes)',
         plainMeaning: 'Moneyball Rule #1: Target buyers overlooked by high-overhead primes where statutory rules put us on base.',
         counselorCue: {
-          ALL: 'Big firms cannot profitably touch < $15K sprints or rural AZ towns—giving Webcognita an uncrowded .125-.200 OBP home court vs. .020 open-market cattle calls.',
+          ALL: 'Big firms cannot profitably touch < $15K sprints, Yuma LSA set-asides, or Open-Market < $50K 6-12 Mo recompetes—giving Webcognita an uncrowded .125-.205 OBP home court.',
           SBDC: 'Ask SBDC: Which Ring 0-2 municipal Managers, Clerks, or Airport Directors should get our first 3 weekly < $10K ADA P-Card SOWs?',
-          APEX: 'Ask APEX: Which VISN 22 VA stations, YPG/MCAS Yuma GPC holders, and ADOA-SPO buyers issue sub-SAT awards in NAICS 541511/541512/541690?',
-          GRANTS: 'Ask Advisor: Which Principal Investigators at The University of Arizona or workforce consortia need a Non-Competing AI/WCAG subawardee?'
+          APEX: 'Ask Chris Bridgewater: Load all 10 NAICS x 10 PSCs into $0 BidMatch targeting Luke AFB (56 CONS), Davis-Monthan (355 CONS), Fort Huachuca, MCAS Yuma, YPG & VISN 22.',
+          GRANTS: 'Ask Advisor: Which Principal Investigators at The University of Arizona, ASU, NAU, or DOL TEN 07-25 / SCC consortia need a Non-Competing AI/WCAG partner?'
         },
         items: [
-          `Inefficiency #1 — Ring 0-2 <50K SLED (.125 OBP): ${adaTargets} AZ cities, rural counties & YUM Airport facing DOJ 28 CFR Part 35 ADA Title II (${adaCountdown})—too small for Deloitte, 97% margin for us.`,
-          'Inefficiency #2 — Ring 0-3 Higher-Ed (.180 OBP): The University of Arizona (< $25K no-bid SB POs under ABOR 3-803 D.1) & community college/K-12 co-op buyers.',
-          'Inefficiency #3 — Ring 3-4 AZ Small-Business Reserve (.140 OBP): State app.az.gov $10K-$100K eQuotes statutorily locked to Small Businesses (A.R.S. 41-2535).',
-          'Inefficiency #4 — Ring 9 AZ I-8/I-10 Federal Corridor (.160 OBP): BLM/Reclamation (direct FAR 19.502-2 SB/VOSB & <= $15K GPC—no Buy Indian gate), VA VISN 22 (38 U.S.C. 8127), plus BIA & IHS (25 U.S.C. 47 <=49% ISBEE SubK & Sources Sought Deviations).'
+          `Inefficiency #1 — Ring 0-2 <50K SLED (.125 OBP): ${adaTargets} AZ/4FrontED cities, rural counties & YUM Airport facing DOJ 28 CFR Part 35 ADA Title II (${adaCountdown})—97% margin for us.`,
+          'Inefficiency #2 — Ring 0-3 Higher-Ed & 50-State Grants (.180-.205 OBP): The University of Arizona (< $25K ABOR 3-803 D.1 POs) + NSF AI-Ready & U.S. DOL TEN 07-25 PIs.',
+          'Inefficiency #3 — Ring 3-4 AZ Small-Business Reserve (.165 OBP): Active APP #IV0000112720 (ADE BPM007864 submitted 11/25), Mesa VSS #VS0000020834 & A.R.S. 41-2535 SB eQuotes.',
+          'Inefficiency #4 — Ring 9 5-Base AZ DoD, Recompetes & Yuma LSA (.170 OBP): PIEE/SPRS active + Yuma City LSA (FAR 52.219-2) + FEMA AZ/CA Registry + 6-12 Mo Open-Market PO recompetes.'
         ],
         defaultNote: ''
       },
@@ -340,13 +340,13 @@
         counselorCue: {
           ALL: `Team OPS ${formatStat3(model.teamOps)} (${formatStat3(model.teamObp)} OBP + ${formatStat3(model.teamSlg)} SLG): zero cloud egress removes ATO outs while keeping 97% of every P-Card dollar.`,
           SBDC: 'Highlight to SBDC: SaaS overlay vendors charge recurring fees and fail screen-reader audits; we deliver permanent native DOM + PDF/UA code in one P-Card swipe.',
-          APEX: 'Highlight to APEX: 0 bytes cloud egress = zero FedRAMP/FERPA/ATO delay, paired with 100% VOSB + USMC/Army CI pedigree and 13 live audition PWAs.',
+          APEX: 'Highlight to Chris: USMC CI (MOS 0211, 1985 USAICS Ft. Huachuca) + U.S. Army CI (MOS 97B30, TS/SCI TK 1992-2001), PIEE/SPRS active, Yuma LSA & 5-Base DoD lodging.',
           GRANTS: 'Highlight to PI: Non-Competing 50-State Enabling Partner—we bring Zenodo-DOI S-A-R v2.2 compilers and $0 ZTC OER without competing for lead grant dollars.'
         },
         items: [
           'MOAT #1 (Zero-Egress Cost Advantage): 100% client-side / local-edge code (0 cloud bytes, $0 LLM API burn) turns <= $10K P-Card & <= $15K GPC buys into ~97% margin base hits.',
           'MOAT #2 (20-Year Borderlands & Tribal Insider Trust): 3-yr Quechan Business Desk tenure, 2023 MBDA Advocate of the Year (Quechan Tribe), 15-yr WAEDD Exec. Director, 2025 SBA AZ Veteran Champion & EN/Spanish fluency.',
-          'MOAT #3 (Statutory + CI Security Pedigree): 100% VOSB, USMC & U.S. Army CI Veteran (TS/SCI pedigree), unescorted DoD access (100% DAV ID), CMMC L1 MFR.',
+          'MOAT #3 (Dual-Service CI + Statutory Pedigree): 100% VOSB, USMC CI (MOS 0211) & U.S. Army CI (MOS 97B30 • TS/SCI TK), Yuma LSA (FAR 52.219-2), PIEE/SPRS active & 5-Base DoD lodging.',
           'Verified Technical Slugging: Native WCAG 2.2 AA (>= 9:1 contrast) + ISO 14289-1 (PDF/UA) CI/CD (419+ HTML pages at 0 open errors) & SQLite FTS5 BM25+RRF Hybrid RAG.'
         ],
         defaultNote: ''
@@ -359,16 +359,16 @@
         shortTitle: 'Channels (High-OBP Purchasing Rails)',
         plainMeaning: 'In Moneyball, a walk is as good as a hit—P-Cards, GPCs, and statutory SB reserves put us on 1B with zero RFP.',
         counselorCue: {
-          ALL: `Radar coverage at ${activePortals}/${totalPortals} portals (${pctPortals}%) feeds our regression multiplier; locking ${nextUpPortals} remaining portals raises inbound OBP automatically.`,
+          ALL: `Radar coverage at ${activePortals}/${totalPortals} portals (${pctPortals}% • Rings 0-2 100% Locked); our 2-portal/day morning cap clears the last ${nextUpPortals} automatically.`,
           SBDC: 'Show SBDC: /govcon-radar/ -> /cac-readiness/ generates a compliant <= $9,900 P-Card SOW in 1 click so a municipal buyer can check out immediately.',
-          APEX: `Ask APEX: Sequence the remaining ${nextUpPortals} portals (app.az.gov + VetCert first) and target 1GPA / Mohave co-op contracts for > $100K zero-RFP slugging.`,
-          GRANTS: 'Ask Advisor: Fastest subaward attachment path for university Sponsored Projects (1-page Cap Statement + S-A-R DOI + de minimis indirect rate).'
+          APEX: `Ask Chris Bridgewater: Confirm ADE BPM007864 Round 2 packet, sequence MySBA Case #00009160, and target 1GPA / Mohave co-op contracts for > $100K zero-RFP slugging.`,
+          GRANTS: 'Ask Advisor: Deploy 1-Click Rich HTML Gmail Drafts (alan@webcognita.com) via Option A (2 CFR 200.331 Named Partner LOC) or Option B (200.320 < $25K-$50K PO).'
         },
         items: [
-          'Base-on-Balls Rails (Zero RFP): AZ SLED P-Card (<= $10K), Federal SmartPay 3 GPC (<= $15K FAR 13.203), The University of Arizona < $25K PVEN PO.',
-          `Automated Scouting Radar: ${activePortals}/${totalPortals} portals ACTIVE (${pctPortals}% • Rings 0-2 100% Locked • ${nextUpPortals} Next Up) swept every morning at 7:30 AM MST.`,
-          'Live Audition Funnel ("Show, Dont Pitch"): 13 production PWAs (/govcon-radar/ v2.0.0 -> /cac-readiness/ SOW builder -> /support/ PCI-DSS card settlement).',
-          'Extra-Base Vehicles (SLG Multipliers): SBA VetCert (VA sole-source), 1GPA / Mohave Co-Op (> $100K piggyback), GSA Startup Springboard & SBIR Phase III.'
+          'Base-on-Balls Rails (Zero RFP): AZ SLED P-Card (<= $10K), Federal SmartPay 3 GPC (<= $15K), The University of Arizona < $25K ABOR PO & 6-12 Mo Open-Market PO Recompetes.',
+          `Automated Scouting Radar (v2.2.8): ${activePortals}/${totalPortals} portals ACTIVE (${pctPortals}% • Rings 0-2 100% Locked • ${nextUpPortals} Next Up) + deduplicated 7:30 AM MST BI sweep.`,
+          '1-Click Capture Funnel: /govcon-radar/ v2.2.8 (Rule-of-Thumb Recompete Timeline + DOL Streams D/E + Rich HTML alan@webcognita.com Gmail Drafts) -> /cac-readiness/ -> /support/.',
+          'Extra-Base Vehicles (SLG Multipliers): ADE BPM007864 5-Yr Statewide QVL (Submitted 11/25), MySBA Case #00009160, PIEE/SPRS WAWF & 1GPA / Mohave Co-Ops.'
         ],
         defaultNote: ''
       },
@@ -381,15 +381,15 @@
         plainMeaning: 'How every single turns into a signed Past Performance Questionnaire (PPQ) and repeat task order.',
         counselorCue: {
           ALL: `Regression target: ${model.totalExpectedWins} projected annual wins -> banks Exhibit R-04 PPQs needed to clinch Stage 3 cooperative & GSA vehicles.`,
-          SBDC: 'Discuss with SBDC: Using a $4,500-$9,900 ADA remediation single to earn trust for recurring annual WCAG / PDF-UA IV&V retainers.',
-          APEX: 'Discuss with APEX: Closeout SOP capturing a signed CPARS-aligned PPQ (Exhibit R-04) on every sub-SAT P-Card/GPC engagement.',
-          GRANTS: 'Discuss with Advisor: Strict Non-Competing Enabling Partner governance + A.R.S. 38-503 / unpaid DCC non-employee transparency.'
+          SBDC: 'Discuss with SBDC: Leveraging reinstated Yuma Google Business Profile + $4.5K-$9.9K ADA remediation singles into recurring annual WCAG / PDF-UA IV&V retainers.',
+          APEX: 'Discuss with Chris: Closeout SOP capturing a signed CPARS-aligned PPQ (Exhibit R-04) on every sub-SAT P-Card/GPC & ADE QVL engagement.',
+          GRANTS: 'Discuss with Advisor: Strict Non-Competing Enabling Partner governance + A.R.S. 38-503 COI disclosure on file with AWC Purchasing (11/19).'
         },
         items: [
           'Zero Hostage Licensing: Buyers own clean, Git-governed HTML/CSS/SQLite + W3C PROV-O audit logs ($0/mo recurring SaaS lock-in).',
           'Mandatory PPQ Conversion: Every sub-threshold sprint closes with a signed Exhibit R-04 Past Performance Questionnaire (turns singles into GSA/Co-Op credentials).',
-          'Non-Competing Enabling Partner Trust: Never bid against partner colleges/universities for lead grants; strengthen their technical reviewer score.',
-          'Direct Veteran Principal Execution: Yuma HQ (1906 S 6th Ave) with zero junior-consultant bait-and-switch.'
+          'Non-Competing Enabling Partner Trust: Never bid against partner colleges/universities for lead grants; AWC COI disclosure already filed (11/19) & unpaid UArizona DCC.',
+          'Direct Veteran Principal Execution: Yuma HQ (1906 S 6th Ave • Reinstated GBP • Certified AZ SOS Trade Name #9260023) with zero junior-consultant bait-and-switch.'
         ],
         defaultNote: ''
       },
@@ -403,14 +403,14 @@
         counselorCue: {
           ALL: `Model forecasts $${model.totalRunsScored.toLocaleString('en-US')}/yr Runs Scored (${model.totalExpectedWins} wins) at ${model.usedHrsWk}/${model.hrsCap} hrs/wk capture cap.`,
           SBDC: 'Validate with SBDC: Singles ($4.5K-$14.9K Net-0 card settlement) fund immediate cash flow with zero AR factoring or debt.',
-          APEX: 'Validate with APEX: Stacking Singles (GPC/P-Card) -> Doubles ($10K-$100K APP eQuotes) -> Triples (1GPA/Mohave & VetCert) -> GSA MAS ($100K/60-mo).',
-          GRANTS: 'Validate with Advisor: Non-dilutive Home Runs ($3K AZ FAST -> $125K-$305K NSF/USDA/ED SBIR/STTR + $25K-$100K enabling subawards at 0% equity loss).'
+          APEX: 'Validate with Chris: Stacking Singles (GPC/P-Card) -> Doubles ($10K-$100K APP eQuotes & 6-12m Open-Market Recompetes) -> Triples (ADE BPM007864 QVL & 1GPA/Mohave).',
+          GRANTS: 'Validate with Advisor: Non-dilutive Home Runs ($3K AZ FAST -> $125K-$305K NAICS 541715 SBIR/STTR + $25K-$75K/yr 2 CFR 200.331 enabling partner awards).'
         },
         items: [
           '1B — High-OBP Micro-Purchase Singles ($4,500-$14,900 FFP): <50K ADA Title II web/PDF-UA sprints & local Hybrid RAG prototypes via P-Card / GPC.',
-          '2B — Restricted Small-Business Doubles ($10,001-$100,000+ FFP): AZ APP SB eQuotes (A.R.S. 41-2535), ABOR SB quotes & Federal FAR Part 13 RFQs.',
-          '3B — Piggyback & VMS Triples ($25,000-$350,000): 1GPA / Mohave zero-RFP cooperative POs, VA Veterans First set-asides & MBO/Beeline C2C task orders.',
-          'HR — Non-Dilutive R&D & Grant Subawards ($25,000-$305,000): NSF AI-Ready / DOL TEN 07-25 subawards + SBIR/STTR Phase I/II (0% equity + AZ FAST $3K).'
+          '2B — Restricted SB & Recompete Doubles ($10,001-$100,000+ FFP): AZ APP SB eQuotes, Mesa VSS, 6-12 Mo Open-Market Federal Recompetes & 2 CFR 200.320 POs.',
+          '3B — Statewide QVL, Piggyback & DoD Triples ($25,000-$350,000): ADE BPM007864 5-Yr QVL task orders, DoD PIEE/WAWF awards, 1GPA/Mohave & VA Veterans First.',
+          'HR — Non-Dilutive R&D & Grant Subawards ($25,000-$305,000): NSF AI-Ready / DOL TEN 07-25 partner scopes + NAICS 541715 SBIR/STTR Phase I/II (0% equity + AZ FAST $3K).'
         ],
         defaultNote: ''
       },
@@ -422,16 +422,16 @@
         shortTitle: 'Key Resources (Pre-Built Roster & Data)',
         plainMeaning: 'Every credential, compiler, and scouting dataset is already built, paid for, and debt-free.',
         counselorCue: {
-          ALL: `${gatesReady}/${gatesTotal} FAR 9.104-1 & CMMC L1 gates verified + 106-node BM25/RRF scouting engine + 13 live PWAs ($0 new CAPEX required).`,
-          SBDC: 'Show SBDC: Dual Apple Silicon M1/M2 nodes + 13 production PWAs mean $0 equipment loans and instant delivery capacity.',
-          APEX: `Show APEX: Active UEI EZ34U9KNJA17, CAGE 4ZCN6, ADOT SBC #23545, E-Verify #3119395, Yuma #SERV-051803 & ${gatesReady}/${gatesTotal} responsibility gates.`,
-          GRANTS: 'Show Advisor: ORCID 0009-0002-5038-7111, Zenodo DOI 10.5281/zenodo.24170270, 3,265-node DOM GraphRAG & 5-course ZTC OER fleet.'
+          ALL: `${gatesReady}/${gatesTotal} FAR 9.104-1 & CMMC L1 gates + 121-node BM25/RRF radar + 10 NAICS x 10 PSCs + PIEE/SPRS active ($0 new CAPEX required).`,
+          SBDC: 'Show SBDC: Dual Apple Silicon M1/M2 nodes (+ AGY M1/M2 Scout automation) + 13 production PWAs mean $0 equipment loans and instant delivery capacity.',
+          APEX: `Show Chris: UEI EZ34U9KNJA17 (10 NAICS x 10 PSCs, Yuma LSA, FEMA AZ/CA), CAGE 4ZCN6, PIEE/SPRS active, APP #IV0000112720, Mesa #VS0000020834 & ADOT SBC #23545.`,
+          GRANTS: 'Show Advisor: ORCID 0009-0002-5038-7111, Zenodo DOI 10.5281/zenodo.24170270, synced Canvas GraphQL monitor & 5-course ZTC OER fleet.'
         },
         items: [
-          `Verified GovCon Roster (${gatesReady}/${gatesTotal} Gates): UEI EZ34U9KNJA17, CAGE 4ZCN6, EIN 81-0809739, AZ ACC #L17046120, ADOT SBC #23545, E-Verify #3119395.`,
-          'Sabermetric Scouting Stack: /govcon-radar/ (94 portals + 12 statutes), 7:30 AM MST Python/SQLite BI sweep & Monday 8:00 AM MST strategy pulse.',
-          'Clean-Room Software IP: S-A-R v2.2 compiler (Zenodo DOI), 9:1 WCAG CI/CD linters, 13 live PWAs & WCGVLT01 AES-256-GCM vault.',
-          'Dual-Node Sovereign Compute: Air-gapped Apple Silicon M1/M2 (< 15 min RTO continuity under FAR 9.104-1(b)) running local Ollama Carbon 4 / Gemma 4.'
+          `Verified GovCon Roster (${gatesReady}/${gatesTotal} Gates): UEI EZ34U9KNJA17 (10 NAICS x 10 PSCs • Yuma LSA • FEMA AZ/CA), CAGE 4ZCN6, PIEE/SPRS, APP #IV0000112720, Mesa #VS0000020834, ADOT SBC #23545, E-Verify #3119395, AZ SOS Trade Name #9260023.`,
+          `Sabermetric Scouting Stack: /govcon-radar/ v2.2.8 (${totalPortals} portals + ${live.statuteCount || 13} statutes = ${(totalPortals + (live.statuteCount || 13))} nodes), Rule-of-Thumb Recompete Triage & M2 Loopback Bridge.`,
+          'Clean-Room Software IP: S-A-R v2.2 compiler (Zenodo DOI), 9:1 WCAG +Tagged PDF/UA CI/CD, 13 live PWAs & WCGVLT01 AES-256-GCM vault.',
+          'Dual-Node Sovereign Compute: Air-gapped M1 DisplayLink Cockpit + M2 16GB Ollama/Carbon 4 Engine (< 15 min RTO continuity under FAR 9.104-1(b)) + AGY M1/M2 Scout.'
         ],
         defaultNote: ''
       },
@@ -441,18 +441,18 @@
         zone: 'Back Stage: Knapsack Time Allocation (Weekly Lineup)',
         area: 'ka',
         shortTitle: 'Key Activities (Constrained Knapsack Ops)',
-        plainMeaning: 'Strict plate discipline: allocate scarce weekly principal hours strictly by highest expected $/BD-hour (OPS).',
+        plainMeaning: 'Strict plate discipline: 75-min/day 8-5 capture cap whose portal quota auto-shrinks from 2/day -> 0/day.',
         counselorCue: {
-          ALL: `Knapsack allocates ${model.usedHrsWk} of ${model.hrsCap} hrs/wk (${model.biAutomationHrs}h automated BI + outbound high-OPS pitches) and benches 2%-win blind RFPs.`,
-          SBDC: `Review weekly cadence: ${optSummaryText(model)} with automated Monday 8:00 AM MST accountability email.`,
-          APEX: 'Enforce Plate Discipline with APEX: Only swing at RFPs where statutory set-aside, local preference, or prior buyer intake puts OBP >= .150.',
-          GRANTS: 'Focus R&D hours on high-hit-rate $0 3-page NSF Project Pitches, AZ FAST ($3K), and invited university subaward scopes.'
+          ALL: `Knapsack allocates ${model.usedHrsWk} of ${model.hrsCap} hrs/wk (${model.biAutomationHrs}h automated BI + self-shrinking 8-5 queue) and benches 2%-win blind RFPs.`,
+          SBDC: `Review daily 8-5 rhythm: 8:00-8:25 BI Triage, 8:25-8:45 Next-2 Portal Cap (auto-retires at 108/108), 8:45-4:30 Deep Work, 4:30-5:00 1 Recompete/PI Pitch.`,
+          APEX: 'Enforce Plate Discipline + Travel OPSEC with Chris: Swing only at >= .150 OBP lanes, and enforce 100% zero federal/state portal logins during non-U.S. IP travel.',
+          GRANTS: 'Focus R&D hours on 1-Click Rich HTML PI pitches (NSF & DOL Streams D/E), AZ FAST ($3K), and invited university 2 CFR 200.331/200.320 scopes.'
         },
         items: [
-          `Automated Morning Scouting (${model.biAutomationHrs} hr/wk total): 5-min 7:30 AM MST #bi= triage (Dismiss noise permanently; 1-Click Brief on high-OPS leads).`,
-          'High-OBP Outbound Pitching: Dispatch tailored $4.5K-$9.9K <50K ADA Title II P-Card SOWs + targeted OSDBU/university capability briefs every week.',
-          'Strict Moneyball "No-Swing Rule": Bench unrestricted >$500K blind RFPs (65+ hr burn, .020 OBP) unless wired via co-op, VOSB set-aside, or prime team.',
-          `Portal Lock Sprint: Complete remaining ${nextUpPortals} registrations until 94/94 portals run 100% on autopilot.`
+          `8:00–8:25 AM Offense (${model.biAutomationHrs} hr/wk automated prep): Triage deduplicated 7:30 AM BI Digest & stage 1-Click Rich HTML Gmail Drafts (alan@webcognita.com).`,
+          `8:25–8:45 AM Auto-Shrinking Portal Cap: Complete 2 Next Up portals/day (${nextUpPortals} left -> tapers to 1/day at <=15 -> auto-retires to 0m at 108/108; U.S./Yuma IP ONLY).`,
+          '4:30–5:00 PM Recompete & Partner Closeout: Dispatch 1 Sweet-Spot (6-12 Mo Open-Market PO) Capabilities brief or 50-State Enabling Partner pitch + Inbox Zero.',
+          'Strict Moneyball "No-Swing Rule": Bench unrestricted >$500K blind RFPs (65+ hr burn, .020 OBP) unless wired via co-op, VOSB/LSA set-aside, or prime team.'
         ],
         defaultNote: ''
       },
@@ -464,16 +464,16 @@
         shortTitle: 'Key Partners ($0 Front-Office Bench)',
         plainMeaning: 'Assemble a championship legal, capture, and prime-subcontracting bench at $0 fixed payroll.',
         counselorCue: {
-          ALL: 'AWC SBDC + Arizona APEX + VBOC + university small-business offices provide $50K+ of equivalent advisory capacity for $0.',
+          ALL: 'Chris Bridgewater (AZ APEX) + AWC SBDC + VBOC + university small-business offices provide $50K+ of equivalent advisory capacity for $0.',
           SBDC: 'Partner with AWC SBDC on AZ FAST grant endorsement, cash-flow stress-testing, and Yuma/La Paz/Mohave civic introductions.',
-          APEX: 'Partner with Arizona APEX Accelerator (azapex.admin@domail.maricopa.edu) on 1-on-1 bid reviews, VetCert QA, and GSA eOffer prep.',
-          GRANTS: 'Partner with The University of Arizona Small Business Utilization (FNSV-Purchasing@arizona.edu) & SBA Subcontracting-Plan Primes.'
+          APEX: 'Active Assigned Counselor: Chris Bridgewater (AZ APEX Accelerator • Mon Nov 30 Zoom) for ADE BPM007864 red-team, 10x10 BidMatch, SPRS CMMC L1 & Case #00009160.',
+          GRANTS: 'Partner with The University of Arizona Small Business Utilization (FNSV-Purchasing@arizona.edu), ASU/NAU PIs & DOL TEN 07-25 Community College Consortia.'
         },
         items: [
-          '$0 Advisory Front Office: AWC SBDC, Arizona APEX Accelerator, SBA Arizona District Office & VBOC Region IX.',
-          'University & Research Farm System: The University of Arizona Small Business Utilization (520-621-1747) & STTR Principal Investigators.',
-          'Force-Multiplier Primes & VMS: MBO Partners, Beeline VMS, 1GPA, Mohave (MESC) & SBA Primes with mandatory FAR 52.219-9 SubK plans.',
-          'Borderlands & Tribal TERO Partners: TERO-certified Native-owned primes / Tribal Enterprises on Quechan & Cocopah (respecting Indian Preference + TERO), plus Yuma/Imperial civic & airport leaders.'
+          '$0 Advisory Front Office: Arizona APEX Accelerator (Assigned Counselor: Chris Bridgewater, 12-yr Army Eng. Vet), AWC SBDC, SBA AZ District & VBOC Region IX.',
+          'University & Workforce Farm System: The University of Arizona Small Business Utilization (520-621-1747), STTR PIs & DOL TEN 07-25 / SCC Community Colleges.',
+          'Force-Multiplier Primes & VMS: MBO Partners, Beeline VMS, 1GPA, Mohave (MESC) & 5-Base AZ DoD Primes (Luke 56 CONS, DM 355 CONS, Ft. Huachuca, YPG, MCAS Yuma).',
+          'Borderlands & Tribal TERO Partners: TERO-certified Native-owned primes on Quechan & Cocopah (respecting 25 U.S.C. 5307(b) + TERO), plus Yuma/Imperial civic leaders.'
         ],
         defaultNote: ''
       },
@@ -487,14 +487,14 @@
         counselorCue: {
           ALL: `Projected Runs Allowed: $${model.totalRunsAllowed.toLocaleString('en-US')}/yr vs. $${model.totalRunsScored.toLocaleString('en-US')}/yr Runs Scored -> Net Run Diff +$${model.runDifferential.toLocaleString('en-US')}/yr.`,
           SBDC: 'Confirm with SBDC: $0 SaaS bloat, $0 cloud inference burn, $0 paid bid-portal subscriptions, and COI bound strictly upon notice of award.',
-          APEX: 'Confirm with APEX: Clean FAR 31.201-2 allowability & SF 1408 job-cost separation with minimal G&A wrap rate.',
+          APEX: 'Confirm with Chris: DoD base lodging access (Luke/DM/Huachuca) cuts statewide travel costs; skip premature $250/yr ECA PKI certs until a paid DFARS 7012 CUI award.',
           GRANTS: 'Confirm with Advisor: Clean 2 CFR 200.414 de minimis indirect rate (up to 15% MTDC) and zero post-grant cloud hosting liability.'
         },
         items: [
-          '$0 Fixed Cloud & AI Payroll: Static edge hosting ($0) + local Apple Silicon M1/M2 Ollama inference ($0 token burn).',
-          '$0 Portal Scouting Payroll: Strictly $0 official government tiers (SAM.gov, OpenGov, Bonfire, BidNet $0 tier, app.az.gov) + local SQLite BI sweep.',
-          'Surgical Licensing & TERO Discipline: Bind municipal COI post-award (Casa Grande), avoid $800/yr CA SOS tax via remote Yuma delivery, file $100/yr Quechan License BEFORE bid upload, and factor TERO fees/Native-prime SubK splits on tribal work.',
-          'Success-Only Settlement Fee: ~2.9% PCI-DSS card fee paid only when a GPC or P-Card sprint invoice settles into checking.'
+          '$0 Fixed Cloud, AI & PKI Payroll: Static edge hosting ($0) + local M1/M2 Ollama ($0 token burn) + $0 Project Spectrum / SPRS L1 (defer ECA PKI until paid CUI contract).',
+          '$0 Portal Scouting Payroll: Strictly $0 official tiers (SAM.gov, PIEE/SPRS, OpenGov, Bonfire, BidNet $0, app.az.gov, Mesa VSS) + $0 AZ APEX BidMatch.',
+          'DoD Lodging & Licensing Discipline: Authorized DoD lodging across AZ (Luke/DM/Huachuca) slashes travel burn; bind COI post-award; defer $50/yr Quechan License until active tribal bid; remote Yuma delivery avoids $800/yr CA SOS tax.',
+          'Success-Only Settlement & Tax Discipline: ~2.9% card fee only on paid GPC/P-Card sprints + strict IRC 274(c)/(d) & FAR 31.205-46 travel segregation.'
         ],
         defaultNote: ''
       }
@@ -507,11 +507,11 @@
   }
 
   const DEFAULT_COUNSELOR_QUESTIONS = [
-    '[SBDC • Constrained Optimization] Given our $0 fixed cloud/SaaS burn and 97.1% contribution margin on <= $9,900 ADA P-Card sprints, how should we price 3 standardized sprint tiers ($4.5K / $7.5K / $9.9K) to maximize OBP?',
-    '[SBDC • Slugging Catalyst] Can AWC SBDC review our eligibility and next application window for the $3,000 Arizona Commerce Authority AZ FAST grant (rural Yuma VOSB)?',
-    '[APEX • Statutory OBP] Can we run a pre-submit QA check on our staged SBA VetCert packet so 38 U.S.C. 8127 VA Veterans First eligibility clears VISN 22 on the first pass?',
-    '[APEX • Market Inefficiency] Once app.az.gov (Incident #57338) activates, how do we maximize visibility for $10,001-$100,000 A.R.S. 41-2535 Small Business restricted eQuotes?',
-    '[APEX / SBDC • Playoff Threshold] Confirm that 4 signed Exhibit R-04 Past Performance Questionnaires + $100K net run-rate positions us cleanly for 1GPA/Mohave co-ops and GSA Startup Springboard.'
+    '[APEX • Mon Nov 30 Chris Bridgewater #1] Post-submission red-team on ADE RFP BPM007864 (Lot 1 Round 2 QVL, submitted 11/25): confirm $1.00 Items (F) entry, toggling APP #IV0000112720 to Small Business, and fixing Supplier Legal Name typo ("Webcognita LCC" -> "Webcognita LLC") from Yuma IP.',
+    '[APEX • Mon Nov 30 Chris Bridgewater #2] Load all 10 NAICS (541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710) & 10 PSCs into $0 APEX BidMatch targeting the 5-Base AZ DoD Corridor (Luke 56 CONS, Davis-Monthan 355 CONS, Fort Huachuca, YPG, MCAS Yuma) + AZ SLED.',
+    '[APEX • DoD SPRS & MySBA Case #00009160] Since PIEE/SPRS is now linked to active SAM.gov (CAGE 4ZCN6), should we post our 15/15 CMMC Level 1 Self-Assessment affirmation in SPRS proactively now—and do you have an APEX escalation tip for MySBA Case #00009160 ahead of Dec 8-18 Israel OPSEC blackout?',
+    '[SBDC • Slugging Catalyst] With NAICS 541715 (R&D) now live on SAM.gov (11/25), can AWC SBDC review our next application window for the $3,000 Arizona Commerce Authority AZ FAST grant (rural Yuma VOSB / Yuma City LSA)?',
+    '[APEX / SBDC • 6-12 Mo Recompetes & Stage 3] Best outreach cadence to Contracting Officers / OSDBUs on 6-12 Month Open-Market PO Recompetes (e.g., AZ VA VISN 22 $25K training, Navy AZ $24.5K CWF, HHS $35K Sec. 508) to bank 4 Exhibit R-04 PPQs + $100K run-rate?'
   ].join('\n');
 
   function computeSimpleChecksum(obj) {
@@ -574,7 +574,7 @@
     }
 
     if (base.schemaVersion && base.schemaVersion < SCHEMA_VERSION) {
-      healEvents.push(`Auto-migrated BCM schema v${base.schemaVersion} -> v${SCHEMA_VERSION} (Moneyball Sabermetrics & Knapsack Optimizer hydrated; notes preserved).`);
+      healEvents.push(`Auto-migrated BCM schema v${base.schemaVersion} -> v${SCHEMA_VERSION} (synced Nov 26 milestones: ADE BPM007864 submitted, Chris Bridgewater Zoom, 10x10 SAM.gov + PIEE/SPRS, 8-5 Daily Queue & Recompete Timeline; custom notes preserved).`);
     }
 
     const rawOpt = (base.optimizer && typeof base.optimizer === 'object') ? base.optimizer : {};
@@ -584,7 +584,11 @@
       monthlyCashCap: clampNum(rawOpt.monthlyCashCap, 0, 500, 0)
     };
 
-    const isLegacyQuestions = typeof base.counselorQuestions === 'string' && base.counselorQuestions.startsWith('[SBDC] Can we review Webcognita LLC eligibility');
+    const isLegacyQuestions = typeof base.counselorQuestions === 'string' && (
+      base.counselorQuestions.startsWith('[SBDC] Can we review Webcognita LLC eligibility')
+      || base.counselorQuestions.includes('Incident #57338')
+      || base.counselorQuestions.includes('staged SBA VetCert packet')
+    );
     const healed = {
       schemaVersion: SCHEMA_VERSION,
       lens: validLenses.includes(base.lens) ? base.lens : 'ALL',
@@ -702,9 +706,9 @@
       }
       if (typeof Temporal !== 'undefined') {
         const tz = 'America/Phoenix';
-        const now = Temporal.Now.zonedDateTimeISO(tz);
-        const deadline = Temporal.PlainDate.from('2027-04-26').toPlainDateTime('00:00:00').toZonedDateTime(tz);
-        const diff = now.until(deadline, { largestUnit: 'day', smallestUnit: 'day', roundingMode: 'ceil' });
+        const today = Temporal.Now.plainDateISO(tz);
+        const deadline = Temporal.PlainDate.from('2027-04-26');
+        const diff = today.until(deadline, { largestUnit: 'day' });
         if (diff.sign <= 0) return 'Enforcement Active Now';
         return `${diff.days} days left (Apr 26, 2027 MST)`;
       }
@@ -717,10 +721,10 @@
   async function fetchLiveTelemetry() {
     const live = {
       synced: false,
-      activePortals: 61,
-      totalPortals: 94,
-      statuteCount: 12,
-      adaTargets: 30,
+      activePortals: 71,
+      totalPortals: 108,
+      statuteCount: 13,
+      adaTargets: 36,
       adaCountdown: await computeAdaCountdownSafe(),
       gatesReady: 12,
       gatesTotal: 12,
@@ -741,10 +745,10 @@
         const nodes = Array.isArray(data.nodes) ? data.nodes : [];
         const portals = nodes.filter((n) => Boolean(n.isPortal));
         const statutes = nodes.filter((n) => !n.isPortal);
-        live.totalPortals = portals.length || 94;
-        live.statuteCount = statutes.length || 12;
+        live.totalPortals = portals.length || 108;
+        live.statuteCount = statutes.length || 13;
         live.activePortals = portals.filter((n) => Boolean(n.portalActive) || userActive.has(n.id)).length;
-        live.adaTargets = nodes.filter((n) => Boolean(n.adaApr2027)).length || 30;
+        live.adaTargets = nodes.filter((n) => Boolean(n.adaApr2027)).length || 36;
         live.gatesTotal = Array.isArray(data.readinessGates) ? data.readinessGates.length : 12;
 
         const ringStats = {};
@@ -813,9 +817,9 @@
     return [
       {
         id: 'CHK-SCHEMA',
-        title: '9-Block Schema v3 & Dual-Slot Shadow Backup',
+        title: '9-Block Schema v4 & Dual-Slot Shadow Backup',
         ok: blocks.length === 9 && blocks.every((b) => Array.isArray(b.items) && b.items.length >= 3),
-        detail: `9/9 Moneyball BCM blocks verified • Checksum #${checksum} mirrored to LKG shadow storage.`
+        detail: `9/9 Moneyball BCM blocks verified (Nov 26 milestone sync) • Checksum #${checksum} mirrored to LKG shadow storage.`
       },
       {
         id: 'CHK-SABERMETRICS',
@@ -843,9 +847,9 @@
       },
       {
         id: 'CHK-FAR9104',
-        title: 'FAR 9.104-1 Responsibility & CMMC L1 Roster Gate',
+        title: 'FAR 9.104-1, DoD PIEE/SPRS & 10x10 SAM.gov Roster Gate',
         ok: live.gatesReady >= live.gatesTotal,
-        detail: `${live.gatesReady}/${live.gatesTotal} pre-award gates verified (UEI EZ34U9KNJA17 • CAGE 4ZCN6 • FAR 52.204-21 • Sec. 889).`
+        detail: `${live.gatesReady}/${live.gatesTotal} gates verified (UEI EZ34U9KNJA17 • CAGE 4ZCN6 • PIEE/SPRS Linked • Yuma LSA • ADE BPM007864 Submitted).`
       }
     ];
   }
@@ -1828,7 +1832,7 @@
     const lensInfo = LENS_META[state.lens] || LENS_META.ALL;
     const lines = [
       '# Webcognita LLC — Moneyball Sabermetric Business Model Canvas (1-on-1 Counseling Brief)',
-      '- **Entity:** WEBCOGNITA LLC (100% VOSB • SAM.gov UEI: EZ34U9KNJA17 • CAGE: 4ZCN6 • EIN: 81-0809739 • AZ ACC: #L17046120 • ADOT UTRACS SBC: #23545)',
+      '- **Entity:** WEBCOGNITA LLC (100% VOSB • Yuma City LSA FAR 52.219-2 • FEMA AZ/CA • SAM.gov UEI: EZ34U9KNJA17 • CAGE: 4ZCN6 • DoD PIEE/SPRS Active • AZ APP: #IV0000112720 • Mesa VSS: #VS0000020834 • ADOT SBC: #23545)',
       `- **Front-Office Roles:** Alan Pruitt = General Manager (Billy Beane) • Carbon 4 = Sovereign Quant (Paul DePodesta / Peter Brand)`,
       `- **Empirical Framework:** Samford University "The Moneyball Science" (Fatima Sajid, 2019 — ${SAMFORD_MONEYBALL_URL})`,
       `- **Counseling Lens:** ${lensInfo.label} — ${lensInfo.counselorTitle}`,
@@ -2000,10 +2004,10 @@
         <div class="bcm-wrap">
           <header class="bcm-topbar">
             <div>
-              <span class="bcm-kicker">GM: Alan Pruitt (Billy Beane) &bull; Sovereign Quant: Carbon 4 (Paul DePodesta / Peter Brand) &bull; /#bcm/</span>
+              <span class="bcm-kicker">GM: Alan Pruitt (Billy Beane) &bull; Sovereign Quant: Carbon 4 (Paul DePodesta / Peter Brand) &bull; /#bcm/ v4</span>
               <h1>Webcognita LLC &mdash; Moneyball Business Model Canvas &amp; Carbon 4 Quant Workbench</h1>
               <p class="bcm-id-line">
-                <strong>100% VOSB</strong> &bull; <code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; <code>EIN: 81-0809739</code> &bull; <code>AZ ACC: #L17046120</code> &bull; <code>ADOT SBC: #23545</code> &bull; 1906 S 6th Ave, Yuma, AZ
+                <strong>100% VOSB &bull; Yuma LSA</strong> &bull; <code>UEI: EZ34U9KNJA17</code> (10 NAICS &times; 10 PSCs) &bull; <code>CAGE: 4ZCN6</code> &bull; <code>DoD PIEE/SPRS</code> &bull; <code>AZ APP: #IV0000112720</code> (ADE BPM007864 Submitted) &bull; <code>Mesa: #VS0000020834</code> &bull; <code>ADOT SBC: #23545</code>
               </p>
             </div>
             <div class="bcm-actions">
@@ -2024,7 +2028,7 @@
           <section class="bcm-health-box" aria-label="Self-Healing and Live Scouting Telemetry">
             <div class="bcm-health-row">
               <div class="bcm-pill-row" role="status" aria-live="polite">
-                <span class="bcm-status-pill">Self-Healing v3: ${passedCount}/${checks.length} Healthy (#${escapeHtml(checksum)})</span>
+                <span class="bcm-status-pill">Self-Healing v4: ${passedCount}/${checks.length} Healthy (#${escapeHtml(checksum)})</span>
                 <span class="bcm-status-pill is-navy">Carbon 4 Quant: ${live.m2QuantConnected ? `M2 Live (${live.pursueCount || 0} Swings • ${live.dismissCount || 0} Pitches Taken)` : 'Browser Local Engine Active'}</span>
                 <span class="bcm-status-pill is-navy">Scouting Radar: ${live.activePortals}/${live.totalPortals} Portals (${Math.round((live.activePortals / Math.max(1, live.totalPortals)) * 100)}%)</span>
                 <span class="bcm-status-pill is-crimson">ADA &lt;50K Window: ${escapeHtml(live.adaCountdown)}</span>
@@ -2263,7 +2267,7 @@
                 <button type="button" class="bcm-btn bcm-btn-subtle bcm-no-print" id="bcm-reset-all">Reset All to Baseline</button>
               </div>
               <label class="bcm-note-label" for="bcm-actions-box" style="display: block; margin: 0.35rem 0 0.25rem;">Counselor Name, Date, Referrals &amp; 30-Day Commitments (Included in Print &amp; .md Copy):</label>
-              <textarea class="bcm-textarea" id="bcm-actions-box" name="session_actions" rows="6" placeholder="e.g., Session w/ AWC SBDC or AZ APEX Counselor — 1) Submit AZ FAST $3K application; 2) QA SBA VetCert packet; 3) Send 3 <50K ADA P-Card SOWs/wk...">${escapeHtml(state.sessionActionItems)}</textarea>
+              <textarea class="bcm-textarea" id="bcm-actions-box" name="session_actions" rows="6" placeholder="e.g., Mon Nov 30 Zoom w/ Chris Bridgewater (AZ APEX) — 1) Red-team ADE BPM007864 + toggle APP Small Business + fix Webcognita LLC spelling; 2) Activate 10x10 BidMatch across 5-Base AZ DoD Corridor; 3) Confirm SPRS CMMC L1 affirmation &amp; MySBA Case #00009160...">${escapeHtml(state.sessionActionItems)}</textarea>
             </div>
           </section>
 
@@ -2305,7 +2309,7 @@
         <div class="bcm-stat-tile">
           <div class="bcm-stat-kicker">Defense: Runs Allowed (RA)</div>
           <div class="bcm-stat-big">$${model.totalRunsAllowed.toLocaleString('en-US')}/yr</div>
-          <div class="bcm-stat-sub">OOBP ${formatStat3(model.govconOOBP)} &bull; $100 Quechan Lic + Award COI</div>
+          <div class="bcm-stat-sub">OOBP ${formatStat3(model.govconOOBP)} &bull; $50 Quechan Lic + Award COI</div>
         </div>
         <div class="bcm-stat-tile">
           <div class="bcm-stat-kicker">Net Run Difference (RD)</div>
