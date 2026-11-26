@@ -511,6 +511,62 @@
       color: #FFFFFF;
       border-color: #0B1D3A;
     }
+    /* Daily 8-5 Balance Cockpit (`progress` + `content-first-noise-reduction` `<details>` disclosure) */
+    details.daily-balance-drawer {
+      background-color: #F4F7FB;
+      color: #0B1D3A;
+      border: 2px solid #0B1D3A;
+      border-radius: 8px;
+      padding: 0.75rem 0.95rem;
+      margin-bottom: 0.9rem;
+    }
+    details.daily-balance-drawer.is-quota-met {
+      border-color: #064E3B;
+    }
+    details.daily-balance-drawer > summary {
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: #0B1D3A;
+      min-block-size: 38px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      list-style: revert;
+    }
+    .daily-schedule-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 205px), 1fr));
+      gap: 0.5rem;
+      margin: 0.65rem 0;
+    }
+    .daily-slot-pill {
+      background-color: #FFFFFF;
+      color: #111827;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.8rem;
+    }
+    .daily-nextup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 0.65rem;
+      margin-top: 0.65rem;
+    }
+    .daily-nextup-card {
+      background-color: #FFFFFF;
+      color: #111827;
+      border: 1.5px solid #08454A;
+      border-radius: 6px;
+      padding: 0.65rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
     /* Tab 5 Export Brief Button + Native Modal `<dialog>` (`dialog` & `copy-button` guides) */
     .btn-export-brief {
       min-block-size: 40px;
@@ -1266,6 +1322,7 @@
               <div class="ring-progress-actions" role="group" aria-label="Quick Toggle Active vs Next Up Portals">
                 <button type="button" id="ring-quick-active-btn" class="btn-secondary" aria-pressed="false">Active Only (61)</button>
                 <button type="button" id="ring-quick-nextup-btn" class="btn-secondary btn-nextup" aria-pressed="false">Next Up to Register (33)</button>
+                <button type="button" id="btn-open-daily-balance" class="btn-primary" style="min-block-size: 44px; padding: 0.42rem 0.85rem; font-size: 0.84rem;">8&ndash;5 Daily Queue (BI + Next 2) &rarr;</button>
               </div>
             </div>
             <progress id="ring-portal-progress" class="ring-progress-bar" value="61" max="94" aria-labelledby="ring-progress-label"></progress>
@@ -1522,16 +1579,30 @@
 
           <div class="control-well">
             <p style="margin: 0 0 0.45rem 0; font-size: 0.9rem; color: #111827; background-color: #F4F7FB;">
-              <strong>Zero-Egress Privacy:</strong> Leads opened via your morning email <code>#bi=...</code> URL fragment stay <strong>100% inside this browser</strong> (never sent to GitHub Pages). When working on M2 (<code>127.0.0.1:8767</code>), select <strong>Sync M2 Loopback Ledger</strong> so <strong>Dismiss</strong> decisions write directly into <code>bi_seen_ledger.sqlite</code> and suppress dismissed leads from future <code>7:30 AM MST</code> digests.
+              <strong>Zero-Egress Privacy:</strong> Leads opened via your morning email <code>#bi=...</code> URL fragment stay <strong>100% inside this browser</strong> (never sent to GitHub Pages). When working on M2 (<code>127.0.0.1:8767</code>), select <strong>Sync Carbon 4 Quant</strong> so <strong>Dismiss</strong> decisions write directly into <code>bi_seen_ledger.sqlite</code> and suppress dismissed leads from future <code>7:30 AM MST</code> digests.
             </p>
             <div style="font-size: 0.85rem; font-weight: 800; color: #0B1D3A; background-color: #F4F7FB;">
               Loopback Permission State: <code data-permission-status="loopback-network">checking</code> &bull;
               Sync Status: <span id="m2-sync-status">Local Browser Storage Active (Zero Cloud Egress)</span>
             </div>
             <div data-remediation="loopback-network" class="plain-callout" style="margin-top: 0.6rem;" hidden>
-              <strong>Loopback Access Blocked in Browser Settings:</strong> To sync two-way with M2 (<code>127.0.0.1:8767</code>), open your browser&#39;s <strong>Site settings</strong> for <code>webcognita.com</code>, set <strong>Loopback network</strong> (or Local network) to <strong>Allow</strong>, and select <strong>Sync M2 Loopback Ledger</strong> again. Your decisions remain safely saved in this browser and exportable via JSON.
+              <strong>Loopback Access Blocked in Browser Settings:</strong> To sync two-way with M2 (<code>127.0.0.1:8767</code>), open your browser&#39;s <strong>Site settings</strong> for <code>webcognita.com</code>, set <strong>Loopback network</strong> (or Local network) to <strong>Allow</strong>, and select <strong>Sync Carbon 4 Quant</strong> again. Your decisions remain safely saved in this browser and exportable via JSON.
             </div>
           </div>
+
+          <details id="daily-nextup-drawer" class="daily-balance-drawer" open>
+            <summary id="daily-nextup-summary">
+              <span id="daily-quota-label">8:00&ndash;5:00 Daily Capture Balance: Loading Next Up Portal Quota...</span>
+              <span id="daily-phase-pill" class="score-chip" style="color: #FFFFFF; background-color: #08454A; border-color: #08454A;">Auto-Scaling Quota</span>
+            </summary>
+            <div style="margin-top: 0.55rem;">
+              <progress id="daily-quota-progress" class="ring-progress-bar" value="0" max="2" aria-labelledby="daily-quota-label"></progress>
+              <div id="daily-quota-live" class="sr-only" role="status"></div>
+              <div id="daily-schedule-strip" class="daily-schedule-strip"></div>
+              <div id="daily-nextup-note" style="font-size: 0.82rem; color: #111827; margin-top: 0.35rem;"></div>
+              <div id="daily-nextup-cards" class="daily-nextup-grid"></div>
+            </div>
+          </details>
 
           <div class="chip-row" role="group" aria-label="Filter BI Triage Leads">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A; background-color: #FFFFFF;">Triage View:</span>
@@ -2499,26 +2570,37 @@
         renderStatutesDeck();
       }
 
+      function togglePortalActiveById(aid, atitle) {
+        if (!aid) return false;
+        const nowAct = !userActiveSet.has(aid);
+        if (nowAct) {
+          userActiveSet.add(aid);
+          recordPortalCompletedToday(aid, true);
+        } else {
+          userActiveSet.delete(aid);
+          recordPortalCompletedToday(aid, false);
+        }
+        try {
+          localStorage.setItem(ACTIVE_PORTALS_STORAGE_KEY, JSON.stringify(Array.from(userActiveSet)));
+        } catch (_) {}
+        updateActiveFilterPill();
+        renderDailyWorkflowBalance(nowAct ? atitle : '');
+        const live = document.getElementById('save-live-status');
+        if (live) {
+          live.textContent = nowAct
+            ? `Marked ${atitle} portal registration as ACTIVE.`
+            : `Unmarked ${atitle} portal registration.`;
+        }
+        runHybridSearch();
+        return nowAct;
+      }
+
       document.getElementById('rag-results').addEventListener('click', (e) => {
         const actBtn = e.target.closest('.active-toggle-btn');
         if (actBtn) {
           const aid = actBtn.getAttribute('data-act-id');
           const atitle = actBtn.getAttribute('data-act-title') || aid;
-          if (!aid) return;
-          const nowAct = !userActiveSet.has(aid);
-          if (nowAct) userActiveSet.add(aid);
-          else userActiveSet.delete(aid);
-          try {
-            localStorage.setItem(ACTIVE_PORTALS_STORAGE_KEY, JSON.stringify(Array.from(userActiveSet)));
-          } catch (_) {}
-          updateActiveFilterPill();
-          const live = document.getElementById('save-live-status');
-          if (live) {
-            live.textContent = nowAct
-              ? `Marked ${atitle} portal registration as ACTIVE.`
-              : `Unmarked ${atitle} portal registration.`;
-          }
-          runHybridSearch();
+          togglePortalActiveById(aid, atitle);
           return;
         }
         const btn = e.target.closest('.save-toggle-btn');
@@ -2587,6 +2669,12 @@
           runHybridSearch();
         });
       }
+      document.getElementById('btn-open-daily-balance')?.addEventListener('click', () => {
+        revealTriageTab(true);
+        renderDailyWorkflowBalance('');
+        renderTriageLeads();
+        syncWithM2Loopback(false);
+      });
       ['rt-amount', 'rt-buyer', 'rt-type'].forEach((id) => {
         document.getElementById(id).addEventListener('input', updateRouter);
         document.getElementById(id).addEventListener('change', updateRouter);
@@ -2618,6 +2706,167 @@
         }
       } catch (_) {}
 
+      const DAILY_PORTAL_QUOTA_KEY = 'webcognita_daily_portal_quota_v1';
+      // Priority Tier 1 ($0 self-service vendor accounts/profiles) before open-board bookmarks & Year-2 milestones
+      const NEXTUP_FAST_ROI_PRIORITY = {
+        'FED-03': 1,        // SBA Dynamic Small Business Search (SBS / DSBS) — #1 CO lookup
+        '4FE-CA-CTY-01': 2, // County of Imperial PlanetBids ($0)
+        '4FE-CA-UTIL-01': 3,// Imperial Irrigation District PlanetBids ($0)
+        'AZ-CITY-15': 4,    // Town of Gilbert Purchasing ($0, 275K pop)
+        'AZ-CITY-17': 5,    // City of Scottsdale eServices ($0, 245K pop)
+        'CYB-04': 6,        // DoD Project Spectrum ($0 CMMC L1 check)
+        'OSDBU-01': 7,      // VA Direct Access / OSDBU
+        'OSDBU-09': 8,      // DHS Vendor Outreach Sessions (VOS)
+        'OSDBU-06': 9,      // HHS SBCX / IHS OSDBU
+        'FED-BOR-01': 10,   // USBR Yuma & Phoenix Area Offices
+        'DOD-03': 11,       // NAVFAC SW / MCAS Yuma Small Business
+        '4FE-TRIBE-01': 90, // Defer $50 license until active tribal RFP
+        'CYB-02': 95,       // Reference hub
+        'GSA-01': 99,       // Year-2 GSA MAS milestone
+      };
+
+      function getPhoenixTodayIso() {
+        if (typeof Temporal !== 'undefined') {
+          try {
+            return Temporal.Now.plainDateISO('America/Phoenix').toString();
+          } catch (_) {}
+        }
+        return new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'America/Phoenix',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        }).format(new Date());
+      }
+
+      function readTodayPortalCompletions() {
+        const today = getPhoenixTodayIso();
+        try {
+          const parsed = JSON.parse(localStorage.getItem(DAILY_PORTAL_QUOTA_KEY) || 'null');
+          if (parsed && parsed.date === today && Array.isArray(parsed.ids)) {
+            return parsed.ids;
+          }
+        } catch (_) {}
+        return [];
+      }
+
+      function recordPortalCompletedToday(portalId, isAdded) {
+        const today = getPhoenixTodayIso();
+        const set = new Set(readTodayPortalCompletions());
+        if (isAdded) set.add(portalId);
+        else set.delete(portalId);
+        try {
+          localStorage.setItem(DAILY_PORTAL_QUOTA_KEY, JSON.stringify({ date: today, ids: Array.from(set) }));
+        } catch (_) {}
+      }
+
+      function renderDailyWorkflowBalance(justCompletedTitle = '') {
+        const drawer = document.getElementById('daily-nextup-drawer');
+        const lbl = document.getElementById('daily-quota-label');
+        const pill = document.getElementById('daily-phase-pill');
+        const prog = document.getElementById('daily-quota-progress');
+        const live = document.getElementById('daily-quota-live');
+        const strip = document.getElementById('daily-schedule-strip');
+        const note = document.getElementById('daily-nextup-note');
+        const cardsWrap = document.getElementById('daily-nextup-cards');
+        if (!drawer || !lbl || !prog || !strip || !cardsWrap) return;
+
+        const portalDocs = indexedNodes.filter((d) => Boolean(d.raw.isPortal));
+        const remainingDocs = portalDocs
+          .filter((d) => !isNodeActive(d.raw.id))
+          .toSorted((a, b) => {
+            const pA = NEXTUP_FAST_ROI_PRIORITY[a.raw.id] ?? 50;
+            const pB = NEXTUP_FAST_ROI_PRIORITY[b.raw.id] ?? 50;
+            if (pA !== pB) return pA - pB;
+            return (a.raw.ring - b.raw.ring) || a.raw.id.localeCompare(b.raw.id);
+          });
+
+        const remCount = remainingDocs.length;
+        const doneTodayIds = readTodayPortalCompletions();
+        const doneTodayCount = doneTodayIds.length;
+
+        // Auto-shrinking daily quota: >15 left => 2/day (20m); 1..15 left => 1/day (10m); 0 left => 0/day (Retired)
+        const dailyTarget = remCount > 15 ? 2 : (remCount > 0 ? 1 : 0);
+        const triageMins = dailyTarget === 2 ? 25 : (dailyTarget === 1 ? 35 : 45);
+        const portalMins = dailyTarget === 2 ? 20 : (dailyTarget === 1 ? 10 : 0);
+        const quotaMet = dailyTarget === 0 || doneTodayCount >= dailyTarget;
+        const businessDaysLeft = dailyTarget > 0 ? Math.ceil(remCount / dailyTarget) : 0;
+
+        prog.max = Math.max(1, dailyTarget || 1);
+        prog.value = dailyTarget === 0 ? 1 : Math.min(dailyTarget, doneTodayCount);
+        drawer.classList.toggle('is-quota-met', quotaMet);
+
+        if (remCount === 0) {
+          lbl.textContent = `8:00–5:00 Capture Balance: 100% Portal Roster Registered (${portalDocs.length}/${portalDocs.length}) — 0 Min Onboarding`;
+          if (pill) {
+            pill.textContent = 'Phase 3: Full Offense Mode';
+            pill.style.backgroundColor = '#064E3B';
+            pill.style.borderColor = '#064E3B';
+          }
+          drawer.open = false;
+        } else if (quotaMet) {
+          lbl.textContent = `Today's Portal Quota Complete (${doneTodayCount}/${dailyTarget} Done Today • ${remCount} Next Up Left) — Focus on BI Leads & Workday`;
+          if (pill) {
+            pill.textContent = 'Daily Cap Reached ✓';
+            pill.style.backgroundColor = '#064E3B';
+            pill.style.borderColor = '#064E3B';
+          }
+          if (justCompletedTitle) {
+            drawer.open = false;
+            if (live) live.textContent = `Daily portal quota reached (${doneTodayCount} of ${dailyTarget}). ${remCount} Next Up portals remain for future mornings.`;
+          }
+        } else {
+          const phaseName = dailyTarget === 2 ? `Buildout: 2/Day (~${businessDaysLeft} Workdays Left)` : `Final Taper: 1/Day (${businessDaysLeft} Workdays Left)`;
+          lbl.textContent = `8:00–5:00 Daily Capture Balance: Today's Portal Quota ${doneTodayCount} / ${dailyTarget} (${remCount} Next Up Left)`;
+          if (pill) {
+            pill.textContent = phaseName;
+            pill.style.backgroundColor = '#08454A';
+            pill.style.borderColor = '#08454A';
+          }
+        }
+
+        strip.innerHTML = `
+          <div class="daily-slot-pill"><strong>8:00–8:${triageMins} AM (${triageMins}m):</strong> Morning BI Lead Triage &amp; 1-Click Gmail Drafts</div>
+          <div class="daily-slot-pill"><strong>${portalMins > 0 ? `8:${triageMins}–8:45 AM (${portalMins}m Cap)` : 'Portal Slot Retired (0m)'}:</strong> ${portalMins > 0 ? `Register ${dailyTarget} Next Up Portal${dailyTarget > 1 ? 's' : ''} &amp; Stop` : 'All 108 Portals Active — Reclaimed for Bids'}</div>
+          <div class="daily-slot-pill"><strong>8:45 AM–4:30 PM:</strong> Core Teaching, R&amp;D &amp; Active Proposal Delivery</div>
+          <div class="daily-slot-pill"><strong>4:30–5:00 PM (30m):</strong> 1 Recompete Sweet-Spot (6–12 Mo) Pitch + Inbox Zero</div>
+        `;
+
+        if (note) {
+          note.innerHTML = remCount === 0
+            ? '<strong>Roster Complete:</strong> Every registerable concentric portal is active. 100% of your capture block now goes to BI Triage &amp; Recompetes.'
+            : '<strong>OPSEC Rule:</strong> Complete portal logins <strong>only from Yuma / U.S. IP</strong> (never while traveling internationally). Rings 0, 1 &amp; 2 are already <strong>100% locked (21/21)</strong>.';
+        }
+
+        const todaysPicks = remainingDocs.slice(0, Math.max(1, dailyTarget));
+        const miniCards = todaysPicks.map((doc) => {
+          const n = doc.raw;
+          const wrap = document.createElement('div');
+          wrap.className = 'daily-nextup-card';
+          const isFastAccount = (NEXTUP_FAST_ROI_PRIORITY[n.id] ?? 50) <= 15;
+          const kindBadge = isFastAccount ? '$0 Vendor Account / Profile' : 'Open Bid Board / OSDBU Bookmark';
+          wrap.innerHTML = `
+            <div>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.3rem;">
+                <span class="ring-chip" style="color: #FFFFFF; background-color: #0B1D3A;">Ring ${n.ring} &bull; ${escapeHtml(n.id)}</span>
+                <span class="score-chip" style="color: #08454A; background-color: #F4F7FB; border-color: #08454A;">${escapeHtml(kindBadge)}</span>
+              </div>
+              <div style="font-weight: 800; font-size: 0.9rem; color: #0B1D3A; margin-bottom: 0.25rem;">${escapeHtml(n.title)}</div>
+              <div style="font-size: 0.8rem; color: #111827;">${escapeHtml((n.summary || '').slice(0, 145))}...</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.25rem;">
+              <a class="card-link-btn" style="padding: 0.38rem 0.7rem; font-size: 0.8rem;" href="${escapeHtml(n.url)}" target="_blank" rel="noopener noreferrer">Open Portal<span class="sr-only"> &mdash; ${escapeHtml(n.title)}</span></a>
+              <button type="button" class="btn-export-brief is-pursue daily-mark-active-btn" style="padding: 0.38rem 0.7rem; font-size: 0.8rem;">Mark Active &check; (Done Today)<span class="sr-only"> &mdash; ${escapeHtml(n.title)}</span></button>
+            </div>
+          `;
+          wrap.querySelector('.daily-mark-active-btn')?.addEventListener('click', () => {
+            togglePortalActiveById(n.id, n.title);
+          });
+          return wrap;
+        });
+        cardsWrap.replaceChildren(...miniCards);
+      }
+
       function revealTriageTab(selectNow = false) {
         const tabTriage = document.getElementById('tab-triage');
         const tablist = document.getElementById('main-tablist');
@@ -2625,8 +2874,9 @@
         tabTriage.hidden = false;
         tablist.classList.add('has-triage');
         const activeCount = biLeads.filter((it) => (biDecisions[it.h]?.decision || '') !== 'DISMISS').length;
-        tabTriage.textContent = `6. BI Lead Triage (${activeCount})`;
+        tabTriage.textContent = `7. BI & 8\u20135 Queue (${activeCount})`;
         syncTabScrollerObserver();
+        renderDailyWorkflowBalance('');
         if (selectNow) {
           activateTab(tabTriage, false);
         } else {
@@ -4425,6 +4675,7 @@
           renderStatutesDeck();
           renderCrosswalk(ALL_CROSSWALK);
           renderGates(data.readinessGates || []);
+          renderDailyWorkflowBalance('');
           bootstrapBiTriageBridge();
         })
         .catch((err) => {
