@@ -577,12 +577,16 @@
     }
     .brief-inputs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
       gap: 0.75rem;
       background-color: #F4F7FB;
       border: 1.5px solid #0B1D3A;
       border-radius: 6px;
       padding: 0.75rem 0.85rem;
+    }
+    .search-input:user-invalid {
+      border-color: #940925;
+      outline-color: #940925;
     }
     .brief-toolbar {
       display: flex;
@@ -1551,12 +1555,19 @@
 
       <div class="brief-inputs-grid">
         <div>
-          <label for="brief-sol-ref" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.25rem; font-size: 0.84rem;">Solicitation / RFQ # &amp; Target Quote Price (Optional):</label>
-          <input id="brief-sol-ref" class="search-input" type="text" placeholder="e.g., BPM006796 or RFQ #2027-04 • $9,500 Firm-Fixed-Price" autocomplete="off">
+          <label for="brief-to-email" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.15rem; font-size: 0.84rem;">Recipient Email (To: &mdash; PI / Director / Counselor):</label>
+          <span id="brief-to-hint" style="display: block; font-size: 0.75rem; color: #1E293B; background-color: #F4F7FB; margin-bottom: 0.25rem;">Auto-filled from NSF / Grants.gov / AZ APEX, or paste PI email.</span>
+          <input id="brief-to-email" name="brief_to_email" class="search-input" type="email" multiple placeholder="e.g., pi@university.edu" autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="brief-to-hint">
         </div>
         <div>
-          <label for="brief-custom-note" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.25rem; font-size: 0.84rem;">Capture Note / Specific Counselor Questions (Saved to M2 Ledger):</label>
-          <input id="brief-custom-note" class="search-input" type="text" placeholder="e.g., Verify Section M evaluation weights &amp; A.R.S. 41-2535 SB restriction..." autocomplete="off">
+          <label for="brief-sol-ref" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.15rem; font-size: 0.84rem;">Solicitation / RFQ # &amp; Target Quote Price (Optional):</label>
+          <span id="brief-sol-hint" style="display: block; font-size: 0.75rem; color: #1E293B; background-color: #F4F7FB; margin-bottom: 0.25rem;">Optional solicitation ID, grant #, or fixed-price range.</span>
+          <input id="brief-sol-ref" name="brief_sol_ref" class="search-input" type="text" placeholder="e.g., BPM007864 or $9,500 Firm-Fixed-Price" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="brief-sol-hint">
+        </div>
+        <div>
+          <label for="brief-custom-note" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.15rem; font-size: 0.84rem;">Capture Note / Specific Questions (Saved to M2 Ledger):</label>
+          <span id="brief-note-hint" style="display: block; font-size: 0.75rem; color: #1E293B; background-color: #F4F7FB; margin-bottom: 0.25rem;">Tailored scope note persisted locally &amp; in M2 SQLite.</span>
+          <input id="brief-custom-note" name="brief_custom_note" class="search-input" type="text" placeholder="e.g., Verify Section M evaluation weights &amp; A.R.S. 41-2535 SB restriction..." autocomplete="off" aria-describedby="brief-note-hint">
         </div>
       </div>
 
@@ -1570,6 +1581,7 @@
         </span>
         <button type="button" id="btn-download-brief" class="btn-secondary">Download .md</button>
         <a id="btn-mailto-apex" class="card-sow-btn" href="https://mail.google.com/mail/?authuser=alan.pruitt%40gmail.com&amp;view=cm&amp;fs=1&amp;tf=1" target="_blank" rel="noopener noreferrer">Open Gmail Draft (alan@webcognita.com) &rarr;</a>
+        <span id="brief-draft-status" role="status" style="font-size: 0.8rem; font-weight: 700; color: #064E3B;"></span>
       </div>
 
       <pre id="bid-brief-preview" tabindex="0" aria-label="Generated Arizona APEX Solicitation Review Request or FAR 13 Quote Cover Sheet"></pre>
@@ -2781,20 +2793,34 @@
         return CORPUS.nodes.find((n) => n.id === nid) || null;
       }
 
-      function buildApexReviewText(leads, solRef, customNote) {
+      const AZ_APEX_COUNSELOR_EMAIL = 'chris.bridgewater@domail.maricopa.edu';
+      const WEBCOGNITA_SIG_LINES = [
+        'Respectfully,',
+        '',
+        'Alan Pruitt, B.S. | Principal & Managing Member',
+        'WEBCOGNITA LLC — 100% VOSB • Yuma City LSA Small Business (SAM.gov FAR 52.219-2) • FEMA DRR (AZ/CA)',
+        'SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | AZ APP: IV0000112720 | AZ UTRACS SBC: #23545 | E-Verify: #3119395',
+        '10 NAICS: 541511 (Primary), 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710 | GPC / P-Card & ACH Ready',
+        '1906 S 6th Ave, Yuma, AZ 85364 | (928) 421-1050 | https://www.webcognita.com/ | https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf',
+        'USMC & U.S. Army CI Veteran • 2025 U.S. SBA AZ Veteran Champion • 2023 U.S. Dept. of Commerce MBDA Advocate of the Year',
+        'Security Notice: Standard email is unencrypted; please do not transmit CUI or unredacted PII via email.'
+      ];
+
+      function buildApexReviewText(leads, solRef, customNote, toOverride = '') {
         const todayIso = new Date().toISOString().slice(0, 10);
         const primary = leads[0] || {};
+        const apexTo = toOverride || AZ_APEX_COUNSELOR_EMAIL;
         const subjectLead = leads.length === 1
           ? (primary.ti || 'Target Solicitation')
           : `${leads.length} Priority Capture Targets (Ring 0 -> Ring 9)`;
         const lines = [
-          'TO      : Arizona APEX Accelerator Counseling Team <azapex.admin@domail.maricopa.edu>',
+          `TO      : Chris Bridgewater, Arizona APEX Accelerator <${apexTo}>`,
           'PHONE   : (623) 845-4700 (MCCCD Hosted • Mon–Fri 8:00 AM – 5:00 PM MST)',
           `SUBJECT : 1-on-1 Solicitation & Compliance Review Request — Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) — ${subjectLead}`,
           `DATE    : ${todayIso}`,
           '======================================================================================',
           '',
-          'Dear Arizona APEX Accelerator Counseling Team,',
+          'Dear Chris,',
           '',
           'Webcognita LLC (active SAM.gov VOSB headquartered in Yuma, AZ) respectfully requests a',
           '1-on-1 Solicitation & Pre-Quote Compliance Review prior to submitting our formal response',
@@ -2838,12 +2864,10 @@
           '  - Principal        : Alan Pruitt, B.S. (USMC & U.S. Army CI Veteran • 100% DAV)',
           '  - Identifiers      : SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739 | AZ ACC: #L17046120',
           '  - AZ SLED & Co-Ops : AZ APP Supplier #IV0000112720 | City of Mesa VSS #VS0000020834 | ADOT AZ UTRACS SBC #23545 | DHS E-Verify #3119395 | AZPurchasing, OpenGov (50+ AZ Agencies), Bonfire, BidNet',
-          '  - Registered Codes : NAICS 541511 (Primary), 541512, 541715, 611710, 541690 | AZ NIGP 208, 209, 918, 920, 924, 958',
-          '  - Capabilities PDF : https://www.webcognita.com/capabilities-statement.html',
+          '  - Registered Codes : NAICS 541511 (Primary), 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710 | AZ NIGP 208, 209, 918, 920, 924, 958',
+          '  - Capabilities PDF : https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf',
           '',
-          'Respectfully,',
-          'Alan Pruitt, B.S., Principal',
-          'Webcognita LLC • Yuma, Arizona • https://www.webcognita.com/'
+          ...WEBCOGNITA_SIG_LINES
         );
         return lines.join('\n');
       }
@@ -2896,8 +2920,8 @@
           '',
           '4. AUTHORIZED SIGNATURE & POINT OF CONTACT',
           '  - Authorized Signatory : Alan Pruitt, B.S., Principal & Managing Member, Webcognita LLC',
-          '  - Direct POC & Desk    : alan@webcognita.com | contracts@webcognita.com',
-          '  - Capabilities & Proof : https://www.webcognita.com/capabilities-statement.html | https://www.webcognita.com/govcon-radar/'
+          '  - Direct POC & Desk    : alan@webcognita.com | (928) 421-1050',
+          '  - Capabilities & Proof : https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf | https://www.webcognita.com/govcon-radar/'
         ];
 
         if (leads.length > 1) {
@@ -2906,6 +2930,7 @@
             lines.push(`  ${i + 2}. [Ring ${Number(extra.r ?? 9)}] ${extra.ti} — ${extra.u}`);
           });
         }
+        lines.push('', ...WEBCOGNITA_SIG_LINES);
         return lines.join('\n');
       }
 
@@ -2924,20 +2949,24 @@
 
       function extractLeadEmail(it) {
         if (!it) return '';
-        if (it.em && typeof it.em === 'string' && it.em.includes('@')) return it.em.trim();
-        const blob = `${it.ag || ''} ${it.sn || ''}`;
+        const blockedRe = /(noreply|no-reply|donotreply|customer\.ionwave\.net|notifications@app\.az\.gov|procurement-notifications@|alan@webcognita\.com|contracts@webcognita\.com|alan\.?pruitt@gmail\.com)/i;
+        if (it.em && typeof it.em === 'string' && it.em.includes('@') && !blockedRe.test(it.em)) {
+          return it.em.trim();
+        }
+        const savedNote = biDecisions[it.h]?.note || it.note || '';
+        const blob = `${it.ag || ''} ${it.sn || ''} ${savedNote}`;
         const matches = blob.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g) || [];
         for (const m of matches) {
           const clean = m.replace(/\.+$/, '');
-          if (!/(noreply|no-reply|donotreply|customer\.ionwave\.net)/i.test(clean)) return clean;
+          if (!blockedRe.test(clean)) return clean;
         }
         return '';
       }
 
-      function buildEnablingPartnerPitchText(leads, solRef, customNote) {
+      function buildEnablingPartnerPitchText(leads, solRef, customNote, toOverride = '') {
         const todayIso = new Date().toISOString().slice(0, 10);
         const ld = leads[0] || {};
-        const piEmail = extractLeadEmail(ld);
+        const piEmail = toOverride || extractLeadEmail(ld);
         const recipientLine = ld.ag || '[Principal Investigator / Workforce Consortium Director / Sponsored Projects Office]';
         const noticeUrl = ld.u || 'https://www.grants.gov/';
         const lines = [
@@ -2978,28 +3007,36 @@
           '4. REFERENCE SIGNAL & VERIFIED ENTITY CREDENTIALS',
           `  - Matched Award / NOFO : ${ld.ti || 'Institutional Grant Opportunity'} (${ld.dl || 'Active Window'})`,
           `  - Official Record URL  : ${noticeUrl}`,
-          '  - Entity & Compliance  : Webcognita LLC (100% VOSB • UEI: EZ34U9KNJA17 • CAGE: 4ZCN6 • 0 Exclusions)',
+          '  - Entity & Compliance  : Webcognita LLC (100% VOSB • Yuma City LSA FAR 52.219-2 • UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)',
           '  - Principal Pedigree   : Alan Pruitt, B.S. (USMC & U.S. Army CI Veteran; 2025 SBA AZ Veteran Small',
           '                           Business Champion; 2023 U.S. Dept. of Commerce MBDA Advocate of the Year;',
           '                           Designated Campus Colleague, The University of Arizona)',
-          '  - Capabilities PDF/UA  : https://www.webcognita.com/capabilities-statement.html',
+          '  - Capabilities PDF/UA  : https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf',
           '',
           'Would a brief 10-minute Google Meet or phone introduction be helpful as you finalize your technical milestones?',
           '',
-          'Respectfully,',
-          'Alan Pruitt, B.S., Principal (alan@webcognita.com)',
-          'Webcognita LLC • 1906 S 6th Ave, Yuma, AZ 85364 • https://www.webcognita.com/'
+          ...WEBCOGNITA_SIG_LINES
         ];
         return lines.join('\n');
       }
 
       const GMAIL_PRIMARY_AUTHUSER = 'alan.pruitt@gmail.com';
       const GMAIL_SEND_AS_EMAIL = 'alan@webcognita.com';
+      let briefRecipientDirty = false;
+
+      function defaultRecipientForMode(mode, leads) {
+        if (mode === 'APEX') return AZ_APEX_COUNSELOR_EMAIL;
+        return extractLeadEmail((leads && leads[0]) || null);
+      }
 
       function stripMemoHeaderForGmailBody(rawText, mode) {
-        if (mode !== 'PARTNER') return rawText;
-        const idx = rawText.indexOf('Dear Principal Investigator');
-        return idx > 0 ? rawText.slice(idx) : rawText;
+        if (mode === 'PARTNER' || mode === 'APEX') {
+          const sepIdx = rawText.indexOf('======================================================================================');
+          if (sepIdx > -1) {
+            return rawText.slice(sepIdx + 86).replace(/^\s+/, '');
+          }
+        }
+        return rawText;
       }
 
       function buildGmailWebComposeUrl(toAddr, subj, bodyText) {
@@ -3009,30 +3046,105 @@
           fs: '1',
           tf: '1',
           su: subj || '',
-          body: (bodyText || '').slice(0, 1800),
+          body: (bodyText || '').slice(0, 5500),
         });
         if (toAddr) params.set('to', toAddr);
         return `https://mail.google.com/mail/?${params.toString()}`;
       }
 
+      async function autoResolveMissingLeadEmail(ld) {
+        if (!ld || extractLeadEmail(ld)) return;
+        const hintEl = document.getElementById('brief-to-hint');
+        const u = String(ld.u || '');
+        const ti = String(ld.ti || '');
+        const aid = String(ld.awardId || '');
+
+        // 1. Direct CORS-open NSF Award API lookup (works anywhere, even offline from M2 bridge)
+        let nsfId = '';
+        const mNsf = u.match(/AWD_ID=(\d{6,8})/i) || ti.match(/NSF Funded Award #(\d{6,8})/i) || u.match(/ASST_NON_(\d{7})_4900/i);
+        if (mNsf) {
+          nsfId = mNsf[1];
+        } else if (/^\d{7}$/.test(aid) && /national science foundation/i.test(`${ti} ${ld.ag || ''}`)) {
+          nsfId = aid;
+        }
+        if (nsfId) {
+          try {
+            if (hintEl) hintEl.textContent = `Resolving PI email from NSF Award #${nsfId}...`;
+            const r = await fetch(`https://api.nsf.gov/services/v1/awards/${encodeURIComponent(nsfId)}.json?printFields=piFirstName,piLastName,piEmail,awardeeName`, {
+              credentials: 'omit',
+              signal: AbortSignal.timeout(5000),
+            });
+            if (r.ok) {
+              const d = await r.json();
+              const aw = d?.response?.award?.[0];
+              const em = String(aw?.piEmail || '').trim();
+              const nm = `${aw?.piFirstName || ''} ${aw?.piLastName || ''}`.trim();
+              if (em) {
+                ld.em = em;
+                if (nm && ld.ag && !ld.ag.includes(nm)) ld.ag = `${ld.ag} — PI: ${nm} <${em}>`;
+                persistBiLeadsCache();
+                const toInput = document.getElementById('brief-to-email');
+                if (toInput && !briefRecipientDirty && activeBriefMode !== 'APEX') toInput.value = em;
+                if (hintEl) hintEl.textContent = `Resolved PI email from NSF (${nm || em}).`;
+                renderBidBriefModalContent();
+                return;
+              }
+            }
+          } catch (_) {}
+        }
+
+        // 2. M2 Loopback Bridge resolver (`Grants.gov fetchOpportunity` + NSF fallback)
+        try {
+          const perm = await queryLnaPermissionSafe();
+          if (perm !== 'denied') {
+            const info = await fetchLoopbackBridge(
+              '/api/bi-triage/resolve-contact',
+              'POST',
+              { url: u, awardId: aid, title: ti, agency: ld.ag || '' },
+              5000
+            );
+            if (info && info.email) {
+              ld.em = String(info.email).trim();
+              if (info.name && ld.ag && !ld.ag.includes(info.name)) {
+                ld.ag = `${ld.ag} — ${info.name} <${ld.em}>`;
+              }
+              persistBiLeadsCache();
+              const toInput = document.getElementById('brief-to-email');
+              if (toInput && !briefRecipientDirty && activeBriefMode !== 'APEX') toInput.value = ld.em;
+              if (hintEl) hintEl.textContent = `Resolved contact (${info.name || ld.em}) via ${info.source || 'Portal API'}.`;
+              renderBidBriefModalContent();
+              return;
+            }
+          }
+        } catch (_) {}
+
+        if (hintEl && activeBriefMode !== 'APEX' && !extractLeadEmail(ld)) {
+          hintEl.textContent = 'No public PI email in portal summary — paste PI / Sponsored Projects email here for To: line.';
+        }
+      }
+
       function renderBidBriefModalContent() {
+        const toInput = document.getElementById('brief-to-email');
+        const toTyped = (toInput?.value || '').trim();
         const solRef = (document.getElementById('brief-sol-ref')?.value || '').trim();
         const customNote = (document.getElementById('brief-custom-note')?.value || '').trim();
         const preview = document.getElementById('bid-brief-preview');
         const mailtoBtn = document.getElementById('btn-mailto-apex');
         if (!preview) return;
 
+        const effectiveTo = toTyped || defaultRecipientForMode(activeBriefMode, activeBriefLeads);
+
         const text = activeBriefMode === 'APEX'
-          ? buildApexReviewText(activeBriefLeads, solRef, customNote)
+          ? buildApexReviewText(activeBriefLeads, solRef, customNote, effectiveTo)
           : (activeBriefMode === 'PARTNER'
-              ? buildEnablingPartnerPitchText(activeBriefLeads, solRef, customNote)
+              ? buildEnablingPartnerPitchText(activeBriefLeads, solRef, customNote, effectiveTo)
               : buildFar13QuoteCoverText(activeBriefLeads, solRef, customNote));
         preview.textContent = text;
 
         if (mailtoBtn) {
           const emailBody = stripMemoHeaderForGmailBody(text, activeBriefMode);
           if (activeBriefMode === 'APEX') {
-            const toAddr = 'azapex.admin@domail.maricopa.edu';
+            const toAddr = effectiveTo || AZ_APEX_COUNSELOR_EMAIL;
             const firstTitle = activeBriefLeads[0]?.ti || 'Solicitation Review';
             const subj = activeBriefLeads.length > 1
               ? `1-on-1 Solicitation Review Request (${activeBriefLeads.length} Targets) — Webcognita LLC (UEI: EZ34U9KNJA17)`
@@ -3043,7 +3155,7 @@
             mailtoBtn.dataset.subject = subj;
             mailtoBtn.href = buildGmailWebComposeUrl(toAddr, subj, emailBody);
           } else if (activeBriefMode === 'PARTNER') {
-            const piEmail = extractLeadEmail(activeBriefLeads[0]);
+            const piEmail = effectiveTo;
             const firstTitle = activeBriefLeads[0]?.ti || 'Grant Collaboration';
             const subj = `Non-Competing Enabling Partner (WCAG 2.2 AA / Curriculum-as-Code / Local AI) — ${firstTitle.slice(0, 68)}`;
             mailtoBtn.hidden = false;
@@ -3054,11 +3166,13 @@
             mailtoBtn.dataset.subject = subj;
             mailtoBtn.href = buildGmailWebComposeUrl(piEmail, subj, emailBody);
           } else {
-            const coEmail = extractLeadEmail(activeBriefLeads[0]);
+            const coEmail = effectiveTo;
             const firstTitle = activeBriefLeads[0]?.ti || 'Commercial Quote';
             const subj = `Commercial Quote Submission — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 68)}`;
             mailtoBtn.hidden = false;
-            mailtoBtn.textContent = `Open Gmail Draft (Quote Cover \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`;
+            mailtoBtn.textContent = coEmail
+              ? `Open Gmail Draft to CO (${coEmail} \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`
+              : `Open Gmail Draft (Quote Cover \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`;
             mailtoBtn.dataset.to = coEmail;
             mailtoBtn.dataset.subject = subj;
             mailtoBtn.href = buildGmailWebComposeUrl(coEmail, subj, emailBody);
@@ -3070,9 +3184,20 @@
         if (!leads || !leads.length) return;
         activeBriefLeads = leads;
         activeBriefMode = defaultMode;
+        briefRecipientDirty = false;
         document.querySelectorAll('.brief-mode-btn').forEach((b) => {
           b.setAttribute('aria-pressed', b.getAttribute('data-brief-mode') === defaultMode ? 'true' : 'false');
         });
+        const statusSpan = document.getElementById('brief-draft-status');
+        if (statusSpan) statusSpan.textContent = '';
+        const hintEl = document.getElementById('brief-to-hint');
+        if (hintEl) {
+          hintEl.textContent = 'Auto-filled from NSF / Grants.gov / AZ APEX, or paste PI email.';
+        }
+        const toInput = document.getElementById('brief-to-email');
+        if (toInput) {
+          toInput.value = defaultRecipientForMode(defaultMode, leads);
+        }
         const sub = document.getElementById('bid-brief-subtitle');
         if (sub) {
           sub.textContent = leads.length === 1
@@ -3087,6 +3212,9 @@
         const dlg = document.getElementById('bid-brief-dialog');
         if (dlg && typeof dlg.showModal === 'function') {
           dlg.showModal();
+        }
+        if (leads.length === 1 && !extractLeadEmail(leads[0])) {
+          autoResolveMissingLeadEmail(leads[0]);
         }
       }
 
@@ -3319,12 +3447,21 @@
       }
       document.querySelectorAll('.brief-mode-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
-          activeBriefMode = btn.getAttribute('data-brief-mode') || 'APEX';
+          const nextMode = btn.getAttribute('data-brief-mode') || 'APEX';
+          activeBriefMode = nextMode;
           document.querySelectorAll('.brief-mode-btn').forEach((b) => {
             b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
           });
+          const toInput = document.getElementById('brief-to-email');
+          if (toInput && !briefRecipientDirty) {
+            toInput.value = defaultRecipientForMode(nextMode, activeBriefLeads);
+          }
           renderBidBriefModalContent();
         });
+      });
+      document.getElementById('brief-to-email')?.addEventListener('input', () => {
+        briefRecipientDirty = true;
+        renderBidBriefModalContent();
       });
       document.getElementById('brief-sol-ref')?.addEventListener('input', renderBidBriefModalContent);
       document.getElementById('brief-custom-note')?.addEventListener('input', renderBidBriefModalContent);
@@ -3362,6 +3499,8 @@
           } catch (_) {}
         }
 
+        const statusSpan = document.getElementById('brief-draft-status');
+        if (statusSpan) statusSpan.textContent = '';
         const origLabel = btn.textContent;
         btn.textContent = 'Staging Gmail Draft (alan@webcognita.com)...';
         try {
@@ -3374,6 +3513,11 @@
             10000
           );
           const targetUrl = (res && res.ok && res.gmail_draft_url) ? res.gmail_draft_url : fallbackComposeUrl;
+          if (statusSpan) {
+            statusSpan.textContent = (res && res.ok)
+              ? 'Draft staged as Alan Pruitt <alan@webcognita.com>.'
+              : 'Opened Gmail Web Compose (select alan@webcognita.com in From).';
+          }
           if (gmailWin && !gmailWin.closed) {
             gmailWin.location.replace(targetUrl);
           } else {
@@ -3381,6 +3525,9 @@
           }
         } catch (_) {
           // Graceful fallback when away from M2 HQ: still opens Gmail Web Compose (never Outlook mailto:)
+          if (statusSpan) {
+            statusSpan.textContent = 'M2 Bridge unreachable — opened Gmail Compose (select alan@webcognita.com in From).';
+          }
           if (gmailWin && !gmailWin.closed) {
             gmailWin.location.replace(fallbackComposeUrl);
           } else {
@@ -3394,12 +3541,18 @@
       const copyTimers = new WeakMap();
       let lastCopyMsg = '';
       function legacyClipboardCopy(text) {
+        const previousFocus = document.activeElement;
         const field = Object.assign(document.createElement('textarea'), { value: text });
         field.setAttribute('readonly', '');
         field.style.cssText = 'position:fixed;inset-block-start:0;opacity:0';
         document.body.append(field);
         field.select();
-        try { return document.execCommand('copy'); } finally { field.remove(); }
+        try {
+          return document.execCommand('copy');
+        } finally {
+          field.remove();
+          previousFocus?.focus({ preventScroll: true });
+        }
       }
       function reportInvokerCopy(button, ok) {
         const tip = button.nextElementSibling;
