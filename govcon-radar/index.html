@@ -1443,7 +1443,7 @@
                 <div class="usa-radio-grid">
                   <div class="usa-radio-row">
                     <input type="radio" id="usa-stream-a" name="usa_stream" value="STREAM_A" checked>
-                    <label for="usa-stream-a"><strong>Stream A &mdash; $3K&ndash;$350K Prime &amp; Recompetes:</strong> Nationwide FAR 2.101 SAT contracts, GPC micro-purchases (<code>&lt;= $15K</code>), &amp; 12-month recompete windows.</label>
+                    <label for="usa-stream-a"><strong>Stream A &mdash; $3K&ndash;$350K Prime &amp; Recompete Timeline (10 NAICS):</strong> Nationwide FAR Part 13 SAT contracts, GPC micro-purchases (<code>&lt;= $15K</code>), &amp; 0&ndash;18 month Rule-of-Thumb recompete windows.</label>
                   </div>
                   <div class="usa-radio-row">
                     <input type="radio" id="usa-stream-b" name="usa_stream" value="STREAM_B">
@@ -1487,6 +1487,16 @@
           </search>
 
           <progress id="usa-loading-bar" class="ring-progress-bar" style="margin-bottom: 0.85rem;" aria-label="Querying USAspending.gov v2 API" hidden></progress>
+
+          <div id="usa-recompete-bar" class="chip-row" role="group" aria-label="Filter Recompete Contracts by Rule-of-Thumb Timeline" hidden>
+            <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Recompete Timeline:</span>
+            <button type="button" class="btn-secondary usa-band-btn" data-usa-band="ALL" aria-pressed="true">All Contracts (0)</button>
+            <button type="button" class="btn-secondary usa-band-btn" data-usa-band="SWEET_6_12M" aria-pressed="false">6&ndash;12 Mo Sweet Spot: Shape Set-Aside (0)</button>
+            <button type="button" class="btn-secondary usa-band-btn" data-usa-band="PRESOL_3_6M" aria-pressed="false">3&ndash;6 Mo Pre-RFP: Sources Sought (0)</button>
+            <button type="button" class="btn-secondary usa-band-btn" data-usa-band="BID_0_3M" aria-pressed="false">0&ndash;3 Mo: Bid / RFQ Drop Now (0)</button>
+            <button type="button" class="btn-secondary usa-band-btn" data-usa-band="EARLY_12_18M" aria-pressed="false">12&ndash;18 Mo: Early Radar (0)</button>
+            <button type="button" class="btn-secondary usa-band-btn" data-usa-band="OPEN_MARKET" aria-pressed="false">Open-Market PO Only &bull; No GSA Needed (0)</button>
+          </div>
 
           <div id="usa-telemetry" class="telemetry-bar" aria-live="polite">
             <span>Idle (0 external requests sent). Choose a Capture Stream and select Query USAspending.gov v2 API.</span>
@@ -3676,8 +3686,162 @@
       window.addEventListener('hashchange', bootstrapBiTriageBridge);
 
       // --- 6. On-Demand Live USAspending.gov v2 Award, GPC & Recompete Lookup (Strict User-Initiated Opt-In) ---
-      const USA_NAICS_LIST = ['541511', '541512', '541715', '611710', '541690'];
-      const USA_NOISE_RE = /\b(animal research|husbandry|veterinary|screwworm|swine influenza|avian influenza|livestock|chaplain|catholic|protestant|religious education|janitorial|custodial|hvac|plumbing|roofing|paving|landscaping|munitions|aerodynamic|flight simulator|weapon system)\b/i;
+      const USA_NAICS_LIST = [
+        '541511', '541512', '541519', '541611', '541690',
+        '541715', '561410', '611420', '611430', '611710',
+      ];
+      const USA_NOISE_RE = /\b(animal research|husbandry|veterinary|screwworm|swine influenza|avian influenza|livestock|chaplain|chaplaincy|catholic|protestant|religious education|janitorial|custodial|hvac|plumbing|roofing|paving|landscaping|munitions|aerodynamic|flight simulator|weapon system|ship repair|medical gas|laundry)\b/i;
+
+      let activeUsaBandFilter = 'ALL';
+      let lastUsaContractLeads = [];
+      let lastUsaNoiseKilled = 0;
+
+      // Lazy user-initiated Temporal polyfill loader (`calculate-event-differentials` & `capture-location-agnostic-data` guides)
+      // Never called on initial page load so GovCon Radar preserves 100% zero-egress until the user submits a live API query.
+      async function ensureTemporalForUsaQuery() {
+        if (typeof Temporal !== 'undefined') return true;
+        try {
+          const mod = await import('https://esm.sh/temporal-polyfill');
+          if (mod && mod.Temporal) {
+            globalThis.Temporal = mod.Temporal;
+            if (mod.toTemporalInstant && !Date.prototype.toTemporalInstant) {
+              Date.prototype.toTemporalInstant = mod.toTemporalInstant;
+            }
+            return true;
+          }
+        } catch (_) {}
+        return false;
+      }
+
+      const usaDurationFmt = typeof Intl !== 'undefined' && typeof Intl.DurationFormat === 'function'
+        ? new Intl.DurationFormat('en-US', { style: 'short' })
+        : null;
+
+      function evaluateRecompeteWindow(endDateIso) {
+        const cleanIso = String(endDateIso || '').slice(0, 10);
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(cleanIso)) {
+          return {
+            band: 'BENCHMARK_OTHER',
+            priorityRank: 5,
+            badgeText: 'Contract Benchmark',
+            countdownText: 'End date unspecified',
+            playbookText: 'Verify period of performance on official USAspending record.',
+          };
+        }
+
+        let daysLeft = 0;
+        let humanSpan = '';
+        let band = 'BENCHMARK_OTHER';
+
+        if (typeof Temporal !== 'undefined') {
+          try {
+            const todayAz = Temporal.Now.plainDateISO('America/Phoenix');
+            const endPlain = Temporal.PlainDate.from(cleanIso);
+            const dayDur = todayAz.until(endPlain, { largestUnit: 'day' });
+            const calDur = todayAz.until(endPlain, { largestUnit: 'year', smallestUnit: 'day' });
+            daysLeft = dayDur.days;
+            const absCal = calDur.sign < 0 ? calDur.negated() : calDur;
+            humanSpan = usaDurationFmt
+              ? usaDurationFmt.format({ years: absCal.years, months: absCal.months, days: absCal.days })
+              : absCal.toLocaleString('en-US', { style: 'short' });
+            if (calDur.sign < 0) {
+              if (daysLeft >= -15) band = 'BID_0_3M';
+            } else {
+              const d3m = Temporal.Duration.from({ months: 3 });
+              const d6m = Temporal.Duration.from({ months: 6 });
+              const d12m = Temporal.Duration.from({ months: 12 });
+              const d18m = Temporal.Duration.from({ months: 18 });
+              if (Temporal.Duration.compare(calDur, d3m, { relativeTo: todayAz }) <= 0) {
+                band = 'BID_0_3M';
+              } else if (Temporal.Duration.compare(calDur, d6m, { relativeTo: todayAz }) <= 0) {
+                band = 'PRESOL_3_6M';
+              } else if (Temporal.Duration.compare(calDur, d12m, { relativeTo: todayAz }) <= 0) {
+                band = 'SWEET_6_12M';
+              } else if (Temporal.Duration.compare(calDur, d18m, { relativeTo: todayAz }) <= 0) {
+                band = 'EARLY_12_18M';
+              }
+            }
+          } catch (_) {}
+        }
+
+        if (!humanSpan) {
+          // Offline fallback if browser lacks Temporal and CDN polyfill could not load
+          const [y, m, d] = cleanIso.split('-').map(Number);
+          const now = new Date();
+          const todayUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+          const endUtc = Date.UTC(y, m - 1, d);
+          daysLeft = Math.round((endUtc - todayUtc) / 86400000);
+          const mos = Math.max(0, Math.floor(Math.abs(daysLeft) / 30));
+          const remDays = Math.abs(daysLeft) % 30;
+          humanSpan = usaDurationFmt
+            ? usaDurationFmt.format(mos > 0 ? { months: mos, days: remDays } : { days: remDays })
+            : (mos > 0 ? `${mos} mos, ${remDays} days` : `${remDays} days`);
+          if (daysLeft >= -15 && daysLeft <= 91) band = 'BID_0_3M';
+          else if (daysLeft > 91 && daysLeft <= 183) band = 'PRESOL_3_6M';
+          else if (daysLeft > 183 && daysLeft <= 366) band = 'SWEET_6_12M';
+          else if (daysLeft > 366 && daysLeft <= 548) band = 'EARLY_12_18M';
+        }
+
+        const timeLabel = daysLeft < 0 ? `Ended ${humanSpan} ago (${cleanIso})` : `${humanSpan} left (Ends ${cleanIso})`;
+        if (band === 'SWEET_6_12M') {
+          return {
+            band,
+            priorityRank: 1,
+            badgeText: `Sweet Spot 6\u201312 Mo (${cleanIso})`,
+            countdownText: timeLabel,
+            playbookText: 'FAR Part 10 Market Research Sweet Spot: Email 1-Page Capabilities Statement to Contracting Officer / OSDBU now to trigger a VOSB / Small Business / Yuma LSA set-aside (or team with incumbent).',
+          };
+        }
+        if (band === 'PRESOL_3_6M') {
+          return {
+            band,
+            priorityRank: 2,
+            badgeText: `Pre-RFP 3\u20136 Mo (${cleanIso})`,
+            countdownText: timeLabel,
+            playbookText: 'Pre-Solicitation Window: Check SAM.gov for Sources Sought / Draft SOW or ask Arizona APEX Counselor to verify renewal vehicle with agency buyer.',
+          };
+        }
+        if (band === 'BID_0_3M') {
+          return {
+            band,
+            priorityRank: 3,
+            badgeText: `Bid Drop 0\u20133 Mo (${cleanIso})`,
+            countdownText: timeLabel,
+            playbookText: 'Imminent RFP/RFQ Drop: Requirements are locked — search Award ID / agency on SAM.gov Opportunities to submit a direct FAR Part 13 quote or subK.',
+          };
+        }
+        if (band === 'EARLY_12_18M') {
+          return {
+            band,
+            priorityRank: 4,
+            badgeText: `Early Radar 12\u201318 Mo (${cleanIso})`,
+            countdownText: timeLabel,
+            playbookText: 'Early Horizon: Log incumbent & agency office for next fiscal-year market research cycle.',
+          };
+        }
+        return {
+          band: 'BENCHMARK_OTHER',
+          priorityRank: 5,
+          badgeText: `Multi-Year Benchmark (${cleanIso})`,
+          countdownText: timeLabel,
+          playbookText: 'Pricing & incumbent reference benchmark outside the 0\u201318 month recompete window.',
+        };
+      }
+
+      function classifyContractVehicle(genId, awardId) {
+        const g = String(genId || '').toUpperCase();
+        const a = String(awardId || '').toUpperCase();
+        if (g.includes('_-NONE-_-NONE-') || /^[A-Z0-9]{6}\d{2}[PC]/.test(a)) {
+          return { isOpenMarket: true, label: 'Open-Market PO/Contract (No GSA Needed)' };
+        }
+        if (g.includes('_47Q') || g.includes('_GS35F') || g.includes('_GS00F')) {
+          return { isOpenMarket: false, label: 'GSA MAS Order (Team w/ GSA Prime or Propose Open-Market)' };
+        }
+        if (g.includes('_NNG15')) {
+          return { isOpenMarket: false, label: 'NASA SEWP Order (ITVAR 541519 Benchmark)' };
+        }
+        return { isOpenMarket: false, label: 'BPA / IDIQ Task Order' };
+      }
 
       function hashUsaAwardId(urlStr) {
         let h = 2166136261;
@@ -3723,11 +3887,13 @@
         });
       });
 
-      function buildUsaSpendingPayload(streamMode, kwRaw) {
+      function buildUsaSpendingPayload(streamMode, kwRaw, sortField = 'Start Date', sortOrder = 'desc') {
         const now = new Date();
-        const lookbackDays = streamMode === 'STREAM_D' ? 540 : 240;
+        const isContractStream = streamMode === 'STREAM_A' || streamMode === 'STREAM_B';
+        const lookbackDays = isContractStream ? 1460 : (streamMode === 'STREAM_D' ? 540 : 300);
+        const forwardDays = isContractStream ? 548 : 365;
         const startIso = new Date(now.getTime() - lookbackDays * 86400000).toISOString().slice(0, 10);
-        const endIso = new Date(now.getTime() + 365 * 86400000).toISOString().slice(0, 10);
+        const endIso = new Date(now.getTime() + forwardDays * 86400000).toISOString().slice(0, 10);
         const keywords = String(kwRaw || '')
           .split(',')
           .map((s) => s.trim())
@@ -3801,96 +3967,70 @@
           fields,
           filters,
           page: 1,
-          limit: 24,
-          sort: 'Start Date',
-          order: 'desc',
+          limit: isContractStream ? 45 : 24,
+          sort: sortField,
+          order: sortOrder,
         };
       }
 
-      function renderUsaSpendingResults(rows, streamMode) {
+      function paintUsaLeadCards(allLeads, streamMode, noiseKilled) {
         const grid = document.getElementById('usa-results');
         const tel = document.getElementById('usa-telemetry');
+        const bar = document.getElementById('usa-recompete-bar');
         if (!grid || !tel) return;
 
-        const nowMs = Date.now();
-        const leads = [];
-        let noiseKilled = 0;
-
-        (rows || []).forEach((row) => {
-          const desc = String(row['Description'] || '').replace(/\s+/g, ' ').trim();
-          const recip = String(row['Recipient Name'] || 'Unknown Recipient').trim();
-          const agency = String(row['Awarding Agency'] || 'Federal Agency').trim();
-          const subAgency = String(row['Awarding Sub Agency'] || agency).trim();
-          const combined = `${desc} ${recip} ${agency} ${subAgency}`;
-          if (USA_NOISE_RE.test(combined)) {
-            noiseKilled += 1;
-            return;
+        const isContractStream = streamMode === 'STREAM_A' || streamMode === 'STREAM_B';
+        if (bar) {
+          bar.hidden = !isContractStream || allLeads.length === 0;
+          if (!bar.hidden) {
+            const counts = {
+              ALL: allLeads.length,
+              SWEET_6_12M: allLeads.filter((x) => x.recompeteBand === 'SWEET_6_12M').length,
+              PRESOL_3_6M: allLeads.filter((x) => x.recompeteBand === 'PRESOL_3_6M').length,
+              BID_0_3M: allLeads.filter((x) => x.recompeteBand === 'BID_0_3M').length,
+              EARLY_12_18M: allLeads.filter((x) => x.recompeteBand === 'EARLY_12_18M').length,
+              OPEN_MARKET: allLeads.filter((x) => x.isOpenMarket).length,
+            };
+            const labels = {
+              ALL: `All Contracts (${counts.ALL})`,
+              SWEET_6_12M: `6\u201312 Mo Sweet Spot: Shape Set-Aside (${counts.SWEET_6_12M})`,
+              PRESOL_3_6M: `3\u20136 Mo Pre-RFP: Sources Sought (${counts.PRESOL_3_6M})`,
+              BID_0_3M: `0\u20133 Mo: Bid / RFQ Drop Now (${counts.BID_0_3M})`,
+              EARLY_12_18M: `12\u201318 Mo: Early Radar (${counts.EARLY_12_18M})`,
+              OPEN_MARKET: `Open-Market PO Only \u2022 No GSA Needed (${counts.OPEN_MARKET})`,
+            };
+            bar.querySelectorAll('.usa-band-btn').forEach((btn) => {
+              const bKey = btn.getAttribute('data-usa-band') || 'ALL';
+              if (labels[bKey]) btn.textContent = labels[bKey];
+              btn.setAttribute('aria-pressed', bKey === activeUsaBandFilter ? 'true' : 'false');
+            });
           }
-          const genId = String(row['generated_internal_id'] || '').trim();
-          const awardId = String(row['Award ID'] || '').trim();
-          const canonUrl = genId
-            ? `https://www.usaspending.gov/award/${encodeURIComponent(genId)}`
-            : `https://www.usaspending.gov/search?hash=${encodeURIComponent(awardId)}`;
-          const amt = Number(row['Award Amount'] || 0);
-          const amtFmt = '$' + Math.round(amt).toLocaleString('en-US');
-          const startD = String(row['Start Date'] || '').slice(0, 10);
-          const endD = String(row['End Date'] || '').slice(0, 10);
-          const popState = String(row['Place of Performance State Code'] || 'US').trim();
-          const naics = String(row['NAICS Code'] || '541511, 541512, 611710');
+        }
 
-          const isGrant = streamMode === 'STREAM_C' || streamMode === 'STREAM_D';
-          const tags = [];
-          if (streamMode === 'STREAM_D') {
-            tags.push('U.S. DOL / TEN 07-25 Target');
-          } else if (isGrant) {
-            tags.push('Funded Grant');
-          } else if (amt > 0 && amt <= 15000) {
-            tags.push('GPC Micro-Purchase Benchmark');
-          } else if (amt > 350000) {
-            tags.push('10% VOSB SubK Target');
-          }
-          if (endD) {
-            const daysLeft = Math.round((Date.parse(endD) - nowMs) / 86400000);
-            if (!Number.isNaN(daysLeft) && daysLeft >= -30 && daysLeft <= 365) {
-              tags.push(`Recompete Window (${endD})`);
-            }
-          }
-          const tagLabel = tags.length ? tags.join(' \u2022 ') : 'Contract Benchmark';
-          const ringNum = popState === 'AZ' ? 3 : (streamMode === 'STREAM_B' && popState === 'CA' ? 5 : 9);
-          const scoreEst = isGrant ? 78 : (popState === 'AZ' ? 84 : (amt > 0 && amt <= 15000 ? 80 : 72));
+        const visibleLeads = (!isContractStream || activeUsaBandFilter === 'ALL')
+          ? allLeads
+          : allLeads.filter((x) => (
+              activeUsaBandFilter === 'OPEN_MARKET'
+                ? x.isOpenMarket
+                : x.recompeteBand === activeUsaBandFilter
+            ));
 
-          leads.push({
-            h: hashUsaAwardId(canonUrl),
-            r: ringNum,
-            n: 'FED-01',
-            s: scoreEst,
-            t: isGrant ? 'PARTNER_SUBAWARD' : 'PURSUE_PRIME',
-            c: 'USASPENDING_LIVE',
-            ti: `[USAspending ${tagLabel} \u2014 ${amtFmt} | ${popState}] ${subAgency}: ${desc.slice(0, 115)}`,
-            ag: isGrant ? `${recip} (${subAgency})` : `${subAgency} (Incumbent: ${recip})`,
-            dl: `${amtFmt} | Start: ${startD || 'N/A'} | Ends: ${endD || 'N/A'}`,
-            u: canonUrl,
-            na: naics,
-            tr: isGrant ? 'NON_COMPETING_50STATE_ENABLING_PARTNER' : 'DIRECT_PRIME_VOSB',
-            sn: `Recipient/Incumbent: ${recip} | Award ID: ${awardId || 'N/A'} | Agency: ${agency} (${subAgency}) | ${desc.slice(0, 220)}`,
-            recip,
-            awardId,
-            tagLabel,
-          });
-        });
+        tel.innerHTML = isContractStream
+          ? `<span>Showing ${visibleLeads.length} of ${allLeads.length} qualified contracts (${noiseKilled} noise filtered) &bull; Sorted 6&ndash;12 Mo Sweet Spot &amp; AZ Home-Court First</span><span>Click 1-Click Brief to stage Gmail Draft (alan@webcognita.com)</span>`
+          : `<span>Returned ${visibleLeads.length} qualified USAspending.gov grant awards (${noiseKilled} noise filtered)</span><span>Click 1-Click PI / Subaward Pitch to stage Gmail Draft (alan@webcognita.com)</span>`;
 
-        tel.innerHTML = `<span>Returned ${leads.length} qualified USAspending.gov awards (${noiseKilled} irrelevant noise filtered)</span><span>Click 1-Click Brief to stage Gmail Draft (alan@webcognita.com)</span>`;
-
-        if (!leads.length) {
+        if (!visibleLeads.length) {
           const empty = document.createElement('div');
           empty.className = 'plain-callout';
           empty.style.gridColumn = '1 / -1';
-          empty.textContent = 'No matching USAspending.gov awards found for these keywords and stream filters. Broaden keywords or switch Capture Streams above.';
+          empty.textContent = allLeads.length > 0
+            ? 'No contracts in this query fall into the selected Recompete Timeline band. Select "All Contracts" or try another Timeline pill above.'
+            : 'No matching USAspending.gov awards found for these keywords and stream filters. Broaden keywords or switch Capture Streams above.';
           grid.replaceChildren(empty);
           return;
         }
 
-        const cards = leads.map((ld) => {
+        const cards = visibleLeads.map((ld) => {
           const isPartner = isEnablingPartnerLead(ld);
           const qInfo = computeClientLeadQuant(ld);
           const qBg = qInfo.call === 'GREEN_LIGHT_SWING' ? '#064E3B' : (qInfo.call === 'TAKE_PITCH_TRAP' ? '#7E061E' : '#0B1D3A');
@@ -3898,6 +4038,17 @@
           const ringClass = ld.r === 9 ? 'ring-chip-9' : 'ring-chip';
           const ringBg = ld.r === 9 ? '#1E293B' : '#0B1D3A';
           const savedDec = biDecisions[ld.h]?.decision || '';
+          const bandBg = ld.recompeteBand === 'SWEET_6_12M'
+            ? '#064E3B'
+            : (ld.recompeteBand === 'PRESOL_3_6M'
+                ? '#08454A'
+                : (ld.recompeteBand === 'BID_0_3M' ? '#7E061E' : '#0B1D3A'));
+          const vehicleChipHtml = (!isPartner && ld.vehicleLabel)
+            ? `<span class="score-chip" style="color: ${ld.isOpenMarket ? '#FFFFFF' : '#0B1D3A'}; background-color: ${ld.isOpenMarket ? '#064E3B' : '#F4F7FB'}; border-color: ${ld.isOpenMarket ? '#064E3B' : '#0B1D3A'};">${escapeHtml(ld.vehicleLabel)}</span>`
+            : '';
+          const playbookHtml = (!isPartner && ld.playbookText)
+            ? `<p class="kv-line" style="margin-top: 0.35rem; padding: 0.35rem 0.55rem; border-left: 3px solid ${bandBg}; background-color: #F4F7FB;"><strong>${escapeHtml(ld.countdownText || '')}:</strong> ${escapeHtml(ld.playbookText)}</p>`
+            : '';
 
           const art = document.createElement('article');
           art.className = 'node-card' + (savedDec === 'PURSUE' ? ' is-wcg-ready' : '');
@@ -3906,7 +4057,8 @@
               <div class="card-top-row">
                 <div class="meta-row">
                   <span class="${ringClass}" style="color: #FFFFFF; background-color: ${ringBg};">Ring ${ld.r}</span>
-                  <span class="score-chip" style="color: #FFFFFF; background-color: #08454A; border-color: #08454A;">${escapeHtml(ld.tagLabel)}</span>
+                  <span class="score-chip" style="color: #FFFFFF; background-color: ${bandBg}; border-color: ${bandBg};">${escapeHtml(ld.tagLabel)}</span>
+                  ${vehicleChipHtml}
                   <span class="score-chip" style="color: #FFFFFF; background-color: ${qBg}; border-color: ${qBg};">${escapeHtml(qInfo.label)} &bull; wOPS ${wopsStr}</span>
                 </div>
               </div>
@@ -3914,6 +4066,7 @@
               <p class="kv-line"><strong>Agency &amp; Incumbent/Recipient:</strong> ${escapeHtml(ld.ag)}</p>
               <p class="kv-line"><strong>Obligation &amp; Period:</strong> ${escapeHtml(ld.dl)}</p>
               <p class="kv-line"><strong>Award ID / NAICS:</strong> <code>${escapeHtml(ld.awardId || 'N/A')}</code> &bull; NAICS ${escapeHtml(ld.na)}</p>
+              ${playbookHtml}
               <p style="font-size: 0.86rem; margin: 0.45rem 0 0 0;">${escapeHtml(ld.sn)}</p>
             </div>
             <div class="card-cta-stack">
@@ -3940,6 +4093,115 @@
           return art;
         });
         grid.replaceChildren(...cards);
+      }
+
+      document.querySelectorAll('.usa-band-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeUsaBandFilter = btn.getAttribute('data-usa-band') || 'ALL';
+          const streamChecked = document.querySelector('input[name="usa_stream"]:checked');
+          const streamMode = streamChecked ? streamChecked.value : 'STREAM_A';
+          paintUsaLeadCards(lastUsaContractLeads, streamMode, lastUsaNoiseKilled);
+        });
+      });
+
+      function renderUsaSpendingResults(rows, streamMode) {
+        const seenKeys = new Set();
+        const leads = [];
+        let noiseKilled = 0;
+        const isGrant = streamMode === 'STREAM_C' || streamMode === 'STREAM_D';
+
+        (rows || []).forEach((row) => {
+          const genId = String(row['generated_internal_id'] || '').trim();
+          const awardId = String(row['Award ID'] || '').trim();
+          const dedupKey = genId || awardId;
+          if (!dedupKey || seenKeys.has(dedupKey)) return;
+
+          const desc = String(row['Description'] || '').replace(/\s+/g, ' ').trim();
+          const recip = String(row['Recipient Name'] || 'Unknown Recipient').trim();
+          const agency = String(row['Awarding Agency'] || 'Federal Agency').trim();
+          const subAgency = String(row['Awarding Sub Agency'] || agency).trim();
+          const combined = `${desc} ${recip} ${agency} ${subAgency}`;
+          if (USA_NOISE_RE.test(combined)) {
+            noiseKilled += 1;
+            return;
+          }
+          const amt = Number(row['Award Amount'] || 0);
+          if (!isGrant && amt < 3000) {
+            noiseKilled += 1;
+            return;
+          }
+          seenKeys.add(dedupKey);
+
+          const canonUrl = genId
+            ? `https://www.usaspending.gov/award/${encodeURIComponent(genId)}`
+            : `https://www.usaspending.gov/search?hash=${encodeURIComponent(awardId)}`;
+          const amtFmt = '$' + Math.round(amt).toLocaleString('en-US');
+          const startD = String(row['Start Date'] || '').slice(0, 10);
+          const endD = String(row['End Date'] || '').slice(0, 10);
+          const popState = String(row['Place of Performance State Code'] || 'US').trim();
+          const naics = String(row['NAICS Code'] || '541511, 541512, 611710');
+
+          const rc = isGrant ? null : evaluateRecompeteWindow(endD);
+          const veh = isGrant ? { isOpenMarket: false, label: '' } : classifyContractVehicle(genId, awardId);
+          const tags = [];
+          if (streamMode === 'STREAM_D') {
+            tags.push('U.S. DOL / TEN 07-25 Target');
+          } else if (isGrant) {
+            tags.push('Funded Grant');
+          } else {
+            if (rc) tags.push(rc.badgeText);
+            if (amt > 0 && amt <= 15000) tags.push('GPC <= $15K');
+            else if (amt > 350000) tags.push('10% VOSB SubK Target');
+          }
+          const tagLabel = tags.length ? tags.join(' \u2022 ') : 'Contract Benchmark';
+          const ringNum = popState === 'AZ' ? 3 : (streamMode === 'STREAM_B' && popState === 'CA' ? 5 : 9);
+          let scoreEst = isGrant ? 78 : (popState === 'AZ' ? 86 : (amt > 0 && amt <= 15000 ? 80 : 72));
+          if (rc && rc.band === 'SWEET_6_12M') scoreEst = Math.min(98, scoreEst + 10);
+          else if (rc && rc.band === 'PRESOL_3_6M') scoreEst = Math.min(96, scoreEst + 6);
+          if (veh.isOpenMarket) scoreEst = Math.min(99, scoreEst + 4);
+
+          leads.push({
+            h: hashUsaAwardId(canonUrl),
+            r: ringNum,
+            n: 'FED-01',
+            s: scoreEst,
+            t: isGrant ? 'PARTNER_SUBAWARD' : 'PURSUE_PRIME',
+            c: 'USASPENDING_LIVE',
+            ti: `[USAspending ${tagLabel} \u2014 ${amtFmt} | ${popState}] ${subAgency}: ${desc.slice(0, 115)}`,
+            cleanTitle: `${subAgency}: ${desc.slice(0, 115)}`,
+            awardNumber: awardId,
+            ag: isGrant ? `${recip} (${subAgency})` : `${subAgency} (Incumbent: ${recip})`,
+            dl: `${amtFmt} | Start: ${startD || 'N/A'} | Ends: ${endD || 'N/A'}` + (rc ? ` (${rc.countdownText})` : ''),
+            u: canonUrl,
+            na: naics,
+            tr: isGrant ? 'NON_COMPETING_50STATE_ENABLING_PARTNER' : 'DIRECT_PRIME_VOSB',
+            sn: `Recipient/Incumbent: ${recip} | Award ID: ${awardId || 'N/A'}` + (veh.label ? ` | Vehicle: ${veh.label}` : '') + ` | Agency: ${agency} (${subAgency}) | ${desc.slice(0, 200)}`,
+            recip,
+            awardId,
+            tagLabel,
+            recompeteBand: rc ? rc.band : '',
+            priorityRank: rc ? rc.priorityRank : 9,
+            countdownText: rc ? rc.countdownText : '',
+            playbookText: rc ? rc.playbookText : '',
+            isOpenMarket: veh.isOpenMarket,
+            vehicleLabel: veh.label,
+          });
+        });
+
+        if (!isGrant) {
+          // Sort 6-12 Mo Sweet Spot & Pre-RFP first, with AZ/CA Ring priority & Open-Market PO tie-breaker
+          leads.sort((a, b) => (
+            (a.priorityRank - b.priorityRank)
+            || (a.r - b.r)
+            || (Number(b.isOpenMarket) - Number(a.isOpenMarket))
+            || (b.s - a.s)
+          ));
+        }
+
+        lastUsaContractLeads = leads;
+        lastUsaNoiseKilled = noiseKilled;
+        activeUsaBandFilter = 'ALL';
+        paintUsaLeadCards(leads, streamMode, noiseKilled);
       }
 
       function renderGrantsGovLiveResults(items) {
@@ -4035,12 +4297,14 @@
         const submitBtn = document.getElementById('btn-usa-submit');
         const progressEl = document.getElementById('usa-loading-bar');
         const tel = document.getElementById('usa-telemetry');
+        const bar = document.getElementById('usa-recompete-bar');
         const streamChecked = document.querySelector('input[name="usa_stream"]:checked');
         const streamMode = streamChecked ? streamChecked.value : 'STREAM_A';
         const kwVal = document.getElementById('usa-keywords')?.value || '';
 
         if (submitBtn) submitBtn.disabled = true;
         if (progressEl) progressEl.hidden = false;
+        if (streamMode === 'STREAM_E' && bar) bar.hidden = true;
         try {
           if (streamMode === 'STREAM_E') {
             const ggData = await fetchLoopbackBridge(
@@ -4052,18 +4316,46 @@
             if (!ggData || !ggData.ok) throw new Error(ggData?.error || 'Grants.gov bridge unavailable');
             renderGrantsGovLiveResults(ggData.results || []);
           } else {
-            const payload = buildUsaSpendingPayload(streamMode, kwVal);
-            const resp = await fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload),
-              credentials: 'omit',
-              referrerPolicy: 'no-referrer',
-              signal: AbortSignal.timeout(20000),
-            });
-            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-            const data = await resp.json();
-            renderUsaSpendingResults(data.results || [], streamMode);
+            await ensureTemporalForUsaQuery();
+            const isContractStream = streamMode === 'STREAM_A' || streamMode === 'STREAM_B';
+            if (isContractStream) {
+              // Dual-pass fetch: recent active awards + expiring multi-year awards so 0-18 month recompetes surface cleanly
+              const [rRecent, rExpiring] = await Promise.all([
+                fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(buildUsaSpendingPayload(streamMode, kwVal, 'Start Date', 'desc')),
+                  credentials: 'omit',
+                  referrerPolicy: 'no-referrer',
+                  signal: AbortSignal.timeout(20000),
+                }),
+                fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(buildUsaSpendingPayload(streamMode, kwVal, 'End Date', 'asc')),
+                  credentials: 'omit',
+                  referrerPolicy: 'no-referrer',
+                  signal: AbortSignal.timeout(20000),
+                }),
+              ]);
+              if (!rRecent.ok && !rExpiring.ok) throw new Error(`HTTP ${rRecent.status}`);
+              const dRecent = rRecent.ok ? await rRecent.json() : { results: [] };
+              const dExpiring = rExpiring.ok ? await rExpiring.json() : { results: [] };
+              renderUsaSpendingResults([...(dRecent.results || []), ...(dExpiring.results || [])], streamMode);
+            } else {
+              const payload = buildUsaSpendingPayload(streamMode, kwVal, 'Start Date', 'desc');
+              const resp = await fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                credentials: 'omit',
+                referrerPolicy: 'no-referrer',
+                signal: AbortSignal.timeout(20000),
+              });
+              if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+              const data = await resp.json();
+              renderUsaSpendingResults(data.results || [], streamMode);
+            }
           }
         } catch (err) {
           if (tel) {
