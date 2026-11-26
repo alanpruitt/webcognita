@@ -655,18 +655,18 @@
     }
     pre#bid-brief-preview {
       margin: 0;
-      padding: 0.9rem 1rem;
-      background-color: #F4F7FB;
+      padding: 1rem 1.15rem;
+      background-color: #FFFFFF;
       color: #111827;
       border: 1.5px solid #0B1D3A;
       border-radius: 6px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.83rem;
-      line-height: 1.5;
+      font-family: inherit;
+      font-size: 0.9rem;
+      line-height: 1.55;
       white-space: pre-wrap;
       word-break: break-word;
       overflow-y: auto;
-      max-block-size: 42vh;
+      max-block-size: 44vh;
     }
     .ada-countdown-banner {
       border: 2.5px solid #7E061E;
@@ -1565,9 +1565,14 @@
           <input id="brief-sol-ref" name="brief_sol_ref" class="search-input" type="text" placeholder="e.g., BPM007864 or $9,500 Firm-Fixed-Price" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="brief-sol-hint">
         </div>
         <div>
-          <label for="brief-custom-note" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.15rem; font-size: 0.84rem;">Capture Note / Specific Questions (Saved to M2 Ledger):</label>
-          <span id="brief-note-hint" style="display: block; font-size: 0.75rem; color: #1E293B; background-color: #F4F7FB; margin-bottom: 0.25rem;">Tailored scope note persisted locally &amp; in M2 SQLite.</span>
-          <input id="brief-custom-note" name="brief_custom_note" class="search-input" type="text" placeholder="e.g., Verify Section M evaluation weights &amp; A.R.S. 41-2535 SB restriction..." autocomplete="off" aria-describedby="brief-note-hint">
+          <label for="brief-email-custom" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.15rem; font-size: 0.84rem;">Optional Custom Sentence for Email:</label>
+          <span id="brief-email-custom-hint" style="display: block; font-size: 0.75rem; color: #1E293B; background-color: #F4F7FB; margin-bottom: 0.25rem;">Inserted into email only when typed here (blank by default).</span>
+          <input id="brief-email-custom" name="brief_email_custom" class="search-input" type="text" placeholder="e.g., As an ASU Thunderbird alumnus, I would welcome supporting your IUSE modules..." autocomplete="off" aria-describedby="brief-email-custom-hint">
+        </div>
+        <div>
+          <label for="brief-custom-note" class="field-label" style="background-color: #F4F7FB; margin-bottom: 0.15rem; font-size: 0.84rem;">Internal CRM Ledger Note (Never Sent in PI Email):</label>
+          <span id="brief-note-hint" style="display: block; font-size: 0.75rem; color: #1E293B; background-color: #F4F7FB; margin-bottom: 0.25rem;">Private log saved locally &amp; in M2 SQLite (never inserted into outbound pitch).</span>
+          <input id="brief-custom-note" name="brief_custom_note" class="search-input" type="text" placeholder="e.g., Sent 2026-11-23 via alan@webcognita.com to PI Dr. Kim..." autocomplete="off" aria-describedby="brief-note-hint">
         </div>
       </div>
 
@@ -2806,131 +2811,157 @@
         'Security Notice: Standard email is unencrypted; please do not transmit CUI or unredacted PII via email.'
       ];
 
-      function buildApexReviewText(leads, solRef, customNote, toOverride = '') {
-        const todayIso = new Date().toISOString().slice(0, 10);
-        const primary = leads[0] || {};
-        const apexTo = toOverride || AZ_APEX_COUNSELOR_EMAIL;
-        const subjectLead = leads.length === 1
-          ? (primary.ti || 'Target Solicitation')
-          : `${leads.length} Priority Capture Targets (Ring 0 -> Ring 9)`;
+      function toSmartTitleCase(str) {
+        const small = new Set(['a', 'an', 'and', 'as', 'at', 'by', 'for', 'from', 'in', 'into', 'of', 'on', 'or', 'the', 'through', 'to', 'via', 'with']);
+        const acronyms = new Set(['AI', 'SI', 'STEM', 'NSF', 'NIH', 'USDA', 'DOL', 'DOD', 'VA', 'IUSE', 'ATE', 'HSI', 'OER', 'LMS', 'WCAG', 'ADA', 'IT', 'RFP', 'RFQ', 'AZ', 'CA', 'US', 'USA', 'ASU', 'NAU']);
+        const words = str.trim().split(/\s+/);
+        return words.map((w, idx) => {
+          const core = w.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, '').toUpperCase();
+          if (acronyms.has(core)) return w.toUpperCase();
+          const low = w.toLowerCase();
+          if (idx > 0 && idx < words.length - 1 && small.has(low)) return low;
+          return low.replace(/(^|[-/:(])([a-z])/g, (_, p1, p2) => p1 + p2.toUpperCase());
+        }).join(' ');
+      }
+
+      function cleanHumanOpportunityTitle(ld) {
+        if (!ld) return 'your initiative';
+        if (ld.cleanTitle && ld.cleanTitle.trim()) return ld.cleanTitle.trim();
+        let s = String(ld.ti || '').trim();
+        // Strip leading `[USAspending ...]` / `[NSF Funded Award ...]` / `[Grants.gov ...]` / `[Portal Alert]` tag
+        s = s.replace(/^\[[^\]]+\]\s*/, '').trim();
+        // Strip leading `INSTITUTION OR AGENCY NAME: ` prefix added on USAspending cards when followed by project title
+        const colonMatch = s.match(/^([A-Z0-9 .,&'()-]{4,65}):\s+(.{12,})$/);
+        if (colonMatch) {
+          s = colonMatch[2].trim();
+        }
+        // Trim trailing mid-word truncation if exact 110/115-char cutoff occurred without punctuation
+        if (s.length >= 80 && /\s[A-Za-z]{1,6}$/.test(s) && !/\b(II|III|IV|AI|SI|IT|AZ|CA|US|OER|LMS|RAG|STEM)$/i.test(s)) {
+          s = s.replace(/\s+[A-Za-z]{1,6}$/, '...');
+        }
+        const letters = s.replace(/[^A-Za-z]/g, '');
+        const upperCnt = (s.match(/[A-Z]/g) || []).length;
+        if (letters.length > 8 && upperCnt / letters.length > 0.72) {
+          s = toSmartTitleCase(s);
+        }
+        return s || 'your initiative';
+      }
+
+      function extractCleanInstitution(ld) {
+        if (!ld) return '';
+        if (ld.instName && ld.instName.trim()) {
+          const rawI = ld.instName.trim();
+          return /^university of arizona$/i.test(rawI) ? 'The University of Arizona' : rawI;
+        }
+        let ag = String(ld.ag || '').trim();
+        ag = ag.replace(/\s*[<\u2014-].*$/, '').replace(/\s*\([^)]*\)\s*$/, '').trim();
+        if (!ag || /^(saved in m2|unspecified|public agency|federal grant)/i.test(ag)) return '';
+        const letters = ag.replace(/[^A-Za-z]/g, '');
+        const upperCnt = (ag.match(/[A-Z]/g) || []).length;
+        if (letters.length > 5 && upperCnt / letters.length > 0.75) {
+          ag = toSmartTitleCase(ag);
+        }
+        if (/^the university of arizona$|^university of arizona$/i.test(ag)) return 'The University of Arizona';
+        return ag;
+      }
+
+      function extractPiDisplayName(ld) {
+        if (!ld) return '';
+        if (ld.piName && ld.piName.trim()) return ld.piName.trim();
+        const savedNote = biDecisions[ld.h]?.note || ld.note || '';
+        const blob = `${ld.ag || ''} ${ld.sn || ''} ${savedNote}`;
+        const mDr = blob.match(/\b((?:Dr\.|Prof\.)\s+[A-Z][a-zA-Z'-]+(?:\s+[A-Z][a-zA-Z'-]+){1,2})/);
+        if (mDr) return mDr[1].trim();
+        const mPi = blob.match(/\bPI:\s*([A-Z][a-zA-Z'-]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-zA-Z'-]+)/);
+        if (mPi) return mPi[1].trim();
+        return '';
+      }
+
+      function extractAwardIdentifier(ld) {
+        if (!ld) return '';
+        if (ld.awardNumber) return `Award #${ld.awardNumber}`;
+        const u = String(ld.u || '');
+        const ti = String(ld.ti || '');
+        const mNsf = u.match(/AWD_ID=(\d{6,8})/i) || ti.match(/NSF Funded Award #(\d{6,8})/i) || u.match(/ASST_NON_(\d{7})_(?:049|4900)\b/i);
+        if (mNsf) return `NSF Award #${mNsf[1]}`;
+        const mGg = ti.match(/\[Grants\.gov\s+[A-Z]+:\s*([^\]]+)\]/i);
+        if (mGg) return mGg[1].trim();
+        if (ld.awardId && ld.awardId !== 'N/A') return `Award ${ld.awardId}`;
+        return '';
+      }
+
+      function buildApexReviewText(leads, solRef, emailCustomLine = '') {
         const lines = [
-          `TO      : Chris Bridgewater, Arizona APEX Accelerator <${apexTo}>`,
-          'PHONE   : (623) 845-4700 (MCCCD Hosted • Mon–Fri 8:00 AM – 5:00 PM MST)',
-          `SUBJECT : 1-on-1 Solicitation & Compliance Review Request — Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) — ${subjectLead}`,
-          `DATE    : ${todayIso}`,
-          '======================================================================================',
+          'Hi Chris,',
           '',
-          'Dear Chris,',
-          '',
-          'Webcognita LLC (active SAM.gov VOSB headquartered in Yuma, AZ) respectfully requests a',
-          '1-on-1 Solicitation & Pre-Quote Compliance Review prior to submitting our formal response',
-          'on the qualified opportunity(ies) below:',
+          leads.length === 1
+            ? `Could we review the following solicitation for pre-quote compliance and evaluation strategy on behalf of Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6)?`
+            : `Could we review the following ${leads.length} target solicitations for pre-quote compliance and evaluation strategy on behalf of Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6)?`,
           ''
         ];
 
         leads.forEach((ld, idx) => {
           const node = lookupNodeById(ld.n);
-          const portalInfo = node ? `${node.id} — ${node.platform} (${node.thresholds})` : (ld.n || 'Public Portal');
-          const savedNote = biDecisions[ld.h]?.note || ld.note || '';
-          lines.push(`TARGET #${idx + 1}: ${ld.ti || 'Untitled Solicitation'}`);
-          lines.push(`  - Issuing Agency / Source : ${ld.ag || (node ? node.jurisdiction : 'Public Agency')}`);
-          lines.push(`  - Concentric Capture Ring : Ring ${Number(ld.r ?? 9)} (${RING_TITLES[Number(ld.r ?? 9)] || 'Target Lane'})`);
-          lines.push(`  - Matched Radar Portal    : ${portalInfo}`);
-          lines.push(`  - Timing / Award Window   : ${ld.dl || 'Open / Verify on Official Portal'}`);
-          if (solRef && idx === 0) lines.push(`  - Solicitation / Quote #  : ${solRef}`);
-          lines.push(`  - NAICS / Track Fit       : ${ld.na || '541511, 541512, 611710, 541690'} (${ld.tr || 'DIRECT_PRIME_VOSB'})`);
-          lines.push(`  - Official Notice URL     : ${ld.u || (node ? node.url : 'https://sam.gov')}`);
-          if (ld.sn) lines.push(`  - Signal Summary          : ${ld.sn}`);
-          if (savedNote && savedNote !== customNote) lines.push(`  - Ledger Triage Note      : ${savedNote}`);
+          const cleanTi = cleanHumanOpportunityTitle(ld);
+          const agency = ld.ag || (node ? node.jurisdiction : 'Public Agency');
+          const noticeUrl = ld.u || (node ? node.url : 'https://sam.gov');
+          const prefix = leads.length > 1 ? `Target #${idx + 1} — ` : '';
+          lines.push(`${prefix}${cleanTi}:`);
+          lines.push(`- Issuing Agency: ${agency}`);
+          if (solRef && idx === 0) lines.push(`- Solicitation / Target Pricing: ${solRef}`);
+          lines.push(`- Timing / Window: ${ld.dl || 'Open — see official portal'}`);
+          lines.push(`- NAICS Alignment: ${ld.na || '541511, 541512, 561410, 611430, 611710'}`);
+          lines.push(`- Official Notice URL: ${noticeUrl}`);
           lines.push('');
         });
 
-        if (customNote) {
-          lines.push('SPECIFIC COUNSELOR REVIEW QUESTIONS / SCOPE FOCUS:');
-          lines.push(`  - ${customNote}`);
-          lines.push('');
+        if (emailCustomLine) {
+          lines.push(emailCustomLine, '');
         }
 
         lines.push(
-          'REQUESTED 1-ON-1 COUNSELING CHECKPOINTS:',
-          '  1. Solicitation Structure & Evaluation Matrix (UCF Sections L -> M -> C -> B or AZ SLED eQuote/RFP rules).',
-          '  2. Small Business / VOSB Set-Aside & Subcontracting Compliance (FAR 19.502-2, FAR 52.219-14 <=50% cap, or A.R.S. § 41-2535 / ABOR 3-803 D.1 <= $100K SB restriction).',
-          '  3. Pre-Award Responsibility & Cybersecurity Alignment (signed Exhibits R-01..R-04 on file: FAR 9.104-1, 15/15 FAR 52.204-21 FCI / CMMC Level 1 Zero-CUI boundary, Section 889).',
-          '  4. Pricing Realism & Past Performance (CPARS-aligned PPQ / live Section 508 & WCAG 2.2 AA >= 9:1 deliverables).',
-          '',
-          'CLIENT ENTITY SNAPSHOT (ACTIVE & VERIFIED):',
-          '  - Legal Entity     : Webcognita LLC (100% Veteran-Owned Small Business • 0% FOCI)',
-          '  - Headquarters     : 1906 S 6th Ave, Yuma, AZ 85364',
-          '  - Principal        : Alan Pruitt, B.S. (USMC & U.S. Army CI Veteran • 100% DAV)',
-          '  - Identifiers      : SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739 | AZ ACC: #L17046120',
-          '  - AZ SLED & Co-Ops : AZ APP Supplier #IV0000112720 | City of Mesa VSS #VS0000020834 | ADOT AZ UTRACS SBC #23545 | DHS E-Verify #3119395 | AZPurchasing, OpenGov (50+ AZ Agencies), Bonfire, BidNet',
-          '  - Registered Codes : NAICS 541511 (Primary), 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710 | AZ NIGP 208, 209, 918, 920, 924, 958',
-          '  - Capabilities PDF : https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf',
+          'Key Review Questions:',
+          '- Evaluation Criteria & Compliance Matrix: Confirm mandatory Section L/M or Arizona APP attachment and pricing rules.',
+          '- Socioeconomic & Local Standing: Confirm VOSB, Yuma City LSA (FAR 52.219-2), or Arizona APP Small Business positioning and <=50% subcontracting compliance.',
+          '- Cybersecurity & IP Clauses: Confirm CMMC 2.0 Level 1 (15/15 FAR 52.204-21 MFR on file) and any DFARS 252.227-7017 Background IP assertion table.',
           '',
           ...WEBCOGNITA_SIG_LINES
         );
         return lines.join('\n');
       }
 
-      function buildFar13QuoteCoverText(leads, solRef, customNote) {
-        const todayIso = new Date().toISOString().slice(0, 10);
+      function buildFar13QuoteCoverText(leads, solRef, emailCustomLine = '') {
         const ld = leads[0] || {};
         const node = lookupNodeById(ld.n);
-        const agencyLabel = ld.ag || (node ? node.jurisdiction : '[Issuing Contracting Office / Agency]');
+        const cleanTi = cleanHumanOpportunityTitle(ld);
+        const agencyLabel = extractCleanInstitution(ld) || ld.ag || (node ? node.jurisdiction : 'Contracting Office');
         const noticeUrl = ld.u || (node ? node.url : 'https://sam.gov');
         const isFed = Number(ld.r ?? 9) === 9;
         const authorityLine = isFed
-          ? 'FAR Part 13 Simplified Acquisition / FAR Part 12 Commercial Item (SF 1449 / Combined Synopsis-Solicitation)'
-          : 'Arizona SLED Small-Dollar / Simplified Quote (A.R.S. § 41-2535 / ABOR Policy 3-803 D.1 / Local Municipal Charter)';
+          ? 'FAR Part 13 Simplified Acquisition / FAR Part 12 Commercial Item'
+          : 'Arizona SLED Simplified Quote (A.R.S. § 41-2535 / Local Municipal Charter)';
 
         const lines = [
-          'COMMERCIAL QUOTE COVER SHEET & STATUTORY REPRESENTATIONS',
-          '(FAR PART 13 / FAR PART 12 COMMERCIAL & ARIZONA SLED SIMPLIFIED QUOTE)',
-          '======================================================================================',
-          `Date Submitted       : ${todayIso} (Quote Valid for 60 Calendar Days)`,
-          `Target Opportunity   : ${ld.ti || '[Solicitation / Requirement Title]'}`,
-          `Solicitation / Price : ${solRef || '[Insert Solicitation / RFQ # & Firm-Fixed-Price Total]'}`,
-          `Issuing Agency       : ${agencyLabel}`,
-          `Acquisition Rail     : ${authorityLine}`,
-          `Matched Portal Node  : ${node ? `${node.id} (${node.platform})` : (ld.n || 'Official Portal')}`,
-          `Official Notice URL  : ${noticeUrl}`,
-          '--------------------------------------------------------------------------------------',
+          'Dear Contracting Officer / Procurement Specialist,',
           '',
-          '1. OFFEROR / VENDOR IDENTIFICATION (0 ACTIVE EXCLUSIONS — FAR 9.405)',
-          '  - Legal Business Name : WEBCOGNITA LLC (100% Veteran-Owned Small Business)',
-          '  - Physical Address    : 1906 S 6th Ave, Yuma, AZ 85364-5528 (Yuma County, Congressional District AZ-09)',
-          '  - SAM.gov UEI / CAGE  : UEI: EZ34U9KNJA17 | CAGE/NCAGE: 4ZCN6 (Active Registration)',
-          '  - Tax & State IDs     : Federal EIN: 81-0809739 | AZ Corp. Comm.: #L17046120 | City of Yuma: #SERV-051803',
-          '  - SLED & Transit Cert : Arizona APP Supplier #IV0000112720 | City of Mesa VSS #VS0000020834 | ADOT AZ UTRACS Small Business Concern (SBC) #23545',
-          '  - Applicable Codes    : NAICS ' + (ld.na || '541511 (Primary), 541512, 541715, 611710, 541690') + ' | PSC DA01, DJ01, U008, U012 | AZ NIGP 208, 209, 918, 920, 924, 958',
-          '  - Payment Acceptance  : Federal GPC (GSA SmartPay 3 <= $15K / $25K Emerg.), AZ P-Card (<= $10K), WAWF/iRAPT, & ACH',
+          `Please find below Webcognita LLC's commercial quote cover summary and statutory representations in response to "${cleanTi}"${solRef ? ` (${solRef})` : ''} for ${agencyLabel}.`,
           '',
-          '2. EXECUTIVE TECHNICAL APPROACH & DELIVERABLE SUMMARY',
-          '  - Scope Focus         : ' + (customNote || ld.sn || 'Turnkey zero-egress engineering, Section 508 / DOJ ADA Title II (28 CFR Part 35) >= 9:1 WCAG 2.2 AA & PDF/UA compliance, and EO 14434 SI / 15 U.S.C. 9401(3) AI readiness with $0 recurring SaaS lock-in.'),
-          '  - Data Sovereignty    : 100% client-controlled deliverables with 0 bytes of CUI, FERPA, or resident PII transmitted to third-party cloud AI APIs.',
-          '  - Continuity (RTO)    : Dual-host local workstation mirror (< 15 minute Recovery Time Objective per FAR 9.104-1(b)).',
+          ...(emailCustomLine ? [emailCustomLine, ''] : []),
+          'Offeror & Statutory Eligibility Summary:',
+          '- Legal Entity: Webcognita LLC — 100% Veteran-Owned Small Business (VOSB) & U.S. DOL Yuma City Labor Surplus Area (LSA) Small Business (SAM.gov FAR 52.219-2; 0% foreign ownership/FOCI).',
+          '- Identifiers: SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6 | EIN: 81-0809739 | DHS E-Verify: #3119395 | AZ APP: #IV0000112720 | ADOT UTRACS SBC: #23545 | City of Mesa VSS: #VS0000020834.',
+          `- Acquisition Authority & Reference: ${authorityLine} — ${noticeUrl}`,
+          `- Registered NAICS: ${ld.na || '541511 (Primary), 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710'}.`,
+          '- Payment Acceptance: GSA SmartPay 3 Government Purchase Card (GPC), Arizona P-Card, WAWF/PIEE, and ACH (quote valid for 60 calendar days).',
           '',
-          '3. FEDERAL & ARIZONA STATUTORY REPRESENTATIONS AND CERTIFICATIONS',
-          '  - [X] FAR 52.212-3 / SAM.gov Reps & Certs : Current, complete, and active online at https://sam.gov.',
-          '  - [X] FAR 52.204-21 & CMMC 2.0 Level 1    : All 15 Basic Safeguarding controls implemented under signed System Security Plan (Exhibit R-01); strict Zero-CUI-Spillage boundary.',
-          '  - [X] NDAA Sec. 889 & Supply Chain        : Compliant with FAR 52.204-24/25/26 (No Covered Telecom), FAR 52.204-23 (No Kaspersky), & FAR 52.204-27 (No ByteDance/TikTok).',
-          '  - [X] FAR 52.219-14 & 52.215-23           : 100% performed by Webcognita LLC in the United States (0% foreign ownership/FOCI; <=50% non-similarly situated cap strictly enforced).',
-          '  - [X] Arizona Statutory Warranties        : Active DHS E-Verify Participant (Company ID #3119395 per A.R.S. § 41-4401); compliant with A.R.S. § 35-394 (Forced Labor) & A.R.S. § 35-393.01.',
-          '  - [X] Workers\' Comp Waiver (Sole Member)  : Sole-member LLC with zero non-owner employees (A.R.S. § 23-901 waiver ready upon award).',
+          'Technical Approach & Compliance:',
+          '- Turnkey Delivery: Zero-cloud-egress Curriculum-as-Code, Sovereign Hybrid RAG, and automated Section 508 / DOJ ADA Title II (28 CFR Part 35) WCAG 2.2 AA (9:1 contrast) & ISO 14289-1 Tagged PDF/UA deliverables with $0 recurring SaaS lock-in.',
+          '- Cybersecurity & Supply Chain: Active SAM.gov Reps & Certs (FAR 52.212-3), verified CMMC 2.0 Level 1 (15/15 FAR 52.204-21 controls), full NDAA Section 889 compliance, and sole-member A.R.S. § 23-901 Workers\' Compensation waiver ready upon award.',
           '',
-          '4. AUTHORIZED SIGNATURE & POINT OF CONTACT',
-          '  - Authorized Signatory : Alan Pruitt, B.S., Principal & Managing Member, Webcognita LLC',
-          '  - Direct POC & Desk    : alan@webcognita.com | (928) 421-1050',
-          '  - Capabilities & Proof : https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf | https://www.webcognita.com/govcon-radar/'
+          'Please let me know if you need our formal itemized PDF quote or any supplemental forms to complete your file.',
+          '',
+          ...WEBCOGNITA_SIG_LINES
         ];
-
-        if (leads.length > 1) {
-          lines.push('', 'ADDITIONAL BUNDLED PURSUE SIGNALS IN THIS DIGEST:');
-          leads.slice(1).forEach((extra, i) => {
-            lines.push(`  ${i + 2}. [Ring ${Number(extra.r ?? 9)}] ${extra.ti} — ${extra.u}`);
-          });
-        }
-        lines.push('', ...WEBCOGNITA_SIG_LINES);
         return lines.join('\n');
       }
 
@@ -2963,57 +2994,35 @@
         return '';
       }
 
-      function buildEnablingPartnerPitchText(leads, solRef, customNote, toOverride = '') {
-        const todayIso = new Date().toISOString().slice(0, 10);
+      function buildEnablingPartnerPitchText(leads, solRef, emailCustomLine = '') {
         const ld = leads[0] || {};
-        const piEmail = toOverride || extractLeadEmail(ld);
-        const recipientLine = ld.ag || '[Principal Investigator / Workforce Consortium Director / Sponsored Projects Office]';
-        const noticeUrl = ld.u || 'https://www.grants.gov/';
+        const piName = extractPiDisplayName(ld);
+        const salutation = piName
+          ? (/^(Dr\.|Prof\.)/i.test(piName) ? `Dear ${piName},` : `Dear Dr. ${piName},`)
+          : 'Dear Principal Investigator / Project Director,';
+        const cleanTitle = cleanHumanOpportunityTitle(ld);
+        const inst = extractCleanInstitution(ld);
+        const awardIdTag = extractAwardIdentifier(ld);
+        const atInst = inst ? ` at ${inst}` : '';
+        const awardParen = awardIdTag ? ` (${awardIdTag})` : '';
+
         const lines = [
-          `TO      : ${recipientLine}${piEmail && !recipientLine.includes(piEmail) ? ` <${piEmail}>` : ''}`,
-          `SUBJECT : Non-Competing Technical Enabling Partner (Curriculum-as-Code, WCAG 2.2 AA & Local AI) — ${ld.ti || 'Grant / Subaward Collaboration'}`,
-          `DATE    : ${todayIso}`,
-          '======================================================================================',
+          salutation,
           '',
-          'Dear Principal Investigator / Project Director,',
+          `Congratulations on your leadership${atInst} on "${cleanTitle}"${awardParen}. I am writing to introduce Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6), a Veteran-Owned Small Business in Yuma, Arizona, as a potential non-competing technical partner as you build out your instructional modules, digital accessibility compliance, and open educational deliverables.`,
           '',
-          'Congratulations on your leadership around ' + (ld.ti || 'this initiative') + '. I am writing to introduce',
-          'Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6), a Veteran-Owned Small Business in Yuma, Arizona.',
+          ...(emailCustomLine ? [emailCustomLine, ''] : []),
+          'How Webcognita LLC Supports Funded PIs & Consortia:',
+          '- Strict Non-Competing Partner Pledge: We never compete against universities, community colleges, Tribal colleges, or workforce boards as a lead grant applicant, ensuring your institution retains 100% of primary leadership, indirect recovery, and academic credit.',
+          '- Curriculum-as-Code & Bilingual $0 ZTC OER: Git-governed, dual-namespace Open Educational Resources (English / Spanish) built for Canvas LMS and standalone Progressive Web Apps.',
+          '- DOJ ADA Title II (28 CFR Part 35) & Section 508 Compliance: Automated WCAG 2.2 AA (9:1 contrast) web engineering and ISO 14289-1 Tagged PDF/UA remediation for syllabi, studio guides, and rubrics.',
+          '- Zero-Cloud Sovereign AI & Hybrid RAG: On-device SQLite Hybrid RAG (https://hybrid-rag.dev) keeping 100% of FERPA and research data off third-party clouds with $0 recurring SaaS fees.',
           '',
-          '1. STRICT NON-COMPETING 50-STATE ENABLING PARTNER PLEDGE',
-          '  - Webcognita LLC NEVER competes against community colleges, universities, Tribal colleges, or state',
-          '    workforce boards as a lead grant applicant. We attach strictly as a Non-Competing Technical Enabling',
-          '    Partner so your institution retains 100% of primary leadership, indirect recovery, and academic credit.',
+          'Two Frictionless 2 CFR Part 200 Engagement Options:',
+          `- Pre-Award Proposal Attachment (2 CFR 200.331): Same-day 1-page Letter of Commitment, Scope of Work, and Budget Justification (${solRef || '$25,000–$75,000/yr'}) for upcoming proposals or supplements.`,
+          `- Post-Award Turnkey Purchase Order (2 CFR 200.320): Fixed-price deliverable (${solRef || '$9,500–$24,500'}) under institutional micro-purchase or simplified small-business thresholds via departmental PO or P-Card, with zero subrecipient audit flow-down overhead.`,
           '',
-          '2. TURNKEY DELIVERABLES WE PLUG INTO YOUR GRANT OR FUNDED AWARD',
-          '  - S-A-R Standard v2.2 & Curriculum-as-Code (Zenodo DOI): Version-controlled, $0 Zero-Textbook-Cost (ZTC)',
-          '    dual-namespace OER courseware (authentic English / Spanish) built for Canvas LMS & open web deployment.',
-          '  - Mandatory DOJ ADA Title II (28 CFR Part 35) & Section 508 Guarantee: Automated >= 9:1 WCAG 2.2 AA',
-          '    DOM engineering and ISO 14289-1 (PDF/UA-1) accessible syllabus/packet remediation.',
-          '  - U.S. DOL TEN No. 07-25 & EO 14434 Super Intelligence (SI) Literacy: Zero-cloud-egress local SQLite',
-          '    Hybrid RAG (`https://hybrid-rag.dev`) keeping 100% of FERPA / HIPAA / research data on-device ($0 SaaS fees).',
-          ...(customNote ? [`  - Tailored Scope Note: ${customNote}`] : []),
-          '',
-          '3. TWO FRICTIONLESS 2 CFR PART 200 ATTACHMENT RAILS',
-          '  - Option A — Pre-Award Proposal Attachment (2 CFR 200.331 Named Partner / Budgeted Contractor):',
-          '    Same-day 1-page Letter of Commitment (LOC), Scope of Work, and Budget Justification (' + (solRef || '$25,000-$75,000/yr') + ');',
-          '    once named in your peer-reviewed award, zero post-award RFP is required.',
-          '  - Option B — Post-Award Turnkey Purchase Order (2 CFR 200.320(a)(1) & 200.331(b) Procurement Contract):',
-          '    Fixed-price turnkey deliverable (' + (solRef || '$9,500-$24,500') + ') under institutional micro-purchase / simplified SB',
-          '    thresholds (e.g., < $25K ABOR Policy 3-803 D.1 at The University of Arizona or up to $50K at self-certified',
-          '    universities under Oct 2024 Uniform Guidance) — paid via departmental PO or P-Card with zero subrecipient',
-          '    audit flow-down overhead.',
-          '',
-          '4. REFERENCE SIGNAL & VERIFIED ENTITY CREDENTIALS',
-          `  - Matched Award / NOFO : ${ld.ti || 'Institutional Grant Opportunity'} (${ld.dl || 'Active Window'})`,
-          `  - Official Record URL  : ${noticeUrl}`,
-          '  - Entity & Compliance  : Webcognita LLC (100% VOSB • Yuma City LSA FAR 52.219-2 • UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)',
-          '  - Principal Pedigree   : Alan Pruitt, B.S. (USMC & U.S. Army CI Veteran; 2025 SBA AZ Veteran Small',
-          '                           Business Champion; 2023 U.S. Dept. of Commerce MBDA Advocate of the Year;',
-          '                           Designated Campus Colleague, The University of Arizona)',
-          '  - Capabilities PDF/UA  : https://www.webcognita.com/assets/Webcognita_LLC_Capabilities_Statement.pdf',
-          '',
-          'Would a brief 10-minute Google Meet or phone introduction be helpful as you finalize your technical milestones?',
+          'Would a brief 10-minute Google Meet or phone call be helpful as you finalize your upcoming technical milestones?',
           '',
           ...WEBCOGNITA_SIG_LINES
         ];
@@ -3029,14 +3038,8 @@
         return extractLeadEmail((leads && leads[0]) || null);
       }
 
-      function stripMemoHeaderForGmailBody(rawText, mode) {
-        if (mode === 'PARTNER' || mode === 'APEX') {
-          const sepIdx = rawText.indexOf('======================================================================================');
-          if (sepIdx > -1) {
-            return rawText.slice(sepIdx + 86).replace(/^\s+/, '');
-          }
-        }
-        return rawText;
+      function stripMemoHeaderForGmailBody(rawText) {
+        return (rawText || '').trim();
       }
 
       function buildGmailWebComposeUrl(toAddr, subj, bodyText) {
@@ -3053,15 +3056,17 @@
       }
 
       async function autoResolveMissingLeadEmail(ld) {
-        if (!ld || extractLeadEmail(ld)) return;
+        if (!ld) return;
+        const alreadyHasCleanMeta = Boolean(extractLeadEmail(ld) && ld.cleanTitle && ld.piName);
+        if (alreadyHasCleanMeta) return;
         const hintEl = document.getElementById('brief-to-hint');
         const u = String(ld.u || '');
         const ti = String(ld.ti || '');
         const aid = String(ld.awardId || '');
 
-        // 1. Direct CORS-open NSF Award API lookup (works anywhere, even offline from M2 bridge)
+        // 1. Direct CORS-open NSF Award API lookup (`AWD_ID=...` or USAspending `ASST_NON_<7digits>_049` / `_4900`)
         let nsfId = '';
-        const mNsf = u.match(/AWD_ID=(\d{6,8})/i) || ti.match(/NSF Funded Award #(\d{6,8})/i) || u.match(/ASST_NON_(\d{7})_4900/i);
+        const mNsf = u.match(/AWD_ID=(\d{6,8})/i) || ti.match(/NSF Funded Award #(\d{6,8})/i) || u.match(/ASST_NON_(\d{7})_(?:049|4900)\b/i);
         if (mNsf) {
           nsfId = mNsf[1];
         } else if (/^\d{7}$/.test(aid) && /national science foundation/i.test(`${ti} ${ld.ag || ''}`)) {
@@ -3069,8 +3074,8 @@
         }
         if (nsfId) {
           try {
-            if (hintEl) hintEl.textContent = `Resolving PI email from NSF Award #${nsfId}...`;
-            const r = await fetch(`https://api.nsf.gov/services/v1/awards/${encodeURIComponent(nsfId)}.json?printFields=piFirstName,piLastName,piEmail,awardeeName`, {
+            if (hintEl && !extractLeadEmail(ld)) hintEl.textContent = `Resolving PI & award title from NSF #${nsfId}...`;
+            const r = await fetch(`https://api.nsf.gov/services/v1/awards/${encodeURIComponent(nsfId)}.json?printFields=id,title,piFirstName,piLastName,piEmail,awardeeName`, {
               credentials: 'omit',
               signal: AbortSignal.timeout(5000),
             });
@@ -3079,16 +3084,21 @@
               const aw = d?.response?.award?.[0];
               const em = String(aw?.piEmail || '').trim();
               const nm = `${aw?.piFirstName || ''} ${aw?.piLastName || ''}`.trim();
+              const fullTitle = String(aw?.title || '').trim();
+              const instName = String(aw?.awardeeName || '').trim();
+              if (fullTitle) ld.cleanTitle = fullTitle;
+              if (nm) ld.piName = nm;
+              if (instName) ld.instName = instName;
+              ld.awardNumber = nsfId;
               if (em) {
                 ld.em = em;
-                if (nm && ld.ag && !ld.ag.includes(nm)) ld.ag = `${ld.ag} — PI: ${nm} <${em}>`;
-                persistBiLeadsCache();
                 const toInput = document.getElementById('brief-to-email');
                 if (toInput && !briefRecipientDirty && activeBriefMode !== 'APEX') toInput.value = em;
-                if (hintEl) hintEl.textContent = `Resolved PI email from NSF (${nm || em}).`;
-                renderBidBriefModalContent();
-                return;
+                if (hintEl) hintEl.textContent = `Resolved NSF PI: ${nm || em} (${em}).`;
               }
+              persistBiLeadsCache();
+              renderBidBriefModalContent();
+              if (em) return;
             }
           } catch (_) {}
         }
@@ -3103,17 +3113,20 @@
               { url: u, awardId: aid, title: ti, agency: ld.ag || '' },
               5000
             );
-            if (info && info.email) {
-              ld.em = String(info.email).trim();
-              if (info.name && ld.ag && !ld.ag.includes(info.name)) {
-                ld.ag = `${ld.ag} — ${info.name} <${ld.em}>`;
+            if (info && (info.email || info.cleanTitle)) {
+              if (info.cleanTitle) ld.cleanTitle = String(info.cleanTitle).trim();
+              if (info.name) ld.piName = String(info.name).trim();
+              if (info.organization) ld.instName = String(info.organization).trim();
+              if (info.awardNumber) ld.awardNumber = String(info.awardNumber).trim();
+              if (info.email) {
+                ld.em = String(info.email).trim();
+                const toInput = document.getElementById('brief-to-email');
+                if (toInput && !briefRecipientDirty && activeBriefMode !== 'APEX') toInput.value = ld.em;
+                if (hintEl) hintEl.textContent = `Resolved contact (${info.name || ld.em}) via ${info.source || 'Portal API'}.`;
               }
               persistBiLeadsCache();
-              const toInput = document.getElementById('brief-to-email');
-              if (toInput && !briefRecipientDirty && activeBriefMode !== 'APEX') toInput.value = ld.em;
-              if (hintEl) hintEl.textContent = `Resolved contact (${info.name || ld.em}) via ${info.source || 'Portal API'}.`;
               renderBidBriefModalContent();
-              return;
+              if (info.email) return;
             }
           }
         } catch (_) {}
@@ -3127,7 +3140,7 @@
         const toInput = document.getElementById('brief-to-email');
         const toTyped = (toInput?.value || '').trim();
         const solRef = (document.getElementById('brief-sol-ref')?.value || '').trim();
-        const customNote = (document.getElementById('brief-custom-note')?.value || '').trim();
+        const emailCustomLine = (document.getElementById('brief-email-custom')?.value || '').trim();
         const preview = document.getElementById('bid-brief-preview');
         const mailtoBtn = document.getElementById('btn-mailto-apex');
         if (!preview) return;
@@ -3135,20 +3148,20 @@
         const effectiveTo = toTyped || defaultRecipientForMode(activeBriefMode, activeBriefLeads);
 
         const text = activeBriefMode === 'APEX'
-          ? buildApexReviewText(activeBriefLeads, solRef, customNote, effectiveTo)
+          ? buildApexReviewText(activeBriefLeads, solRef, emailCustomLine)
           : (activeBriefMode === 'PARTNER'
-              ? buildEnablingPartnerPitchText(activeBriefLeads, solRef, customNote, effectiveTo)
-              : buildFar13QuoteCoverText(activeBriefLeads, solRef, customNote));
+              ? buildEnablingPartnerPitchText(activeBriefLeads, solRef, emailCustomLine)
+              : buildFar13QuoteCoverText(activeBriefLeads, solRef, emailCustomLine));
         preview.textContent = text;
 
         if (mailtoBtn) {
-          const emailBody = stripMemoHeaderForGmailBody(text, activeBriefMode);
+          const emailBody = stripMemoHeaderForGmailBody(text);
+          const cleanSubjTitle = cleanHumanOpportunityTitle(activeBriefLeads[0]).slice(0, 72);
           if (activeBriefMode === 'APEX') {
             const toAddr = effectiveTo || AZ_APEX_COUNSELOR_EMAIL;
-            const firstTitle = activeBriefLeads[0]?.ti || 'Solicitation Review';
             const subj = activeBriefLeads.length > 1
               ? `1-on-1 Solicitation Review Request (${activeBriefLeads.length} Targets) — Webcognita LLC (UEI: EZ34U9KNJA17)`
-              : `1-on-1 Solicitation Review Request — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 70)}`;
+              : `Solicitation Review Request — Webcognita LLC (UEI: EZ34U9KNJA17) — ${cleanSubjTitle}`;
             mailtoBtn.hidden = false;
             mailtoBtn.textContent = `Open Gmail Draft (AZ APEX \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`;
             mailtoBtn.dataset.to = toAddr;
@@ -3156,8 +3169,7 @@
             mailtoBtn.href = buildGmailWebComposeUrl(toAddr, subj, emailBody);
           } else if (activeBriefMode === 'PARTNER') {
             const piEmail = effectiveTo;
-            const firstTitle = activeBriefLeads[0]?.ti || 'Grant Collaboration';
-            const subj = `Non-Competing Enabling Partner (WCAG 2.2 AA / Curriculum-as-Code / Local AI) — ${firstTitle.slice(0, 68)}`;
+            const subj = `Non-Competing Enabling Partner (WCAG 2.2 AA & Curriculum-as-Code) — ${cleanSubjTitle}`;
             mailtoBtn.hidden = false;
             mailtoBtn.textContent = piEmail
               ? `Open Gmail Draft to PI (${piEmail} \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`
@@ -3167,8 +3179,7 @@
             mailtoBtn.href = buildGmailWebComposeUrl(piEmail, subj, emailBody);
           } else {
             const coEmail = effectiveTo;
-            const firstTitle = activeBriefLeads[0]?.ti || 'Commercial Quote';
-            const subj = `Commercial Quote Submission — Webcognita LLC (UEI: EZ34U9KNJA17) — ${firstTitle.slice(0, 68)}`;
+            const subj = `Commercial Quote — Webcognita LLC (UEI: EZ34U9KNJA17) — ${cleanSubjTitle}`;
             mailtoBtn.hidden = false;
             mailtoBtn.textContent = coEmail
               ? `Open Gmail Draft to CO (${coEmail} \u2022 ${GMAIL_SEND_AS_EMAIL}) \u2192`
@@ -3198,10 +3209,14 @@
         if (toInput) {
           toInput.value = defaultRecipientForMode(defaultMode, leads);
         }
+        const emailCustomInput = document.getElementById('brief-email-custom');
+        if (emailCustomInput) {
+          emailCustomInput.value = '';
+        }
         const sub = document.getElementById('bid-brief-subtitle');
         if (sub) {
           sub.textContent = leads.length === 1
-            ? `Target: [Ring ${Number(leads[0].r ?? 9)}] ${leads[0].ti || 'Selected Lead'} (${leads[0].n || 'Portal'})`
+            ? `Target: [Ring ${Number(leads[0].r ?? 9)}] ${cleanHumanOpportunityTitle(leads[0])} (${leads[0].n || 'Portal'})`
             : `Bundled Export: ${leads.length} "Pursue" Leads Sorted Concentric Ring 0 -> Ring 9`;
         }
         const noteInput = document.getElementById('brief-custom-note');
@@ -3213,7 +3228,7 @@
         if (dlg && typeof dlg.showModal === 'function') {
           dlg.showModal();
         }
-        if (leads.length === 1 && !extractLeadEmail(leads[0])) {
+        if (leads.length === 1) {
           autoResolveMissingLeadEmail(leads[0]);
         }
       }
@@ -3464,7 +3479,7 @@
         renderBidBriefModalContent();
       });
       document.getElementById('brief-sol-ref')?.addEventListener('input', renderBidBriefModalContent);
-      document.getElementById('brief-custom-note')?.addEventListener('input', renderBidBriefModalContent);
+      document.getElementById('brief-email-custom')?.addEventListener('input', renderBidBriefModalContent);
       document.getElementById('brief-custom-note')?.addEventListener('change', saveBriefNoteForActiveLead);
       document.getElementById('btn-download-brief')?.addEventListener('click', () => {
         const txt = document.getElementById('bid-brief-preview')?.innerText || '';
