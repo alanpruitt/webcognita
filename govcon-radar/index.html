@@ -1217,6 +1217,7 @@
 
           <div class="chip-row" aria-label="Quick Example Queries">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Instant Queries:</span>
+            <button type="button" class="btn-secondary preset-q" data-q="TEN 07-25 DOL ETA AI Literacy Framework WIOA Strengthening Community Colleges">U.S. DOL TEN 07-25 &amp; WIOA</button>
             <button type="button" class="btn-secondary preset-q" data-q="Bureau of Reclamation USBR Yuma Area Office Phoenix Area Office BLM I-8 I-10">AZ I-8/I-10 Federal (USBR &amp; BLM)</button>
             <button type="button" class="btn-secondary preset-q" data-q="4FrontED Quechan Imperial Valley NADBank">4FrontED Megaregion (Ring 5)</button>
             <button type="button" class="btn-secondary preset-q" data-q="EO 14434 Super Intelligence 15 U.S.C. 9401">EO 14434 Super Intelligence (SI)</button>
@@ -1450,7 +1451,15 @@
                   </div>
                   <div class="usa-radio-row">
                     <input type="radio" id="usa-stream-c" name="usa_stream" value="STREAM_C">
-                    <label for="usa-stream-c"><strong>Stream C &mdash; 50-State Institutional Grants:</strong> Domestic DOL, ED, USDA, HHS, NSF, &amp; DOC awards to colleges/universities for Non-Competing Enabling Partner outreach.</label>
+                    <label for="usa-stream-c"><strong>Stream C &mdash; 50-State Institutional Grants (Multi-Agency):</strong> Domestic DOL, ED, USDA, HHS, NSF, &amp; DOC awards to colleges/universities for Non-Competing Enabling Partner outreach.</label>
+                  </div>
+                  <div class="usa-radio-row">
+                    <input type="radio" id="usa-stream-d" name="usa_stream" value="STREAM_D">
+                    <label for="usa-stream-d"><strong>Stream D &mdash; U.S. DOL ETA TEN No. 07-25, SCC &amp; WIOA Funded Grants:</strong> Isolates <code>Department of Labor</code> grantees (Strengthening Community Colleges <code>17.280</code>, WIOA, H-1B <code>17.268</code>, &amp; Apprenticeship <code>17.285</code>) nationwide.</label>
+                  </div>
+                  <div class="usa-radio-row">
+                    <input type="radio" id="usa-stream-e" name="usa_stream" value="STREAM_E">
+                    <label for="usa-stream-e"><strong>Stream E &mdash; Live Open &amp; Forecasted DOL ETA NOFOs (Grants.gov via M2 Bridge):</strong> Real-time <code>FOA-ETA</code> / workforce grant opportunities on <code>Grants.gov</code> with Program Contact emails.</label>
                   </div>
                 </div>
               </fieldset>
@@ -1462,12 +1471,13 @@
                   <input id="usa-keywords" name="keywords" class="search-input" type="search" value="Section 508, WCAG, digital accessibility, AI literacy, Canvas LMS, curriculum development, Progressive Web App" aria-describedby="usa-keywords-hint" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
                 </div>
                 <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
-                  <button type="submit" id="btn-usa-submit" class="btn-primary">Query USAspending.gov v2 API</button>
+                  <button type="submit" id="btn-usa-submit" class="btn-primary">Query Live Federal API</button>
                 </div>
               </div>
 
               <div class="chip-row" style="margin-top: 0.65rem; margin-bottom: 0;">
                 <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Load Keyword Preset:</span>
+                <button type="button" class="btn-secondary usa-preset-btn" data-usa-stream="STREAM_D" data-usa-kw="Strengthening Community Colleges, WIOA, workforce development, apprenticeship, artificial intelligence, digital literacy, community college">U.S. DOL TEN 07-25, SCC &amp; WIOA</button>
                 <button type="button" class="btn-secondary usa-preset-btn" data-usa-kw="Section 508, WCAG, digital accessibility, ADA Title II, PDF remediation">Section 508 &amp; WCAG Remediation</button>
                 <button type="button" class="btn-secondary usa-preset-btn" data-usa-kw="Bureau of Reclamation, WaterSMART, Colorado River, NEPA, environmental assessment, Section 508">USBR Reclamation, NEPA &amp; WaterSMART</button>
                 <button type="button" class="btn-secondary usa-preset-btn" data-usa-kw="AI literacy, Super Intelligence, artificial intelligence training, curriculum development, Canvas LMS">AI / SI Literacy &amp; Curriculum-as-Code</button>
@@ -3006,17 +3016,24 @@
         const atInst = inst ? ` at ${inst}` : '';
         const awardParen = awardIdTag ? ` (${awardIdTag})` : '';
 
+        const isDolTenLead = /\b(department of labor|employment and training|\bdol\b|\beta\b|wioa|strengthening community colleges|ten\s*(?:no\.\s*)?07-25|apprenticeship|foa-eta)\b/i.test(
+          `${ld.ti || ''} ${ld.ag || ''} ${ld.sn || ''} ${ld.u || ''}`
+        );
+        const aiLiteracyBullet = isDolTenLead
+          ? '- U.S. DOL ETA TEN No. 07-25 Workforce AI Literacy & Sovereign Hybrid RAG: Turnkey alignment across all 5 Foundational AI Literacy Content Areas and 7 Community College Delivery Design Principles of TEN No. 07-25, paired with local SQLite Hybrid RAG (https://hybrid-rag.dev) keeping 100% of WIOA/FERPA participant data on-device ($0 SaaS fees).'
+          : '- Zero-Cloud Sovereign AI & Hybrid RAG: On-device SQLite Hybrid RAG (https://hybrid-rag.dev) keeping 100% of FERPA and research data off third-party clouds with $0 recurring SaaS fees.';
+
         const lines = [
           salutation,
           '',
-          `Congratulations on your leadership${atInst} on "${cleanTitle}"${awardParen}. I am writing to introduce Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6), a Veteran-Owned Small Business in Yuma, Arizona, as a potential non-competing technical partner as you build out your instructional modules, digital accessibility compliance, and open educational deliverables.`,
+          `Congratulations on your leadership${atInst} on "${cleanTitle}"${awardParen}. I am writing to introduce Webcognita LLC (SAM.gov UEI: EZ34U9KNJA17 | CAGE: 4ZCN6), a Veteran-Owned Small Business in Yuma, Arizona, as a potential non-competing technical partner as you build out your${isDolTenLead ? ' U.S. DOL TEN No. 07-25 workforce AI literacy,' : ''} instructional modules, digital accessibility compliance, and open educational deliverables.`,
           '',
           ...(emailCustomLine ? [emailCustomLine, ''] : []),
           'How Webcognita LLC Supports Funded PIs & Consortia:',
           '- Strict Non-Competing Partner Pledge: We never compete against universities, community colleges, Tribal colleges, or workforce boards as a lead grant applicant, ensuring your institution retains 100% of primary leadership, indirect recovery, and academic credit.',
           '- Curriculum-as-Code & Bilingual $0 ZTC OER: Git-governed, dual-namespace Open Educational Resources (English / Spanish) built for Canvas LMS and standalone Progressive Web Apps.',
           '- DOJ ADA Title II (28 CFR Part 35) & Section 508 Compliance: Automated WCAG 2.2 AA (9:1 contrast) web engineering and ISO 14289-1 Tagged PDF/UA remediation for syllabi, studio guides, and rubrics.',
-          '- Zero-Cloud Sovereign AI & Hybrid RAG: On-device SQLite Hybrid RAG (https://hybrid-rag.dev) keeping 100% of FERPA and research data off third-party clouds with $0 recurring SaaS fees.',
+          aiLiteracyBullet,
           '',
           'Two Frictionless 2 CFR Part 200 Engagement Options:',
           `- Pre-Award Proposal Attachment (2 CFR 200.331): Same-day 1-page Letter of Commitment, Scope of Work, and Budget Justification (${solRef || '$25,000–$75,000/yr'}) for upcoming proposals or supplements.`,
@@ -3681,6 +3698,11 @@
 
       document.querySelectorAll('.usa-preset-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
+          const targetStream = btn.getAttribute('data-usa-stream');
+          if (targetStream) {
+            const rBtn = document.querySelector(`input[name="usa_stream"][value="${targetStream}"]`);
+            if (rBtn) rBtn.checked = true;
+          }
           const kwInput = document.getElementById('usa-keywords');
           if (kwInput) {
             kwInput.value = btn.getAttribute('data-usa-kw') || '';
@@ -3691,7 +3713,8 @@
 
       function buildUsaSpendingPayload(streamMode, kwRaw) {
         const now = new Date();
-        const startIso = new Date(now.getTime() - 240 * 86400000).toISOString().slice(0, 10);
+        const lookbackDays = streamMode === 'STREAM_D' ? 540 : 240;
+        const startIso = new Date(now.getTime() - lookbackDays * 86400000).toISOString().slice(0, 10);
         const endIso = new Date(now.getTime() + 365 * 86400000).toISOString().slice(0, 10);
         const keywords = String(kwRaw || '')
           .split(',')
@@ -3724,6 +3747,18 @@
               { country: 'USA', state: 'CA', county: '025' },
             ],
             keywords: kwSafe,
+          };
+        } else if (streamMode === 'STREAM_D') {
+          filters = {
+            time_period: [{ start_date: startIso, end_date: endIso }],
+            award_type_codes: ['02', '03', '04', '05'],
+            place_of_performance_scope: 'domestic',
+            agencies: [
+              { type: 'awarding', tier: 'toptier', name: 'Department of Labor' },
+            ],
+            keywords: keywords.length
+              ? kwSafe
+              : ['Strengthening Community Colleges', 'WIOA', 'workforce development', 'apprenticeship', 'artificial intelligence', 'digital literacy', 'curriculum'],
           };
         } else if (streamMode === 'STREAM_C') {
           filters = {
@@ -3791,9 +3826,11 @@
           const popState = String(row['Place of Performance State Code'] || 'US').trim();
           const naics = String(row['NAICS Code'] || '541511, 541512, 611710');
 
-          const isGrant = streamMode === 'STREAM_C';
+          const isGrant = streamMode === 'STREAM_C' || streamMode === 'STREAM_D';
           const tags = [];
-          if (isGrant) {
+          if (streamMode === 'STREAM_D') {
+            tags.push('U.S. DOL / TEN 07-25 Target');
+          } else if (isGrant) {
             tags.push('Funded Grant');
           } else if (amt > 0 && amt <= 15000) {
             tags.push('GPC Micro-Purchase Benchmark');
@@ -3893,6 +3930,94 @@
         grid.replaceChildren(...cards);
       }
 
+      function renderGrantsGovLiveResults(items) {
+        const grid = document.getElementById('usa-results');
+        const tel = document.getElementById('usa-telemetry');
+        if (!grid || !tel) return;
+
+        tel.innerHTML = `<span>Returned ${items.length} live open/forecasted U.S. DOL &amp; workforce NOFOs on Grants.gov</span><span>Click 1-Click PI / Subaward Pitch to stage Gmail Draft (alan@webcognita.com)</span>`;
+        if (!items.length) {
+          const empty = document.createElement('div');
+          empty.className = 'plain-callout';
+          empty.style.gridColumn = '1 / -1';
+          empty.textContent = 'No open or forecasted Grants.gov DOL opportunities matched those exact keywords today. Try "workforce, community college, apprenticeship, WIOA" or switch to Stream D (Funded DOL Grantees).';
+          grid.replaceChildren(empty);
+          return;
+        }
+
+        const cards = items.map((g) => {
+          const ceilStr = g.awardCeiling && g.awardCeiling !== 'none'
+            ? ('Ceiling: $' + Number(g.awardCeiling).toLocaleString('en-US'))
+            : `Status: ${g.status || 'POSTED'}`;
+          const contactStr = g.contactName && g.contactEmail
+            ? `${g.agency} — ${g.contactName} <${g.contactEmail}>`
+            : (g.contactEmail ? `${g.agency} <${g.contactEmail}>` : g.agency);
+          const ld = {
+            h: hashUsaAwardId(g.canonicalUrl || g.oppNumber || g.title),
+            r: 9,
+            n: 'FED-TEN-0725',
+            s: 86,
+            t: 'PARTNER_SUBAWARD',
+            c: 'GRANTS_GOV_LIVE',
+            ti: `[Grants.gov ${g.status || 'POSTED'}: ${g.oppNumber}] ${g.title}`,
+            cleanTitle: g.title,
+            awardNumber: g.oppNumber,
+            piName: g.contactName || '',
+            em: g.contactEmail || '',
+            ag: contactStr,
+            dl: `${ceilStr} | Opens: ${g.openDate || 'N/A'} | Closes: ${g.closeDate || 'Open'}`,
+            u: g.canonicalUrl,
+            na: '611710, 611420, 611430, 541511',
+            tr: 'NON_COMPETING_50STATE_ENABLING_PARTNER',
+            sn: `Agency: ${g.agency} | Opportunity: ${g.oppNumber}` + (g.contactEmail ? ` | Program Contact: ${g.contactName || ''} (${g.contactEmail})` : ''),
+            tagLabel: `Grants.gov ${g.status || 'POSTED'} • DOL TEN 07-25`,
+          };
+          const qInfo = computeClientLeadQuant(ld);
+          const wopsStr = qInfo.wops >= 1 ? qInfo.wops.toFixed(3) : qInfo.wops.toFixed(3).slice(1);
+          const savedDec = biDecisions[ld.h]?.decision || '';
+
+          const art = document.createElement('article');
+          art.className = 'node-card' + (savedDec === 'PURSUE' ? ' is-wcg-ready' : '');
+          art.innerHTML = `
+            <div>
+              <div class="card-top-row">
+                <div class="meta-row">
+                  <span class="ring-chip-9" style="color: #FFFFFF; background-color: #1E293B;">Ring 9</span>
+                  <span class="score-chip" style="color: #FFFFFF; background-color: #08454A; border-color: #08454A;">${escapeHtml(ld.tagLabel)}</span>
+                  <span class="score-chip" style="color: #FFFFFF; background-color: #064E3B; border-color: #064E3B;">${escapeHtml(qInfo.label)} &bull; wOPS ${wopsStr}</span>
+                </div>
+              </div>
+              <h3>${escapeHtml(g.title)}</h3>
+              <p class="kv-line"><strong>Agency &amp; Program Contact:</strong> ${escapeHtml(contactStr)}</p>
+              <p class="kv-line"><strong>Funding &amp; Window:</strong> ${escapeHtml(ld.dl)}</p>
+              <p class="kv-line"><strong>Opportunity #:</strong> <code>${escapeHtml(g.oppNumber || 'N/A')}</code> &bull; NAICS 611710, 611420, 541511</p>
+            </div>
+            <div class="card-cta-stack">
+              <button type="button" class="btn-export-brief is-pursue usa-brief-btn">1-Click PI / Subaward Pitch &rarr;<span class="sr-only"> for ${escapeHtml(g.title)}</span></button>
+              <button type="button" class="btn-secondary usa-save-triage-btn" aria-pressed="${savedDec === 'PURSUE' ? 'true' : 'false'}">${savedDec === 'PURSUE' ? 'Saved to BI Triage (Pursue)' : 'Save to BI Triage (Pursue)'}<span class="sr-only"> &mdash; ${escapeHtml(g.title)}</span></button>
+              <a class="card-link-btn" href="${escapeHtml(ld.u)}" target="_blank" rel="noopener noreferrer">Open Official Grants.gov NOFO<span class="sr-only"> &mdash; ${escapeHtml(g.title)}</span></a>
+            </div>
+          `;
+          art.querySelector('.usa-brief-btn')?.addEventListener('click', () => {
+            openBidBriefDialog([ld], 'PARTNER');
+          });
+          const saveBtn = art.querySelector('.usa-save-triage-btn');
+          saveBtn?.addEventListener('click', async () => {
+            if (!biLeads.some((x) => x.h === ld.h)) {
+              biLeads.unshift(ld);
+              persistBiLeadsCache();
+            }
+            revealTriageTab(false);
+            await recordLeadDecision(ld, 'PURSUE');
+            const nowPursue = (biDecisions[ld.h]?.decision || '') === 'PURSUE';
+            saveBtn.setAttribute('aria-pressed', nowPursue ? 'true' : 'false');
+            saveBtn.textContent = nowPursue ? 'Saved to BI Triage (Pursue)' : 'Save to BI Triage (Pursue)';
+          });
+          return art;
+        });
+        grid.replaceChildren(...cards);
+      }
+
       document.getElementById('usa-live-form')?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const submitBtn = document.getElementById('btn-usa-submit');
@@ -3905,21 +4030,35 @@
         if (submitBtn) submitBtn.disabled = true;
         if (progressEl) progressEl.hidden = false;
         try {
-          const payload = buildUsaSpendingPayload(streamMode, kwVal);
-          const resp = await fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            credentials: 'omit',
-            referrerPolicy: 'no-referrer',
-            signal: AbortSignal.timeout(20000),
-          });
-          if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-          const data = await resp.json();
-          renderUsaSpendingResults(data.results || [], streamMode);
+          if (streamMode === 'STREAM_E') {
+            const ggData = await fetchLoopbackBridge(
+              '/api/bi-triage/grants-gov-search',
+              'POST',
+              { keywords: kwVal, agencies: 'DOL' },
+              15000
+            );
+            if (!ggData || !ggData.ok) throw new Error(ggData?.error || 'Grants.gov bridge unavailable');
+            renderGrantsGovLiveResults(ggData.results || []);
+          } else {
+            const payload = buildUsaSpendingPayload(streamMode, kwVal);
+            const resp = await fetch('https://api.usaspending.gov/api/v2/search/spending_by_award/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              credentials: 'omit',
+              referrerPolicy: 'no-referrer',
+              signal: AbortSignal.timeout(20000),
+            });
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            const data = await resp.json();
+            renderUsaSpendingResults(data.results || [], streamMode);
+          }
         } catch (err) {
           if (tel) {
-            tel.innerHTML = `<span>USAspending.gov API request failed (${escapeHtml(err.message || String(err))}). Verify connectivity or retry.</span><span>Source: api.usaspending.gov/api/v2</span>`;
+            const msg = streamMode === 'STREAM_E'
+              ? `Grants.gov live search requires M2 Loopback Bridge (${escapeHtml(err.message || String(err))}). Switch to Stream D for direct browser USAspending DOL lookup.`
+              : `USAspending.gov API request failed (${escapeHtml(err.message || String(err))}). Verify connectivity or retry.`;
+            tel.innerHTML = `<span>${msg}</span><span>Source: ${streamMode === 'STREAM_E' ? 'api.grants.gov (via M2 127.0.0.1:8767)' : 'api.usaspending.gov/api/v2'}</span>`;
           }
         } finally {
           if (submitBtn) submitBtn.disabled = false;
