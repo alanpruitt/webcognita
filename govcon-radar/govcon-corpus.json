@@ -3008,6 +3008,8 @@
       "platform": "DPCAP (acq.osd.mil) & PIEE (piee.eb.mil)",
       "thresholds": "DoD GPC Guidebook <= $15K • PIEE Electronic Proposals (PGI 205.1)",
       "url": "https://www.acq.osd.mil/asda/dpc/index.html",
+      "portalActive": true,
+      "wcgStatus": "PIEE / SPRS Active & Linked to SAM.gov (UEI: EZ34U9KNJA17 • CAGE: 4ZCN6)",
       "tags": [
         "dpcap",
         "piee",
@@ -3017,13 +3019,15 @@
         "proposal manager",
         "gpc guidebook",
         "pgi 205.1",
+        "active",
+        "registered",
+        "compliant",
         "ring 9"
       ],
       "summary": "Effective Oct 1, 2026, unclassified DoD solicitations and electronic quote uploads run through PIEE's Solicitation Module (Proposal Manager role), unified with SPRS and WAWF invoicing.",
       "ring": 9,
       "ringLabel": "Ring 9",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "DOD-02",
@@ -3461,7 +3465,7 @@
       "summary": "Federal blueprint guiding State Workforce Agencies, local WIOA boards, apprenticeship sponsors, and community colleges on integrating AI literacy across workforce programs. Webcognita LLC maps 1-to-1 to all 5 Foundational Content Areas and 7 Community College Delivery Design Principles via bilingual (EN/ES) $0 ZTC Curriculum-as-Code, WCAG 2.2 AA (9:1) / ADA Title II compliance, and zero-cloud Sovereign Hybrid RAG—attaching strictly as a Non-Competing 50-State Enabling Partner (Stream D & Stream E in Tab 6).",
       "ring": 9,
       "ringLabel": "Ring 9",
-      "isPortal": true,
+      "isPortal": false,
       "portalActive": false
     },
     {
@@ -3472,6 +3476,8 @@
       "platform": "FEMA.gov (FEMA-Industry@fema.dhs.gov) & SAM Disaster Registry",
       "thresholds": "Emergency GPC = $25,000 • Contingency SAT = $1,000,000 • Local-Area Set-Aside Preference",
       "url": "https://www.fema.gov/business-industry/doing-business",
+      "portalActive": true,
+      "wcgStatus": "SAM.gov Disaster Response Registry Active (AZ & CA • FAR 26.205) + Region 9 Break-Glass Kit Staged",
       "tags": [
         "fema",
         "stafford act",
@@ -3484,13 +3490,15 @@
         "bilingual",
         "section 508",
         "offline pwa",
+        "active",
+        "registered",
+        "compliant",
         "ring 9"
       ],
       "summary": "Stafford Act (42 U.S.C. 5150) grants local-area set-aside priority to businesses inside declared counties alongside elevated $25K GPC and $1M SAT limits for accessible, multilingual digital response.",
       "ring": 9,
       "ringLabel": "Ring 9",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "GSA-01",

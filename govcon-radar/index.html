@@ -2150,7 +2150,9 @@
           : '';
         const usaLiveCta = node.id === 'FED-01'
           ? `<button type="button" class="card-sow-btn" data-open-usaspending="true">Open Live USAspending v2 Lookup &rarr;</button>`
-          : '';
+          : (node.id === 'FED-TEN-0725'
+              ? `<button type="button" class="card-sow-btn" data-open-usaspending="true" data-usa-stream="STREAM_D" data-usa-kw="Strengthening Community Colleges, WIOA, workforce development, apprenticeship, artificial intelligence, digital literacy, community college">Open Live DOL TEN 07-25 Grants (Stream D) &rarr;</button>`
+              : '');
         const activeToggleBtn = node.isPortal && !isLockedAct
           ? `<button type="button" class="active-toggle-btn" data-act-id="${escapeHtml(node.id)}" data-act-title="${escapeHtml(node.title)}" aria-pressed="${isAct ? 'true' : 'false'}" aria-label="${isAct ? 'Portal registration active (select to unmark): ' : 'Mark portal registration active: '}${escapeHtml(node.title)}">${isAct ? 'ACTIVE' : 'Mark Active'}</button>`
           : '';
@@ -3689,10 +3691,20 @@
       document.addEventListener('click', (e) => {
         const trigger = e.target.closest('[data-open-usaspending="true"]');
         if (!trigger) return;
+        const targetStream = trigger.getAttribute('data-usa-stream');
+        if (targetStream) {
+          const rBtn = document.querySelector(`input[name="usa_stream"][value="${targetStream}"]`);
+          if (rBtn) rBtn.checked = true;
+        }
+        const targetKw = trigger.getAttribute('data-usa-kw');
+        const kwInput = document.getElementById('usa-keywords');
+        if (targetKw && kwInput) {
+          kwInput.value = targetKw;
+        }
         const usaTab = document.getElementById('tab-usaspending');
         if (usaTab) {
           activateTab(usaTab, false);
-          document.getElementById('usa-keywords')?.focus();
+          document.getElementById('btn-usa-submit')?.focus();
         }
       });
 
