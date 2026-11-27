@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.1",
-  "generatedOn": "2026-11-25",
+  "generatedOn": "2026-11-27",
   "title": "Webcognita Federal & Arizona SLED Hybrid RAG OSINT Radar",
   "cleanRoomNotice": "100% public-domain federal (.gov/.mil) and Arizona SLED procurement metadata synthesized independently by Webcognita LLC. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. SBA, or Arizona APEX Accelerator.",
   "nodes": [
@@ -2746,8 +2746,10 @@
       "title": "County of Imperial, CA — Purchasing Department & PlanetBids",
       "jurisdiction": "County of Imperial, CA (~179K Pop • Active Apr 2026 ADA Enforcement • 58 mi)",
       "platform": "Imperial County Purchasing & PlanetBids ($0 Vendor Registration)",
-      "thresholds": "Apr 2026 ADA Active (>=50K) • Note 10% Imperial Local Pref & CA DVBE Domicile Rule",
+      "thresholds": "Apr 2026 ADA Active (>=50K) • Informal Quotes <$50K • Note 10% Imperial Local Pref & CA DVBE Domicile Rule",
       "url": "https://purchasing.imperialcounty.org/",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor & FEMA Region 9 OES Emergency Roster (2026-11-27 • PB System by PlanetBids • SAM UEI EZ34U9KNJA17)",
       "tags": [
         "4fronted",
         "imperial county",
@@ -2758,13 +2760,16 @@
         "ada title ii",
         "local preference",
         "iv&v",
+        "fema",
+        "emergency",
+        "active",
+        "registered",
         "ring 5"
       ],
-      "summary": "Regional county government (~179K pop) already under active DOJ 28 CFR Part 35 enforcement since April 24, 2026. Guardrails: County applies a 10% local Imperial preference on standard bids and CA DVBE requires CA residency—pitch sub-$10K specialty DOM/PDF-UA IV&V sprints or team with an Imperial local partner.",
+      "summary": "Regional county government (~179K pop) already under active DOJ 28 CFR Part 35 enforcement since April 24, 2026, with informal written/telephone quote authority under $50,000. Guardrails: County applies a 10% local Imperial preference on standard bids and CA DVBE requires CA residency—pitch sub-$50K specialty DOM/PDF-UA IV&V sprints, remote Yuma electronic delivery (CA FTB Form 587), or FEMA Region 9 OES ESF-2/5/15 support.",
       "ring": 5,
       "ringLabel": "Ring 5 • 4FrontED",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "4FE-CA-ED-01",
@@ -4001,7 +4006,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "15/15 AZ Counties Active (OpenGov, Bonfire, BidNet, Coconino IonWave), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
+      "label": "15/15 AZ Counties Active + Imperial County CA PlanetBids Active (OpenGov, Bonfire, BidNet, Coconino IonWave, PlanetBids), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
     },
     {
       "id": "G13",
