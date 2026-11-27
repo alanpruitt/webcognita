@@ -2776,11 +2776,11 @@
       "category": "FOURFRONTED_MEGAREGION",
       "title": "Imperial Valley College (IVC) — Administrative Services & RFPs",
       "jurisdiction": "Imperial Community College District, Imperial, CA (~91% HSI • 56 mi West on I-8)",
-      "platform": "Open Institutional RFP Webpage (imperial.edu — Zero Paid Portal Gate)",
-      "thresholds": "Departmental P-Card / Informal Quotes • CA SOS $800 FTB Guard (Remote Yuma Delivery)",
-      "url": "https://www.imperial.edu/",
+      "platform": "Direct Fiscal Services Vendor File & Open RFP Webpage (imperial.edu — Zero Portal Gate)",
+      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery",
+      "url": "https://www.imperial.edu/faculty-and-staff/administrative-services/request-for-proposals.html",
       "portalActive": true,
-      "wcgStatus": "Open Institutional RFP Board — Zero Login Gate (Remote Yuma Delivery • $0 CA SOS Tax Guard)",
+      "wcgStatus": "Vendor Packet Sent to Fiscal Services Buyer (2026-11-27 • Signed W-9 + Capabilities Statement • <=$119,100 Direct PO Eligible)",
       "tags": [
         "4fronted",
         "imperial valley college",
@@ -2798,7 +2798,7 @@
         "registered",
         "ring 5"
       ],
-      "summary": "Hispanic-Serving Institution (~91% Latino, 56 miles west on I-8) publishing RFPs directly on imperial.edu without PlanetBids/OpenGov fees. High-OBP peer to AWC for $0 ZTC OER, U.S. DOL TEN 07-25 AI literacy, and WCAG 9:1 remediation. Deliver remotely from Yuma HQ to avoid triggering CA $800/yr foreign LLC tax.",
+      "summary": "Hispanic-Serving Institution (~91% Latino, 56 miles west on I-8) publishing RFPs directly on imperial.edu with a $119,100 non-construction bid threshold (2026 CA PCC 20651) and Gov. Code 53060 professional consulting authority. Signed W-9 + Capabilities Statement submitted to District Buyer (2026-11-27); zero IVC employee COI enables direct Dean/DE/DSPS POs for $0 ZTC OER, DOL TEN 07-25 AI literacy, and Canvas WCAG 9:1 remediation.",
       "ring": 5,
       "ringLabel": "Ring 5 • 4FrontED",
       "isPortal": true
