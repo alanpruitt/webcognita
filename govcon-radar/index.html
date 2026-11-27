@@ -1236,20 +1236,20 @@
     <section class="hero" aria-labelledby="page-title">
       <h1 id="page-title">Federal, Defense &amp; Arizona SLED Hybrid RAG OSINT Radar</h1>
       <p style="margin: 0;">
-        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>108 public Federal, Department of War, Cooperative, VMS Force-Multiplier, Arizona SLED, and 4FrontED Binational Megaregion procurement portals</strong> plus <strong>12 foundational statutory &amp; OSINT reference authorities</strong> (<code>120</code> total indexed nodes) across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code> AZ, <code>Ring 5: 4FrontED</code>, <code>Rings 6&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
+        Engineered by <strong>Webcognita LLC</strong> (<code>SAM.gov UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code> &bull; Yuma, AZ) to align <strong>116 public Federal, Department of War, Cooperative, VMS Force-Multiplier, Arizona SLED, 4FrontED Binational Megaregion, and SoCal EdTech / PlanetBids procurement portals</strong> plus <strong>13 foundational statutory &amp; OSINT reference authorities</strong> (<code>129</code> total indexed nodes) across concentric Yuma lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code> AZ, <code>Ring 5: 4FrontED</code>, <code>Ring 6: SoCal PlanetBids</code>, <code>Rings 7&ndash;8</code> reserved, <code>Ring 9</code> Federal), <code>EO 14434</code> Super Intelligence (<code>SI</code>) / <code>15 U.S.C. 9401(3)</code> governance, live <code>FAR 2.101</code> thresholds, and <code>NAICS / NIGP / PSC / GSA SIN</code> crosswalks.
       </p>
       <div class="plain-callout">
-        <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Tab 1 browses your <strong>108 registerable portals</strong> cleanly while global keyword search still spans all <strong>120</strong> records (including the <strong>12 Statutes &amp; OSINT Reference Cards</strong> in Tab 5). Zero queries leave your device and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
+        <strong>In Plain English:</strong> Before you search below, here is how this works: <strong>every search runs 100% inside your browser using Okapi BM25 keyword ranking fused with semantic concept vectors via Reciprocal Rank Fusion (RRF, k=60)</strong>. Tab 1 browses your <strong>116 registerable portals</strong> cleanly while global keyword search still spans all <strong>129</strong> records (including the <strong>13 Statutes &amp; OSINT Reference Cards</strong> in Tab 5). Zero queries leave your device and every contrast pair meets or exceeds <code>9:1</code> WCAG 2.2 AA accessibility.
       </div>
     </section>
 
     <!-- Accessible Single-Row Tablist -->
     <div id="main-tablist" class="tablist-scroller" role="tablist" aria-label="GovCon Hybrid RAG Modules">
-      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (108 Portals)</button>
+      <button type="button" role="tab" id="tab-search" aria-selected="true" tabindex="0">1. Hybrid RAG Portal Search (116 Portals)</button>
       <button type="button" role="tab" id="tab-router" aria-selected="false" tabindex="-1">2. Threshold &amp; Vehicle Router</button>
       <button type="button" role="tab" id="tab-crosswalk" aria-selected="false" tabindex="-1">3. NAICS / NIGP / PSC / SIN Crosswalk</button>
       <button type="button" role="tab" id="tab-readiness" aria-selected="false" tabindex="-1">4. FAR 9.104-1 &amp; CMMC L1 Self-Check</button>
-      <button type="button" role="tab" id="tab-statutes" aria-selected="false" tabindex="-1">5. Statutes &amp; OSINT Deck (12)</button>
+      <button type="button" role="tab" id="tab-statutes" aria-selected="false" tabindex="-1">5. Statutes &amp; OSINT Deck (13)</button>
       <button type="button" role="tab" id="tab-usaspending" aria-selected="false" tabindex="-1">6. Live USAspending.gov API</button>
       <button type="button" role="tab" id="tab-triage" aria-selected="false" tabindex="-1" hidden>7. BI Lead Triage</button>
     </div>
@@ -1258,11 +1258,12 @@
       <!-- PANEL 1: HYBRID BM25 + SEMANTIC RRF SEARCH -->
       <div role="tabpanel" id="panel-search" aria-labelledby="tab-search">
         <div class="panel-inner">
+          <search aria-label="Hybrid BM25 and Semantic OSINT Portal Search and Concentric Filters">
           <div class="control-well">
-            <form id="rag-form" class="search-box" role="search" aria-label="Hybrid BM25 and Semantic OSINT Search">
+            <form id="rag-form" class="search-box">
             <div>
-              <label for="rag-query" class="field-label">Type Keywords to Global-Search All 120 Nodes (108 Portals + 12 Statutory &amp; OSINT Reference Cards &mdash; Live As You Type):</label>
-              <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., NAVFAC Southwest, eOMSI, Bureau of Reclamation, MCAS Yuma, 4FrontED, EO 14434, Section 508..." autocomplete="off" autofocus>
+              <label for="rag-query" class="field-label">Type Keywords to Global-Search All 129 Nodes (116 Portals + 13 Statutory &amp; OSINT Reference Cards &mdash; Live As You Type):</label>
+              <input id="rag-query" class="search-input" type="search" placeholder="Click here and type — e.g., CollegeBuys, SDCCD, ICOE, IVC, PlanetBids, 4FrontED, EO 14434, Section 508..." autocomplete="off" autofocus>
             </div>
               <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
                 <button type="submit" class="btn-primary">Run Hybrid RRF</button>
@@ -1276,6 +1277,7 @@
             <button type="button" class="btn-secondary preset-q" data-q="TEN 07-25 DOL ETA AI Literacy Framework WIOA Strengthening Community Colleges">U.S. DOL TEN 07-25 &amp; WIOA</button>
             <button type="button" class="btn-secondary preset-q" data-q="Bureau of Reclamation USBR Yuma Area Office Phoenix Area Office BLM I-8 I-10">AZ I-8/I-10 Federal (USBR &amp; BLM)</button>
             <button type="button" class="btn-secondary preset-q" data-q="4FrontED Quechan Imperial Valley NADBank">4FrontED Megaregion (Ring 5)</button>
+            <button type="button" class="btn-secondary preset-q" data-q="PlanetBids CollegeBuys FoundationCCC IVC ICOE SDCCD SWCCD GCCCD CVWD">SoCal EdTech &amp; PlanetBids (Ring 6)</button>
             <button type="button" class="btn-secondary preset-q" data-q="EO 14434 Super Intelligence 15 U.S.C. 9401">EO 14434 Super Intelligence (SI)</button>
             <button type="button" class="btn-secondary preset-q" data-q="VA Veterans First Section 508">VA Section 508 &amp; Veterans First</button>
             <button type="button" class="btn-secondary preset-q" data-q="NAVFAC Southwest N62473 MCAS Yuma eOMSI PIEE CMMC">DoD PIEE, NAVFAC MCAS Yuma &amp; CMMC</button>
@@ -1293,20 +1295,22 @@
             <button type="button" class="btn-secondary ring-btn" data-ring="2" aria-pressed="false">Ring 2 (13)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="3" aria-pressed="false">Ring 3 (32)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="4" aria-pressed="false">Ring 4 (21)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="5" aria-pressed="false">Ring 5: 4FrontED (12)</button>
-            <button type="button" class="btn-secondary ring-btn" data-ring="RESERVED" aria-pressed="false">Rings 6&ndash;8 (Reserved)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="5" aria-pressed="false">Ring 5: 4FrontED (11)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="6" aria-pressed="false">Ring 6: SoCal PlanetBids (9)</button>
+            <button type="button" class="btn-secondary ring-btn" data-ring="RESERVED" aria-pressed="false">Rings 7&ndash;8 (Reserved)</button>
             <button type="button" class="btn-secondary ring-btn" data-ring="9" aria-pressed="false">Ring 9 (22)</button>
           </div>
 
           <div class="chip-row" role="group" aria-label="Filter by Jurisdiction Category">
             <span style="font-size: 0.84rem; font-weight: 800; color: #0B1D3A;">Scope Filter:</span>
-            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All Portals (108)</button>
-            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (69)</button>
-            <button type="button" class="btn-secondary cat-btn btn-nextup" id="nextup-filter-btn" data-cat="PORTAL_NEXT_UP" aria-pressed="false">Next Up to Register (39)</button>
-            <button type="button" class="btn-secondary cat-btn btn-ada-countdown" id="ada2027-filter-btn" data-cat="ADA_APR_2027" aria-pressed="false">Apr 2027 ADA &lt;50K P-Card Targets (36)</button>
-            <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (72)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="ALL" aria-pressed="true">All Portals (116)</button>
+            <button type="button" class="btn-secondary cat-btn" id="active-filter-btn" data-cat="PORTAL_ACTIVE" aria-pressed="false">Active Portals (74)</button>
+            <button type="button" class="btn-secondary cat-btn btn-nextup" id="nextup-filter-btn" data-cat="PORTAL_NEXT_UP" aria-pressed="false">Next Up to Register (42)</button>
+            <button type="button" class="btn-secondary cat-btn btn-ada-countdown" id="ada2027-filter-btn" data-cat="ADA_APR_2027" aria-pressed="false">Apr 2027 ADA &lt;50K P-Card Targets (37)</button>
+            <button type="button" class="btn-secondary cat-btn" id="wcg-filter-btn" data-cat="WCG_READY" aria-pressed="false">Webcognita Verified (77)</button>
             <button type="button" class="btn-secondary cat-btn" id="saved-filter-btn" data-cat="SAVED" aria-pressed="false">Saved (0)</button>
-            <button type="button" class="btn-secondary cat-btn" data-cat="FOURFRONTED_MEGAREGION" aria-pressed="false">4FrontED Megaregion (12)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="FOURFRONTED_MEGAREGION" aria-pressed="false">4FrontED Megaregion (11)</button>
+            <button type="button" class="btn-secondary cat-btn" data-cat="SOCAL_PLANETBIDS" aria-pressed="false">SoCal EdTech &amp; PlanetBids (9)</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="FEDERAL_OSINT" aria-pressed="false">Federal Market OSINT</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="CABINET_OSDBU" aria-pressed="false">15 Cabinet OSDBUs</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="DOD_CYBER_FAR" aria-pressed="false">DoD, FAR &amp; Cyber</button>
@@ -1314,18 +1318,19 @@
             <button type="button" class="btn-secondary cat-btn" data-cat="AZ_STATE_COUNTIES" aria-pressed="false">AZ State &amp; 15 Counties</button>
             <button type="button" class="btn-secondary cat-btn" data-cat="AZ_CITIES_ED_AIRPORTS" aria-pressed="false">AZ Cities, Ed &amp; Airports</button>
           </div>
+          </search>
           <div id="save-live-status" class="sr-only" aria-live="polite"></div>
 
           <div id="ring-progress-well" class="ring-progress-well">
             <div class="ring-progress-header">
-              <span id="ring-progress-label" class="ring-progress-title">Concentric Portal Registration Progress (All Rings): 61 / 94 Active (65%) &bull; 33 Next Up</span>
+              <span id="ring-progress-label" class="ring-progress-title">Concentric Portal Registration Progress (All Rings): 74 / 116 Active (64%) &bull; 42 Next Up</span>
               <div class="ring-progress-actions" role="group" aria-label="Quick Toggle Active vs Next Up Portals">
-                <button type="button" id="ring-quick-active-btn" class="btn-secondary" aria-pressed="false">Active Only (61)</button>
-                <button type="button" id="ring-quick-nextup-btn" class="btn-secondary btn-nextup" aria-pressed="false">Next Up to Register (33)</button>
+                <button type="button" id="ring-quick-active-btn" class="btn-secondary" aria-pressed="false">Active Only (74)</button>
+                <button type="button" id="ring-quick-nextup-btn" class="btn-secondary btn-nextup" aria-pressed="false">Next Up to Register (42)</button>
                 <button type="button" id="btn-open-daily-balance" class="btn-primary" style="min-block-size: 44px; padding: 0.42rem 0.85rem; font-size: 0.84rem;">8&ndash;5 Daily Queue (BI + Next 2) &rarr;</button>
               </div>
             </div>
-            <progress id="ring-portal-progress" class="ring-progress-bar" value="61" max="94" aria-labelledby="ring-progress-label"></progress>
+            <progress id="ring-portal-progress" class="ring-progress-bar" value="74" max="116" aria-labelledby="ring-progress-label"></progress>
             <div id="ring-breakdown-strip" class="ring-breakdown-row" role="group" aria-label="Concentric Ring Registration Breakdown"></div>
           </div>
 
@@ -1707,7 +1712,7 @@
     </dialog>
 
     <footer class="footer-note">
-      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 106 portal records, concentric ring lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code>, <code>Rings 5&ndash;8</code> reserved, <code>Ring 9</code> Federal), statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and State of Arizona SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
+      <strong>Clean-Room Public OSINT &amp; Accessibility Disclosure:</strong> All 129 records (116 portals + 13 statutory references), concentric ring lanes (<code>Ring 0</code>&ndash;<code>Ring 4</code> AZ, <code>Ring 5: 4FrontED</code>, <code>Ring 6: SoCal PlanetBids</code>, <code>Rings 7&ndash;8</code> reserved, <code>Ring 9</code> Federal), statutory thresholds, and classification mappings in this Edge Progressive Web App are synthesized independently by <strong>Webcognita LLC</strong> (<code>UEI: EZ34U9KNJA17</code> &bull; <code>CAGE: 4ZCN6</code>) from public-domain federal (<code>.gov</code> / <code>.mil</code>, including <code>EO 14434</code> &amp; <code>15 U.S.C. 9401(3)</code>) and Arizona / California SLED statutes. Not affiliated with or endorsed by the U.S. Department of War/Defense, U.S. Small Business Administration, or Arizona APEX Accelerator. Verify live solicitation deadlines directly on official government portals.
     </footer>
   </main>
 
@@ -1801,8 +1806,8 @@
         veteran: ['vosb', 'sdvosb', 'vetcert', 'veterans', 'first', '8127', 'va', 'visn', 'dav', 'sba'],
         defense: ['dod', 'war', 'piee', 'sprs', 'wawf', 'cmmc', 'dfars', 'ypg', 'mcas', 'navfac', 'n62473', 'eomsi', 'bmgr', 'fead', 'navwar', 'huachuca', 'dla', 'dcso', 'uspfo', 'w912l2'],
         cyber: ['cmmc', '52.204-21', '800-171', 'fci', 'cui', 'sprs', 'spectrum', 'zero', 'trust', 'ssp', '889'],
-        cooperative: ['1gpa', 'mohave', 'mesc', 'omnia', 'piggyback', 'opengov', 'bonfire', 'azpurchasing', 'mbo', 'beeline', 'marketplace', 'escrow', 'contingent', 'fedconnect'],
-        borderlands: ['yuma', 'reclamation', 'usbr', 'desalting', 'colorado', 'watersmart', 'blm', '4fronted', 'quechan', 'cocopah', 'somerton', 'wellton', 'imperial', 'el', 'centro', 'calexico', 'brawley', 'nadbank', 'sonora', 'mexicali', 'nogales', 'santa', 'cruz', 'cochise', 'la', 'paz', 'bilingual', 'spanish', 'hsi', 'rural'],
+        cooperative: ['1gpa', 'mohave', 'mesc', 'omnia', 'piggyback', 'opengov', 'bonfire', 'azpurchasing', 'planetbids', 'collegebuys', 'foundationccc', 'mbo', 'beeline', 'marketplace', 'escrow', 'contingent', 'fedconnect'],
+        borderlands: ['yuma', 'reclamation', 'usbr', 'desalting', 'colorado', 'watersmart', 'blm', '4fronted', 'quechan', 'cocopah', 'somerton', 'wellton', 'imperial', 'ivc', 'icoe', 'iid', 'cvwd', 'coachella', 'sdccd', 'swccd', 'gcccd', 'rccd', 'sdusd', 'socal', 'el', 'centro', 'calexico', 'brawley', 'nadbank', 'sonora', 'mexicali', 'nogales', 'santa', 'cruz', 'cochise', 'la', 'paz', 'bilingual', 'spanish', 'hsi', 'rural'],
         ai_curriculum: ['ai', 'si', 'super', 'intelligence', 'superintelligence', '14434', '9401', 'literacy', 'ten', '07-25', 'curriculum', 'canvas', 'oer', 'ztc', 'training', 'workforce', '611710', '541511'],
         rd_grants: ['sbir', 'sttr', 'fast', '541715', 'nifa', 'nsf', 'ies', 'afwerx', 'watersmart', 'subaward', 'university']
       };
@@ -1878,6 +1883,7 @@
         3: 'Ring 3 (Phoenix & Statewide)',
         4: 'Ring 4 (Outer AZ Rim)',
         5: 'Ring 5 (4FrontED Megaregion)',
+        6: 'Ring 6 (SoCal EdTech & PlanetBids)',
         9: 'Ring 9 (Federal / DoD / VMS)'
       };
 
@@ -1906,7 +1912,7 @@
         const nextBtn = document.getElementById('nextup-filter-btn');
         if (nextBtn) nextBtn.textContent = `Next Up to Register (${nextUpAll})`;
 
-        const ringOrder = [0, 1, 2, 3, 4, 5, 9];
+        const ringOrder = [0, 1, 2, 3, 4, 5, 6, 9];
         const statsByRing = {};
         ringOrder.forEach((r) => { statsByRing[r] = { total: 0, active: 0, nextUp: 0 }; });
         portalDocs.forEach((d) => {
@@ -1938,7 +1944,7 @@
         }
         if (lbl) {
           if (activeRing === 'RESERVED') {
-            lbl.textContent = 'Rings 6–8 Reserved for Next Multi-State Expansion: 0 Portals Assigned Yet (Ring 5: 4FrontED Active)';
+            lbl.textContent = 'Rings 7–8 Reserved for Next Multi-State Expansion: 0 Portals Assigned Yet (Ring 5: 4FrontED & Ring 6: SoCal PlanetBids Active)';
           } else {
             const scopeName = activeRing === 'ALL'
               ? 'All Concentric Rings (Ring 0 \u2192 Ring 9)'
@@ -2099,12 +2105,16 @@
           const dr = btn.getAttribute('data-ring');
           if (dr === '5') {
             btn.textContent = `Ring 5: 4FrontED (${ringCounts['5'] || 0})`;
+          } else if (dr === '6') {
+            btn.textContent = `Ring 6: SoCal PlanetBids (${ringCounts['6'] || 0})`;
           } else if (dr !== 'ALL' && dr !== 'RESERVED') {
             btn.textContent = `Ring ${dr} (${ringCounts[dr] || 0})`;
           }
         });
         const ffCatBtn = document.querySelector('.cat-btn[data-cat="FOURFRONTED_MEGAREGION"]');
         if (ffCatBtn) ffCatBtn.textContent = `4FrontED Megaregion (${ringCounts['5'] || 0})`;
+        const scCatBtn = document.querySelector('.cat-btn[data-cat="SOCAL_PLANETBIDS"]');
+        if (scCatBtn) scCatBtn.textContent = `SoCal EdTech & PlanetBids (${ringCounts['6'] || 0})`;
         ada2027NodeCount = adaCount;
         updateAda2027FilterPill();
         updateActiveFilterPill();
@@ -2204,6 +2214,7 @@
 
       const CAT_LABELS = {
         FOURFRONTED_MEGAREGION: '4FrontED Megaregion',
+        SOCAL_PLANETBIDS: 'SoCal EdTech & PlanetBids',
         FEDERAL_OSINT: 'Federal OSINT',
         CABINET_OSDBU: 'Cabinet OSDBU',
         DOD_CYBER_FAR: 'DoD / FAR / Cyber',
@@ -2305,7 +2316,7 @@
         const grid = document.getElementById('rag-results');
         if (!items.length) {
           const emptyMsg = activeRing === 'RESERVED'
-            ? '<strong>Rings 6, 7, and 8 are reserved placeholder lanes.</strong> <strong>Ring 5: 4FrontED Megaregion</strong> (Tribal, Somerton/Wellton, Imperial Valley CA &amp; NADBank USD) is now active; Rings 6&ndash;8 remain held clean for future multi-state expansion.'
+            ? '<strong>Rings 7 and 8 are reserved placeholder lanes.</strong> <strong>Ring 5: 4FrontED Megaregion</strong> and <strong>Ring 6: SoCal EdTech &amp; PlanetBids</strong> (incl. IVC, ICOE, FoundationCCC/CollegeBuys &amp; San Diego HSI colleges) are now active; Rings 7&ndash;8 remain held clean for future multi-state expansion.'
             : activeCategory === 'PORTAL_NEXT_UP' && activeRing !== 'ALL'
               ? `<strong>100% of Concentric Ring ${escapeHtml(activeRing)} portals are already ACTIVE!</strong> Zero unregistered portals remain in this ring—select <strong>Active Only</strong> above or advance to the next Concentric Ring.`
               : activeCategory === 'SAVED' && savedSet.size === 0
@@ -2733,17 +2744,22 @@
       // Priority Tier 1 ($0 self-service vendor accounts/profiles) before open-board bookmarks & Year-2 milestones
       const NEXTUP_FAST_ROI_PRIORITY = {
         'FED-03': 1,        // SBA Dynamic Small Business Search (SBS / DSBS) — #1 CO lookup
-        '4FE-CA-CTY-01': 2, // County of Imperial PlanetBids ($0)
-        '4FE-CA-UTIL-01': 3,// Imperial Irrigation District PlanetBids ($0)
-        'AZ-CITY-15': 4,    // Town of Gilbert Purchasing ($0, 275K pop)
-        'AZ-CITY-17': 5,    // City of Scottsdale eServices ($0, 245K pop)
-        'CYB-04': 6,        // DoD Project Spectrum ($0 CMMC L1 check)
-        'OSDBU-01': 7,      // VA Direct Access / OSDBU
-        'OSDBU-09': 8,      // DHS Vendor Outreach Sessions (VOS)
-        'OSDBU-06': 9,      // HHS SBCX / IHS OSDBU
-        'FED-BOR-01': 10,   // USBR Yuma & Phoenix Area Offices
-        'DOD-03': 11,       // NAVFAC SW / MCAS Yuma Small Business
-        '4FE-TRIBE-01': 90, // Defer $50 license until active tribal RFP
+        'CA-PB-01': 2,      // FoundationCCC / CollegeBuys PlanetBids ($0 — All 116 CA Community Colleges)
+        'CA-PB-02': 3,      // San Diego Community College District (SDCCD #57760 PlanetBids, $0)
+        'CA-PB-03': 4,      // Southwestern Community College District (SWCCD PlanetBids, $0)
+        'CA-PB-04': 5,      // Grossmont-Cuyamaca Community College District (GCCCD PlanetBids, $0)
+        'CA-PB-05': 6,      // Coachella Valley Water District (CVWD PlanetBids, $0 — Apr 2027 ADA)
+        'CA-PB-06': 7,      // Riverside Community College District (RCCD PlanetBids, $0)
+        'CA-PB-07': 8,      // San Diego Unified School District (SDUSD PlanetBids, $0)
+        'AZ-CITY-15': 9,    // Town of Gilbert Purchasing ($0, 275K pop)
+        'AZ-CITY-17': 10,   // City of Scottsdale eServices ($0, 245K pop)
+        'CYB-04': 11,       // DoD Project Spectrum ($0 CMMC L1 check)
+        'OSDBU-01': 12,     // VA Direct Access / OSDBU
+        'OSDBU-09': 13,     // DHS Vendor Outreach Sessions (VOS)
+        'OSDBU-06': 14,     // HHS SBCX / IHS OSDBU
+        'FED-BOR-01': 15,   // USBR Yuma & Phoenix Area Offices
+        'DOD-03': 16,       // NAVFAC SW / MCAS Yuma Small Business
+        '4FE-TRIBE-01': 90, // Defer $100 license until active tribal RFP
         'CYB-02': 95,       // Reference hub
         'GSA-01': 99,       // Year-2 GSA MAS milestone
       };
@@ -4782,7 +4798,7 @@
           if (sqInput) sqInput.value = sqParam;
         }
         const r = searchParams.get('ring');
-        if (r && ['0', '1', '2', '3', '4', '5', '9', 'RESERVED'].includes(r)) {
+        if (r && ['0', '1', '2', '3', '4', '5', '6', '9', 'RESERVED'].includes(r)) {
           setRingFilter(r);
         }
       }
