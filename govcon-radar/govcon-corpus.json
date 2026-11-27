@@ -2808,9 +2808,11 @@
       "category": "FOURFRONTED_MEGAREGION",
       "title": "Imperial Irrigation District (IID) — PlanetBids Vendor Portal",
       "jurisdiction": "Imperial & Coachella Valleys, CA (Special Public Power & Water District • 58 mi)",
-      "platform": "IID PlanetBids Vendor Portal ($0 Registration)",
+      "platform": "IID PlanetBids Vendor Portal #15314 ($0 Registration)",
       "thresholds": "Apr 26, 2027 Special-District ADA Due • Informal RFQs & Formal e-Bids",
-      "url": "https://www.iid.com/about-iid/department-directory/general-services/purchasing-contracts",
+      "url": "https://vendors.planetbids.com/portal/15314/portal-home",
+      "portalActive": true,
+      "wcgStatus": "Active Vendor & Emergency Utility Roster (2026-11-27 • IID PlanetBids #15314 • 20 NIGP Categories + SAM UEI EZ34U9KNJA17)",
       "adaApr2027": true,
       "shortOrgName": "Imperial Irrigation District (IID)",
       "bilingualPriority": true,
@@ -2828,13 +2830,16 @@
         "p-card",
         "<50k",
         "bilingual",
+        "fema",
+        "emergency",
+        "active",
+        "registered",
         "ring 5"
       ],
-      "summary": "Major public power and water special district in the 4FrontED corridor utilizing PlanetBids ($0 vendor registration with AZ LLC + W-9; do not check CA-domicile DVBE). Special districts face mandatory DOJ 28 CFR Part 35 WCAG 2.1/2.2 AA compliance on April 26, 2027 across customer portals and bilingual public PDFs.",
+      "summary": "Major public power and water special district in the 4FrontED corridor utilizing PlanetBids Portal #15314 ($0 vendor registration active with 20 5-digit NIGP categories incl. 92000, 91829, 95882, 96172, 96175 + Emergency Comms/Crisis). Special districts face mandatory DOJ 28 CFR Part 35 WCAG 2.1/2.2 AA compliance on April 26, 2027 across customer portals and bilingual public PDFs.",
       "ring": 5,
       "ringLabel": "Ring 5 • 4FrontED",
-      "isPortal": true,
-      "portalActive": false
+      "isPortal": true
     },
     {
       "id": "4FE-EDC-01",
@@ -4006,7 +4011,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "15/15 AZ Counties Active + Imperial County CA PlanetBids Active (OpenGov, Bonfire, BidNet, Coconino IonWave, PlanetBids), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
+      "label": "15/15 AZ Counties Active + Imperial County CA & IID PlanetBids Active (OpenGov, Bonfire, BidNet, Coconino IonWave, PlanetBids), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
     },
     {
       "id": "G13",
