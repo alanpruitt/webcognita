@@ -2804,6 +2804,41 @@
       "isPortal": true
     },
     {
+      "id": "4FE-CA-ED-02",
+      "category": "FOURFRONTED_MEGAREGION",
+      "title": "Imperial County Office of Education (ICOE) — PlanetBids Vendor Portal",
+      "jurisdiction": "Imperial County K-12 & CTE Consortium, El Centro, CA (16 School Districts • ~90%+ Latino • 58 mi)",
+      "platform": "ICOE PB System by PlanetBids ($0 Registration)",
+      "thresholds": "Apr 2026/2027 DOJ ADA Title II • District P-Card & Informal Quotes",
+      "url": "https://www.icoe.org/",
+      "portalActive": true,
+      "wcgStatus": "Active Registered Vendor (2026-11-27 • PB System by PlanetBids • 20 EdTech/AI/ADA NAICS Codes + SAM UEI EZ34U9KNJA17)",
+      "bilingualPriority": true,
+      "tags": [
+        "4fronted",
+        "imperial county office of education",
+        "icoe",
+        "icoe.org",
+        "planetbids",
+        "el centro",
+        "california",
+        "k-12",
+        "cte",
+        "ada title ii",
+        "wcag",
+        "oer",
+        "dol ten 07-25",
+        "bilingual",
+        "active",
+        "registered",
+        "ring 5"
+      ],
+      "summary": "Countywide K-12 and Career Technical Education (CTE) agency serving all 16 Imperial County school districts (~36,000+ students; ~90%+ Hispanic/bilingual, 58 miles west on I-8). Active PB System by PlanetBids vendor profile across 20 NAICS codes for FERPA-safe Sovereign Hybrid RAG, bilingual Curriculum-as-Code, educator AI literacy, and DOJ 28 CFR Part 35 WCAG 2.2 AA / Tagged PDF/UA remediation.",
+      "ring": 5,
+      "ringLabel": "Ring 5 • 4FrontED",
+      "isPortal": true
+    },
+    {
       "id": "4FE-CA-UTIL-01",
       "category": "FOURFRONTED_MEGAREGION",
       "title": "Imperial Irrigation District (IID) — PlanetBids Vendor Portal",
@@ -4011,7 +4046,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "15/15 AZ Counties Active + Imperial County CA & IID PlanetBids Active (OpenGov, Bonfire, BidNet, Coconino IonWave, PlanetBids), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
+      "label": "15/15 AZ Counties Active + Imperial Valley Triad Active (County of Imperial, IID & ICOE PlanetBids), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
     },
     {
       "id": "G13",
