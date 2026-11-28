@@ -2681,7 +2681,7 @@
       "title": "City of Calexico, CA — Municipal & Border Port Procurement",
       "jurisdiction": "City of Calexico, CA (~38.6K Pop • ~97% Latino • Opposite Mexicali POE • 62 mi)",
       "platform": "Calexico City Clerk / Finance Bids (calexico.ca.gov) & Calexico USD PlanetBids",
-      "thresholds": "Apr 26, 2027 ADA Due (<50K) • Municipal P-Card / Informal Quotes",
+      "thresholds": "Apr 26, 2027 ADA Due (<50K) • Municipal P-Card / Informal Quotes • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.calexico.ca.gov/",
       "adaApr2027": true,
       "shortOrgName": "City of Calexico, CA",
@@ -2707,7 +2707,20 @@
       "ring": 5,
       "ringLabel": "Ring 5 • 4FrontED",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for county & municipal agencies: (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405/11135 WCAG 2.2 AA, Sec. 508 & Tagged PDF/UA web, agenda packet & IV&V accessibility remediation; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "4FE-CA-CITY-03",
@@ -2746,7 +2759,7 @@
       "title": "County of Imperial, CA — Purchasing Department & PlanetBids",
       "jurisdiction": "County of Imperial, CA (~179K Pop • Active Apr 2026 ADA Enforcement • 58 mi)",
       "platform": "Imperial County Purchasing & PlanetBids ($0 Vendor Registration)",
-      "thresholds": "Apr 2026 ADA Active (>=50K) • Informal Quotes <$50K • Note 10% Imperial Local Pref & CA DVBE Domicile Rule",
+      "thresholds": "Apr 2026 ADA Active (>=50K) • Informal Quotes <$50K • Note 10% Imperial Local Pref & CA DVBE Domicile Rule • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://purchasing.imperialcounty.org/",
       "portalActive": true,
       "wcgStatus": "Active Vendor & FEMA Region 9 OES Emergency Roster (2026-11-27 • PB System by PlanetBids • SAM UEI EZ34U9KNJA17)",
@@ -2769,7 +2782,20 @@
       "summary": "Regional county government (~179K pop) already under active DOJ 28 CFR Part 35 enforcement since April 24, 2026, with informal written/telephone quote authority under $50,000. Guardrails: County applies a 10% local Imperial preference on standard bids and CA DVBE requires CA residency—pitch sub-$50K specialty DOM/PDF-UA IV&V sprints, remote Yuma electronic delivery (CA FTB Form 587), or FEMA Region 9 OES ESF-2/5/15 support.",
       "ring": 5,
       "ringLabel": "Ring 5 • 4FrontED",
-      "isPortal": true
+      "isPortal": true,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for county & municipal agencies: (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405/11135 WCAG 2.2 AA, Sec. 508 & Tagged PDF/UA web, agenda packet & IV&V accessibility remediation; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "4FE-CA-UTIL-01",
@@ -2777,7 +2803,7 @@
       "title": "Imperial Irrigation District (IID) — PlanetBids Vendor Portal",
       "jurisdiction": "Imperial & Coachella Valleys, CA (Special Public Power & Water District • 58 mi)",
       "platform": "IID PB System by PlanetBids ($0 Registration)",
-      "thresholds": "Apr 26, 2027 Special-District ADA Due • Informal RFQs & Formal e-Bids",
+      "thresholds": "Apr 26, 2027 Special-District ADA Due • Informal RFQs & Formal e-Bids • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.iid.com/about-iid/department-directory/general-services/purchasing-contracts",
       "portalActive": true,
       "wcgStatus": "Active Vendor & Emergency Utility Roster (2026-11-27 • PB System by PlanetBids • 20 NIGP Categories + SAM UEI EZ34U9KNJA17)",
@@ -2807,7 +2833,20 @@
       "summary": "Major public power and water special district in the 4FrontED corridor utilizing PlanetBids Portal #15314 ($0 vendor registration active with 20 5-digit NIGP categories incl. 92000, 91829, 95882, 96172, 96175 + Emergency Comms/Crisis). Special districts face mandatory DOJ 28 CFR Part 35 WCAG 2.1/2.2 AA compliance on April 26, 2027 across customer portals and bilingual public PDFs.",
       "ring": 5,
       "ringLabel": "Ring 5 • 4FrontED",
-      "isPortal": true
+      "isPortal": true,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for public water & power special districts: (1) DOJ ADA Title II (28 CFR Part 35 Apr 26, 2027 Special District rule) & CA Gov. Code 7405 WCAG 2.2 AA, Sec. 508 & Tagged PDF/UA customer portal, rate/outage notice & Board packet remediation; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "4FE-EDC-01",
@@ -2916,7 +2955,7 @@
       "title": "Imperial County Office of Education (ICOE) — PlanetBids Vendor Portal",
       "jurisdiction": "Imperial County K-12 & CTE Consortium, El Centro, CA (16 School Districts • ~90%+ Latino • 58 mi)",
       "platform": "ICOE PB System by PlanetBids ($0 Registration)",
-      "thresholds": "Apr 2026/2027 DOJ ADA Title II • District P-Card & Informal Quotes",
+      "thresholds": "Apr 2026/2027 DOJ ADA Title II • District P-Card & Informal Quotes • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.icoe.org/",
       "portalActive": true,
       "wcgStatus": "Active Registered Vendor (2026-11-27 • PB System by PlanetBids • 20 EdTech/AI/ADA NAICS Codes + SAM UEI EZ34U9KNJA17)",
@@ -2944,7 +2983,20 @@
       "summary": "Countywide K-12 and Career Technical Education (CTE) agency serving all 16 Imperial County school districts (~36,000+ students; ~90%+ Hispanic/bilingual, 58 miles west on I-8). Active PB System by PlanetBids vendor profile across 20 NAICS codes for FERPA-safe Sovereign Hybrid RAG, bilingual Curriculum-as-Code, educator AI literacy, and DOJ 28 CFR Part 35 WCAG 2.2 AA / Tagged PDF/UA remediation.",
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
-      "isPortal": true
+      "isPortal": true,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for K-12 & CTE school districts: (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508 & Tagged PDF/UA school web, IEP/board packet & LMS remediation; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-01",
@@ -2952,7 +3004,7 @@
       "title": "Foundation for California Community Colleges (FoundationCCC / CollegeBuys) — Statewide Co-Op PlanetBids",
       "jurisdiction": "All 116 California Community Colleges, CSUs & K-12 Districts (2.1M+ Students Statewide)",
       "platform": "FoundationCCC PB System by PlanetBids Portal #23646 ($0 Registration • RFPdevelopment@foundationccc.org)",
-      "thresholds": "CA PCC 20661 Statewide Cooperative Piggyback (Zero Local Bidding Across 73 CCDs)",
+      "thresholds": "CA PCC 20661 Statewide Cooperative Piggyback (Zero Local Bidding Across 73 CCDs) • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://foundationccc.org/our-work/system-support/providing-affordable-products-and-technology/collegebuys/rfp-and-bid-opportunities/",
       "bilingualPriority": true,
       "tags": [
@@ -2979,7 +3031,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for all 116 CA Community Colleges, CSUs & K-12 via CollegeBuys/SchoolBuys (CA PCC 20661): (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508, Canvas LMS remediation & Tagged PDF/UA syllabi/board packets; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-02",
@@ -2987,7 +3052,7 @@
       "title": "San Diego Community College District (SDCCD) — PlanetBids Vendor Portal (#57760)",
       "jurisdiction": "San Diego City, Mesa, Miramar & Continuing Ed Colleges, CA (~100K HSI Learners • 165 mi W on I-8)",
       "platform": "SDCCD PB System by PlanetBids Portal #57760 ($0 Registration)",
-      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery",
+      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.sdccd.edu/departments/business/purchasing/bid_rfp/bid-and-rfp-opportunities.aspx",
       "bilingualPriority": true,
       "tags": [
@@ -3013,7 +3078,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for California Community Colleges & HSIs (CA PCC 20651 / Gov. Code 53060): (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508, Canvas LMS course remediation & Tagged PDF/UA syllabi/packets; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-03",
@@ -3021,7 +3099,7 @@
       "title": "Southwestern Community College District (SWCCD) — Contracting & PlanetBids",
       "jurisdiction": "Chula Vista & South Bay US-Baja Border Region, CA (~85%+ Diverse HSI • 168 mi W on I-8)",
       "platform": "SWCCD PB System by PlanetBids via swccd.edu ($0 Registration)",
-      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery",
+      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.swccd.edu/swc-community/propositions-r-and-z/bid-and-plan.aspx",
       "bilingualPriority": true,
       "tags": [
@@ -3047,7 +3125,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for California Community Colleges & HSIs (CA PCC 20651 / Gov. Code 53060): (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508, Canvas LMS course remediation & Tagged PDF/UA syllabi/packets; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-04",
@@ -3055,7 +3146,7 @@
       "title": "Grossmont-Cuyamaca Community College District (GCCCD) — Purchasing & PlanetBids",
       "jurisdiction": "El Cajon & East San Diego County, CA (2 HSI Colleges • 155 mi W on I-8)",
       "platform": "GCCCD PB System by PlanetBids via gcccd.edu ($0 Registration)",
-      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery",
+      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.gcccd.edu/purchasing-contracts/",
       "bilingualPriority": true,
       "tags": [
@@ -3080,7 +3171,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for California Community Colleges & HSIs (CA PCC 20651 / Gov. Code 53060): (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508, Canvas LMS course remediation & Tagged PDF/UA syllabi/packets; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-05",
@@ -3088,7 +3192,7 @@
       "title": "Coachella Valley Water District (CVWD) — Procurement & PlanetBids",
       "jurisdiction": "Coachella, Indio & Palm Desert Special Public Water District, CA (~95 mi NW of Yuma)",
       "platform": "CVWD PB System by PlanetBids #14819 via cvwd.org ($0 Registration)",
-      "thresholds": "Apr 26, 2027 Special-District ADA Due • District P-Card, Informal Quotes & Formal e-Bids",
+      "thresholds": "Apr 26, 2027 Special-District ADA Due • District P-Card, Informal Quotes & Formal e-Bids • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.cvwd.org/140/Procurement-Contracts",
       "adaApr2027": true,
       "shortOrgName": "Coachella Valley Water District (CVWD)",
@@ -3115,7 +3219,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for public water & power special districts: (1) DOJ ADA Title II (28 CFR Part 35 Apr 26, 2027 Special District rule) & CA Gov. Code 7405 WCAG 2.2 AA, Sec. 508 & Tagged PDF/UA customer portal, rate/outage notice & Board packet remediation; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-06",
@@ -3123,7 +3240,7 @@
       "title": "Riverside Community College District (RCCD) — Purchasing & PlanetBids (#75897)",
       "jurisdiction": "Riverside, Moreno Valley & Norco HSI Colleges, CA (~55K Students • I-10 Corridor)",
       "platform": "RCCD PlanetBids Portal #75897 via rccd.edu ($0 Registration)",
-      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery",
+      "thresholds": "2026 CA PCC 20651 <=$119,100 Non-Bid PO + Gov. Code 53060 Consulting • Remote Yuma Delivery • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://rccd.edu/admin/bfs/bs/purchasing.html",
       "bilingualPriority": true,
       "tags": [
@@ -3149,7 +3266,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for California Community Colleges & HSIs (CA PCC 20651 / Gov. Code 53060): (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508, Canvas LMS course remediation & Tagged PDF/UA syllabi/packets; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CA-PB-07",
@@ -3157,7 +3287,7 @@
       "title": "San Diego Unified School District (SDUSD) — Strategic Sourcing & PlanetBids (#43764)",
       "jurisdiction": "San Diego K-12 & CTE Megadistrict, CA (2nd Largest in CA • 100K+ Students • 165 mi W)",
       "platform": "SDUSD PlanetBids Portal #43764 ($0 Registration)",
-      "thresholds": "Apr 2026 Active DOJ ADA Title II • Informal Quotes & Formal RFPs (FERPA-Safe Remote Delivery)",
+      "thresholds": "Apr 2026 Active DOJ ADA Title II • Informal Quotes & Formal RFPs (FERPA-Safe Remote Delivery) • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://www.tinyurl.com/SDUSD-PlanetBids",
       "bilingualPriority": true,
       "tags": [
@@ -3182,7 +3312,20 @@
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false
+      "portalActive": false,
+      "pbProfile": {
+        "samUei": "EZ34U9KNJA17",
+        "samCage": "4ZCN6",
+        "samExp": "11/08/2027",
+        "ein": "81-0809739",
+        "yumaLicense": "SERV-051803 (Exp: 12/31/2026)",
+        "industryType": "541954 - Other Professional, Scientific and Technical Services",
+        "companyClass": "IT Services (if listed), Professional (Other), Service",
+        "paymentTerms": "Net 30",
+        "caQualified": "NO — Select Nonresident / Services Performed Outside CA (AZ LLC #L17046120; $0 CA SOS Foreign LLC tax)",
+        "checkboxGuardrails": "Check ONLY U.S. Gov SAM Registration (EZ34U9KNJA17 • Exp 11/08/2027). Leave CA DVBE, CA SB, VSBE, FTB Waiver Attached & Federal Backup Withholding Exempt UNCHECKED.",
+        "businessDescription": "Webcognita LLC (UEI: EZ34U9KNJA17 | CAGE: 4ZCN6) is a 100% Federal VOSB, U.S. DOL Yuma City LSA firm (FAR 52.219-2), and FEMA Region 9 (CA/AZ) provider in adjacent Yuma, AZ since 2011. Led by Principal Alan Pruitt (2025 U.S. SBA Veteran Champion; 2023 U.S. Dept. of Commerce MBDA Advocate, Quechan Tribe CA/AZ; Higher-Ed Faculty & Google Gemini Certified Educator), we deliver remote electronic services for K-12 & CTE school districts: (1) DOJ ADA Title II (28 CFR Part 35) & CA Gov. Code 7405 WCAG 2.2 AA (9:1), Sec. 508 & Tagged PDF/UA school web, IEP/board packet & LMS remediation; (2) Bilingual (English/Norteno-Spanish) Curriculum-as-Code (S-A-R), $0 ZTC OER & U.S. DOL TEN 07-25 / WIOA AI literacy; and (3) Air-gapped Sovereign Hybrid RAG, offline PWAs & AES-256-GCM vaults with zero cloud PII egress (NAICS: 541511, 541512, 541519, 541611, 541690, 541715, 561410, 611420, 611430, 611710). P-Card & ACH ready."
+      }
     },
     {
       "id": "CYB-01",

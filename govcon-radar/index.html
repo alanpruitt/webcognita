@@ -705,6 +705,49 @@
     .copy-btn-invoker[data-failed] + .copy-tip {
       opacity: 1;
     }
+    .pb-sam-drawer {
+      margin-top: 0.65rem;
+      border: 1.5px solid #0B1D3A;
+      border-radius: 6px;
+      background-color: #F4F7FB;
+      color: #111827;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.82rem;
+    }
+    .pb-sam-drawer > summary {
+      font-weight: 800;
+      color: #0B1D3A;
+      background-color: #F4F7FB;
+      cursor: pointer;
+      min-block-size: 36px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .pb-sam-drawer > summary:focus-visible {
+      outline: 3px solid #940925;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .pb-sam-body {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #CBD5E1;
+      display: grid;
+      gap: 0.38rem;
+    }
+    .pb-desc-pre {
+      margin: 0.25rem 0 0 0;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid #0B1D3A;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      color: #111827;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.76rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
     .copy-btn-invoker[data-failed] + .copy-tip {
       color: #7E061E;
       border-color: #7E061E;
@@ -2273,6 +2316,38 @@
           : '';
         const ctaVerb = node.isPortal ? 'Open Official Portal' : 'Open Official Reference';
         const sysLabel = node.isPortal ? 'Portal / System:' : 'Authority / Source:';
+        const safeId = String(node.id || '').replace(/[^A-Za-z0-9_-]/g, '-');
+        const pb = node.pbProfile;
+        const pbSamMarkup = pb
+          ? `
+            <details class="pb-sam-drawer">
+              <summary>PlanetBids SAM &amp; CA Nonresident Quick-Fill (UEI: ${escapeHtml(pb.samUei)} &bull; Exp: ${escapeHtml(pb.samExp)})</summary>
+              <div class="pb-sam-body">
+                <div><strong>SAM.gov Cert (Check ONLY This):</strong> UEI <code id="pb-uei-${safeId}">${escapeHtml(pb.samUei)}</code> &bull; CAGE <code>${escapeHtml(pb.samCage)}</code> &bull; SAM Exp <code>${escapeHtml(pb.samExp)}</code> &bull; EIN <code>${escapeHtml(pb.ein)}</code></div>
+                <div><strong>CA Residency (STD 204):</strong> ${escapeHtml(pb.caQualified)}</div>
+                <div><strong>Checkboxes:</strong> ${escapeHtml(pb.checkboxGuardrails)}</div>
+                <div><strong>License / Class / Terms:</strong> Yuma Lic <code>${escapeHtml(pb.yumaLicense)}</code> &bull; Seller's Permit: <em>Blank</em> &bull; Industry: <code>${escapeHtml(pb.industryType)}</code> &bull; Class: <code>${escapeHtml(pb.companyClass)}</code> &bull; Terms: <code>${escapeHtml(pb.paymentTerms)}</code></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; margin-top: 0.15rem;">
+                  <span class="copy-wrap">
+                    <button type="button" class="copy-btn-invoker" style="padding: 0.35rem 0.7rem; font-size: 0.78rem;" command="--copy" commandfor="pb-uei-${safeId}">
+                      <span class="copy-glyph" aria-hidden="true"></span>
+                      <span>Copy SAM UEI<span class="sr-only"> for ${escapeHtml(orgShort)}</span></span>
+                    </button>
+                    <span class="copy-tip" role="status"></span>
+                  </span>
+                  <span class="copy-wrap">
+                    <button type="button" class="copy-btn-invoker" style="padding: 0.35rem 0.7rem; font-size: 0.78rem;" command="--copy" commandfor="pb-desc-${safeId}">
+                      <span class="copy-glyph" aria-hidden="true"></span>
+                      <span>Copy Business Description<span class="sr-only"> for ${escapeHtml(orgShort)}</span></span>
+                    </button>
+                    <span class="copy-tip" role="status"></span>
+                  </span>
+                </div>
+                <pre class="pb-desc-pre" tabindex="0" role="region" aria-label="PlanetBids Business Description for ${escapeHtml(orgShort)}"><code id="pb-desc-${safeId}">${escapeHtml(pb.businessDescription)}</code></pre>
+              </div>
+            </details>
+          `
+          : '';
         return `
           <article class="node-card${isSaved ? ' is-saved' : (hasWcg ? ' is-wcg-ready' : '')}" data-nid="${escapeHtml(node.id)}" data-ring="${rNum}">
             <div>
@@ -2296,6 +2371,7 @@
               <p class="kv-line"><strong>${sysLabel}</strong> ${escapeHtml(node.platform)}</p>
               <p class="kv-line"><strong>Thresholds / Gate:</strong> ${escapeHtml(node.thresholds)}</p>
               <p style="font-size: 0.88rem; margin: 0.5rem 0 0 0;">${escapeHtml(node.summary)}</p>
+              ${pbSamMarkup}
             </div>
             <div class="card-cta-stack">
               ${adaSowCta}
@@ -4024,6 +4100,7 @@
         }, true);
       } else {
         document.addEventListener('click', (event) => {
+          if (event.defaultPrevented) return;
           const button = event.target.closest('button[command^="--copy"]');
           if (!button) return;
           const target = document.getElementById(button.getAttribute('commandfor'));
