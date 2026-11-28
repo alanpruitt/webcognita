@@ -3006,6 +3006,8 @@
       "platform": "FoundationCCC PB System by PlanetBids Portal #23646 ($0 Registration • RFPdevelopment@foundationccc.org)",
       "thresholds": "CA PCC 20661 Statewide Cooperative Piggyback (Zero Local Bidding Across 73 CCDs) • SAM UEI: EZ34U9KNJA17 (Exp 11/08/2027)",
       "url": "https://foundationccc.org/our-work/system-support/providing-affordable-products-and-technology/collegebuys/rfp-and-bid-opportunities/",
+      "portalActive": true,
+      "wcgStatus": "Active Registered Vendor (2026-11-27 • PB System Portal #23646 • 19 EdTech/AI/WCAG/Software NAICS Codes + Authorized e-Bid Signer + SAM UEI EZ34U9KNJA17)",
       "bilingualPriority": true,
       "tags": [
         "socal",
@@ -3025,13 +3027,14 @@
         "oer",
         "ztc",
         "dol ten 07-25",
+        "active",
+        "registered",
         "ring 6"
       ],
-      "summary": "California's Higher-Ed equivalent of 1GPA and Mohave MESC (PB System Portal #23646). Under CA Public Contract Code 20661, all 116 California Community Colleges (plus CSUs and K-12 districts) can issue direct purchase orders off a single CollegeBuys / FoundationCCC master agreement without running a local RFP. Register $0 on PlanetBids (leave CA DVBE/SB unchecked; check SAM UEI EZ34U9KNJA17).",
+      "summary": "California's Higher-Ed equivalent of 1GPA and Mohave MESC (PB System Portal #23646). Under CA Public Contract Code 20661, all 116 California Community Colleges (plus CSUs and K-12 districts) can issue direct purchase orders off a single CollegeBuys / FoundationCCC master agreement without running a local RFP. Active PB System vendor across 19 NAICS codes (including all three Software Publishers vintages: 531210, 513210, 511210) with SAM UEI EZ34U9KNJA17.",
       "ring": 6,
       "ringLabel": "Ring 6 • SoCal PlanetBids",
       "isPortal": true,
-      "portalActive": false,
       "pbProfile": {
         "samUei": "EZ34U9KNJA17",
         "samCage": "4ZCN6",
@@ -4430,7 +4433,7 @@
     {
       "id": "G12",
       "pillar": "Payment & Portals",
-      "label": "15/15 AZ Counties Active + Imperial Valley Triad Active (County of Imperial, IID & ICOE PlanetBids), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
+      "label": "15/15 AZ Counties Active + Imperial Valley Quad Active (County of Imperial, IID, ICOE & IVC) + FoundationCCC / CollegeBuys (#23646), Arizona APP (#IV0000112720), City of Mesa VSS (#VS0000020834), ADOT AZ UTRACS SBC (#23545), & AZPurchasing"
     },
     {
       "id": "G13",
